@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+/* Design tokens. Tailwind v4 reads its config from @theme, so this block is the Tailwind config. */
+@theme {
+  --color-bg: #0a0b0c;
+  --color-ink: #0a0b0c; /* text on volt / paper */
+  --color-surface: #141517;
+  --color-surface-2: #1c1e20;
+  --color-surface-3: #26292b;
+  --color-hex-idle: #2a2d2f;
+  --color-volt: #c8f031;
+  --color-paper: #f2f2ee;
+  --color-text-2: #b4b6b0;
+  --color-muted: #9a9d97;
+  --color-muted-2: #7e817b;
+  --color-link-footer: #d6d8d2;
+  --color-code: #e6e7e2;
+  --color-warn: #ff9b6b;
+  --color-line: rgba(242, 242, 238, 0.12);
+  --color-line-soft: rgba(242, 242, 238, 0.07);
+  --color-line-hero: rgba(242, 242, 238, 0.14);
+  --color-chip-border: rgba(242, 242, 238, 0.18);
+
+  /* The design sets no line-heights unless stated, so sizes keep the browser default. */
+  --text-xs--line-height: normal;
+  --text-sm--line-height: normal;
+  --text-base--line-height: normal;
+  --text-lg--line-height: normal;
+  --text-xl--line-height: normal;
+  --text-5xl--line-height: normal;
+
+  --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --radius-badge: 6px;
+  --radius-input: 10px;
+  --radius-code: 14px;
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+
+  --shadow-popover: 0 24px 48px rgba(0, 0, 0, 0.55);
+
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
+  input[type="range"] {
+    accent-color: var(--color-volt);
+  }
+  input::placeholder {
+    color: var(--color-muted-2);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-volt);
+    outline-offset: 2px;
+  }
+}
+
+/* Layout */
+@utility site-px {
+  padding-inline: 48px;
+  @media (width < 640px) {
+    padding-inline: 16px;
+  }
+}
+@utility site-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 48px;
+  @media (width < 640px) {
+    padding-inline: 16px;
+  }
+}
+
+/* Shapes */
+@utility clip-hex {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+@utility clip-chevron {
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%, 24px 50%);
+}
+@utility clip-peak {
+  clip-path: polygon(50% 0, 100% 6px, 100% 100%, 0 100%, 0 6px);
+}
+
+/* Type */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-volt);
+}
+@utility h1 {
+  margin: 0;
+  font-size: 96px;
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  @media (width < 900px) {
+    font-size: 64px;
+  }
+  @media (width < 640px) {
+    font-size: 48px;
+  }
+}
+@utility h2 {
+  margin: 0;
+  font-size: 52px;
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  @media (width < 640px) {
+    font-size: 38px;
+  }
+}
+@utility giant-word {
+  font-size: min(150px, 11.5vw);
+  line-height: 0.85;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  @media (width < 900px) {
+    font-size: 96px;
+  }
+}
+/* paint-order keeps the inner glyph contours from showing through the stroke. */
+@utility outline-word {
+  color: var(--color-bg);
+  -webkit-text-stroke: 4px var(--color-paper);
+  paint-order: stroke fill;
+}
+
+/* Controls */
+@utility btn-primary {
+  display: inline-block;
+  background: var(--color-volt);
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 15px 24px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+@utility btn-secondary {
+  display: inline-block;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 15px 24px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+@utility btn-ghost {
+  border: 1px solid rgba(242, 242, 238, 0.3);
+  color: var(--color-paper);
+  padding: 9px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex: none;
+}
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-chip-border);
+  background: transparent;
+  color: var(--color-text-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+@utility chip-active {
+  background: var(--color-volt);
+  color: var(--color-ink);
+  border-color: transparent;
+}
+
+/* Home honeycomb: tile size shrinks on narrow screens; offsets derive from it. */
+@utility honeycomb {
+  --tile-w: 236px;
+  /* 2 per row: a staggered pair spans 2.5 tiles, so size from the viewport and shift left by
+     a quarter step to keep the block centred. */
+  &.comb-2 {
+    --tile-w: min(236px, calc((100vw - 108px) / 2.5));
+    transform: translateX(calc((var(--tile-w) + 8px) / -4));
+    @media (width < 640px) {
+      --tile-w: min(236px, calc((100vw - 44px) / 2.5));
+    }
+  }
+}
+@utility comb-tile {
+  width: var(--tile-w);
+  height: calc(var(--tile-w) * 272 / 236);
+  padding: 0 calc(var(--tile-w) * 30 / 236);
+  flex: none;
+}
+@utility comb-name {
+  font-size: max(14px, calc(var(--tile-w) * 19 / 236));
+}
+@utility comb-pull {
+  margin-top: calc(var(--tile-w) * -60 / 236);
+}
+@utility comb-offset {
+  margin-left: calc(var(--tile-w) + 8px);
+}

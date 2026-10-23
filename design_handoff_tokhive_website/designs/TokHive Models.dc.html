@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0A0B0C;color:#F2F2EE;font-family:Sora,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{opacity:.8}*{box-sizing:border-box}input[type=range]{accent-color:#C8F031}input::placeholder{color:#7E817B}</style>
+</helmet>
+<div style="min-height:100vh;background:#0A0B0C" data-screen-label="Models">
+<div style="max-width:1280px;margin:0 auto;padding:0 48px">
+<div style="height:72px;display:flex;align-items:center;gap:40px">
+<a href="TokHive Website.dc.html#2a" style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></a>
+<div style="margin-left:auto;display:flex;gap:28px;font-size:14px;color:#B4B6B0;align-items:center"><a href="#" style="color:#C8F031">Models</a><a href="TokHive Network.dc.html">Network</a><a href="#">Docs ↗</a><a href="#">Blog ↗</a><a href="#">GitHub</a><a href="#" style="border:1px solid rgba(242,242,238,.3);color:#F2F2EE;padding:9px 16px;border-radius:999px;white-space:nowrap;flex:none">Sign in</a></div>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;padding:72px 0 40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">MODELS &amp; PRICING</span>
+<h1 style="margin:0;font-size:96px;line-height:.9;font-weight:700;letter-spacing:-.055em">Official models.<br><span style="color:#0A0B0C;-webkit-text-stroke:4px #F2F2EE;paint-order:stroke fill">Below list.</span></h1>
+</div>
+<div style="display:flex;gap:40px">
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font:500 34px 'JetBrains Mono',monospace;letter-spacing:-.03em;color:#C8F031">−58%</span><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97">avg. vs list</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font:500 34px 'JetBrains Mono',monospace;letter-spacing:-.03em">{{ count }}</span><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97">models live</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font:500 34px 'JetBrains Mono',monospace;letter-spacing:-.03em">0</span><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97">monthly fee</span></div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px;padding:20px 0;border-top:1px solid rgba(242,242,238,.12);position:sticky;top:0;background:#0A0B0C;z-index:2">
+<div style="display:flex;gap:16px;align-items:center"><div style="display:flex;align-items:center;gap:10px;background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:999px;padding:0 16px;height:40px;min-width:0;flex:1;max-width:480px"><span style="font:13px 'JetBrains Mono',monospace;color:#7E817B">/</span><input value="{{ q }}" onChange="{{ onQ }}" placeholder="Search models" style="flex:1;background:transparent;border:0;outline:none;color:#F2F2EE;font:14px Sora,sans-serif;min-width:0"></div><div style="margin-left:auto;flex:none;white-space:nowrap;display:flex;align-items:center;gap:8px;font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>sort</span><div style="display:flex;gap:2px;background:#141517;padding:3px;border-radius:999px"><sc-for list="{{ sortChips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 12px 'JetBrains Mono',monospace;padding:7px 12px;border-radius:999px;cursor:pointer;border:0;background:{{ c.bg }};color:{{ c.fg }}">{{ c.n }}</button></sc-for></div></div></div>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+<div style="position:relative" data-vpop="1">
+<button onClick="{{ toggleV }}" style="display:flex;align-items:center;gap:8px;font:500 12px 'JetBrains Mono',monospace;height:36px;padding:0 14px;border-radius:999px;cursor:pointer;background:{{ vBtnBg }};color:{{ vBtnFg }};border:1px solid {{ vBtnBd }}">{{ vLabel }}<span style="font-size:10px">▾</span></button>
+<sc-if value="{{ vOpen }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:44px;left:0;width:300px;background:#141517;border:1px solid rgba(242,242,238,.14);border-radius:14px;padding:8px;box-shadow:0 24px 48px rgba(0,0,0,.55);z-index:5;display:flex;flex-direction:column;gap:6px">
+<input value="{{ vq }}" onChange="{{ onVq }}" placeholder="Filter vendors" style="height:36px;background:#0A0B0C;border:1px solid rgba(242,242,238,.1);border-radius:8px;padding:0 12px;color:#F2F2EE;font:13px Sora,sans-serif;outline:none">
+<div style="max-height:300px;overflow:auto;display:flex;flex-direction:column">
+<sc-for list="{{ vendorOpts }}" as="o" hint-placeholder-count="6"><button onClick="{{ o.on }}" style="display:grid;grid-template-columns:16px 10px 1fr auto;gap:10px;align-items:center;padding:9px 10px;border:0;border-radius:8px;background:transparent;color:#F2F2EE;cursor:pointer;font:14px Sora,sans-serif;text-align:left" style-hover="background:rgba(242,242,238,.06)"><span style="width:16px;height:16px;border-radius:4px;border:1px solid {{ o.cbBd }};background:{{ o.cbBg }};color:#0A0B0C;font-size:11px;display:flex;align-items:center;justify-content:center">{{ o.ck }}</span><span style="width:10px;height:10px;background:{{ o.vc }};clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span><span>{{ o.n }}</span><span style="font:12px 'JetBrains Mono',monospace;color:#7E817B">{{ o.c }}</span></button></sc-for>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px 4px;border-top:1px solid rgba(242,242,238,.08);font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>{{ vCount }}</span><button onClick="{{ clearV }}" style="background:none;border:0;color:#C8F031;font:inherit;cursor:pointer">Clear</button></div>
+</div></sc-if>
+</div>
+<sc-for list="{{ vSel }}" as="v" hint-placeholder-count="0"><button onClick="{{ v.rm }}" style="display:flex;align-items:center;gap:6px;font:500 12px 'JetBrains Mono',monospace;height:36px;padding:0 10px 0 14px;border-radius:999px;cursor:pointer;background:rgba(200,240,49,.12);color:#C8F031;border:1px solid rgba(200,240,49,.35)">{{ v.n }}<span style="font-size:14px;line-height:1">×</span></button></sc-for>
+</div><span style="width:1px;height:24px;background:rgba(242,242,238,.12)"></span><div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ tagChips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 12px 'JetBrains Mono',monospace;height:36px;padding:0 14px;border-radius:999px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.n }}</button></sc-for></div></div>
+</div>
+<div style="overflow-x:auto">
+<div style="min-width:860px">
+<div style="display:grid;grid-template-columns:2.2fr 1fr .8fr 1.8fr 1fr .9fr 32px;gap:16px;padding:12px 20px;font:11px 'JetBrains Mono',monospace;color:#7E817B;letter-spacing:.06em;border-bottom:1px solid rgba(242,242,238,.12)"><span>MODEL</span><span>VENDOR</span><span>CONTEXT</span><span>PRICE in / out · <span style="text-decoration:line-through">official</span></span><span>CAPACITY</span><span style="text-align:right">SAVE</span><span></span></div>
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="10">
+<div style="border-bottom:1px solid rgba(242,242,238,.07);background:{{ r.rowBg }}">
+<div onClick="{{ r.toggle }}" style="display:grid;grid-template-columns:2.2fr 1fr .8fr 1.8fr 1fr .9fr 32px;gap:16px;padding:18px 20px;align-items:center;cursor:pointer;font-size:15px">
+<span style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:600">{{ r.n }}</span><span style="font:12px 'JetBrains Mono',monospace;color:#7E817B">{{ r.id }}</span></span>
+<span style="display:flex;align-items:center;gap:8px;color:#B4B6B0"><span style="width:10px;height:10px;background:{{ r.vc }};clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>{{ r.v }}</span>
+<span style="font-family:'JetBrains Mono',monospace;color:#B4B6B0">{{ r.ctx }}</span>
+<span style="display:flex;flex-direction:column;gap:3px;font-family:'JetBrains Mono',monospace"><span>{{ r.ours }}</span><span style="font-size:12px;color:#7E817B;text-decoration:line-through">{{ r.off }}</span></span>
+<span style="display:flex;align-items:center;gap:8px"><span style="flex:1;max-width:64px;height:6px;background:#26292B;border-radius:2px;overflow:hidden"><span style="display:block;height:100%;width:{{ r.cap }}%;background:{{ r.capC }}"></span></span><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97">{{ r.cap }}%</span></span>
+<span style="text-align:right"><span style="font:500 13px 'JetBrains Mono',monospace;background:#C8F031;color:#0A0B0C;padding:4px 9px;border-radius:999px">{{ r.save }}</span></span>
+<span style="font:14px 'JetBrains Mono',monospace;color:#9A9D97;text-align:right">{{ r.chev }}</span>
+</div>
+<sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:32px;padding:4px 20px 28px">
+<div style="display:flex;flex-direction:column;gap:10px;font:13px 'JetBrains Mono',monospace">
+<span style="font-size:11px;color:#7E817B;letter-spacing:.06em">PRICE / 1M TOKENS</span>
+<div style="display:grid;grid-template-columns:1fr auto auto;gap:6px 16px"><span style="color:#9A9D97">input</span><span style="color:#7E817B;text-decoration:line-through">{{ r.oiS }}</span><span>{{ r.tiS }}</span><span style="color:#9A9D97">output</span><span style="color:#7E817B;text-decoration:line-through">{{ r.ooS }}</span><span>{{ r.toS }}</span><span style="color:#9A9D97">cache read</span><span style="color:#7E817B;text-decoration:line-through">{{ r.ocS }}</span><span>{{ r.tcS }}</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;font:13px 'JetBrains Mono',monospace">
+<span style="font-size:11px;color:#7E817B;letter-spacing:.06em">LIVE · 1H</span>
+<div style="display:grid;grid-template-columns:1fr auto;gap:6px 16px"><span style="color:#9A9D97">providers</span><span>{{ r.prov }}</span><span style="color:#9A9D97">p50 latency</span><span>{{ r.lat }}</span><span style="color:#9A9D97">throughput</span><span>{{ r.tps }}</span><span style="color:#9A9D97">upstream</span><span>{{ r.up }}</span></div>
+</div>
+<div style="background:#0A0B0C;border:1px solid rgba(242,242,238,.08);border-radius:12px;padding:14px 16px;font:12px/1.7 'JetBrains Mono',monospace;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;color:#7E817B;font-size:11px;margin-bottom:6px"><span>QUICK START</span><span>Copy</span></div>
+<span style="white-space:pre;color:#E6E7E2">curl https://api.tokhive.ai/v1/chat/completions \</span>
+<span style="white-space:pre;color:#E6E7E2">  -H "Authorization: Bearer $TOKHIVE_API_KEY" \</span>
+<span style="white-space:pre;color:#C8F031">  -d '{"model":"{{ r.id }}","messages":[…]}'</span>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}"><div style="padding:64px 20px;text-align:center;color:#9A9D97;font-size:15px">No models match. <button onClick="{{ reset }}" style="background:none;border:0;color:#C8F031;font:inherit;cursor:pointer;text-decoration:underline">Clear filters</button></div></sc-if>
+</div>
+</div>
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:16px 0 0;font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>USD per 1M tokens · prices float with provider supply, last repriced 14:00 UTC</span><span>Capacity = share of pooled quota still free this hour</span></div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:24px;padding:96px 0 0">
+<div style="background:#141517;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">COST CALCULATOR</span><span style="font-size:28px;font-weight:600;letter-spacing:-.02em">What would your month cost?</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97">MODEL</span><select value="{{ calcId }}" onChange="{{ onCalcModel }}" style="height:44px;background:#0A0B0C;color:#F2F2EE;border:1px solid rgba(242,242,238,.14);border-radius:10px;padding:0 12px;font:14px Sora,sans-serif"><sc-for list="{{ allModels }}" as="m" hint-placeholder-count="6"><option value="{{ m.id }}" selected="{{ m.sel }}">{{ m.n }}</option></sc-for></select></div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>INPUT TOKENS / MONTH</span><span style="color:#F2F2EE">{{ inLbl }}</span></div><input type="range" min="1" max="2000" value="{{ inM }}" onChange="{{ onIn }}" style="width:100%"></div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>OUTPUT TOKENS / MONTH</span><span style="color:#F2F2EE">{{ outLbl }}</span></div><input type="range" min="1" max="500" value="{{ outM }}" onChange="{{ onOut }}" style="width:100%"></div>
+</div>
+<div style="background:#C8F031;color:#0A0B0C;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:24px;justify-content:space-between">
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em">YOU SAVE / MONTH</span><span style="font:500 80px 'JetBrains Mono',monospace;letter-spacing:-.05em;line-height:1">{{ saved }}</span><span style="font-size:15px">{{ savedPct }} less than paying the vendor directly</span></div>
+<div style="display:flex;flex-direction:column;gap:14px;font:13px 'JetBrains Mono',monospace">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between"><span>Official list price</span><span>{{ offCost }}</span></div><div style="height:14px;background:rgba(10,11,12,.15);border-radius:3px"><div style="height:100%;width:100%;background:rgba(10,11,12,.35);border-radius:3px"></div></div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-weight:500"><span>TokHive</span><span>{{ ourCost }}</span></div><div style="height:14px;background:rgba(10,11,12,.15);border-radius:3px"><div style="height:100%;width:{{ ourW }}%;background:#0A0B0C;border-radius:3px"></div></div></div>
+</div>
+<a href="#" style="align-self:flex-start;background:#0A0B0C;color:#F2F2EE;font-weight:600;font-size:15px;padding:14px 22px;border-radius:999px">Get API key →</a>
+</div>
+</div>
+
+<div style="padding:96px 0 120px;display:flex;flex-direction:column;gap:40px">
+<h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">How pricing works.</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">
+<sc-for list="{{ how }}" as="hw" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid #C8F031;padding-top:18px"><span style="font:500 13px 'JetBrains Mono',monospace;color:#C8F031">{{ hw.n }}</span><span style="font-size:17px;font-weight:600">{{ hw.t }}</span><span style="font-size:14px;line-height:1.6;color:#9A9D97;text-wrap:pretty">{{ hw.d }}</span></div></sc-for>
+</div>
+</div>
+</div>
+
+<div style="border-top:1px solid rgba(242,242,238,.1)">
+<div style="max-width:1280px;margin:0 auto;padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#9A9D97">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#D6D8D2">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const M = [
+  ['claude-opus-4-1', 'Claude Opus 4.1', 'Anthropic', '200K', 15, 75, 1.5, 6, 30, .6, ['Reasoning', 'Coding', 'Vision'], 17, 96, 99],
+  ['claude-sonnet-4-5', 'Claude Sonnet 4.5', 'Anthropic', '1M', 3, 15, .3, 1.2, 6, .12, ['Coding', 'Reasoning', 'Vision', 'Long context'], 38, 100, 742],
+  ['claude-haiku-4-5', 'Claude Haiku 4.5', 'Anthropic', '200K', 1, 5, .1, .45, 2.25, .045, ['Coding', 'Vision'], 74, 92, 318],
+  ['claude-sonnet-4', 'Claude Sonnet 4', 'Anthropic', '1M', 3, 15, .3, 1.1, 5.5, .11, ['Coding', 'Long context'], 81, 61, 204],
+  ['gpt-5', 'GPT-5', 'OpenAI', '400K', 1.25, 10, .125, .5, 4, .05, ['Reasoning', 'Coding', 'Vision'], 61, 88, 466],
+  ['gpt-5-codex', 'GPT-5 Codex', 'OpenAI', '400K', 1.25, 10, .125, .5, 4, .05, ['Coding'], 52, 97, 511],
+  ['gpt-5-mini', 'GPT-5 mini', 'OpenAI', '400K', .25, 2, .025, .11, .9, .011, ['Coding', 'Vision'], 88, 70, 289],
+  ['gpt-5-nano', 'GPT-5 nano', 'OpenAI', '400K', .05, .4, .005, .025, .2, .0025, [], 93, 34, 177],
+  ['o3', 'o3', 'OpenAI', '200K', 2, 8, .5, .9, 3.6, .22, ['Reasoning', 'Vision'], 66, 41, 152],
+  ['gemini-2.5-pro', 'Gemini 2.5 Pro', 'Google', '1M', 1.25, 10, .31, .55, 4.4, .14, ['Reasoning', 'Coding', 'Vision', 'Long context'], 70, 79, 233],
+  ['gemini-2.5-flash', 'Gemini 2.5 Flash', 'Google', '1M', .3, 2.5, .075, .13, 1.1, .033, ['Vision', 'Long context'], 83, 66, 261],
+  ['gemini-2.5-flash-lite', 'Gemini 2.5 Flash-Lite', 'Google', '1M', .1, .4, .025, .045, .18, .011, ['Long context'], 91, 29, 140],
+  ['grok-4', 'Grok 4', 'xAI', '256K', 3, 15, .75, 1.3, 6.5, .3, ['Reasoning', 'Vision'], 58, 52, 96],
+  ['grok-code-fast-1', 'Grok Code Fast 1', 'xAI', '256K', .2, 1.5, .02, .09, .65, .009, ['Coding'], 79, 64, 121],
+  ['deepseek-v3.2', 'DeepSeek V3.2', 'DeepSeek', '128K', .28, .42, .028, .14, .21, .014, ['Coding', 'Reasoning'], 85, 58, 88],
+  ['kimi-k2', 'Kimi K2', 'Moonshot', '256K', .6, 2.5, .15, .28, 1.15, .07, ['Coding', 'Long context'], 72, 47, 64],
+  ['glm-4.6', 'GLM-4.6', 'Zhipu', '200K', .6, 2.2, .11, .27, 1, .05, ['Coding'], 76, 44, 59],
+  ['qwen3-coder-plus', 'Qwen3 Coder Plus', 'Alibaba', '1M', 1, 5, .1, .42, 2.1, .04, ['Coding', 'Long context'], 81, 39, 47]
+].map(a => ({ id: a[0], n: a[1], v: a[2], ctx: a[3], oi: a[4], oo: a[5], oc: a[6], ti: a[7], to: a[8], tc: a[9], tags: a[10], cap: a[11], pop: a[12], prov: a[13] }));
+const VC = { Anthropic: '#C8F031', OpenAI: '#F2F2EE', Google: '#8A8D92', xAI: '#5E6163', DeepSeek: '#9CCB00', Moonshot: '#D6D8D2', Zhipu: '#6E8A1F', Alibaba: '#B4B6B0' };
+const UP = { Anthropic: 'api.anthropic.com', OpenAI: 'api.openai.com', Google: 'googleapis.com', xAI: 'api.x.ai', DeepSeek: 'api.deepseek.com', Moonshot: 'api.moonshot.ai', Zhipu: 'open.bigmodel.cn', Alibaba: 'dashscope.aliyuncs.com' };
+const $ = x => x >= 10 ? '$' + x.toFixed(0) : x >= .1 ? '$' + x.toFixed(2) : '$' + x.toFixed(3).replace(/0+$/, '');
+const usd = x => '$' + Math.round(x).toLocaleString();
+const sv = m => Math.round((1 - m.ti / m.oi) * 100);
+
+class Component extends DCLogic {
+  state = { q: '', vendors: [], vOpen: false, vq: '', tags: [], sort: 'Popular', open: 'claude-sonnet-4-5', calc: 'claude-sonnet-4-5', inM: 300, outM: 60 };
+  componentDidMount() { this._d = e => { if (this.state.vOpen && !e.target.closest('[data-vpop]')) this.setState({ vOpen: false }); }; document.addEventListener('mousedown', this._d); }
+  componentWillUnmount() { document.removeEventListener('mousedown', this._d); }
+  renderVals() {
+    const { q, vendors, vOpen, vq, tags, sort, open, calc, inM, outM } = this.state;
+    const chip = (n, on, f) => ({ n, on: f, bg: on ? '#C8F031' : 'transparent', fg: on ? '#0A0B0C' : '#B4B6B0', bd: on ? 'transparent' : 'rgba(242,242,238,.18)' });
+    let list = M.filter(m => (!vendors.length || vendors.includes(m.v)) && tags.every(t => m.tags.includes(t)) && (!q || (m.n + ' ' + m.id).toLowerCase().includes(q.toLowerCase())));
+    const by = { Popular: (a, b) => b.pop - a.pop, Savings: (a, b) => sv(b) - sv(a), Price: (a, b) => a.ti - b.ti, Capacity: (a, b) => b.cap - a.cap }[sort];
+    list = [...list].sort(by);
+    const rows = list.map(m => ({ ...m, vc: VC[m.v], off: $(m.oi) + ' / ' + $(m.oo), ours: $(m.ti) + ' / ' + $(m.to), save: '−' + sv(m) + '%',
+      capC: m.cap < 25 ? '#FF9B6B' : '#C8F031', open: open === m.id, chev: open === m.id ? '−' : '+', rowBg: open === m.id ? '#141517' : 'transparent',
+      toggle: () => this.setState({ open: open === m.id ? null : m.id }),
+      oiS: $(m.oi), ooS: $(m.oo), ocS: $(m.oc), tiS: $(m.ti), toS: $(m.to), tcS: $(m.tc),
+      lat: (380 + (m.oi * 37) % 900).toFixed(0) + ' ms', tps: (40 + (m.pop * 7) % 110) + ' tok/s', up: UP[m.v] }));
+    const cm = M.find(m => m.id === calc);
+    const off = inM * cm.oi + outM * cm.oo, ours = inM * cm.ti + outM * cm.to;
+    const fmtTok = n => n >= 1000 ? (n / 1000).toFixed(n % 1000 ? 1 : 0) + 'B' : n + 'M';
+    return {
+      q, count: M.length, rows, empty: rows.length === 0,
+      onQ: e => this.setState({ q: e.target.value }),
+      reset: () => this.setState({ q: '', vendors: [], tags: [] }),
+      ...(() => {
+        const names = [...new Set(M.map(m => m.v))];
+        const tog = n => this.setState({ vendors: vendors.includes(n) ? vendors.filter(x => x !== n) : [...vendors, n] });
+        const act = vendors.length > 0;
+        return {
+          vOpen, vq, onVq: e => this.setState({ vq: e.target.value }),
+          toggleV: () => this.setState({ vOpen: !vOpen }), clearV: () => this.setState({ vendors: [] }),
+          vLabel: act ? 'Vendor · ' + vendors.length : 'All vendors',
+          vBtnBg: vOpen ? '#F2F2EE' : 'transparent', vBtnFg: vOpen ? '#0A0B0C' : '#B4B6B0', vBtnBd: vOpen ? 'transparent' : 'rgba(242,242,238,.18)',
+          vCount: act ? vendors.length + ' of ' + names.length + ' selected' : names.length + ' vendors',
+          vendorOpts: names.filter(n => !vq || n.toLowerCase().includes(vq.toLowerCase())).map(n => { const on = vendors.includes(n); return { n, c: M.filter(m => m.v === n).length, vc: VC[n], ck: on ? '✓' : '', cbBg: on ? '#C8F031' : 'transparent', cbBd: on ? '#C8F031' : 'rgba(242,242,238,.3)', on: () => tog(n) }; }),
+          vSel: vendors.map(n => ({ n, rm: () => tog(n) }))
+        };
+      })(),
+      tagChips: ['Coding', 'Reasoning', 'Vision', 'Long context'].map(n => chip(n, tags.includes(n), () => this.setState({ tags: tags.includes(n) ? tags.filter(t => t !== n) : [...tags, n] }))),
+      sortChips: ['Popular', 'Savings', 'Price', 'Capacity'].map(n => ({ n, on: () => this.setState({ sort: n }), bg: n === sort ? '#F2F2EE' : 'transparent', fg: n === sort ? '#0A0B0C' : '#9A9D97' })),
+      allModels: M.map(m => ({ ...m, sel: m.id === calc })), calcId: calc, onCalcModel: e => this.setState({ calc: e.target.value }),
+      inM, outM, inLbl: fmtTok(inM), outLbl: fmtTok(outM),
+      onIn: e => this.setState({ inM: +e.target.value }), onOut: e => this.setState({ outM: +e.target.value }),
+      offCost: usd(off), ourCost: usd(ours), saved: usd(off - ours), savedPct: Math.round((1 - ours / off) * 100) + '%', ourW: (ours / off * 100).toFixed(1),
+      how: [
+        { n: '01', t: 'Pay per token', d: 'No subscription and no minimum. Top up with card or USDC and draw down per 1M tokens.' },
+        { n: '02', t: 'Prices float with supply', d: 'Rates reprice hourly from pooled provider capacity, and they never go above the vendor list price.' },
+        { n: '03', t: 'Same tokens, same models', d: 'Requests hit the official endpoint from inside a TEE. Model IDs and responses match the vendor API.' },
+        { n: '04', t: 'Cache reads included', d: 'Prompt caching is passed through at the discounted rate, so long agent sessions get cheaper.' }
+      ],
+      footer: [
+        { h: 'PRODUCT', l: ['Models & Pricing', 'Network', 'Docs'] },
+        { h: 'RESOURCES', l: ['Blog', 'GitHub', 'Twitter / X'] },
+        { h: 'LEGAL', l: ['Terms of Service', 'Privacy Policy', 'Acceptable Use'] },
+        { h: 'CONTACT', l: ['hello@tokhive.ai', 'Telegram', 'Discord'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

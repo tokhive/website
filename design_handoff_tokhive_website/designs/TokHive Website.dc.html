@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#e9e9e4;font-family:Sora,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{opacity:.8}*{box-sizing:border-box}</style>
+</helmet>
+<section id="t2" style="padding:40px 44px 40px;border-bottom:1px solid rgba(0,0,0,.08)">
+<div style="display:flex;align-items:baseline;gap:10px;margin:0 0 24px"><a href="#t2" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px">2</a><span style="font:600 13px system-ui,sans-serif;color:#1a1a1a">Chosen direction: <a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1c</a> + TEE pipeline from <a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1b</a></span></div>
+<div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+<!-- ============ 2a ============ -->
+<div id="2a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:11px system-ui,sans-serif;color:rgba(0,0,0,.55)"><a href="#2a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:#2a78d6;color:#fff;border-radius:5px">2a</a>Based on <a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px">1c</a>, with the TEE request pipeline and attestation strip from <a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px">1b</a> folded into the verification section</div>
+<div style="width:1280px;background:#0A0B0C;color:#F2F2EE;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)" data-screen-label="2a Home">
+<div style="position:relative;height:720px">
+<div style="position:absolute;inset:0">{{ hexC }}</div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.5) 0%,rgba(10,11,12,.2) 30%,rgba(10,11,12,.88) 55%,#0A0B0C 80%)"></div>
+<div style="position:relative;height:72px;display:flex;align-items:center;gap:40px;padding:0 48px">
+<div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div>
+<div style="margin-left:auto;display:flex;gap:28px;font-size:14px;color:#B4B6B0;align-items:center"><a href="#">Models</a><a href="#">Network</a><a href="#">Docs ↗</a><a href="#">Blog ↗</a><a href="#">GitHub</a><a href="#" style="border:1px solid rgba(242,242,238,.3);color:#F2F2EE;padding:9px 16px;border-radius:999px;white-space:nowrap;flex:none">Sign in</a></div>
+</div>
+<div style="position:relative;display:grid;grid-template-columns:1fr 1fr;height:calc(100% - 72px)">
+<div style="padding:96px 56px 64px 48px;display:flex;flex-direction:column;gap:24px;border-right:1px solid rgba(242,242,238,.14)">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">PROVIDERS</span>
+<div style="font-size:150px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:#C8F031">Earn.</div>
+<p style="margin:0;font-size:20px;line-height:1.45;max-width:440px;text-wrap:pretty">Monetize the idle tokens in your Claude, ChatGPT or Gemini subscription.</p>
+<div style="margin-top:auto;display:flex;align-items:center;gap:16px"><a href="#" style="background:#C8F031;color:#0A0B0C;font-weight:600;font-size:15px;padding:15px 24px;border-radius:999px">Share your quota →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">$2.4M paid out</span></div>
+</div>
+<div style="padding:96px 48px 64px 56px;display:flex;flex-direction:column;gap:24px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#F2F2EE">BUILDERS</span>
+<div style="font-size:150px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:#0A0B0C;-webkit-text-stroke:4px #F2F2EE;paint-order:stroke fill;align-self:flex-start">Save.</div>
+<p style="margin:0;font-size:20px;line-height:1.45;max-width:440px;text-wrap:pretty">Access official AI for less: Claude, GPT and Gemini from the vendors, TEE-verified.</p>
+<div style="margin-top:auto;display:flex;align-items:center;gap:16px"><a href="#" style="background:#F2F2EE;color:#0A0B0C;font-weight:600;font-size:15px;padding:15px 24px;border-radius:999px">Get API key →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">avg. −58% vs list</span></div>
+</div>
+<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:112px;height:128px;background:#0A0B0C;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center"><svg width="70" height="70" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg></div>
+</div>
+</div>
+<div style="display:flex;gap:0;border-top:1px solid rgba(242,242,238,.12);border-bottom:1px solid rgba(242,242,238,.12);overflow:hidden;white-space:nowrap">
+<sc-for list="{{ tape }}" as="tp" hint-placeholder-count="6"><div style="display:flex;gap:12px;align-items:baseline;padding:16px 28px;border-right:1px solid rgba(242,242,238,.08);font:13px 'JetBrains Mono',monospace;flex:none"><span style="color:#B4B6B0">{{ tp.id }}</span><span>{{ tp.p }}</span><span style="color:#C8F031">{{ tp.s }}</span></div></sc-for>
+</div>
+<div style="padding:120px 48px;display:grid;grid-template-columns:360px 1fr;gap:80px;align-items:center">
+<div style="position:relative;width:320px;height:368px;display:flex;align-items:center;justify-content:center">
+<svg width="320" height="368" viewBox="0 0 320 368" style="position:absolute;inset:0"><polygon points="160,4 316,94 316,274 160,364 4,274 4,94" fill="none" stroke="#C8F031" stroke-width="1.5"></polygon><polygon points="160,36 288,110 288,258 160,332 32,258 32,110" fill="rgba(200,240,49,.06)" stroke="rgba(200,240,49,.4)" stroke-width="1" stroke-dasharray="3 5"></polygon></svg>
+<div style="position:relative;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">TEE ATTESTED</span><span style="font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1">100%</span><span style="font-size:14px;color:#B4B6B0">official endpoints</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px">
+<h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em;max-width:680px">No resellers of resellers. No swapped models. Proof attached.</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #C8F031;padding-top:16px"><span style="font:500 13px 'JetBrains Mono',monospace;color:#C8F031">{{ st.n }}</span><span style="font-size:17px;font-weight:600">{{ st.t }}</span><span style="font-size:14px;line-height:1.55;color:#9A9D97">{{ st.d }}</span></div></sc-for>
+</div>
+</div>
+</div>
+<div style="padding:0 48px 120px;margin-top:-40px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#9A9D97"><span>HOW A REQUEST TRAVELS</span><span style="letter-spacing:0;color:#B4B6B0">every hop is sealed and signed</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+<sc-for list="{{ pipeC }}" as="pp" hint-placeholder-count="4"><div style="background:{{ pp.bg }};color:{{ pp.fg }};padding:28px 28px 32px;display:flex;flex-direction:column;gap:12px;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%,24px 50%)"><span style="font:500 12px 'JetBrains Mono',monospace;padding-left:12px;color:{{ pp.ac }}">{{ pp.n }}</span><span style="font-size:18px;font-weight:600;padding-left:12px">{{ pp.t }}</span><span style="font:13px 'JetBrains Mono',monospace;padding-left:12px;opacity:.75">{{ pp.d }}</span></div></sc-for>
+</div>
+<div style="background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:24px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px">
+<sc-for list="{{ attestShort }}" as="a" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:4px"><span style="color:#9A9D97;font-size:11px">{{ a.k }}</span><span>{{ a.v }}</span></div></sc-for>
+<span style="background:#C8F031;color:#0A0B0C;padding:8px 12px;border-radius:8px;font-weight:500;white-space:nowrap">✓ Signature valid</span>
+</div>
+</div>
+<div style="padding:0 48px 120px">
+<div style="background:#141517;border-radius:24px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">PAID TO PROVIDERS · ALL TIME</span><span style="font:500 96px 'JetBrains Mono',monospace;letter-spacing:-.05em;line-height:1">$2,418,906</span><span style="font-size:16px;color:#B4B6B0;max-width:460px;line-height:1.55">Weekly payouts in USDC or bank transfer. The average active provider earns $186 a month from quota they weren't using.</span></div>
+<div style="display:flex;flex-direction:column;justify-content:flex-end">
+<div style="display:flex;align-items:flex-end;gap:6px;height:180px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="12"><div style="flex:1;height:{{ b.h }}px;background:{{ b.cA }};clip-path:polygon(50% 0,100% 6px,100% 100%,0 100%,0 6px)"></div></sc-for></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px;font:11px 'JetBrains Mono',monospace;color:#9A9D97"><span>Nov ’25</span><span>monthly payouts</span><span>Oct ’26</span></div>
+</div>
+</div>
+</div>
+<div style="padding:0 48px 120px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px">
+<h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">The hive menu.</h2>
+<div style="display:flex;gap:8px"><sc-for list="{{ c2a.chips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 13px 'JetBrains Mono',monospace;padding:9px 16px;border-radius:999px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.n }}</button></sc-for></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center">
+<sc-for list="{{ c2a.comb }}" as="row" hint-placeholder-count="2"><div style="display:flex;gap:8px;margin-top:{{ row.mt }}px;margin-left:{{ row.ml }}px">
+<sc-for list="{{ row.t }}" as="m"><div style="width:236px;height:272px;background:{{ m.bg }};clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 30px;color:{{ m.fg }}">
+<span style="font:11px 'JetBrains Mono',monospace;opacity:.7;letter-spacing:.06em">{{ m.v }}</span>
+<span style="font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.15">{{ m.n }}</span>
+<span style="font:13px 'JetBrains Mono',monospace;margin-top:6px">{{ m.tiS }} <span style="opacity:.6;text-decoration:line-through">{{ m.oiS }}</span></span>
+<span style="font:11px 'JetBrains Mono',monospace;opacity:.7">per 1M input</span>
+<span style="font:600 15px 'JetBrains Mono',monospace;margin-top:6px">{{ m.save }}</span>
+</div></sc-for>
+</div></sc-for>
+</div>
+</div>
+<div style="padding:0 48px 120px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end"><h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">Works in your terminal.</h2><span style="font-size:15px;color:#9A9D97">Anthropic + OpenAI compatible</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px"><sc-for list="{{ c2a.tabs }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.on }}" style="font:600 18px Sora,sans-serif;padding:22px;border-radius:14px;cursor:pointer;text-align:left;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }}">{{ t.n }}</button></sc-for></div>
+<div style="background:#141517;border-radius:14px;padding:28px 32px;font:15px/1.8 'JetBrains Mono',monospace;min-height:240px"><sc-for list="{{ c2a.code }}" as="l" hint-placeholder-count="6"><div style="white-space:pre;color:{{ l.cD }}">{{ l.t }}</div></sc-for></div>
+</div>
+<div style="border-top:1px solid rgba(242,242,238,.1);padding:48px;display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#9A9D97">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#D6D8D2">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+</div>
+<p style="margin:28px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)">Try next: "design the Pricing and Network pages in <a href="#2a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">2a</a> style" · "add a light theme of <a href="#2a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">2a</a>"</p>
+</section>
+<section id="t1" style="padding:40px 44px 40px">
+<div style="display:flex;align-items:baseline;gap:10px;margin:0 0 8px"><a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px">1</a><span style="font:600 13px system-ui,sans-serif;color:#1a1a1a">TokHive homepage · three directions, all on the honeycomb system</span></div>
+<p style="font:12px/1.6 system-ui,sans-serif;color:rgba(0,0,0,.55);margin:0 0 24px;max-width:860px;text-wrap:pretty">Shared structure: split hero (Provider | Builder) → TEE-verified origin → provider earnings → filterable model pricing → agent setup → footer. All numbers are sample data. Directions differ in theme and how hard they lean on the hex grid. Pricing filters and agent tabs are live.</p>
+<div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+
+<!-- ============ 1a ============ -->
+<div id="1a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:11px system-ui,sans-serif;color:rgba(0,0,0,.55)"><a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px">1a</a>Hive Gateway: dark, Volt. The hero's center column is a live hive where tokens flow from providers to builders</div>
+<div style="width:1280px;background:#0D0E10;color:#F2F2EE;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)" data-screen-label="1a Home">
+<div style="height:72px;display:flex;align-items:center;gap:40px;padding:0 48px;border-bottom:1px solid rgba(242,242,238,.08)">
+<div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0D0E10"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0D0E10"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div>
+<div style="display:flex;gap:28px;font-size:14px;color:#B4B6B0"><a href="#">Models &amp; Pricing</a><a href="#">Network</a><a href="#">Docs ↗</a><a href="#">Blog ↗</a></div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px"><a href="#" style="color:#B4B6B0">GitHub</a><a href="#" style="color:#B4B6B0">Sign in</a><a href="#" style="background:#C8F031;color:#0D0E10;font-weight:600;padding:10px 18px;border-radius:999px">Get API key</a></div>
+</div>
+<div style="padding:56px 48px 0;text-align:center"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">THE TWO-SIDED MARKET FOR AI SUBSCRIPTION CAPACITY</span></div>
+<div style="display:grid;grid-template-columns:1fr 400px 1fr;align-items:stretch;padding:32px 0 0">
+<div style="padding:48px 40px 56px 48px;display:flex;flex-direction:column;gap:20px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#9A9D97">01 · FOR PROVIDERS</span>
+<h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:600;letter-spacing:-.035em">Monetize your idle tokens.</h1>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#B4B6B0;max-width:400px;text-wrap:pretty">Your Claude, ChatGPT or Gemini plan resets every cycle, used or not. Route the unused quota through TokHive and get paid per token.</p>
+<div style="display:flex;gap:12px;align-items:center;margin-top:8px"><a href="#" style="background:#C8F031;color:#0D0E10;font-weight:600;font-size:15px;padding:14px 22px;border-radius:999px">Start earning →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">avg. $186 / mo</span></div>
+</div>
+<div style="position:relative;border-left:1px solid rgba(242,242,238,.08);border-right:1px solid rgba(242,242,238,.08);min-height:440px">
+<div style="position:absolute;inset:0">{{ hexA }}</div>
+<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:132px;height:132px;display:flex;align-items:center;justify-content:center;background:#0D0E10;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"><svg width="76" height="76" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0D0E10"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0D0E10"></rect></svg></div>
+<div style="position:absolute;left:14px;bottom:14px;font:11px 'JetBrains Mono',monospace;color:#9A9D97">idle quota →</div>
+<div style="position:absolute;right:14px;bottom:14px;font:11px 'JetBrains Mono',monospace;color:#9A9D97">→ API calls</div>
+</div>
+<div style="padding:48px 48px 56px 40px;display:flex;flex-direction:column;gap:20px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#9A9D97">02 · FOR BUILDERS</span>
+<h1 style="margin:0;font-size:56px;line-height:1.02;font-weight:600;letter-spacing:-.035em">Official AI, for less.</h1>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#B4B6B0;max-width:400px;text-wrap:pretty">One OpenAI- and Anthropic-compatible API for Claude, GPT and Gemini. Served by the original vendors and verified in a TEE, at up to 60% below list price.</p>
+<div style="display:flex;gap:12px;align-items:center;margin-top:8px"><a href="#" style="background:#F2F2EE;color:#0D0E10;font-weight:600;font-size:15px;padding:14px 22px;border-radius:999px">Get API key →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">up to −60%</span></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(242,242,238,.08);border-bottom:1px solid rgba(242,242,238,.08)">
+<sc-for list="{{ stats }}" as="s" hint-placeholder-count="4"><div style="padding:24px 48px;border-right:1px solid rgba(242,242,238,.08);display:flex;flex-direction:column;gap:4px"><span style="font:500 26px 'JetBrains Mono',monospace;letter-spacing:-.02em">{{ s.v }}</span><span style="font-size:13px;color:#9A9D97">{{ s.l }}</span></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:112px 48px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">VERIFIED ORIGIN</span>
+<h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Every token comes from the source. You can check.</h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#B4B6B0;max-width:480px;text-wrap:pretty">Provider traffic runs inside a Trusted Execution Environment that only talks to official vendor endpoints. Each response comes with a signed attestation you can verify yourself.</p>
+<div style="display:flex;flex-direction:column;gap:0;margin-top:8px">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:48px 1fr;gap:16px;padding:16px 0;border-top:1px solid rgba(242,242,238,.08)"><span style="font:500 13px 'JetBrains Mono',monospace;color:#C8F031">{{ st.n }}</span><div><div style="font-size:16px;font-weight:600">{{ st.t }}</div><div style="font-size:14px;color:#9A9D97;margin-top:4px;line-height:1.5">{{ st.d }}</div></div></div></sc-for>
+</div>
+</div>
+<div style="background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:14px;overflow:hidden;font-family:'JetBrains Mono',monospace">
+<div style="display:flex;justify-content:space-between;padding:16px 22px;border-bottom:1px solid rgba(242,242,238,.08);font-size:12px;color:#9A9D97"><span>ATTESTATION REPORT</span><span>req_01J9XQ…K2</span></div>
+<div style="padding:18px 22px;display:flex;flex-direction:column;gap:10px;font-size:13px">
+<sc-for list="{{ attest }}" as="a" hint-placeholder-count="7"><div style="display:grid;grid-template-columns:130px 1fr;gap:12px"><span style="color:#9A9D97">{{ a.k }}</span><span style="color:#F2F2EE">{{ a.v }}</span></div></sc-for>
+</div>
+<div style="margin:6px 22px 22px;padding:14px 16px;background:rgba(200,240,49,.1);border:1px solid rgba(200,240,49,.35);border-radius:10px;font-size:13px;color:#C8F031">✓ Signature valid · upstream matches official endpoint</div>
+</div>
+</div>
+<div style="padding:0 48px 112px">
+<div style="display:grid;grid-template-columns:420px 1fr;gap:64px;border-top:1px solid rgba(242,242,238,.08);padding-top:72px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">PROVIDER EARNINGS</span>
+<h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Unused quota, paid out weekly.</h2>
+<div style="display:flex;align-items:baseline;gap:12px;margin-top:12px"><span style="font:500 72px 'JetBrains Mono',monospace;letter-spacing:-.04em;color:#C8F031">$186</span><span style="font-size:14px;color:#9A9D97;line-height:1.4">avg. monthly earnings<br>per active provider</span></div>
+<div style="background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;font-size:14px"><span style="color:#9A9D97;font-size:12px;font-family:'JetBrains Mono',monospace">EXAMPLE</span><span>Claude Max 20x · $200/mo plan</span><span style="color:#9A9D97">41% of quota idle → <span style="color:#F2F2EE;font-weight:600">$212.40 earned</span> last month</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;font-size:13px;color:#9A9D97"><span>Paid to providers, monthly ($K)</span><span style="font-family:'JetBrains Mono',monospace">Nov ’25 – Oct ’26</span></div>
+<div style="display:flex;align-items:flex-end;gap:10px;height:200px;border-bottom:1px solid rgba(242,242,238,.12)">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="12"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font:11px 'JetBrains Mono',monospace;color:#9A9D97">{{ b.v }}</span><div style="width:100%;height:{{ b.h }}px;background:{{ b.cA }};border-radius:4px 4px 0 0"></div></div></sc-for>
+</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ payouts }}" as="p" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:140px 1fr auto;gap:16px;padding:12px 0;border-bottom:1px solid rgba(242,242,238,.06);font-size:14px"><span style="font-family:'JetBrains Mono',monospace;color:#9A9D97">{{ p.who }}</span><span>{{ p.plan }}</span><span style="font-family:'JetBrains Mono',monospace;color:#C8F031">{{ p.amt }}</span></div></sc-for>
+</div>
+</div>
+</div>
+</div>
+<div style="padding:0 48px 112px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px">
+<div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">MODELS &amp; PRICING</span><h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Same models. Lower bill.</h2></div>
+<div style="display:flex;gap:8px"><sc-for list="{{ c1a.chips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 13px Sora,sans-serif;padding:9px 16px;border-radius:999px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.n }}</button></sc-for></div>
+</div>
+<div style="border:1px solid rgba(242,242,238,.1);border-radius:14px;overflow:hidden">
+<div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr 1.4fr 1fr;padding:14px 24px;background:#141517;font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.04em"><span>MODEL</span><span>VENDOR</span><span>CONTEXT</span><span>OFFICIAL in / out</span><span>TOKHIVE in / out</span><span style="text-align:right">SAVINGS</span></div>
+<sc-for list="{{ c1a.rows }}" as="r" hint-placeholder-count="8"><div style="display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr 1.4fr 1fr;padding:16px 24px;border-top:1px solid rgba(242,242,238,.07);font-size:15px;align-items:center"><span style="font-weight:600">{{ r.n }}</span><span style="color:#B4B6B0">{{ r.v }}</span><span style="font-family:'JetBrains Mono',monospace;color:#B4B6B0">{{ r.ctx }}</span><span style="font-family:'JetBrains Mono',monospace;color:#9A9D97;text-decoration:line-through">{{ r.off }}</span><span style="font-family:'JetBrains Mono',monospace">{{ r.ours }}</span><span style="text-align:right"><span style="font:500 13px 'JetBrains Mono',monospace;background:#C8F031;color:#0D0E10;padding:4px 9px;border-radius:999px">{{ r.save }}</span></span></div></sc-for>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:#9A9D97"><span>USD per 1M tokens. Prices float with provider supply.</span><a href="#" style="color:#F2F2EE">Full model list →</a></div>
+</div>
+<div style="padding:0 48px 112px;display:grid;grid-template-columns:380px 1fr;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">AGENT TOOLS</span>
+<h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Plug into the agent you already use.</h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#B4B6B0;text-wrap:pretty">Drop-in Anthropic- and OpenAI-compatible endpoints. Change the base URL and keep working.</p>
+</div>
+<div style="background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:14px;overflow:hidden">
+<div style="display:flex;gap:4px;padding:10px;border-bottom:1px solid rgba(242,242,238,.08)"><sc-for list="{{ c1a.tabs }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.on }}" style="font:500 13px Sora,sans-serif;padding:9px 16px;border-radius:8px;cursor:pointer;border:0;background:{{ t.bg }};color:{{ t.fg }}">{{ t.n }}</button></sc-for><span style="margin-left:auto;align-self:center;font:12px 'JetBrains Mono',monospace;color:#9A9D97;padding-right:8px">Copy</span></div>
+<div style="padding:22px 24px;font:14px/1.75 'JetBrains Mono',monospace;min-height:260px"><sc-for list="{{ c1a.code }}" as="l" hint-placeholder-count="6"><div style="white-space:pre;color:{{ l.cD }}">{{ l.t }}</div></sc-for></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(242,242,238,.08)">
+<div style="padding:64px 48px;border-right:1px solid rgba(242,242,238,.08);display:flex;justify-content:space-between;align-items:center"><span style="font-size:32px;font-weight:600;letter-spacing:-.02em">Have idle quota?</span><a href="#" style="background:#C8F031;color:#0D0E10;font-weight:600;padding:14px 22px;border-radius:999px">Start earning →</a></div>
+<div style="padding:64px 48px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:32px;font-weight:600;letter-spacing:-.02em">Need tokens?</span><a href="#" style="background:#F2F2EE;color:#0D0E10;font-weight:600;padding:14px 22px;border-radius:999px">Get API key →</a></div>
+</div>
+<div style="padding:48px;border-top:1px solid rgba(242,242,238,.08);display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0D0E10"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0D0E10"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#9A9D97">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#D6D8D2">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+
+<!-- ============ 1b ============ -->
+<div id="1b" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:11px system-ui,sans-serif;color:rgba(0,0,0,.55)"><a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px">1b</a>Clear Comb: white, graphite and neon cyan. A quiet hex field behind one headline, with two entry cards and a pipeline diagram for verification</div>
+<div style="width:1280px;background:#FFFFFF;color:#141517;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)" data-screen-label="1b Home">
+<div style="position:relative">
+<div style="position:absolute;inset:0;opacity:.9">{{ hexB }}</div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.55) 40%,rgba(255,255,255,1) 100%)"></div>
+<div style="position:relative">
+<div style="height:72px;display:flex;align-items:center;gap:40px;padding:0 48px">
+<div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#141517"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#00E5FF"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#00E5FF"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div>
+<div style="display:flex;gap:28px;font-size:14px;color:#4A4D52"><a href="#">Models &amp; Pricing</a><a href="#">Network</a><a href="#">Docs ↗</a><a href="#">Blog ↗</a></div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px;color:#4A4D52"><a href="#">GitHub</a><a href="#">Sign in</a><a href="#" style="background:#141517;color:#fff;font-weight:600;padding:10px 18px;border-radius:10px">Get API key</a></div>
+</div>
+<div style="padding:88px 48px 56px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px">
+<span style="display:inline-flex;align-items:center;gap:8px;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.08em;background:#fff;border:1px solid #E3E5E1;padding:7px 12px;border-radius:999px;white-space:nowrap"><span style="width:8px;height:8px;background:#00E5FF;border-radius:2px;transform:rotate(45deg)"></span>3,412 PROVIDERS ONLINE NOW</span>
+<h1 style="margin:0;font-size:80px;line-height:1;font-weight:600;letter-spacing:-.045em;max-width:980px">Idle tokens in.<br>Official AI out.</h1>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#4A4D52;max-width:640px;text-wrap:pretty">TokHive turns unused AI subscription quota into a standard API. Providers earn from it, and builders pay less for the real Claude, GPT and Gemini.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 48px 96px">
+<div style="background:#141517;color:#fff;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px;min-height:300px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#00E5FF">FOR PROVIDERS</span><span style="font:13px 'JetBrains Mono',monospace;color:#A9ACB0">avg. $186 / mo</span></div>
+<h2 style="margin:0;font-size:40px;line-height:1.05;font-weight:600;letter-spacing:-.03em">Monetize idle tokens.</h2>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#C4C6C9;max-width:440px;text-wrap:pretty">Connect a Claude, ChatGPT or Gemini plan. We sell only the quota you don't use and pay you weekly.</p>
+<div style="margin-top:auto"><a href="#" style="display:inline-block;background:#00E5FF;color:#141517;font-weight:600;font-size:15px;padding:14px 22px;border-radius:10px">Start earning →</a></div>
+</div>
+<div style="background:#fff;border:1.5px solid #141517;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px;min-height:300px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#141517">FOR BUILDERS</span><span style="font:13px 'JetBrains Mono',monospace;color:#5C5F63">up to −60%</span></div>
+<h2 style="margin:0;font-size:40px;line-height:1.05;font-weight:600;letter-spacing:-.03em">Access official AI for less.</h2>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#4A4D52;max-width:440px;text-wrap:pretty">One OpenAI- and Anthropic-compatible key. Every response is served by the original vendor and attested in a TEE.</p>
+<div style="margin-top:auto"><a href="#" style="display:inline-block;background:#141517;color:#fff;font-weight:600;font-size:15px;padding:14px 22px;border-radius:10px">Get API key →</a></div>
+</div>
+</div>
+</div>
+</div>
+<div style="padding:96px 48px;background:#F5F6F4">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:48px;margin-bottom:48px"><div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#5C5F63">VERIFIED ORIGIN · TEE</span><h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em;max-width:620px">Real vendor tokens, with proof on every call.</h2></div><p style="margin:0;font-size:15px;line-height:1.6;color:#4A4D52;max-width:420px;text-wrap:pretty">The relay runs inside a hardware enclave. It can only reach official endpoints, and it signs what it did.</p></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch">
+<sc-for list="{{ pipe }}" as="pp" hint-placeholder-count="4"><div style="background:{{ pp.bg }};color:{{ pp.fg }};border:1px solid #E3E5E1;padding:28px 28px 32px;display:flex;flex-direction:column;gap:12px;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 50%,calc(100% - 24px) 100%,0 100%,24px 50%)"><span style="font:500 12px 'JetBrains Mono',monospace;padding-left:12px;opacity:.7">{{ pp.n }}</span><span style="font-size:18px;font-weight:600;padding-left:12px">{{ pp.t }}</span><span style="font:13px 'JetBrains Mono',monospace;padding-left:12px;opacity:.75">{{ pp.d }}</span></div></sc-for>
+</div>
+<div style="margin-top:24px;background:#fff;border:1px solid #E3E5E1;border-radius:14px;padding:20px 24px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:24px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px">
+<sc-for list="{{ attestShort }}" as="a" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:4px"><span style="color:#5C5F63;font-size:11px">{{ a.k }}</span><span>{{ a.v }}</span></div></sc-for>
+<span style="background:#00E5FF;color:#141517;padding:8px 12px;border-radius:8px;font-weight:500">✓ Signature valid</span>
+</div>
+</div>
+<div style="padding:96px 48px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:40px"><div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#5C5F63">WHAT PROVIDERS EARN</span><h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Your plan pays for itself, and then some.</h2></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px"><sc-for list="{{ stats3 }}" as="s" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:4px;border-top:2px solid #141517;padding-top:12px"><span style="font:500 28px 'JetBrains Mono',monospace;letter-spacing:-.02em">{{ s.v }}</span><span style="font-size:13px;color:#5C5F63">{{ s.l }}</span></div></sc-for></div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+<sc-for list="{{ earners }}" as="e" hint-placeholder-count="3"><div style="border:1px solid #E3E5E1;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">{{ e.plan }}</span><span style="font-family:'JetBrains Mono',monospace;color:#5C5F63">{{ e.cost }}</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;font:12px 'JetBrains Mono',monospace;color:#5C5F63"><span>quota used by you</span><span>{{ e.idle }} idle</span></div><div style="height:10px;background:#00E5FF;border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ e.used }}%;background:#141517"></div></div></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font:500 36px 'JetBrains Mono',monospace;letter-spacing:-.03em">{{ e.earn }}</span><span style="font-size:13px;color:#5C5F63">earned last month</span></div>
+</div></sc-for>
+</div>
+</div>
+<div style="padding:0 48px 96px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px">
+<div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#5C5F63">MODELS &amp; PRICING</span><h2 style="margin:0;font-size:44px;line-height:1.08;font-weight:600;letter-spacing:-.03em">Compare against list price.</h2></div>
+<div style="display:flex;gap:4px;background:#F5F6F4;padding:4px;border-radius:12px"><sc-for list="{{ c1b.chips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 13px Sora,sans-serif;padding:9px 16px;border-radius:9px;cursor:pointer;border:0;background:{{ c.bg }};color:{{ c.fg }}">{{ c.n }}</button></sc-for></div>
+</div>
+<div style="display:grid;grid-template-columns:2fr 1fr 1.6fr 1.6fr 1fr;padding:12px 0;border-bottom:2px solid #141517;font:12px 'JetBrains Mono',monospace;color:#5C5F63"><span>MODEL</span><span>CONTEXT</span><span>OFFICIAL in / out</span><span>TOKHIVE in / out</span><span style="text-align:right">YOU SAVE</span></div>
+<sc-for list="{{ c1b.rows }}" as="r" hint-placeholder-count="8"><div style="display:grid;grid-template-columns:2fr 1fr 1.6fr 1.6fr 1fr;padding:18px 0;border-bottom:1px solid #E3E5E1;font-size:15px;align-items:center"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:600">{{ r.n }}</span><span style="font-size:12px;color:#5C5F63">{{ r.v }}</span></span><span style="font-family:'JetBrains Mono',monospace;color:#4A4D52">{{ r.ctx }}</span><span style="font-family:'JetBrains Mono',monospace;color:#5C5F63;text-decoration:line-through">{{ r.off }}</span><span style="font-family:'JetBrains Mono',monospace;font-weight:500">{{ r.ours }}</span><span style="text-align:right"><span style="font:500 13px 'JetBrains Mono',monospace;background:#00E5FF;color:#141517;padding:5px 10px;border-radius:6px">{{ r.save }}</span></span></div></sc-for>
+<div style="display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:#5C5F63"><span>USD per 1M tokens.</span><a href="#" style="color:#141517;font-weight:600">Full model list →</a></div>
+</div>
+<div style="margin:0 48px 96px;background:#141517;color:#fff;border-radius:24px;display:grid;grid-template-columns:320px 1fr;overflow:hidden">
+<div style="padding:40px;display:flex;flex-direction:column;gap:20px;border-right:1px solid rgba(255,255,255,.08)">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#00E5FF">AGENT TOOLS</span>
+<h2 style="margin:0;font-size:32px;line-height:1.1;font-weight:600;letter-spacing:-.025em">One base URL. Your agent, cheaper.</h2>
+<div style="display:flex;flex-direction:column;gap:6px;margin-top:8px"><sc-for list="{{ c1b.tabs }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.on }}" style="text-align:left;font:500 15px Sora,sans-serif;padding:12px 14px;border-radius:10px;cursor:pointer;border:0;background:{{ t.bg }};color:{{ t.fg }}">{{ t.n }}</button></sc-for></div>
+</div>
+<div style="padding:40px;font:14px/1.8 'JetBrains Mono',monospace"><sc-for list="{{ c1b.code }}" as="l" hint-placeholder-count="6"><div style="white-space:pre;color:{{ l.cB }}">{{ l.t }}</div></sc-for></div>
+</div>
+<div style="background:#F5F6F4;padding:48px;display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#141517"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#00E5FF"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#00E5FF"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#5C5F63">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#5C5F63;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#141517">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+
+<!-- ============ 1c ============ -->
+<div id="1c" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:8px;font:11px system-ui,sans-serif;color:rgba(0,0,0,.55)"><a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px">1c</a>Swarm Exchange: dark and full-bleed. The hive is the background, the hero is a giant Earn | Save split, there's a price tape, and models sit in honeycomb tiles</div>
+<div style="width:1280px;background:#0A0B0C;color:#F2F2EE;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)" data-screen-label="1c Home">
+<div style="position:relative;height:720px">
+<div style="position:absolute;inset:0">{{ hexC }}</div>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.5) 0%,rgba(10,11,12,.2) 30%,rgba(10,11,12,.88) 55%,#0A0B0C 80%)"></div>
+<div style="position:relative;height:72px;display:flex;align-items:center;gap:40px;padding:0 48px">
+<div style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div>
+<div style="margin-left:auto;display:flex;gap:28px;font-size:14px;color:#B4B6B0;align-items:center"><a href="#">Models</a><a href="#">Network</a><a href="#">Docs ↗</a><a href="#">Blog ↗</a><a href="#">GitHub</a><a href="#" style="border:1px solid rgba(242,242,238,.3);color:#F2F2EE;padding:9px 16px;border-radius:999px;white-space:nowrap;flex:none">Sign in</a></div>
+</div>
+<div style="position:relative;display:grid;grid-template-columns:1fr 1fr;height:calc(100% - 72px)">
+<div style="padding:96px 56px 64px 48px;display:flex;flex-direction:column;gap:24px;border-right:1px solid rgba(242,242,238,.14)">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">PROVIDERS</span>
+<div style="font-size:150px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:#C8F031">Earn.</div>
+<p style="margin:0;font-size:20px;line-height:1.45;max-width:440px;text-wrap:pretty">Monetize the idle tokens in your Claude, ChatGPT or Gemini subscription.</p>
+<div style="margin-top:auto;display:flex;align-items:center;gap:16px"><a href="#" style="background:#C8F031;color:#0A0B0C;font-weight:600;font-size:15px;padding:15px 24px;border-radius:999px">Share your quota →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">$2.4M paid out</span></div>
+</div>
+<div style="padding:96px 48px 64px 56px;display:flex;flex-direction:column;gap:24px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#F2F2EE">BUILDERS</span>
+<div style="font-size:150px;line-height:.85;font-weight:700;letter-spacing:-.06em;color:#0A0B0C;-webkit-text-stroke:4px #F2F2EE;paint-order:stroke fill;align-self:flex-start">Save.</div>
+<p style="margin:0;font-size:20px;line-height:1.45;max-width:440px;text-wrap:pretty">Access official AI for less: Claude, GPT and Gemini from the vendors, TEE-verified.</p>
+<div style="margin-top:auto;display:flex;align-items:center;gap:16px"><a href="#" style="background:#F2F2EE;color:#0A0B0C;font-weight:600;font-size:15px;padding:15px 24px;border-radius:999px">Get API key →</a><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">avg. −58% vs list</span></div>
+</div>
+<div style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:112px;height:128px;background:#0A0B0C;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center"><svg width="70" height="70" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg></div>
+</div>
+</div>
+<div style="display:flex;gap:0;border-top:1px solid rgba(242,242,238,.12);border-bottom:1px solid rgba(242,242,238,.12);overflow:hidden;white-space:nowrap">
+<sc-for list="{{ tape }}" as="tp" hint-placeholder-count="6"><div style="display:flex;gap:12px;align-items:baseline;padding:16px 28px;border-right:1px solid rgba(242,242,238,.08);font:13px 'JetBrains Mono',monospace;flex:none"><span style="color:#B4B6B0">{{ tp.id }}</span><span>{{ tp.p }}</span><span style="color:#C8F031">{{ tp.s }}</span></div></sc-for>
+</div>
+<div style="padding:120px 48px;display:grid;grid-template-columns:360px 1fr;gap:80px;align-items:center">
+<div style="position:relative;width:320px;height:368px;display:flex;align-items:center;justify-content:center">
+<svg width="320" height="368" viewBox="0 0 320 368" style="position:absolute;inset:0"><polygon points="160,4 316,94 316,274 160,364 4,274 4,94" fill="none" stroke="#C8F031" stroke-width="1.5"></polygon><polygon points="160,36 288,110 288,258 160,332 32,258 32,110" fill="rgba(200,240,49,.06)" stroke="rgba(200,240,49,.4)" stroke-width="1" stroke-dasharray="3 5"></polygon></svg>
+<div style="position:relative;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">TEE ATTESTED</span><span style="font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1">100%</span><span style="font-size:14px;color:#B4B6B0">official endpoints</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px">
+<h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em;max-width:680px">No resellers of resellers. No swapped models. Proof attached.</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #C8F031;padding-top:16px"><span style="font:500 13px 'JetBrains Mono',monospace;color:#C8F031">{{ st.n }}</span><span style="font-size:17px;font-weight:600">{{ st.t }}</span><span style="font-size:14px;line-height:1.55;color:#9A9D97">{{ st.d }}</span></div></sc-for>
+</div>
+</div>
+</div>
+<div style="padding:0 48px 120px">
+<div style="background:#141517;border-radius:24px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">PAID TO PROVIDERS · ALL TIME</span><span style="font:500 96px 'JetBrains Mono',monospace;letter-spacing:-.05em;line-height:1">$2,418,906</span><span style="font-size:16px;color:#B4B6B0;max-width:460px;line-height:1.55">Weekly payouts in USDC or bank transfer. The average active provider earns $186 a month from quota they weren't using.</span></div>
+<div style="display:flex;flex-direction:column;justify-content:flex-end">
+<div style="display:flex;align-items:flex-end;gap:6px;height:180px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="12"><div style="flex:1;height:{{ b.h }}px;background:{{ b.cA }};clip-path:polygon(50% 0,100% 6px,100% 100%,0 100%,0 6px)"></div></sc-for></div>
+<div style="display:flex;justify-content:space-between;margin-top:10px;font:11px 'JetBrains Mono',monospace;color:#9A9D97"><span>Nov ’25</span><span>monthly payouts</span><span>Oct ’26</span></div>
+</div>
+</div>
+</div>
+<div style="padding:0 48px 120px">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px">
+<h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">The hive menu.</h2>
+<div style="display:flex;gap:8px"><sc-for list="{{ c1c.chips }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="font:500 13px 'JetBrains Mono',monospace;padding:9px 16px;border-radius:999px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }}">{{ c.n }}</button></sc-for></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center">
+<sc-for list="{{ c1c.comb }}" as="row" hint-placeholder-count="2"><div style="display:flex;gap:8px;margin-top:{{ row.mt }}px;margin-left:{{ row.ml }}px">
+<sc-for list="{{ row.t }}" as="m"><div style="width:236px;height:272px;background:{{ m.bg }};clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 30px;color:{{ m.fg }}">
+<span style="font:11px 'JetBrains Mono',monospace;opacity:.7;letter-spacing:.06em">{{ m.v }}</span>
+<span style="font-size:19px;font-weight:600;letter-spacing:-.01em;line-height:1.15">{{ m.n }}</span>
+<span style="font:13px 'JetBrains Mono',monospace;margin-top:6px">{{ m.tiS }} <span style="opacity:.6;text-decoration:line-through">{{ m.oiS }}</span></span>
+<span style="font:11px 'JetBrains Mono',monospace;opacity:.7">per 1M input</span>
+<span style="font:600 15px 'JetBrains Mono',monospace;margin-top:6px">{{ m.save }}</span>
+</div></sc-for>
+</div></sc-for>
+</div>
+</div>
+<div style="padding:0 48px 120px;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end"><h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">Works in your terminal.</h2><span style="font-size:15px;color:#9A9D97">Anthropic + OpenAI compatible</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px"><sc-for list="{{ c1c.tabs }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.on }}" style="font:600 18px Sora,sans-serif;padding:22px;border-radius:14px;cursor:pointer;text-align:left;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }}">{{ t.n }}</button></sc-for></div>
+<div style="background:#141517;border-radius:14px;padding:28px 32px;font:15px/1.8 'JetBrains Mono',monospace;min-height:240px"><sc-for list="{{ c1c.code }}" as="l" hint-placeholder-count="6"><div style="white-space:pre;color:{{ l.cD }}">{{ l.t }}</div></sc-for></div>
+</div>
+<div style="border-top:1px solid rgba(242,242,238,.1);padding:48px;display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#9A9D97">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#D6D8D2">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+
+</div>
+<p style="margin:28px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)">Try next: "hero from <a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1c</a>, sections from <a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1a</a>" · "make <a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1b</a> the light theme of <a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:2px 6px;background:rgba(0,0,0,.08);border-radius:5px">1a</a>" · "now design the Pricing and Network pages"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+function HexField(p) {
+  const ref = React.useRef(null);
+  const cols = p.cols, rows = p.rows, s = p.s;
+  const w = Math.sqrt(3) * s;
+  const cells = React.useMemo(() => {
+    const a = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const cx = c * w + (r % 2 ? w / 2 : 0) + w / 2, cy = r * 1.5 * s + s;
+      a.push([0,1,2,3,4,5].map(i => { const g = Math.PI / 180 * (60 * i - 30); return (cx + (s - 1.5) * Math.cos(g)).toFixed(1) + ',' + (cy + (s - 1.5) * Math.sin(g)).toFixed(1); }).join(' '));
+    }
+    return a;
+  }, [cols, rows, s]);
+  React.useEffect(() => {
+    if (!p.motion) return;
+    const ps = ref.current.querySelectorAll('polygon');
+    const light = (i, hold) => { const el = ps[i]; if (!el) return; el.style.transition = 'none'; el.style.fillOpacity = '1'; requestAnimationFrame(() => { el.style.transition = 'fill-opacity 1.4s ease-out'; setTimeout(() => { el.style.fillOpacity = '0'; }, hold); }); };
+    let bees = [];
+    const id = setInterval(() => {
+      if (p.mode === 'flow') {
+        if (Math.random() < .5) bees.push({ r: Math.floor(Math.random() * rows), c: 0 });
+        bees.forEach(b => { light(b.r * cols + b.c, 60); b.c++; const q = Math.random(); if (q < .2 && b.r > 0) b.r--; else if (q > .8 && b.r < rows - 1) b.r++; });
+        bees = bees.filter(b => b.c < cols);
+      } else {
+        for (let k = 0; k < (p.burst || 3); k++) light(Math.floor(Math.random() * ps.length), 400);
+      }
+    }, p.speed);
+    return () => clearInterval(id);
+  }, [p.motion]);
+  return React.createElement('svg', { ref, viewBox: `0 0 ${cols * w + w / 2} ${rows * 1.5 * s + s / 2}`, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid slice', style: { display: 'block' } },
+    cells.map((pts, i) => React.createElement('polygon', { key: i, points: pts, fill: p.lit, fillOpacity: 0, stroke: p.line, strokeWidth: 1 })));
+}
+
+const MODELS = [
+  { n: 'Claude Opus 4.1', v: 'Anthropic', ctx: '200K', oi: 15, oo: 75, ti: 6, to: 30 },
+  { n: 'Claude Sonnet 4.5', v: 'Anthropic', ctx: '1M', oi: 3, oo: 15, ti: 1.2, to: 6 },
+  { n: 'Claude Haiku 4.5', v: 'Anthropic', ctx: '200K', oi: 1, oo: 5, ti: 0.45, to: 2.25 },
+  { n: 'GPT-5', v: 'OpenAI', ctx: '400K', oi: 1.25, oo: 10, ti: 0.5, to: 4 },
+  { n: 'GPT-5 Codex', v: 'OpenAI', ctx: '400K', oi: 1.25, oo: 10, ti: 0.5, to: 4 },
+  { n: 'GPT-5 mini', v: 'OpenAI', ctx: '400K', oi: 0.25, oo: 2, ti: 0.11, to: 0.9 },
+  { n: 'Gemini 2.5 Pro', v: 'Google', ctx: '1M', oi: 1.25, oo: 10, ti: 0.55, to: 4.4 },
+  { n: 'Gemini 2.5 Flash', v: 'Google', ctx: '1M', oi: 0.3, oo: 2.5, ti: 0.13, to: 1.1 }
+];
+const CODE = {
+  'Claude Code': ['# ~/.zshrc', 'export ANTHROPIC_BASE_URL="https://api.tokhive.ai"', 'export ANTHROPIC_AUTH_TOKEN="thk_live_••••••••"', '', '# then just run', 'claude'],
+  'Codex': ['# ~/.codex/config.toml', 'model = "gpt-5-codex"', 'model_provider = "tokhive"', '', '[model_providers.tokhive]', 'name = "TokHive"', 'base_url = "https://api.tokhive.ai/v1"', 'env_key = "TOKHIVE_API_KEY"'],
+  'OpenCode': ['// opencode.json', '{', '  "provider": {', '    "tokhive": {', '      "npm": "@ai-sdk/openai-compatible",', '      "options": { "baseURL": "https://api.tokhive.ai/v1" },', '      "models": { "claude-sonnet-4.5": {} }', '    }', '  }', '}'],
+  'Pi': ['// ~/.pi/agent/models.json', '{', '  "providers": {', '    "tokhive": {', '      "baseUrl": "https://api.tokhive.ai/v1",', '      "api": "openai-completions",', '      "apiKey": "TOKHIVE_API_KEY"', '    }', '  }', '}']
+};
+const $ = x => '$' + (x >= 10 ? x.toFixed(0) : x.toFixed(2));
+
+class Component extends DCLogic {
+  state = {};
+  mk(id, dark) {
+    const f = this.state['f' + id] || 'All', tab = this.state['t' + id] || 'Claude Code';
+    const chips = ['All', 'Anthropic', 'OpenAI', 'Google'].map(n => {
+      const on = n === f;
+      return { n, on: () => this.setState({ ['f' + id]: n }),
+        bg: on ? (dark ? '#C8F031' : '#141517') : (dark ? 'transparent' : 'transparent'),
+        fg: on ? (dark ? '#0D0E10' : '#FFFFFF') : (dark ? '#F2F2EE' : '#141517'),
+        bd: on ? 'transparent' : (dark ? 'rgba(242,242,238,.2)' : '#D9DCD7') };
+    });
+    const list = MODELS.filter(m => f === 'All' || m.v === f).map(m => ({ ...m, off: $(m.oi) + ' / ' + $(m.oo), ours: $(m.ti) + ' / ' + $(m.to), tiS: $(m.ti), oiS: $(m.oi), save: '−' + Math.round((1 - m.ti / m.oi) * 100) + '%' }));
+    const tabs = Object.keys(CODE).map(n => {
+      const on = n === tab;
+      return { n, on: () => this.setState({ ['t' + id]: n }),
+        bg: on ? (id === '1b' ? '#00E5FF' : (id === '1c' || id === '2a') ? '#C8F031' : 'rgba(242,242,238,.1)') : (id === '1c' ? 'transparent' : 'transparent'),
+        fg: on ? (id === '1a' ? '#F2F2EE' : '#141517') : (id === '1b' ? '#C4C6C9' : '#9A9D97'),
+        bd: on ? 'transparent' : 'rgba(242,242,238,.15)' };
+    });
+    const code = CODE[tab].map(t => { const c = t.startsWith('#') || t.startsWith('//'); return { t: t || ' ', cD: c ? '#7E817B' : (t.includes('tokhive') || t.includes('TOKHIVE') ? '#C8F031' : '#E6E7E2'), cB: c ? '#8A8D92' : (t.includes('tokhive') || t.includes('TOKHIVE') ? '#00E5FF' : '#F2F2EE') }; });
+    const tones = [['#C8F031', '#0A0B0C'], ['#1C1E20', '#F2F2EE'], ['#26292B', '#F2F2EE']];
+    const tiles = list.map((m, i) => ({ ...m, bg: tones[i % 3][0], fg: tones[i % 3][1] }));
+    const comb = [];
+    for (let i = 0; i < tiles.length; i += 4) comb.push({ t: tiles.slice(i, i + 4), mt: i ? -60 : 0, ml: (i / 4) % 2 ? 244 : 0 });
+    return { chips, rows: list, tabs, code, comb };
+  }
+  renderVals() {
+    const motion = this.props.motion ?? true;
+    if (!this._hx || this._mo !== motion) {
+      this._mo = motion;
+      this._hx = {
+        a: React.createElement(HexField, { key: 'a' + motion, cols: 9, rows: 14, s: 22, mode: 'flow', speed: 150, lit: '#C8F031', line: 'rgba(242,242,238,.09)', motion }),
+        b: React.createElement(HexField, { key: 'b' + motion, cols: 30, rows: 16, s: 26, mode: 'sparkle', burst: 2, speed: 260, lit: '#00E5FF', line: 'rgba(20,21,23,.08)', motion }),
+        c: React.createElement(HexField, { key: 'c' + motion, cols: 34, rows: 20, s: 24, mode: 'flow', speed: 120, lit: 'rgba(200,240,49,.45)', line: 'rgba(242,242,238,.07)', motion })
+      };
+    }
+    const bv = [42, 58, 71, 90, 118, 140, 171, 205, 236, 281, 322, 368];
+    return {
+      hexA: this._hx.a, hexB: this._hx.b, hexC: this._hx.c,
+      c1a: this.mk('1a', true), c1b: this.mk('1b', false), c1c: this.mk('1c', true), c2a: this.mk('2a', true),
+      pipeC: [
+        { n: '01', t: 'Your request', d: 'api.tokhive.ai', bg: '#141517', fg: '#F2F2EE', ac: '#9A9D97' },
+        { n: '02', t: 'TokHive router', d: 'picks a provider', bg: '#1C1E20', fg: '#F2F2EE', ac: '#9A9D97' },
+        { n: '03', t: 'TEE enclave', d: 'Intel TDX · sealed', bg: '#26292B', fg: '#F2F2EE', ac: '#C8F031' },
+        { n: '04', t: 'Official API', d: 'anthropic · openai · google', bg: '#C8F031', fg: '#0A0B0C', ac: '#0A0B0C' }
+      ],
+      stats: [{ v: '3,412', l: 'providers online' }, { v: '9.8B', l: 'tokens served · 24h' }, { v: '$2.4M', l: 'paid to providers' }, { v: '−58%', l: 'avg. vs list price' }],
+      stats3: [{ v: '$186', l: 'avg. / month' }, { v: '$2.4M', l: 'paid out to date' }, { v: 'Weekly', l: 'USDC or bank' }],
+      steps: [
+        { n: '01', t: 'Enclave-locked relay', d: 'Provider credentials live inside an Intel TDX enclave. Nobody can read them, including us.' },
+        { n: '02', t: 'Official endpoints only', d: 'The enclave pins TLS to vendor certificates, so it cannot route to a proxy or a cheaper model.' },
+        { n: '03', t: 'Signed receipt per call', d: 'Every response carries an attestation report you can check with our open-source verifier.' }
+      ],
+      attest: [{ k: 'enclave', v: 'Intel TDX · v1.5' }, { k: 'measurement', v: '0x9f3a…c71e' }, { k: 'upstream', v: 'api.anthropic.com' }, { k: 'model', v: 'claude-sonnet-4-5' }, { k: 'tls_cert', v: 'sha256:4b1e…09aa' }, { k: 'tokens', v: '12,804 in · 1,377 out' }, { k: 'signed_at', v: '2026-10-23 14:02:11Z' }],
+      attestShort: [{ k: 'ENCLAVE', v: 'Intel TDX · v1.5' }, { k: 'UPSTREAM', v: 'api.anthropic.com' }, { k: 'MODEL', v: 'claude-sonnet-4-5' }, { k: 'MEASUREMENT', v: '0x9f3a…c71e' }],
+      pipe: [
+        { n: '01', t: 'Your request', d: 'api.tokhive.ai', bg: '#FFFFFF', fg: '#141517' },
+        { n: '02', t: 'TokHive router', d: 'picks a provider', bg: '#FFFFFF', fg: '#141517' },
+        { n: '03', t: 'TEE enclave', d: 'Intel TDX · sealed', bg: '#141517', fg: '#FFFFFF' },
+        { n: '04', t: 'Official API', d: 'anthropic · openai · google', bg: '#00E5FF', fg: '#141517' }
+      ],
+      earners: [
+        { plan: 'Claude Max 20x', cost: '$200/mo', idle: '41%', used: 59, earn: '$212.40' },
+        { plan: 'ChatGPT Pro', cost: '$200/mo', idle: '63%', used: 37, earn: '$287.10' },
+        { plan: 'Gemini AI Ultra', cost: '$250/mo', idle: '28%', used: 72, earn: '$96.80' }
+      ],
+      bars: bv.map((v, i) => ({ v, h: Math.round(v / 368 * 170), cA: i === bv.length - 1 ? '#C8F031' : 'rgba(242,242,238,.16)' })),
+      payouts: [{ who: '0x7a…e21', plan: 'Claude Max 20x', amt: '+$212.40' }, { who: '0x3f…90b', plan: 'ChatGPT Pro', amt: '+$287.10' }, { who: '0xc1…4d7', plan: 'Claude Max 5x', amt: '+$64.25' }, { who: '0x9e…a02', plan: 'Gemini AI Ultra', amt: '+$96.80' }],
+      tape: MODELS.map(m => ({ id: m.n.toLowerCase().replace(/ /g, '-'), p: $(m.ti) + '/M', s: '−' + Math.round((1 - m.ti / m.oi) * 100) + '%' })),
+      footer: [
+        { h: 'PRODUCT', l: ['Models & Pricing', 'Network', 'Docs'] },
+        { h: 'RESOURCES', l: ['Blog', 'GitHub', 'Twitter / X'] },
+        { h: 'LEGAL', l: ['Terms of Service', 'Privacy Policy', 'Acceptable Use'] },
+        { h: 'CONTACT', l: ['hello@tokhive.ai', 'Telegram', 'Discord'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
