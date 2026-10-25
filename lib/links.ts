@@ -12,7 +12,8 @@ export const LINKS = {
   discord: "#",
   signIn: "#",
   getApiKey: "#",
-  shareQuota: "#",
+  shareQuota: "/providers",
+  connectPlan: "#", // Provider dashboard destination is pending.
   verifier: "https://github.com/tokhive",
 } as const;
 
@@ -24,12 +25,14 @@ export const FOOTER_COLUMNS: { heading: string; links: NavLink[] }[] = [
     links: [
       { label: "Models & Pricing", href: "/models" },
       { label: "Network", href: "/network" },
-      { label: "Docs", href: LINKS.docs, external: true },
+      { label: "Providers", href: "/providers" },
+      { label: "Security", href: "/security" },
     ],
   },
   {
     heading: "RESOURCES",
     links: [
+      { label: "Docs", href: LINKS.docs, external: true },
       { label: "Blog", href: LINKS.blog, external: true },
       { label: "GitHub", href: LINKS.github, external: true },
       { label: "Twitter / X", href: LINKS.twitter, external: true },

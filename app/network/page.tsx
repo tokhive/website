@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 export default function NetworkPage() {
   return (
     <>
-      <main className="site-container">
+      <main className="site-container network-page">
         <Nav />
         <LiveNetwork />
       </main>
-      <Footer />
+      <Footer compact />
     </>
   );
 }

@@ -1,6 +1,7 @@
 # TokHive website
 
-Marketing site: Home (`/`), Models & Pricing (`/models`), Network (`/network`).
+Marketing site: Home (`/`), Models & Pricing (`/models`), Network (`/network`),
+Providers (`/providers`), and Security (`/security`). All five pages include mobile layouts.
 Built from the design handoff in `design_handoff_tokhive_website/` (spec: its `README.md`).
 
 ```bash
@@ -34,8 +35,17 @@ in the repository's Pages settings.
 
 - `app/globals.css`: design tokens (`@theme`, Tailwind v4's config) and shared utilities: `clip-hex`, `clip-chevron`, `outline-word`, `eyebrow`, `chip`, buttons.
 - `components/HexField.tsx`: animated honeycomb (`flow` on Home, `sparkle` on Network). Mutates the SVG DOM directly and goes static under `prefers-reduced-motion`.
-- `components/{home,models,network}/`: page sections.
+- `components/{home,models,network,providers}/`: page sections, mobile model cards and filters, and the provider earnings calculator.
+- `components/Accordion.tsx`: single-open FAQs shared by Home and Providers.
 - `lib/mock/*.ts`: sample data behind typed interfaces. Swap for the backend endpoints listed in the handoff spec (`/v1/models`, `/v1/network/*`, SSE stream).
 - `lib/links.ts`: external links (Docs, Blog, GitHub, legal, contact). Most are placeholders.
 
 The Models filters (`q`, `vendor`, `tag`, `sort`) are mirrored to the URL query string.
+On mobile, filters open in a bottom sheet; pricing and network attestations use cards.
+Provider earnings use sample plan rates. Legal copy, the independent audit and data
+retention assumptions remain marked as placeholders in the new pages.
+
+TEE platform copy follows the implementation in `tokhive/tee`: AWS EC2 confidential
+VMs using AMD SEV-SNP, combined AMD/NitroTPM attestation and RA-TLS/mTLS. This
+supersedes the Intel TDX terminology in the original design references. Attestation
+examples use the `snp-app:<sha256>` application identity and remain sample data.

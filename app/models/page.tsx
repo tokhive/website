@@ -40,7 +40,7 @@ function Stat({ value, label, accent }: { value: string | number; label: string;
 export default function ModelsPage() {
   return (
     <>
-      <main className="site-container">
+      <main className="site-container models-page">
         <Nav />
         <header className="flex flex-wrap items-end justify-between gap-8 pt-[72px] pb-10 max-sm:pt-12">
           <div className="flex flex-col gap-4">
@@ -69,7 +69,7 @@ export default function ModelsPage() {
           <StepList steps={HOW} className="grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6" />
         </section>
       </main>
-      <Footer />
+      <Footer compact />
     </>
   );
 }

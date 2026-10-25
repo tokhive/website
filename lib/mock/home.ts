@@ -25,10 +25,10 @@ export const PAYOUTS: PayoutsSummary = {
 };
 
 export const ATTESTATION_SAMPLE: KeyValue[] = [
-  { k: "ENCLAVE", v: "Intel TDX · v1.5" },
+  { k: "ENCLAVE", v: "AMD SEV-SNP" },
   { k: "UPSTREAM", v: "api.anthropic.com" },
   { k: "MODEL", v: "claude-sonnet-4-5" },
-  { k: "MEASUREMENT", v: "0x9f3a…c71e" },
+  { k: "MEASUREMENT", v: "snp-app:9f3a…c71e" },
 ];
 
 export type AgentTool = "Claude Code" | "Codex" | "OpenCode" | "Pi";

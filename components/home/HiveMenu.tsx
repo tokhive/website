@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Chip } from "@/components/Chip";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import { formatPrice } from "@/lib/format";
@@ -13,19 +14,29 @@ export function HiveMenu() {
   const [vendor, setVendor] = useState<(typeof FILTERS)[number]>("All");
   // A row of 4 plus the offset needs ~1212px, so drop to 2 per row before it would overflow.
   const narrow = useMediaQuery("(max-width: 1239px)");
+  const mobile = useMediaQuery("(max-width: 767px)");
   const perRow = narrow ? 2 : 4;
 
   const tiles = FEATURED_MODELS.filter((m) => vendor === "All" || m.vendor === vendor);
-  const rows = [];
-  for (let i = 0; i < tiles.length; i += perRow) rows.push(tiles.slice(i, i + perRow));
+  const rows: (typeof tiles)[] = [];
+  for (let i = 0; i < tiles.length;) {
+    const count = mobile ? (rows.length % 2 ? 1 : 2) : perRow;
+    rows.push(tiles.slice(i, i + count));
+    i += count;
+  }
 
   return (
-    <section className="site-container pb-[120px] max-[899px]:pb-20">
+    <section className="hive-menu site-container pb-[120px] max-[899px]:pb-20">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
         <h2 className="h2">The hive menu.</h2>
         <div className="flex flex-wrap gap-2">
           {FILTERS.map((f) => (
-            <Chip key={f} active={vendor === f} onClick={() => setVendor(f)} className="h-auto px-4 py-[9px] text-[13px]">
+            <Chip
+              key={f}
+              active={vendor === f}
+              onClick={() => setVendor(f)}
+              className="h-auto px-4 py-[9px] text-[13px]"
+            >
               {f}
             </Chip>
           ))}
@@ -54,6 +65,11 @@ export function HiveMenu() {
             })}
           </div>
         ))}
+      </div>
+      <div className="mt-5 text-center md:hidden">
+        <Link href="/models" className="border-b border-volt pb-0.5 text-sm font-semibold">
+          All models &amp; pricing →
+        </Link>
       </div>
     </section>
   );

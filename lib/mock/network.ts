@@ -121,9 +121,9 @@ export function getAttestations(tick: number, length = 6): Attestation[] {
     return {
       requestId: "req_01J9" + hx.toUpperCase() + "…",
       model: m.model,
-      enclave: "Intel TDX 1.5",
+      enclave: "AMD SEV-SNP",
       upstream: up.length > 20 ? "generativelanguage…" : up,
-      measurement: "0x" + hx + "…" + hy,
+      measurement: "snp-app:" + hx + "…" + hy,
       signed: `${i * 2 + 1}s ago`,
     };
   });

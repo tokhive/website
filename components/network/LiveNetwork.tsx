@@ -40,7 +40,7 @@ export function LiveNetwork() {
         <span className="font-mono text-[13px] text-muted">updated {updated} · all times UTC</span>
       </header>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] border-y border-line">
+      <div className="network-kpis grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] border-y border-line">
         {kpis.map((k) => (
           <div key={k.label} className="flex flex-col gap-1.5 py-7 pr-6">
             <span className="font-mono text-xs tracking-[0.06em] text-muted">{k.label}</span>
@@ -60,7 +60,7 @@ export function LiveNetwork() {
               <Legend swatch="border border-[#3A3D3F]" label="offline" />
             </div>
           </div>
-          <div className="relative h-[400px]">
+          <div className="network-hive relative h-[400px]">
             <HexField
               cols={30}
               rows={13}
@@ -131,7 +131,7 @@ export function LiveNetwork() {
               </a>
             </div>
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto max-md:hidden">
             <table className="w-full min-w-[900px] border-collapse font-mono text-[13px]">
               <thead>
                 <tr className="border-t border-paper/8 text-left text-[11px] tracking-[0.06em] text-muted-2">
@@ -165,6 +165,30 @@ export function LiveNetwork() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="md:hidden">
+            {attestations.map((a) => (
+              <article
+                key={a.requestId + a.signed}
+                className="flex flex-col gap-3 border-t border-paper/8 px-5 py-4 font-mono text-xs"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-paper">{a.requestId}</span>
+                  <span className="rounded-badge bg-volt px-2 py-1 text-ink">✓ valid</span>
+                </div>
+                <p className="text-[13px]">{a.model}</p>
+                <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
+                  <dt className="text-muted-2">upstream</dt>
+                  <dd className="text-right text-text-2">{a.upstream}</dd>
+                  <dt className="text-muted-2">enclave</dt>
+                  <dd className="text-right text-text-2">{a.enclave}</dd>
+                  <dt className="text-muted-2">measurement</dt>
+                  <dd className="text-right text-text-2">{a.measurement}</dd>
+                  <dt className="text-muted-2">signed</dt>
+                  <dd className="text-right text-text-2">{a.signed}</dd>
+                </dl>
+              </article>
+            ))}
           </div>
         </div>
       </section>

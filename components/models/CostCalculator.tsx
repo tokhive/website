@@ -16,7 +16,7 @@ export function CostCalculator() {
   const pct = Math.round((1 - ours / official) * 100);
 
   return (
-    <section className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,520px),1fr))] gap-6 pt-24">
+    <section className="cost-calculator grid grid-cols-[repeat(auto-fit,minmax(min(100%,520px),1fr))] gap-6 pt-24">
       <div className="flex flex-col gap-7 rounded-card bg-surface p-9 max-sm:p-6">
         <div className="flex flex-col gap-2.5">
           <span className="eyebrow">COST CALCULATOR</span>

@@ -17,9 +17,9 @@ export function AgentTools() {
   const lines = AGENT_SNIPPETS[tool];
 
   return (
-    <section className="site-container flex flex-col gap-8 pb-[120px] max-[899px]:pb-20">
+    <section className="agent-tools site-container flex flex-col gap-8 pb-[120px] max-[899px]:pb-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h2 className="h2">Works in your terminal.</h2>
+        <h2 className="h2">Works in your agents.</h2>
         <span className="text-[15px] text-muted">Anthropic + OpenAI compatible</span>
       </div>
       <div role="tablist" aria-label="Agent tool" className="grid grid-cols-4 gap-2 max-[899px]:grid-cols-2">

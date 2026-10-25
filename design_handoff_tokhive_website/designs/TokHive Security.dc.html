@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0A0B0C;color:#F2F2EE;font-family:Sora,system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{opacity:.8}*{box-sizing:border-box}</style>
+</helmet>
+<div style="min-height:100vh;background:#0A0B0C" data-screen-label="Security">
+<div style="max-width:1280px;margin:0 auto;padding:0 48px">
+<div style="height:72px;display:flex;align-items:center;gap:40px">
+<a href="TokHive Website.dc.html#2a" style="display:flex;align-items:center;gap:10px"><svg width="28" height="28" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:20px;letter-spacing:-.02em"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></a>
+<div style="margin-left:auto;display:flex;gap:28px;font-size:14px;color:#B4B6B0;align-items:center"><a href="TokHive Models.dc.html">Models</a><a href="TokHive Network.dc.html">Network</a><a href="TokHive Providers.dc.html">Providers</a><a href="#" style="color:#C8F031">Security</a><a href="#">Docs ↗</a><a href="#">GitHub</a><a href="#" style="border:1px solid rgba(242,242,238,.3);color:#F2F2EE;padding:9px 16px;border-radius:999px;white-space:nowrap;flex:none">Sign in</a></div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),auto));gap:56px;align-items:end;padding:72px 0 56px;border-bottom:1px solid rgba(242,242,238,.12)">
+<div style="display:flex;flex-direction:column;gap:20px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">SECURITY &amp; VERIFICATION</span>
+<h1 style="margin:0;font-size:96px;line-height:.9;font-weight:700;letter-spacing:-.055em">Trust the hardware,<br><span style="color:#0A0B0C;-webkit-text-stroke:4px #F2F2EE;paint-order:stroke fill">not us.</span></h1>
+<p style="margin:0;font-size:19px;line-height:1.5;color:#B4B6B0;max-width:620px;text-wrap:pretty">TokHive's relay runs inside a hardware enclave. It holds provider credentials, can only talk to official vendor APIs, and signs a receipt for every call. You don't have to take our word for any of it.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;min-width:240px">
+<sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:2px;border-top:1px solid rgba(242,242,238,.2);padding-top:10px"><span style="font:500 30px 'JetBrains Mono',monospace;letter-spacing:-.03em;color:{{ s.c }}">{{ s.v }}</span><span style="font-size:13px;color:#9A9D97">{{ s.l }}</span></div></sc-for>
+</div>
+</div>
+
+<div style="padding:96px 0 0;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap"><div style="display:flex;flex-direction:column;gap:14px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">ARCHITECTURE</span><h2 style="margin:0;font-size:52px;line-height:1.04;font-weight:600;letter-spacing:-.035em">Where the trust boundary sits.</h2></div><span style="font:13px 'JetBrains Mono',monospace;color:#9A9D97">Intel TDX · measured boot · TLS pinned</span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:stretch;row-gap:16px">
+<div style="flex:1 1 150px;min-width:0;background:#141517;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font:11px 'JetBrains Mono',monospace;color:#7E817B">CLIENT</span><span style="font-size:17px;font-weight:600">Builder</span><span style="font-size:13px;color:#9A9D97;line-height:1.5">Your app or agent, using a TokHive key</span></div>
+<div style="flex:0 0 40px;display:flex;align-items:center;justify-content:center;font:16px 'JetBrains Mono',monospace;color:#7E817B">→</div>
+<div style="flex:1 1 150px;min-width:0;background:#141517;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font:11px 'JetBrains Mono',monospace;color:#7E817B">UNTRUSTED</span><span style="font-size:17px;font-weight:600">Router</span><span style="font-size:13px;color:#9A9D97;line-height:1.5">Billing and provider selection. Sees an encrypted payload only.</span></div>
+<div style="flex:0 0 40px;display:flex;align-items:center;justify-content:center;font:16px 'JetBrains Mono',monospace;color:#7E817B">→</div>
+<div style="flex:3 1 520px;min-width:0;border:1.5px dashed #C8F031;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;background:rgba(200,240,49,.04)">
+<div style="display:flex;justify-content:space-between;font:500 11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:#C8F031"><span>TEE ENCLAVE · INTEL TDX</span><span>sealed memory</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;flex:1">
+<sc-for list="{{ enclave }}" as="e" hint-placeholder-count="3"><div style="background:#1C1E20;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px"><span style="font-size:15px;font-weight:600">{{ e.t }}</span><span style="font-size:12px;color:#9A9D97;line-height:1.5">{{ e.d }}</span></div></sc-for>
+</div>
+</div>
+<div style="flex:0 0 40px;display:flex;align-items:center;justify-content:center;font:16px 'JetBrains Mono',monospace;color:#C8F031">→</div>
+<div style="flex:1 1 170px;min-width:0;background:#C8F031;color:#0A0B0C;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:8px"><span style="font:11px 'JetBrains Mono',monospace;opacity:.7">OFFICIAL</span><span style="font-size:17px;font-weight:600">Vendor API</span><span style="font:12px/1.6 'JetBrains Mono',monospace">api.anthropic.com<br>api.openai.com<br>googleapis.com</span></div>
+</div>
+</div>
+
+<div style="padding:96px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px">
+<div style="display:flex;flex-direction:column;gap:18px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">WHO SEES WHAT</span><h2 style="margin:0;font-size:44px;line-height:1.06;font-weight:600;letter-spacing:-.03em">Least privilege, enforced by silicon.</h2></div>
+<div style="background:#141517;border-radius:20px;overflow:hidden">
+<div style="display:grid;grid-template-columns:minmax(0,1.4fr) repeat(4,minmax(0,1fr));gap:12px;padding:16px 24px;font:11px 'JetBrains Mono',monospace;color:#7E817B;letter-spacing:.06em;border-bottom:1px solid rgba(242,242,238,.08)"><span></span><span style="text-align:center">PROMPTS</span><span style="text-align:center">PROVIDER CREDS</span><span style="text-align:center">USAGE METERS</span><span style="text-align:center">BUILDER IDENTITY</span></div>
+<sc-for list="{{ matrix }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:minmax(0,1.4fr) repeat(4,minmax(0,1fr));gap:12px;padding:16px 24px;border-bottom:1px solid rgba(242,242,238,.06);align-items:center"><span style="font-size:15px;font-weight:600">{{ r.who }}</span><sc-for list="{{ r.c }}" as="c"><span style="display:flex;justify-content:center"><span style="width:28px;height:32px;display:flex;align-items:center;justify-content:center;font:500 13px 'JetBrains Mono',monospace;background:{{ c.bg }};color:{{ c.fg }};clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)">{{ c.s }}</span></span></sc-for></div></sc-for>
+<div style="padding:14px 24px;font:12px 'JetBrains Mono',monospace;color:#9A9D97">✓ can see · — cannot see · Vendors see prompts as they would for any API call.</div>
+</div>
+</div>
+
+<div style="padding:96px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:48px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:22px">
+<span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">VERIFY IT YOURSELF</span>
+<h2 style="margin:0;font-size:44px;line-height:1.06;font-weight:600;letter-spacing:-.03em">Check any response in one command.</h2>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ verify }}" as="v" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-top:1px solid rgba(242,242,238,.1)"><span style="font:500 13px 'JetBrains Mono',monospace;color:#C8F031">{{ v.n }}</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:600">{{ v.t }}</span><span style="font-size:14px;line-height:1.55;color:#9A9D97">{{ v.d }}</span></div></div></sc-for>
+</div>
+</div>
+<div style="background:#141517;border:1px solid rgba(242,242,238,.1);border-radius:16px;overflow:hidden">
+<div style="display:flex;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(242,242,238,.08);font:12px 'JetBrains Mono',monospace;color:#9A9D97"><span>terminal</span><span style="color:#F2F2EE">Copy</span></div>
+<div style="padding:20px 22px;font:13px/1.85 'JetBrains Mono',monospace"><sc-for list="{{ term }}" as="l" hint-placeholder-count="12"><div style="white-space:pre;color:{{ l.c }}">{{ l.t }}</div></sc-for></div>
+</div>
+</div>
+
+<div style="padding:96px 0 0;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap"><h2 style="margin:0;font-size:44px;line-height:1.06;font-weight:600;letter-spacing:-.03em">Open source and audited.</h2><a href="#" style="font-size:14px;font-weight:600;border-bottom:1px solid #C8F031;padding-bottom:2px">github.com/tokhive ↗</a></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px">
+<sc-for list="{{ oss }}" as="o" hint-placeholder-count="3"><a href="#" style="background:{{ o.bg }};border:1px solid {{ o.bd }};border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:12px;min-height:220px">
+<span style="font:500 11px 'JetBrains Mono',monospace;letter-spacing:.1em;color:{{ o.ac }}">{{ o.k }}</span>
+<span style="font-size:20px;font-weight:600;letter-spacing:-.01em">{{ o.t }}</span>
+<span style="font-size:14px;line-height:1.55;color:#9A9D97;text-wrap:pretty">{{ o.d }}</span>
+<span style="margin-top:auto;font:12px 'JetBrains Mono',monospace;color:#B4B6B0">{{ o.m }}</span>
+</a></sc-for>
+</div>
+</div>
+
+<div style="padding:96px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px">
+<div style="display:flex;flex-direction:column;gap:18px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">DATA HANDLING</span><h2 style="margin:0;font-size:44px;line-height:1.06;font-weight:600;letter-spacing:-.03em">What we keep, and for how long.</h2></div>
+<div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,242,238,.12)">
+<sc-for list="{{ data }}" as="d" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:1.2fr 1fr 2fr;gap:24px;padding:18px 0;border-bottom:1px solid rgba(242,242,238,.08);font-size:15px;align-items:baseline"><span style="font-weight:600">{{ d.k }}</span><span style="font:13px 'JetBrains Mono',monospace;color:{{ d.c }}">{{ d.v }}</span><span style="font-size:14px;color:#9A9D97;line-height:1.55">{{ d.d }}</span></div></sc-for>
+</div>
+</div>
+
+<div style="margin:120px 0;background:#141517;border-radius:24px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:10px;max-width:640px"><span style="font:500 12px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#C8F031">RESPONSIBLE DISCLOSURE</span><span style="font-size:32px;font-weight:600;letter-spacing:-.025em;line-height:1.15">Found something? Tell us first.</span><span style="font-size:15px;color:#9A9D97;line-height:1.6">We reply within 48 hours and reward valid reports through our bug bounty.</span></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><a href="#" style="background:#C8F031;color:#0A0B0C;font-weight:600;font-size:15px;padding:15px 24px;border-radius:999px">security@tokhive.ai</a><a href="#" style="border:1px solid rgba(242,242,238,.3);font-weight:600;font-size:15px;padding:14px 22px;border-radius:999px">PGP key</a></div>
+</div>
+</div>
+
+<div style="border-top:1px solid rgba(242,242,238,.1)">
+<div style="max-width:1280px;margin:0 auto;padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;font-size:14px">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><svg width="22" height="22" viewBox="0 0 100 100"><polygon points="50,6 88.1,28 88.1,72 50,94 11.9,72 11.9,28" fill="#C8F031"></polygon><rect x="11.9" y="36.5" width="76.2" height="9" fill="#0A0B0C"></rect><rect x="11.9" y="54.5" width="76.2" height="9" fill="#0A0B0C"></rect></svg><span style="font-size:17px"><span style="font-weight:300">Tok</span><span style="font-weight:700">Hive</span></span></div><span style="color:#9A9D97">© 2026 TokHive</span></div>
+<sc-for list="{{ footer }}" as="col" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:10px"><span style="font:12px 'JetBrains Mono',monospace;color:#9A9D97;letter-spacing:.08em">{{ col.h }}</span><sc-for list="{{ col.l }}" as="x"><a href="#" style="color:#D6D8D2">{{ x }}</a></sc-for></div></sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const Y = { s: '✓', bg: '#C8F031', fg: '#0A0B0C' }, N = { s: '—', bg: '#1C1E20', fg: '#7E817B' };
+    return {
+      heroStats: [{ v: '0', l: 'plaintext credentials outside the enclave', c: '#C8F031' }, { v: '100%', l: 'of responses carry an attestation', c: '#F2F2EE' }, { v: 'MIT', l: 'enclave image and verifier, open source', c: '#F2F2EE' }],
+      enclave: [
+        { t: 'Credential vault', d: 'Provider sessions sealed to the enclave key. Not exportable.' },
+        { t: 'Pinned relay', d: 'TLS only to an allow-list of vendor certificates.' },
+        { t: 'Signer', d: 'Signs model, upstream, token counts and the response hash.' }
+      ],
+      matrix: [
+        { who: 'Builder', c: [Y, N, Y, Y] },
+        { who: 'TokHive operators', c: [N, N, Y, Y] },
+        { who: 'Provider', c: [N, Y, Y, N] },
+        { who: 'Router (untrusted)', c: [N, N, Y, N] },
+        { who: 'TEE enclave', c: [Y, Y, Y, N] }
+      ],
+      verify: [
+        { n: '01', t: 'Grab the request ID', d: 'Every response includes an x-tokhive-request-id header and an attestation URL.' },
+        { n: '02', t: 'Run the verifier', d: 'The CLI fetches the quote and checks it against Intel\'s root of trust.' },
+        { n: '03', t: 'Compare the measurement', d: 'The enclave hash must match a published, reproducible build on GitHub.' },
+        { n: '04', t: 'Check the upstream', d: 'The signed upstream host and certificate fingerprint must belong to the vendor.' }
+      ],
+      term: [
+        { t: '$ npx @tokhive/verify req_01J9XQ7K2', c: '#F2F2EE' },
+        { t: ' ', c: '#F2F2EE' },
+        { t: '  quote        Intel TDX v1.5', c: '#B4B6B0' },
+        { t: '  root of trust  Intel SGX/TDX PCS     ✓', c: '#B4B6B0' },
+        { t: '  measurement  0x9f3a…c71e', c: '#B4B6B0' },
+        { t: '  release      enclave v2.4.1 (reproducible) ✓', c: '#B4B6B0' },
+        { t: '  upstream     api.anthropic.com', c: '#B4B6B0' },
+        { t: '  tls_cert     sha256:4b1e…09aa          ✓', c: '#B4B6B0' },
+        { t: '  model        claude-sonnet-4-5', c: '#B4B6B0' },
+        { t: '  tokens       12,804 in · 1,377 out', c: '#B4B6B0' },
+        { t: ' ', c: '#F2F2EE' },
+        { t: '✓ Verified: served by the official vendor', c: '#C8F031' }
+      ],
+      oss: [
+        { k: 'GITHUB', t: 'Enclave image', d: 'Full source of the relay that runs in the TEE, with reproducible builds and published measurements per release.', m: 'tokhive/enclave ↗', bg: '#141517', bd: 'transparent', ac: '#C8F031' },
+        { k: 'GITHUB', t: 'Verifier CLI & SDK', d: 'Verify attestations from the terminal, or in CI with the TypeScript and Python SDKs.', m: 'tokhive/verify ↗', bg: '#141517', bd: 'transparent', ac: '#C8F031' },
+        { k: 'PLACEHOLDER', t: 'Independent audit', d: 'Third-party security review of the enclave and key management. Firm, scope and report link to be added once the audit is complete.', m: '[auditor] · [date]', bg: 'transparent', bd: 'rgba(200,240,49,.4)', ac: '#C8F031' }
+      ],
+      data: [
+        { k: 'Prompts & completions', v: 'not stored', c: '#C8F031', d: 'They are processed in enclave memory only and never written to disk or to logs.' },
+        { k: 'Provider credentials', v: 'sealed', c: '#C8F031', d: 'Encrypted to the enclave key and destroyed when you disconnect.' },
+        { k: 'Usage metadata', v: '13 months', c: '#F2F2EE', d: 'Model, token counts and timestamps, kept for billing, payouts and dispute resolution.' },
+        { k: 'Attestation reports', v: '90 days', c: '#F2F2EE', d: 'Signed receipts stay retrievable by request ID for independent verification.' },
+        { k: 'Account data', v: 'until deletion', c: '#F2F2EE', d: 'Email, KYC status and payout details. Delete from settings at any time.' }
+      ],
+      footer: [
+        { h: 'PRODUCT', l: ['Models & Pricing', 'Network', 'Providers', 'Security'] },
+        { h: 'RESOURCES', l: ['Docs', 'Blog', 'GitHub', 'Twitter / X'] },
+        { h: 'LEGAL', l: ['Terms of Service', 'Privacy Policy', 'Acceptable Use'] },
+        { h: 'CONTACT', l: ['hello@tokhive.ai', 'Telegram', 'Discord'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

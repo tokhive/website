@@ -1,4 +1,4 @@
-# Handoff: TokHive Marketing Website (Home · Models & Pricing · Network)
+# Handoff: TokHive Marketing Website (Home · Models · Network · Providers · Security · Mobile)
 
 ## Overview
 TokHive is a two-sided marketplace. **Providers** resell the unused quota of their AI subscriptions (Claude Max, ChatGPT Pro, Gemini Ultra…). **Builders** consume that quota through a standard OpenAI- and Anthropic-compatible API, at below list price. Every request is relayed from inside a TEE (Intel TDX), which only talks to official vendor endpoints and signs an attestation report.
@@ -7,6 +7,9 @@ This package covers three public pages:
 1. **Home** (`/`)
 2. **Models & Pricing** (`/models`)
 3. **Network** (`/network`): live provider and token-usage data
+4. **Providers** (`/providers`): earnings calculator, onboarding, controls, compliance, payouts
+5. **Security** (`/security`): TEE architecture, data visibility, verification, open source, data retention
+6. **Mobile** (390pt): mobile layouts for all of the above
 
 The following are external links and are not designed here: Docs, Blog, GitHub, Twitter/X, Terms of Service, Privacy Policy, Acceptable Use, and Contact (email, Telegram, Discord).
 
@@ -100,7 +103,7 @@ The stripes must use the **page background color**, so they read as cut-outs.
 
 ### Nav (height 72)
 - Logo on the left, linking to `/`.
-- Right side, gap 28, 14px, text-2: Models · Network · Docs ↗ · Blog ↗ · GitHub · [Sign in ghost].
+- Right side, gap 28, 14px, text-2: Models · Network · Providers · Security · Docs ↗ · GitHub · [Sign in ghost].
 - The current page link is volt.
 
 ### Footer
@@ -177,7 +180,7 @@ Sections, top to bottom:
    - **Honeycomb tiles:** 236×272 hexagons, rows of 4, gap 8. Every second row is offset 244px right and pulled up −60px.
    - Tile fills cycle through volt (dark text), `#1C1E20` and `#26292B` (paper text).
    - Tile content: vendor (mono 11), model name (19/600), price "$1.20 ~~$3.00~~" with "per 1M input" underneath, and saving "−60%".
-7. **Agent tools: "Works in your terminal."**
+7. **Agent tools: "Works in your agents."**
    - Right-hand caption: "Anthropic + OpenAI compatible".
    - **Tool tabs:** 4 large buttons in a 4-column grid (Claude Code, Codex, OpenCode, Pi), Sora 18/600, padding 22, radius 14. Active is volt. Inactive is transparent with a `rgba(242,242,238,.15)` border.
    - **Code block:** `#141517`, radius 14, mono 15/1.8, padding `28px 32px`.
@@ -186,7 +189,11 @@ Sections, top to bottom:
      - Everything else is `#E6E7E2`.
    - Snippets: copy exactly from `CODE` in the source file.
    - Add a working **Copy** button.
-8. **Footer**
+8. **FAQ**
+   - Grid of `360px 1fr`, gap 80.
+   - **Left:** eyebrow "FAQ", H2 "Questions, answered.", and a contact line linking Discord, Telegram and email.
+   - **Right:** accordion, single-open, with the first item open by default. Each question is Sora 19/600, padding 24px 0, with 1px dividers. The toggle is a 32×36 hexagon: `#1C1E20` with "+", or volt with "−" when open. Answers are 16/1.65 text-2. Copy the questions and answers from the `faq` array in the source.
+9. **Footer**
 
 ## Screen 2: Models & Pricing (`/models`)
 1. **Header**
@@ -315,6 +322,71 @@ The sample list of 18 models is in `M` in the source.
 
 ---
 
+## Screen 4: Providers (`/providers`)
+1. **Hero** (two columns, auto-fit, faint sparkle HexField behind a left-to-right dark gradient)
+   - **Left:** eyebrow "FOR PROVIDERS", H1 84px "Your plan resets." / "Your earnings don't." (second line volt), body copy, primary "Connect a plan →" and ghost "How it works" (anchors to #how).
+   - **Right: earnings calculator card** (surface, radius 24).
+     - Plan picker: 3×2 grid of plan buttons (name + $/mo). Active is volt.
+     - Range "How much you use yourself" 0–95%, default 45.
+     - Range "Extra reserve, never shared" 0–40%, default 10. Clamp reserve to 100 − use.
+     - Split bar: you (#5E6163) · reserve (#26292B) · shared (volt), with a legend.
+     - Volt footer: "EST. MONTHLY EARNINGS" (mono 60), plus yearly and "covers your plan ×N" or "covers N% of your plan".
+     - **Math (sample):** `monthly = planRate × shared% × 0.85`. Plan rates live in `PLANS` in the source. Replace with the real model.
+2. **Three steps** (`#how`): 3 chevron tiles (same clip-path as the TEE pipeline). Fills are #141517, #1C1E20 and volt.
+3. **You stay in control:** grid `360px 1fr`. Four cards with a hexagon number badge: reserve, auto-pause, daily caps/schedules, one-click revoke.
+4. **Account safety & compliance:** a dashed-volt bordered panel.
+   - The "Is sharing my plan allowed?" copy is a **PLACEHOLDER: legal must supply it**.
+   - The right column lists four ✓ safety points.
+5. **Payouts:** three facts (Weekly · $20 min · USDC/Bank) and a sample weekly statement table.
+6. **Provider FAQ:** same accordion as Home.
+7. **Volt CTA band**, then the footer.
+
+## Screen 5: Security (`/security`)
+1. **Hero:** H1 "Trust the hardware," / "not us." (outline word), body copy, and three stacked stats on the right.
+2. **Architecture:** a flex-wrap row: Builder → Router (untrusted) → TEE enclave (dashed volt box with Credential vault / Pinned relay / Signer) → Vendor API (volt).
+   - The enclave wraps to its own line on narrow widths.
+3. **Who sees what:** a matrix of 5 parties × 4 data types (prompts, provider creds, usage meters, builder identity). Cells are hexagon ✓ (volt) or — (#1C1E20).
+4. **Verify it yourself:** 4 numbered steps plus a terminal block showing `npx @tokhive/verify <req_id>` output.
+5. **Open source and audited:** three cards (enclave repo, verifier CLI, audit). The audit card is a **PLACEHOLDER**.
+6. **Data handling:** a retention table. **The retention values are assumptions; confirm them.**
+7. **Responsible disclosure** card, then the footer.
+
+## Screen 6: Mobile (`TokHive Mobile.dc.html`, 390pt artboards)
+The canvas holds six artboards:
+- **m1 Home**
+- **m2 Models**
+- **m3 Models filter sheet**
+- **m4 Network**
+- **m5 Providers**
+- **m6 Security**
+
+General mobile rules:
+- Side padding is 20px. Cards sit inside 12px gutters.
+- H1 is 48–56px and H2 is 32–34px.
+- The nav is the logo plus a 44px menu button that opens a full-width dropdown listing every page, with Sign in and Get API key buttons.
+- Every tap target is at least 44px.
+
+Per-screen changes:
+- **Home:**
+  - "Earn." and "Save." stack vertically, with the logo plate as a divider.
+  - The price tape scrolls horizontally.
+  - The TEE pipeline becomes vertical chevrons.
+  - The honeycomb runs 2-1-2.
+  - The agent tabs form a 2×2 grid.
+  - Two CTA cards sit before the footer.
+- **Models:**
+  - The table becomes a card list, and tapping a card expands it.
+  - A sticky bar holds search plus a "Filters" button with a count badge.
+  - The filters open a **bottom sheet** (m3) with sort, capabilities, and a searchable vendor multi-select. Its bottom button reads "Show N models".
+- **Network:** KPIs in a 2×2 grid, then single-column cards, and attestations as cards.
+- **Providers:** the calculator plan grid is 2 columns, and the steps are vertical chevrons.
+- **Security:** the architecture is a vertical flow (↓), the matrix uses compact 46px columns, and the terminal scrolls horizontally.
+
+## Responsive breakpoints
+- **≥1024:** desktop as designed.
+- **768–1023:** grids use the `auto-fit` values already in the source, and the hero columns stack.
+- **<768:** follow the Mobile artboards.
+
 ## State summary
 - **Home:**
   - `vendorFilter` for the honeycomb.
@@ -323,6 +395,7 @@ The sample list of 18 models is in `M` in the source.
   - `q`, `vendors[]`, `vendorPopoverOpen`, `vendorQuery`, `tags[]`, `sort`, `openRowId`.
   - Calculator: `modelId`, `inM`, `outM`.
   - Sync the filters to URL query params.
+- **Providers:** `plan`, `usePct`, `reservePct`, `openFaq`.
 - **Network:**
   - `range`, `vendor`.
   - Live data from a stream: KPIs, feed, hive events and attestations. Poll or use SSE.
@@ -347,5 +420,8 @@ The sample list of 18 models is in `M` in the source.
 - `designs/TokHive Website.dc.html`: Home. Implement **section 2a** only.
 - `designs/TokHive Models.dc.html`: Models & Pricing.
 - `designs/TokHive Network.dc.html`: Network.
+- `designs/TokHive Providers.dc.html`: Providers.
+- `designs/TokHive Security.dc.html`: Security.
+- `designs/TokHive Mobile.dc.html`: all mobile layouts (m1–m6).
 - `designs/support.js`: runtime needed only to open the references in a browser. Do not port it.
 - `assets/logo-svg/`, `assets/logo-png/`: logo marks, lockups, app icons and avatar. On dark pages use `mark-volt`, `lockup-dark` and `app-icon-dark`.

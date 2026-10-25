@@ -3,13 +3,13 @@ import { ATTESTATION_SAMPLE } from "@/lib/mock/home";
 const HOPS = [
   { t: "Your request", d: "api.tokhive.ai", tile: "bg-surface text-paper", num: "text-muted" },
   { t: "TokHive router", d: "picks a provider", tile: "bg-surface-2 text-paper", num: "text-muted" },
-  { t: "TEE enclave", d: "Intel TDX · sealed", tile: "bg-surface-3 text-paper", num: "text-volt" },
+  { t: "TEE enclave", d: "AMD SEV-SNP · sealed", tile: "bg-surface-3 text-paper", num: "text-volt" },
   { t: "Official API", d: "anthropic · openai · google", tile: "bg-volt text-ink", num: "text-ink" },
 ];
 
 export function Pipeline() {
   return (
-    <section className="site-container -mt-10 flex flex-col gap-4 pb-[120px] max-[899px]:mt-0 max-[899px]:pb-20">
+    <section className="home-pipeline site-container -mt-10 flex flex-col gap-4 pb-[120px] max-[899px]:mt-0 max-[899px]:pb-20">
       <div className="flex flex-wrap items-baseline justify-between gap-2 font-mono text-xs font-medium tracking-[0.14em] text-muted">
         <span>HOW A REQUEST TRAVELS</span>
         <span className="tracking-normal text-text-2">every hop is sealed and signed</span>

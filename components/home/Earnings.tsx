@@ -4,7 +4,7 @@ import { PAYOUTS } from "@/lib/mock/home";
 export function Earnings() {
   const max = Math.max(...PAYOUTS.monthly);
   return (
-    <section className="site-container pb-[120px] max-[899px]:pb-20">
+    <section className="home-earnings site-container pb-[120px] max-[899px]:pb-20">
       <div className="grid gap-14 rounded-card-lg bg-surface p-14 max-[899px]:p-8 min-[900px]:grid-cols-[1.2fr_1fr]">
         <div className="flex flex-col gap-4">
           <span className="eyebrow">PAID TO PROVIDERS · ALL TIME</span>
@@ -22,7 +22,7 @@ export function Earnings() {
               <div
                 key={i}
                 className={`clip-peak flex-1 ${i === PAYOUTS.monthly.length - 1 ? "bg-volt" : "bg-paper/16"}`}
-                style={{ height: Math.round((v / max) * 170) }}
+                style={{ height: `${(v / max) * 94}%` }}
               />
             ))}
           </div>

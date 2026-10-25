@@ -33,7 +33,7 @@ export function TokenUsage() {
   const meta = RANGE_META[range];
 
   return (
-    <section className="rounded-card bg-surface p-8 max-sm:p-5">
+    <section className="token-usage rounded-card bg-surface p-8 max-sm:p-5">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
         <div className="flex flex-col gap-2">
           <span className="eyebrow text-muted">TOKEN USAGE</span>

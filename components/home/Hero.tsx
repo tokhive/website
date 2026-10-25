@@ -6,7 +6,7 @@ import { HERO_STATS } from "@/lib/mock/home";
 
 export function Hero() {
   return (
-    <section className="relative min-[900px]:h-[720px]">
+    <section className="home-hero relative min-[1024px]:h-[720px]">
       <div className="absolute inset-0 overflow-hidden">
         <HexField
           cols={34}
@@ -27,8 +27,8 @@ export function Hero() {
         <div className="site-px">
           <Nav />
         </div>
-        <div className="relative grid flex-1 grid-cols-1 min-[900px]:grid-cols-2">
-          <div className="flex flex-col gap-6 border-line-hero px-12 pt-24 pb-16 max-[899px]:border-b max-sm:px-4 max-sm:pt-16 min-[900px]:border-r min-[900px]:pr-14">
+        <div className="hero-columns relative grid flex-1 grid-cols-1 min-[1024px]:grid-cols-2">
+          <div className="hero-column hero-providers flex flex-col gap-6 border-line-hero px-12 pt-24 pb-16 min-[1024px]:border-r min-[1024px]:pr-14">
             <span className="eyebrow">PROVIDERS</span>
             <div className="giant-word text-volt">Earn.</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
@@ -41,7 +41,14 @@ export function Hero() {
               <span className="font-mono text-[13px] text-muted">{HERO_STATS.paidOut}</span>
             </div>
           </div>
-          <div className="flex flex-col gap-6 px-12 pt-24 pb-16 max-sm:px-4 max-sm:pt-16 min-[900px]:pl-14">
+          <div className="hero-seam hidden items-center gap-3.5 px-5 py-9 max-[1023px]:flex">
+            <span className="h-px flex-1 bg-paper/16" />
+            <span className="clip-hex flex h-16 w-14 items-center justify-center bg-bg">
+              <LogoMark size={36} />
+            </span>
+            <span className="h-px flex-1 bg-paper/16" />
+          </div>
+          <div className="hero-column hero-builders flex flex-col gap-6 px-12 pt-24 pb-16 min-[1024px]:pl-14">
             <span className="eyebrow text-paper">BUILDERS</span>
             <div className="giant-word outline-word self-start">Save.</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
@@ -54,7 +61,7 @@ export function Hero() {
               <span className="font-mono text-[13px] text-muted">{HERO_STATS.avgSaving}</span>
             </div>
           </div>
-          <div className="clip-hex absolute top-[44%] left-1/2 flex h-32 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-bg max-[899px]:hidden">
+          <div className="clip-hex absolute top-[44%] left-1/2 flex h-32 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-bg max-[1023px]:hidden">
             <LogoMark size={70} />
           </div>
         </div>

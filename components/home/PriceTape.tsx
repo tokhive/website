@@ -3,7 +3,7 @@ import { FEATURED_MODELS, savingsPct } from "@/lib/mock/models";
 
 export function PriceTape() {
   return (
-    <div className="flex overflow-hidden border-y border-line whitespace-nowrap">
+    <div className="flex price-tape overflow-hidden border-y border-line whitespace-nowrap">
       {FEATURED_MODELS.map((m) => (
         <div
           key={m.id}
