@@ -1,4 +1,6 @@
 // External destinations are not designed here; fill in real URLs when they exist.
+const CONSOLE_URL = "https://console.tokhive.ai";
+
 export const LINKS = {
   docs: "https://docs.tokhive.ai",
   blog: "https://blog.tokhive.ai",
@@ -10,10 +12,10 @@ export const LINKS = {
   email: "mailto:hello@tokhive.ai",
   telegram: "#",
   discord: "#",
-  signIn: "#",
-  getApiKey: "#",
+  signIn: CONSOLE_URL,
+  getApiKey: CONSOLE_URL,
   shareQuota: "/providers",
-  connectPlan: "#", // Provider dashboard destination is pending.
+  connectPlan: CONSOLE_URL,
   verifier: "https://github.com/tokhive",
 } as const;
 
