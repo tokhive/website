@@ -3,10 +3,12 @@ import { Accordion } from "@/components/Accordion";
 import { Footer } from "@/components/Footer";
 import { HexField } from "@/components/HexField";
 import { Nav } from "@/components/Nav";
+import { EarningsProvider } from "@/components/home/EarningsProvider";
 import { EarningsCalculator } from "@/components/providers/EarningsCalculator";
 import { LINKS } from "@/lib/links";
 import {
-  PAYOUT_STATEMENT,
+  SETTLEMENT_EXAMPLE,
+  SETTLEMENT_TOTAL,
   PROVIDER_CONTROLS,
   PROVIDER_FAQ,
   PROVIDER_SAFETY,
@@ -15,7 +17,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Providers",
-  description: "Put your idle AI subscription quota to work. Set your reserve, stay in control and get paid weekly.",
+  description: "Earn from idle AI subscription quota with real-time settlement. Withdraw via Web3 stablecoins with a $20 minimum.",
 };
 
 export default function ProvidersPage() {
@@ -50,8 +52,8 @@ export default function ProvidersPage() {
                   <span className="text-volt">Your earnings don&apos;t.</span>
                 </h1>
                 <p className="max-w-[520px] text-[19px] leading-[1.5] text-pretty text-text-2">
-                  Share the part of your Claude, ChatGPT or Gemini subscription you don&apos;t use. You keep a reserve
-                  for yourself, and TokHive pays you weekly for the rest.
+                  Share unused quota from your Claude, ChatGPT or Gemini subscription and earn as each successful
+                  request settles in real time. You can stop sharing at any time.
                 </p>
                 <div className="mt-2 flex flex-wrap gap-3">
                   <a href={LINKS.connectPlan} className="btn-primary">
@@ -62,14 +64,16 @@ export default function ProvidersPage() {
                   </a>
                 </div>
               </div>
-              <EarningsCalculator />
+              <EarningsProvider>
+                <EarningsCalculator />
+              </EarningsProvider>
             </header>
           </div>
         </div>
         <div className="site-container">
           <section id="how" className="content-section scroll-mt-8 border-t border-line pt-24">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-              <h2 className="h2">Three steps to your first payout.</h2>
+              <h2 className="h2">Three steps to your first earnings.</h2>
               <span className="font-mono text-[13px] text-muted">~3 minutes to set up</span>
             </div>
             <ol className="provider-steps grid grid-cols-3 gap-2.5">
@@ -89,9 +93,9 @@ export default function ProvidersPage() {
           <section className="content-section split-section grid gap-[72px] pt-[120px] lg:grid-cols-[360px_1fr]">
             <div className="section-intro">
               <span className="eyebrow">You stay in control</span>
-              <h2 className="section-title">Your plan comes first. Always.</h2>
+              <h2 className="section-title">Share on your terms.</h2>
               <p className="text-base leading-[1.6] text-text-2">
-                Sharing never gets in the way of your own work, and you can stop at any time without notice.
+                Choose when to share. Stop sharing whenever you need your subscription quota for your own work.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2.5 max-md:grid-cols-1">
@@ -140,13 +144,17 @@ export default function ProvidersPage() {
           </section>
           <section className="content-section grid items-start gap-14 pt-[120px] lg:grid-cols-2">
             <div className="section-intro">
-              <span className="eyebrow">Payouts</span>
-              <h2 className="section-title">Paid every Monday, itemised to the request.</h2>
+              <span className="eyebrow">Settlement &amp; withdrawals</span>
+              <h2 className="section-title">Earnings settle in real time.</h2>
+              <p className="text-base leading-[1.6] text-text-2">
+                Each successful request credits your earnings balance as it settles. Withdraw separately via Web3
+                stablecoins, with a $20 minimum withdrawal.
+              </p>
               <div className="mt-3 grid grid-cols-3 gap-5">
                 {[
-                  ["Weekly", "every Monday"],
-                  ["$20", "minimum payout"],
-                  ["USDC · Bank", "payout methods"],
+                  ["Real time", "earnings settlement"],
+                  ["$20", "minimum withdrawal"],
+                  ["Web3", "stablecoin withdrawals"],
                 ].map(([v, l]) => (
                   <div key={l} className="flex flex-col gap-1 border-t border-paper/20 pt-3">
                     <span className="font-mono text-2xl font-medium tracking-[-.02em] max-md:text-lg">{v}</span>
@@ -157,10 +165,10 @@ export default function ProvidersPage() {
             </div>
             <div className="payout-statement overflow-hidden rounded-card bg-surface font-mono">
               <div className="flex justify-between gap-3 border-b border-line-soft px-6 py-[18px] text-xs text-muted">
-                <span>STATEMENT · WEEK 43</span>
-                <span>Oct 13 – Oct 19</span>
+                <span>SETTLEMENT EXAMPLE</span>
+                <span>Illustrative figures</span>
               </div>
-              {PAYOUT_STATEMENT.map((r) => (
+              {SETTLEMENT_EXAMPLE.map((r) => (
                 <div
                   key={r.model}
                   className="grid grid-cols-[1.4fr_1fr_1fr] gap-3 border-b border-paper/6 px-6 py-[13px] text-[13px]"
@@ -171,8 +179,8 @@ export default function ProvidersPage() {
                 </div>
               ))}
               <div className="flex items-center justify-between px-6 py-[18px] text-sm">
-                <span className="text-muted">Paid Oct 20 · USDC</span>
-                <span className="text-[22px] font-medium text-volt">+$52.18</span>
+                <span className="text-muted">Credited to earnings balance</span>
+                <span className="text-[22px] font-medium text-volt">{SETTLEMENT_TOTAL}</span>
               </div>
             </div>
           </section>

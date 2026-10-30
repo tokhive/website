@@ -5,41 +5,33 @@ import { Nav } from "@/components/Nav";
 import { StepList } from "@/components/StepList";
 import { CostCalculator } from "@/components/models/CostCalculator";
 import { ModelsExplorer } from "@/components/models/ModelsExplorer";
-import { MODELS } from "@/lib/mock/models";
+import { ModelsSummary } from "@/components/models/ModelsSummary";
+import { ModelsProvider } from "@/components/ModelsProvider";
 
 export const metadata: Metadata = {
   title: "Models & Pricing",
-  description: "Official Claude, GPT, Gemini and more, below list price. Live capacity and per-token pricing.",
+  description: "Compare official model prices with TokHive quotes for input, output and cached tokens.",
 };
 
 const HOW = [
   { t: "Pay per token", d: "No subscription and no minimum. Top up with card or USDC and draw down per 1M tokens." },
   {
     t: "Prices float with supply",
-    d: "Rates reprice hourly from pooled provider capacity, and they never go above the vendor list price.",
+    d: "Displayed quotes reflect current provider supply. The applicable price is locked when your request is dispatched.",
   },
   {
     t: "Same tokens, same models",
     d: "Requests hit the official endpoint from inside a TEE. Model IDs and responses match the vendor API.",
   },
   {
-    t: "Cache reads included",
-    d: "Prompt caching is passed through at the discounted rate, so long agent sessions get cheaper.",
+    t: "Model-specific caching",
+    d: "Cache read and write prices are shown where those billing items apply.",
   },
 ];
 
-function Stat({ value, label, accent }: { value: string | number; label: string; accent?: boolean }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <span className={`font-mono text-[34px] font-medium tracking-[-0.03em] ${accent ? "text-volt" : ""}`}>{value}</span>
-      <span className="font-mono text-xs text-muted">{label}</span>
-    </div>
-  );
-}
-
 export default function ModelsPage() {
   return (
-    <>
+    <ModelsProvider offeredOnly>
       <main className="site-container models-page">
         <Nav />
         <header className="flex flex-wrap items-end justify-between gap-8 pt-[72px] pb-10 max-sm:pt-12">
@@ -51,11 +43,7 @@ export default function ModelsPage() {
               <span className="outline-word">Below list.</span>
             </h1>
           </div>
-          <div className="flex gap-10">
-            <Stat value="−58%" label="avg. vs list" accent />
-            <Stat value={MODELS.length} label="models live" />
-            <Stat value={0} label="monthly fee" />
-          </div>
+          <ModelsSummary />
         </header>
 
         <Suspense>
@@ -70,6 +58,6 @@ export default function ModelsPage() {
         </section>
       </main>
       <Footer compact />
-    </>
+    </ModelsProvider>
   );
 }

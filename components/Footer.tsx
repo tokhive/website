@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LogoMark, Wordmark } from "@/components/Logo";
-import { FOOTER_COLUMNS } from "@/lib/links";
+import { FOOTER_COLUMNS, LINKS } from "@/lib/links";
 
 export function Footer({ compact = false }: { compact?: boolean }) {
   return (
@@ -35,11 +35,11 @@ export function Footer({ compact = false }: { compact?: boolean }) {
         <div className="site-container compact-footer flex items-center justify-between gap-4 py-8 text-xs text-muted-2 md:hidden">
           <span>© 2026 TokHive</span>
           <span className="flex gap-2">
-            <a href="#">Terms</a>
+            <Link href={LINKS.terms}>Terms</Link>
             <span>·</span>
-            <a href="#">Privacy</a>
+            <Link href={LINKS.privacy}>Privacy</Link>
             <span>·</span>
-            <a href="#">AUP</a>
+            <Link href={LINKS.aup}>AUP</Link>
           </span>
         </div>
       )}

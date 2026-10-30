@@ -1,4 +1,8 @@
+"use client";
+
+import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
 import { ATTESTATION_SAMPLE } from "@/lib/mock/home";
+import { shortMeasurement } from "@/lib/public-network";
 
 const HOPS = [
   { t: "Your request", d: "api.tokhive.ai", tile: "bg-surface text-paper", num: "text-muted" },
@@ -8,6 +12,18 @@ const HOPS = [
 ];
 
 export function Pipeline() {
+  const attestations = useNetworkSnapshot()?.attestations;
+  const latest = attestations?.recent[0];
+  // The newest provider receipt, or the sample until one is available.
+  const receipt = latest && attestations
+    ? { ...ATTESTATION_SAMPLE, upstream: latest.upstream, model: latest.model, measurement: shortMeasurement(attestations.measurement) }
+    : ATTESTATION_SAMPLE;
+  const fields = [
+    { k: "ENCLAVE", v: receipt.enclave },
+    { k: "UPSTREAM", v: receipt.upstream },
+    { k: "MODEL", v: receipt.model },
+    { k: "MEASUREMENT", v: receipt.measurement },
+  ];
   return (
     <section className="home-pipeline site-container -mt-10 flex flex-col gap-4 pb-[120px] max-[899px]:mt-0 max-[899px]:pb-20">
       <div className="flex flex-wrap items-baseline justify-between gap-2 font-mono text-xs font-medium tracking-[0.14em] text-muted">
@@ -24,7 +40,7 @@ export function Pipeline() {
         ))}
       </ol>
       <div className="grid grid-cols-[repeat(4,1fr)_auto] items-center gap-6 rounded-code border border-paper/10 bg-surface px-6 py-5 font-mono text-[13px] max-[899px]:grid-cols-2">
-        {ATTESTATION_SAMPLE.map((a) => (
+        {fields.map((a) => (
           <div key={a.k} className="flex min-w-0 flex-col gap-1">
             <span className="text-[11px] text-muted">{a.k}</span>
             <span className="truncate">{a.v}</span>

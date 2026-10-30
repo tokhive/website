@@ -2,7 +2,8 @@ import { HexField } from "@/components/HexField";
 import { LogoMark } from "@/components/Logo";
 import { Nav } from "@/components/Nav";
 import { LINKS } from "@/lib/links";
-import { HERO_STATS } from "@/lib/mock/home";
+import { AvgSaving } from "@/components/home/AvgSaving";
+import { PaidOut } from "@/components/home/PaidOut";
 
 export function Hero() {
   return (
@@ -38,7 +39,7 @@ export function Hero() {
               <a href={LINKS.shareQuota} className="btn-primary">
                 Share your quota →
               </a>
-              <span className="font-mono text-[13px] text-muted">{HERO_STATS.paidOut}</span>
+              <PaidOut />
             </div>
           </div>
           <div className="hero-seam hidden items-center gap-3.5 px-5 py-9 max-[1023px]:flex">
@@ -58,7 +59,7 @@ export function Hero() {
               <a href={LINKS.getApiKey} className="btn-secondary">
                 Get API key →
               </a>
-              <span className="font-mono text-[13px] text-muted">{HERO_STATS.avgSaving}</span>
+              <AvgSaving />
             </div>
           </div>
           <div className="clip-hex absolute top-[44%] left-1/2 flex h-32 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-bg max-[1023px]:hidden">

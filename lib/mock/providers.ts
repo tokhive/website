@@ -1,55 +1,57 @@
 import type { FaqItem } from "@/components/Accordion";
 
-export type ProviderPlan = { name: string; price: number; rate: number };
-// Sample rates from the design; replace with the provider earnings API.
+/**
+ * A plan Bee can share. `platform` and `plan` match what Hive reports; `sample` is the
+ * illustrative monthly earning with all quota sold, used until Hive has measured the plan.
+ */
+export type ProviderPlan = { name: string; platform: string; plan: string; price: number; priceLabel: string; sample: number };
 export const PROVIDER_PLANS: ProviderPlan[] = [
-  { name: "Claude Max 20x", price: 200, rate: 5.4 },
-  { name: "Claude Max 5x", price: 100, rate: 2.5 },
-  { name: "Claude Pro", price: 20, rate: 0.5 },
-  { name: "ChatGPT Pro", price: 200, rate: 4.6 },
-  { name: "ChatGPT Plus", price: 20, rate: 0.45 },
-  { name: "Gemini AI Ultra", price: 250, rate: 3.5 },
+  { name: "Claude Max", platform: "claude", plan: "max", price: 100, priceLabel: "$100–200/mo", sample: 212 },
+  { name: "Claude Pro", platform: "claude", plan: "pro", price: 20, priceLabel: "$20/mo", sample: 42 },
+  { name: "ChatGPT Pro", platform: "openai", plan: "pro", price: 200, priceLabel: "$200/mo", sample: 391 },
+  { name: "ChatGPT Pro Lite", platform: "openai", plan: "prolite", price: 100, priceLabel: "$100/mo", sample: 195 },
+  { name: "ChatGPT Plus", platform: "openai", plan: "plus", price: 20, priceLabel: "$20/mo", sample: 38 },
 ];
 export type ProviderDetail = { title: string; description: string };
 export const PROVIDER_STEPS: (ProviderDetail & { meta: string })[] = [
   {
-    title: "Connect your plan",
+    title: "Sign in locally",
     description:
-      "Sign in to your subscription from inside our TEE. The session is sealed in the enclave, and nobody at TokHive ever sees it.",
+      "Sign in to your subscription account on your computer. Bee encrypts your credentials with the TEE public key before uploading them. Only the TEE can decrypt them; nobody at TokHive can see your credentials in plaintext.",
     meta: "Claude · ChatGPT · Gemini",
   },
   {
-    title: "Set your reserve",
+    title: "Start sharing with Bee",
     description:
-      "Choose how much quota to keep for yourself and when sharing is allowed. You can change it at any time.",
-    meta: "reserve · schedule · daily cap",
+      "Run Bee on your computer and keep it connected to share your subscription quota. You can start or stop sharing at any time.",
+    meta: "keep Bee online · stop anytime",
   },
   {
-    title: "Get paid weekly",
+    title: "Earn in real time",
     description:
-      "Every token you serve is metered and attested. Earnings settle every Monday in USDC or by bank transfer.",
-    meta: "min. payout $20",
+      "Each successful request is metered and verified. Earnings are credited to your earnings balance in real time as settlement completes.",
+    meta: "per-request settlement",
   },
 ];
 export const PROVIDER_CONTROLS: ProviderDetail[] = [
   {
-    title: "Reserve you set",
-    description: "TokHive only routes traffic to quota above your reserve. Your share never eats into your own limit.",
+    title: "Stop sharing anytime",
+    description: "Stop sharing whenever you need your subscription quota for your own work.",
   },
   {
-    title: "Auto-pause when you work",
-    description: "When you start using your plan, sharing pauses on that account and picks up again once you go idle.",
+    title: "Start on your terms",
+    description: "Start and stop sharing manually as your needs change.",
   },
-  { title: "Daily caps and schedules", description: "Limit tokens per day, or only share overnight and at weekends." },
+  { title: "Track your earnings", description: "Review your settled earnings and per-request records in the dashboard." },
   {
-    title: "Revoke in one click",
-    description: "Disconnect at any time. The sealed session is destroyed inside the enclave straight away.",
+    title: "Keep what you earned",
+    description: "Stopping sharing does not affect earnings already settled.",
   },
 ];
 export const PROVIDER_SAFETY: ProviderDetail[] = [
   {
-    title: "Credentials never leave the enclave",
-    description: "Your session is sealed inside an AMD SEV-SNP confidential VM and cannot be exported by TokHive operators.",
+    title: "Credentials encrypted before upload",
+    description: "Bee encrypts upstream access credentials with the TEE public key. Only the TEE can decrypt the uploaded envelope.",
   },
   {
     title: "Vetted, rate-limited buyers",
@@ -58,41 +60,50 @@ export const PROVIDER_SAFETY: ProviderDetail[] = [
   },
   {
     title: "Per-account limits",
-    description: "Each provider account has its own hard ceiling on concurrency and daily volume.",
+    description: "Hive applies per-account concurrency limits when assigning requests.",
   },
   {
     title: "Full audit trail",
     description: "Every request served from your plan is attested and listed in your dashboard.",
   },
 ];
-export const PAYOUT_STATEMENT: { model: string; tokens: string; amount: string }[] = [
-  { model: "claude-sonnet-4-5", tokens: "18.4M tok", amount: "$31.62" },
-  { model: "claude-opus-4-1", tokens: "1.1M tok", amount: "$11.88" },
-  { model: "claude-haiku-4-5", tokens: "9.2M tok", amount: "$6.21" },
-  { model: "cache reads", tokens: "41.0M tok", amount: "$2.47" },
+// Illustrative, at roughly TokHive's floor prices (mostly input, ~10% output).
+export const SETTLEMENT_EXAMPLE: { model: string; tokens: string; amount: string }[] = [
+  { model: "claude-opus-5-5", tokens: "18.4M tok", amount: "$11.33" },
+  { model: "gpt-6-sol", tokens: "22.0M tok", amount: "$6.78" },
+  { model: "claude-sonnet-5-5", tokens: "9.2M tok", amount: "$2.83" },
+  { model: "cache reads", tokens: "41.0M tok", amount: "$0.74" },
 ];
+/** Sum of the example amounts. */
+export const SETTLEMENT_TOTAL = "+$21.68";
 export const PROVIDER_FAQ: FaqItem[] = [
   {
     question: 'What does "idle quota" mean?',
     answer:
-      "Most subscriptions give you a usage allowance that resets on a rolling window. Whatever you do not use before it resets is idle, and that is the only part TokHive sells.",
+      "Idle quota is unused capacity in your subscription. You choose when to share it by starting or stopping sharing.",
   },
   {
     question: "Will my own requests ever be slower or blocked?",
-    answer: "No. Your reserve is never shared, and sharing pauses automatically when you are active on the account.",
+    answer: "You can stop sharing at any time.",
   },
   {
     question: "Can I stop at any time?",
     answer:
-      "Yes. Disconnect from the dashboard and routing stops immediately. Earnings already accrued are paid out on the next Monday.",
+      "Yes. You can stop sharing from the dashboard. Stopping sharing does not affect earnings already settled.",
+  },
+  {
+    question: "When are earnings settled, and how do I withdraw them?",
+    answer:
+      "Each successful request is settled in real time and credited to your earnings balance. Withdrawals have a $20 minimum and use Web3 stablecoins. Settlement does not wait for your balance to reach the withdrawal minimum.",
   },
   {
     question: "How are earnings calculated?",
     answer:
-      "You earn a share of what builders pay for the tokens served from your plan, at per-model rates shown in the dashboard. The estimate above uses the last 30 days of network demand.",
+      "Earnings are calculated from your successfully served usage and the applicable provider rates. The calculator above uses illustrative assumptions.",
   },
   {
     question: "Do I need to keep my computer on?",
-    answer: "No. Your sealed session runs in our enclave, not on your machine.",
+    answer:
+      "Yes. Keep your computer on, connected to the internet and running Bee while sharing. Your computer must stay awake; while it is asleep or offline, it cannot receive new requests.",
   },
 ];

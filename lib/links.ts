@@ -1,20 +1,20 @@
-// External destinations are not designed here; fill in real URLs when they exist.
+// Shared destinations for navigation, calls to action and policy pages.
 const CONSOLE_URL = "https://console.tokhive.ai";
 
 export const LINKS = {
   docs: "https://docs.tokhive.ai",
-  blog: "https://blog.tokhive.ai",
+  blog: "https://docs.tokhive.ai/blog",
   github: "https://github.com/tokhive",
   twitter: "https://x.com/tokhive",
-  terms: "#",
-  privacy: "#",
-  aup: "#",
+  terms: "/terms",
+  privacy: "/privacy",
+  aup: "/acceptable-use",
   email: "mailto:hello@tokhive.ai",
   telegram: "#",
   discord: "#",
   signIn: CONSOLE_URL,
   getApiKey: CONSOLE_URL,
-  shareQuota: "/providers",
+  shareQuota: CONSOLE_URL,
   connectPlan: CONSOLE_URL,
   verifier: "https://github.com/tokhive",
 } as const;

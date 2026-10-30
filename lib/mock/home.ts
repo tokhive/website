@@ -1,35 +1,12 @@
 // Sample figures for the home page.
 
-export type KeyValue = { k: string; v: string };
-
-export type PayoutsSummary = {
-  allTimeUsd: number;
-  avgMonthlyPerProvider: number;
-  /** Monthly payouts in $K, oldest first; the last entry is the current month. */
-  monthly: number[];
-  fromLabel: string;
-  toLabel: string;
+/** Shown until Hive's latest receipt arrives, or when there is none. */
+export const ATTESTATION_SAMPLE = {
+  enclave: "AMD SEV-SNP",
+  upstream: "api.anthropic.com",
+  model: "claude-opus-5-5",
+  measurement: "snp-app:9f3a…c71e",
 };
-
-export const HERO_STATS = {
-  paidOut: "$2.4M paid out",
-  avgSaving: "avg. −58% vs list",
-};
-
-export const PAYOUTS: PayoutsSummary = {
-  allTimeUsd: 2418906,
-  avgMonthlyPerProvider: 186,
-  monthly: [42, 58, 71, 90, 118, 140, 171, 205, 236, 281, 322, 368],
-  fromLabel: "Nov ’25",
-  toLabel: "Oct ’26",
-};
-
-export const ATTESTATION_SAMPLE: KeyValue[] = [
-  { k: "ENCLAVE", v: "AMD SEV-SNP" },
-  { k: "UPSTREAM", v: "api.anthropic.com" },
-  { k: "MODEL", v: "claude-sonnet-4-5" },
-  { k: "MEASUREMENT", v: "snp-app:9f3a…c71e" },
-];
 
 export type AgentTool = "Claude Code" | "Codex" | "OpenCode" | "Pi";
 

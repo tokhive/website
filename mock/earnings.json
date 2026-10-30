@@ -1,0 +1,80 @@
+{
+  "currency": "USD",
+  "basis": "settled_provider_earnings",
+  "timezone": "UTC",
+  "as_of": "2026-10-26T08:00:00Z",
+  "all_time_usd": "2418906.000000000",
+  "average_month": "2026-09",
+  "average_monthly_provider_usd": "161.000000000",
+  "earning_providers": 2000,
+  "monthly": [
+    {
+      "month": "2025-11",
+      "amount_usd": "42000.000000000"
+    },
+    {
+      "month": "2025-12",
+      "amount_usd": "58000.000000000"
+    },
+    {
+      "month": "2026-01",
+      "amount_usd": "71000.000000000"
+    },
+    {
+      "month": "2026-02",
+      "amount_usd": "90000.000000000"
+    },
+    {
+      "month": "2026-03",
+      "amount_usd": "118000.000000000"
+    },
+    {
+      "month": "2026-04",
+      "amount_usd": "140000.000000000"
+    },
+    {
+      "month": "2026-05",
+      "amount_usd": "171000.000000000"
+    },
+    {
+      "month": "2026-06",
+      "amount_usd": "205000.000000000"
+    },
+    {
+      "month": "2026-07",
+      "amount_usd": "236000.000000000"
+    },
+    {
+      "month": "2026-08",
+      "amount_usd": "281000.000000000"
+    },
+    {
+      "month": "2026-09",
+      "amount_usd": "322000.000000000"
+    },
+    {
+      "month": "2026-10",
+      "amount_usd": "368000.000000000"
+    }
+  ],
+  "plan_capacity": [
+    {
+      "platform": "claude",
+      "plan": "max",
+      "accounts": 2,
+      "max_weekly_provider_usd": "121.380000000"
+    },
+    {
+      "platform": "openai",
+      "plan": "plus",
+      "accounts": 1,
+      "max_weekly_provider_usd": "14.920000000"
+    },
+    {
+      "platform": "openai",
+      "plan": "pro",
+      "accounts": 3,
+      "max_weekly_provider_usd": "173.790494350"
+    }
+  ]
+}

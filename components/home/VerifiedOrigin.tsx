@@ -55,7 +55,7 @@ export function VerifiedOrigin() {
         </div>
       </div>
       <div className="flex flex-col gap-7">
-        <h2 className="h2 max-w-[680px]">No resellers of resellers. No swapped models. Proof attached.</h2>
+        <h2 className="h2 max-w-[680px]">Genuine tokens. No swapped models. Proof attached.</h2>
         <StepList steps={STEPS} className="grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6" />
       </div>
     </section>

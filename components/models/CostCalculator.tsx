@@ -1,19 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { formatTokensM, formatUsd } from "@/lib/format";
+import { formatTokensM } from "@/lib/format";
 import { LINKS } from "@/lib/links";
-import { MODELS, getModel } from "@/lib/mock/models";
+import { ModelsStatus, useModels } from "@/components/ModelsProvider";
+import { estimateModelCost, formatInputPrice, modelSavings, priceDifference } from "@/lib/public-models";
 
 export function CostCalculator() {
-  const [modelId, setModelId] = useState("claude-sonnet-4-5");
+  const { models, status } = useModels();
+  const [modelId, setModelId] = useState("");
   const [inM, setInM] = useState(300);
   const [outM, setOutM] = useState(60);
 
-  const m = getModel(modelId)!;
-  const official = inM * m.official.in + outM * m.official.out;
-  const ours = inM * m.tokhive.in + outM * m.tokhive.out;
-  const pct = Math.round((1 - ours / official) * 100);
+  if (status !== "ready" || !models.length) return <ModelsStatus />;
+  const m = models.find((model) => model.id === modelId) ?? models.find((model) => model.minimum_prices !== null) ?? models[0];
+  const { official, minimum: ours } = estimateModelCost(m, inM, outM);
+  const savings = official === null || ours === null ? null : priceDifference(official, ours);
+  const extra = savings?.startsWith("-") ?? false;
+  const pct = modelSavings({ official_input_price: official, minimum_input_price: ours });
+  const maxCost = Math.max(Number(official ?? 0), Number(ours ?? 0));
+  const width = (amount: string | null) => maxCost > 0 && amount !== null ? Number(amount) / maxCost * 100 : 0;
 
   return (
     <section className="cost-calculator grid grid-cols-[repeat(auto-fit,minmax(min(100%,520px),1fr))] gap-6 pt-24">
@@ -25,11 +31,11 @@ export function CostCalculator() {
         <label className="flex flex-col gap-2">
           <span className="font-mono text-xs text-muted">MODEL</span>
           <select
-            value={modelId}
+            value={m.id}
             onChange={(e) => setModelId(e.target.value)}
             className="h-11 rounded-input border border-line-hero bg-bg px-3 text-sm text-paper"
           >
-            {MODELS.map((x) => (
+            {models.map((x) => (
               <option key={x.id} value={x.id}>
                 {x.name}
               </option>
@@ -42,18 +48,18 @@ export function CostCalculator() {
 
       <div className="flex flex-col justify-between gap-6 rounded-card bg-volt p-9 text-ink max-sm:p-6">
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-xs font-medium tracking-[0.14em]">YOU SAVE / MONTH</span>
+          <span className="font-mono text-xs font-medium tracking-[0.14em]">{extra ? "ADDITIONAL COST / MONTH" : "YOU SAVE / MONTH"}</span>
           <span
-            className="font-mono text-[80px] leading-none font-medium tracking-[-0.05em] max-sm:text-[52px]"
+            className="break-all font-mono text-[64px] leading-none font-medium tracking-[-0.05em] max-sm:text-[44px]"
             aria-live="polite"
           >
-            {formatUsd(official - ours)}
+            {savings === null ? "—" : formatInputPrice(extra ? savings.slice(1) : savings)}
           </span>
-          <span className="text-[15px]">{pct}% less than paying the vendor directly</span>
+          <span className="text-[15px]">{ours === null ? "No current quote is available for this model." : extra ? "The current quote exceeds the official list price." : pct !== null ? `${pct}% less than paying the vendor directly` : "Compared with the official list price."}</span>
         </div>
         <div className="flex flex-col gap-3.5 font-mono text-[13px]">
-          <Bar label="Official list price" value={formatUsd(official)} width={100} fill="bg-ink/35" />
-          <Bar label="TokHive" value={formatUsd(ours)} width={(ours / official) * 100} fill="bg-ink" strong />
+          <Bar label="Official list price" value={official === null ? "—" : formatInputPrice(official)} width={width(official)} fill="bg-ink/35" />
+          <Bar label="TokHive" value={ours === null ? "Unavailable" : formatInputPrice(ours)} width={width(ours)} fill="bg-ink" strong />
         </div>
         <a
           href={LINKS.getApiKey}

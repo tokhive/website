@@ -3,7 +3,7 @@
 export const HEROSTATS: { v: string; l: string; c: string }[] = [
   {
     v: "0",
-    l: "plaintext credentials outside the enclave",
+    l: "plaintext upstream credentials uploaded",
     c: "#C8F031",
   },
   {
@@ -29,7 +29,7 @@ export const ENCLAVE: { t: string; d: string }[] = [
   },
   {
     t: "Signer",
-    d: "Signs model, upstream, token counts and the response hash.",
+    d: "Signs the upstream host, response hash, execution times and policy hash.",
   },
 ];
 
@@ -37,7 +37,7 @@ export const VERIFY: { n: string; t: string; d: string }[] = [
   {
     n: "01",
     t: "Grab the request ID",
-    d: "Every response includes an x-tokhive-request-id header and an attestation URL.",
+    d: "Use the X-Request-Id header returned by your TokHive API call.",
   },
   {
     n: "02",
@@ -52,59 +52,33 @@ export const VERIFY: { n: string; t: string; d: string }[] = [
   {
     n: "04",
     t: "Check the upstream",
-    d: "The signed upstream host and certificate fingerprint must belong to the vendor.",
+    d: "The signed upstream host must match the expected vendor endpoint.",
   },
 ];
 
-export const TERM: { t: string; c: string }[] = [
-  {
-    t: "$ npx @tokhive/verify req_01J9XQ7K2",
-    c: "#F2F2EE",
-  },
-  {
-    t: " ",
-    c: "#F2F2EE",
-  },
-  {
-    t: "  quote        AMD SEV-SNP",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  roots        AMD + AWS NitroTPM       ✓",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  measurement  snp-app:9f3a…c71e",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  application  matches expected bundle  ✓",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  upstream     api.anthropic.com",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  tls_cert     sha256:4b1e…09aa          ✓",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  model        claude-sonnet-4-5",
-    c: "#B4B6B0",
-  },
-  {
-    t: "  tokens       12,804 in · 1,377 out",
-    c: "#B4B6B0",
-  },
-  {
-    t: " ",
-    c: "#F2F2EE",
-  },
-  {
-    t: "✓ Verified: served by the official vendor",
-    c: "#C8F031",
-  },
+export const VERIFY_COMMAND = [
+  "./bin/tokhive-verify verify \\",
+  '  --request-id "$TOKHIVE_REQUEST_ID" \\',
+  '  --expected-app "$TOKHIVE_EXPECTED_APP" \\',
+  "  --expected-host api.anthropic.com \\",
+  "  --response response.raw",
+].join("\n");
+
+export const SAMPLE_MEASUREMENT = "snp-app:9f3a…c71e";
+
+/** Example verifier output; `measurement` is Hive's pinned TEE image when known. */
+export const verifyTerminal = (measurement: string): { t: string; c: string }[] => [
+  ...VERIFY_COMMAND.split("\n").map((line, i) => ({ t: i === 0 ? `$ ${line}` : line, c: "#F2F2EE" })),
+  { t: " ", c: "#F2F2EE" },
+  { t: "  quote        AMD SEV-SNP", c: "#B4B6B0" },
+  { t: "  roots        AMD + AWS NitroTPM       ✓", c: "#B4B6B0" },
+  { t: `  measurement  ${measurement}`, c: "#B4B6B0" },
+  { t: "  application  matches expected bundle  ✓", c: "#B4B6B0" },
+  { t: "  upstream     api.anthropic.com", c: "#B4B6B0" },
+  { t: "  policy_hash  c8d1…3f02", c: "#B4B6B0" },
+  { t: "  stream_hash  7b2e…a810", c: "#B4B6B0" },
+  { t: " ", c: "#F2F2EE" },
+  { t: "✓ Verified: served by the official vendor", c: "#C8F031" },
 ];
 
 export const OSS: { k: string; t: string; d: string; m: string; bg: string; bd: string; ac: string }[] = [
@@ -121,7 +95,7 @@ export const OSS: { k: string; t: string; d: string; m: string; bg: string; bd: 
     k: "GITHUB",
     t: "Verifier CLI & SDK",
     d: "Verify attestations from the terminal, or in CI with the TypeScript and Python SDKs.",
-    m: "tokhive/verify ↗",
+    m: "tokhive/verifier ↗",
     bg: "#141517",
     bd: "transparent",
     ac: "#C8F031",
@@ -140,33 +114,33 @@ export const OSS: { k: string; t: string; d: string; m: string; bg: string; bd: 
 export const DATA: { k: string; v: string; c: string; d: string }[] = [
   {
     k: "Prompts & completions",
-    v: "not stored",
+    v: "processed",
     c: "#C8F031",
-    d: "They are processed in enclave memory only and never written to disk or to logs.",
+    d: "Hive and the upstream service process request content. Failure diagnostics can retain request and response content.",
   },
   {
     k: "Provider credentials",
     v: "sealed",
     c: "#C8F031",
-    d: "Encrypted to the enclave key and destroyed when you disconnect.",
+    d: "Bee encrypts upstream access credentials with the TEE public key before upload. Only the TEE can decrypt the uploaded envelope.",
   },
   {
     k: "Usage metadata",
-    v: "13 months",
+    v: "under review",
     c: "#F2F2EE",
-    d: "Model, token counts and timestamps, kept for billing, payouts and dispute resolution.",
+    d: "Model, token counts and timestamps, kept for billing, settlement and dispute resolution.",
   },
   {
     k: "Attestation reports",
-    v: "90 days",
+    v: "under review",
     c: "#F2F2EE",
     d: "Signed receipts stay retrievable by request ID for independent verification.",
   },
   {
     k: "Account data",
-    v: "until deletion",
+    v: "under review",
     c: "#F2F2EE",
-    d: "Email, KYC status and payout details. Delete from settings at any time.",
+    d: "Account identifiers, access settings and transaction references. Deletion requests are subject to applicable recordkeeping obligations.",
   },
 ];
 
@@ -176,16 +150,16 @@ export const VISIBILITY: { who: string; cells: boolean[] }[] = [
     cells: [true, false, true, true],
   },
   {
-    who: "TokHive operators",
-    cells: [false, false, true, true],
+    who: "Authorized operators",
+    cells: [true, false, true, true],
   },
   {
     who: "Provider",
     cells: [false, true, true, false],
   },
   {
-    who: "Router (untrusted)",
-    cells: [false, false, true, false],
+    who: "Hive router",
+    cells: [true, false, true, true],
   },
   {
     who: "TEE enclave",

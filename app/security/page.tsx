@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { LINKS } from "@/lib/links";
-import { DATA, ENCLAVE, HEROSTATS, OSS, TERM, VERIFY, VISIBILITY } from "@/lib/mock/security";
+import { DATA, ENCLAVE, HEROSTATS, OSS, VERIFY, VERIFY_COMMAND, VISIBILITY } from "@/lib/mock/security";
+import { VerifyTerminal } from "@/components/security/VerifyTerminal";
 
 export const metadata: Metadata = {
   title: "Security & Verification",
@@ -73,7 +73,7 @@ export default function SecurityPage() {
               <div>
                 <h3 className="text-[17px] font-semibold">Router</h3>
                 <p className="mt-2 text-[13px] leading-[1.5] text-muted">
-                  Billing and provider selection. Sees an encrypted payload only.
+                  Processes buyer requests for routing, protocol handling and billing.
                 </p>
               </div>
             </div>
@@ -157,7 +157,8 @@ export default function SecurityPage() {
               </tbody>
             </table>
             <p className="px-6 py-3.5 font-mono text-xs leading-[1.6] text-muted">
-              ✓ can see · — cannot see · Vendors see prompts as they would for any API call.
+              ✓ role processes or may access this data · — no access through this role. Hive processes buyer requests;
+              authorized failure diagnostics may retain their content. Providers can access their own local credentials.
             </p>
           </div>
         </section>
@@ -179,19 +180,18 @@ export default function SecurityPage() {
           </div>
           <div className="min-w-0 overflow-hidden rounded-2xl border border-paper/10 bg-surface">
             <div className="flex justify-between border-b border-line-soft px-5 py-3.5 font-mono text-xs text-muted">
-              <span>terminal</span>
-              <CopyButton text={TERM[0].t.replace(/^\$ /, "")} />
+              <span>terminal · example</span>
+              <CopyButton text={VERIFY_COMMAND} />
             </div>
             <pre className="overflow-x-auto px-[22px] py-5 font-mono text-[13px] leading-[1.85] max-md:text-[11px]">
-              <code>
-                {TERM.map((l, i) => (
-                  <Fragment key={i}>
-                    <span style={{ color: l.c }}>{l.t}</span>
-                    {"\n"}
-                  </Fragment>
-                ))}
-              </code>
+              <VerifyTerminal />
             </pre>
+            <p className="border-t border-line-soft px-5 py-4 text-xs leading-[1.7] text-muted">
+              Run <code>make build</code> in the verifier repository first. Set <code>TOKHIVE_API_KEY</code> to your
+              buyer API key, <code>TOKHIVE_REQUEST_ID</code> to your request ID, and <code>TOKHIVE_EXPECTED_APP</code>{" "}
+              to a trusted <code>snp-app:&lt;sha256&gt;</code> release identity. This example checks Anthropic&apos;s
+              upstream host and compares the exact upstream response body saved as <code>response.raw</code>.
+            </p>
           </div>
         </section>
         <section className="content-section flex flex-col gap-7 pt-24">
@@ -225,7 +225,7 @@ export default function SecurityPage() {
                 <a
                   key={o.t}
                   className={className}
-                  href={`${LINKS.github}/${i === 0 ? "tee" : "verify"}`}
+                  href={`${LINKS.github}/${i === 0 ? "tee" : "verifier"}`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -238,9 +238,11 @@ export default function SecurityPage() {
         <section className="content-section grid gap-14 pt-24 lg:grid-cols-[.85fr_1.15fr]">
           <div className="section-intro">
             <span className="eyebrow">Data handling</span>
-            <h2 className="section-title">What we keep, and for how long.</h2>
-            <p className="rounded-xl border border-dashed border-volt/40 p-4 font-mono text-[11px] leading-[1.6] text-volt">
-              PLACEHOLDER · Retention values are assumptions, pending confirmation.
+            <h2 className="section-title">Data processing and retention.</h2>
+            <p className="rounded-xl border border-dashed border-volt/40 p-4 text-sm leading-relaxed text-text-2">
+              Record-specific retention periods remain under review. See the{" "}
+              <a href={LINKS.privacy} className="text-volt underline underline-offset-4">Privacy Policy draft</a>{" "}
+              for request processing, diagnostics and deletion requests.
             </p>
           </div>
           <dl className="retention-table border-t border-line">

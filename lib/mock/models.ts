@@ -105,17 +105,3 @@ export const VENDORS: Vendor[] = [...new Set(MODELS.map((m) => m.vendor))];
 export const savingsPct = (m: Model) => Math.round((1 - m.tokhive.in / m.official.in) * 100);
 
 export const getModel = (id: string) => MODELS.find((m) => m.id === id);
-
-/** Models shown on the home page price tape and honeycomb. */
-export const FEATURED_MODEL_IDS = [
-  "claude-opus-4-1",
-  "claude-sonnet-4-5",
-  "claude-haiku-4-5",
-  "gpt-5",
-  "gpt-5-codex",
-  "gpt-5-mini",
-  "gemini-2.5-pro",
-  "gemini-2.5-flash",
-];
-
-export const FEATURED_MODELS = FEATURED_MODEL_IDS.map((id) => getModel(id)!);

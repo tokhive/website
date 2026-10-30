@@ -1,14 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MODELS, VENDOR_COLORS, VENDORS, type Vendor } from "@/lib/mock/models";
-
-const COUNTS = Object.fromEntries(VENDORS.map((v) => [v, MODELS.filter((m) => m.vendor === v).length]));
-
-type Props = { selected: Vendor[]; onToggle: (v: Vendor) => void; onClear: () => void };
+type VendorOption = { value: string; label: string; count: number; color: string };
+type Props = { options: VendorOption[]; selected: string[]; onToggle: (v: string) => void; onClear: () => void };
 
 /** Multi-select vendor dropdown with a filter box; scales to many vendors. */
-export function VendorSelect({ selected, onToggle, onClear }: Props) {
+export function VendorSelect({ options: vendors, selected, onToggle, onClear }: Props) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const root = useRef<HTMLDivElement>(null);
@@ -29,7 +26,7 @@ export function VendorSelect({ selected, onToggle, onClear }: Props) {
     };
   }, [open]);
 
-  const options = VENDORS.filter((v) => !query || v.toLowerCase().includes(query.toLowerCase()));
+  const options = vendors.filter((v) => !query || v.label.toLowerCase().includes(query.toLowerCase()));
   const active = selected.length > 0;
 
   return (
@@ -57,14 +54,14 @@ export function VendorSelect({ selected, onToggle, onClear }: Props) {
             />
             <div role="listbox" aria-multiselectable="true" className="flex max-h-[300px] flex-col overflow-auto">
               {options.map((v) => {
-                const on = selected.includes(v);
+                const on = selected.includes(v.value);
                 return (
                   <button
-                    key={v}
+                    key={v.value}
                     type="button"
                     role="option"
                     aria-selected={on}
-                    onClick={() => onToggle(v)}
+                    onClick={() => onToggle(v.value)}
                     className="grid cursor-pointer grid-cols-[16px_10px_1fr_auto] items-center gap-2.5 rounded-lg px-2.5 py-[9px] text-left text-sm text-paper hover:bg-paper/6"
                   >
                     <span
@@ -74,15 +71,15 @@ export function VendorSelect({ selected, onToggle, onClear }: Props) {
                     >
                       {on ? "✓" : ""}
                     </span>
-                    <span className="clip-hex h-2.5 w-2.5" style={{ background: VENDOR_COLORS[v] }} />
-                    <span>{v}</span>
-                    <span className="font-mono text-xs text-muted-2">{COUNTS[v]}</span>
+                    <span className="clip-hex h-2.5 w-2.5" style={{ background: v.color }} />
+                    <span>{v.label}</span>
+                    <span className="font-mono text-xs text-muted-2">{v.count}</span>
                   </button>
                 );
               })}
             </div>
             <div className="flex items-center justify-between border-t border-paper/8 px-2.5 pt-2 pb-1 font-mono text-xs text-muted">
-              <span>{active ? `${selected.length} of ${VENDORS.length} selected` : `${VENDORS.length} vendors`}</span>
+              <span>{active ? `${selected.length} of ${vendors.length} selected` : `${vendors.length} vendors`}</span>
               <button type="button" onClick={onClear} className="cursor-pointer text-volt hover:opacity-80">
                 Clear
               </button>
@@ -98,7 +95,7 @@ export function VendorSelect({ selected, onToggle, onClear }: Props) {
           aria-label={`Remove ${v}`}
           className="chip gap-1.5 border-volt/35 bg-volt/12 pr-2.5 text-volt"
         >
-          {v}
+          {vendors.find((option) => option.value === v)?.label ?? v}
           <span className="text-sm leading-none">×</span>
         </button>
       ))}

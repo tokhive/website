@@ -6,26 +6,24 @@ import { Chip, Segmented } from "@/components/Chip";
 import { CopyButton } from "@/components/CopyButton";
 import { Modal } from "@/components/Modal";
 import { VendorSelect } from "@/components/models/VendorSelect";
-import { formatPrice } from "@/lib/format";
+import { ModelsStatus, useModels } from "@/components/ModelsProvider";
+import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
 import {
-  CAPABILITIES,
-  MODELS,
-  VENDOR_COLORS,
-  VENDORS,
-  savingsPct,
-  type Capability,
-  type Model,
-  type Vendor,
-} from "@/lib/mock/models";
+  capabilityLabel, comparePrices, formatContextWindow, formatInputPrice,
+  modelPlatformLabel, modelSavings, platformColor, PRICE_ITEMS,
+  type PublicModelPrice as Model,
+} from "@/lib/public-models";
 
-const SORTS = ["Popular", "Savings", "Price", "Capacity"] as const;
+const SORTS = ["Name", "Savings", "Price", "Capacity"] as const;
 type Sort = (typeof SORTS)[number];
 
-const COMPARE: Record<Sort, (a: Model, b: Model) => number> = {
-  Popular: (a, b) => b.popularity - a.popularity,
-  Savings: (a, b) => savingsPct(b) - savingsPct(a),
-  Price: (a, b) => a.tokhive.in - b.tokhive.in,
-  Capacity: (a, b) => b.capacityPct - a.capacityPct,
+/** Free concurrency of a model: undefined while loading, null without online supply. */
+const capacity = (free: Map<string, number> | null, id: string) => (free ? (free.get(id) ?? null) : undefined);
+
+const COMPARE: Record<Exclude<Sort, "Capacity">, (a: Model, b: Model) => number> = {
+  Name: (a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id),
+  Savings: (a, b) => (modelSavings(b) ?? -1) - (modelSavings(a) ?? -1),
+  Price: (a, b) => comparePrices(a.minimum_input_price, b.minimum_input_price),
 };
 
 const COLS = "grid grid-cols-[2.2fr_1fr_.8fr_1.8fr_1fr_.9fr_32px] gap-4 px-5";
@@ -41,12 +39,22 @@ const curl = (id: string) =>
   ].join("\n");
 
 export function ModelsExplorer() {
+  const { models, status } = useModels();
+  const network = useNetworkSnapshot();
+  const freeByModel = useMemo(() => network && new Map(network.capacity.map((c) => [c.model, c.free_pct])), [network]);
+  const VENDORS = [...new Set(models.map((model) => modelPlatformLabel(model.platform)))];
+  const CAPABILITIES = [...new Set(models.flatMap((model) => model.capabilities))].sort();
+  const vendorOptions = VENDORS.map((vendor) => ({
+    value: vendor, label: vendor,
+    count: models.filter((model) => modelPlatformLabel(model.platform) === vendor).length,
+    color: platformColor(models.find((model) => modelPlatformLabel(model.platform) === vendor)!.platform),
+  }));
   const params = useSearchParams();
   const [q, setQ] = useState(() => params.get("q") ?? "");
-  const [vendors, setVendors] = useState<Vendor[]>(() => parseList(params.get("vendor"), VENDORS));
-  const [tags, setTags] = useState<Capability[]>(() => parseList(params.get("tag"), CAPABILITIES));
-  const [sort, setSort] = useState<Sort>(() => parseList(params.get("sort"), SORTS)[0] ?? "Popular");
-  const [openId, setOpenId] = useState<string | null>("claude-sonnet-4-5");
+  const [vendors, setVendors] = useState<string[]>(() => params.get("vendor")?.split(",").filter(Boolean) ?? []);
+  const [tags, setTags] = useState<string[]>(() => params.get("tag")?.split(",").filter(Boolean).map((tag) => tag.toLowerCase().replaceAll(" ", "_")) ?? []);
+  const [sort, setSort] = useState<Sort>(() => parseList(params.get("sort"), SORTS)[0] ?? "Name");
+  const [openId, setOpenId] = useState<string | null>(null);
   const search = useRef<HTMLInputElement>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [vendorQuery, setVendorQuery] = useState("");
@@ -57,7 +65,7 @@ export function ModelsExplorer() {
     if (q) next.set("q", q);
     if (vendors.length) next.set("vendor", vendors.join(","));
     if (tags.length) next.set("tag", tags.join(","));
-    if (sort !== "Popular") next.set("sort", sort);
+    if (sort !== "Name") next.set("sort", sort);
     const qs = next.toString();
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
   }, [q, vendors, tags, sort]);
@@ -77,22 +85,26 @@ export function ModelsExplorer() {
 
   const rows = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return MODELS.filter(
+    return models.filter(
       (m) =>
-        (!vendors.length || vendors.includes(m.vendor)) &&
-        tags.every((t) => m.tags.includes(t)) &&
+        (!vendors.length || vendors.includes(modelPlatformLabel(m.platform))) &&
+        tags.every((t) => m.capabilities.includes(t)) &&
         (!needle || `${m.name} ${m.id}`.toLowerCase().includes(needle)),
-    ).sort(COMPARE[sort]);
-  }, [q, vendors, tags, sort]);
+    ).sort(sort === "Capacity"
+      ? (a, b) => (capacity(freeByModel, b.id) ?? -1) - (capacity(freeByModel, a.id) ?? -1) || COMPARE.Name(a, b)
+      : COMPARE[sort]);
+  }, [models, q, vendors, tags, sort, freeByModel]);
 
-  const toggleVendor = (v: Vendor) => setVendors((vs) => (vs.includes(v) ? vs.filter((x) => x !== v) : [...vs, v]));
-  const toggleTag = (t: Capability) => setTags((ts) => (ts.includes(t) ? ts.filter((x) => x !== t) : [...ts, t]));
+  const toggleVendor = (v: string) => setVendors((vs) => (vs.includes(v) ? vs.filter((x) => x !== v) : [...vs, v]));
+  const toggleTag = (t: string) => setTags((ts) => (ts.includes(t) ? ts.filter((x) => x !== t) : [...ts, t]));
   const reset = () => {
     setQ("");
     setVendors([]);
     setTags([]);
-    setSort("Popular");
+    setSort("Name");
   };
+
+  if (status !== "ready" || models.length === 0) return <ModelsStatus />;
 
   return (
     <>
@@ -129,12 +141,12 @@ export function ModelsExplorer() {
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-3 max-md:hidden">
-          <VendorSelect selected={vendors} onToggle={toggleVendor} onClear={() => setVendors([])} />
-          <span className="h-6 w-px bg-line" aria-hidden="true" />
+          <VendorSelect options={vendorOptions} selected={vendors} onToggle={toggleVendor} onClear={() => setVendors([])} />
+          {!!CAPABILITIES.length && <span className="h-6 w-px bg-line" aria-hidden="true" />}
           <div className="flex flex-wrap gap-1.5">
             {CAPABILITIES.map((t) => (
               <Chip key={t} active={tags.includes(t)} onClick={() => toggleTag(t)}>
-                {t}
+                {capabilityLabel(t)}
               </Chip>
             ))}
           </div>
@@ -148,7 +160,7 @@ export function ModelsExplorer() {
       </div>
 
       <div className="overflow-x-auto max-md:hidden">
-        <div className="min-w-[860px]" role="table" aria-label="Models and pricing">
+        <div className="min-w-[940px]" role="table" aria-label="Models and pricing">
           <div
             role="row"
             className={`${COLS} border-b border-line py-3 font-mono text-[11px] tracking-[0.06em] text-muted-2`}
@@ -169,6 +181,7 @@ export function ModelsExplorer() {
             <ModelRow
               key={m.id}
               m={m}
+              free={capacity(freeByModel, m.id)}
               open={openId === m.id}
               onToggle={() => setOpenId(openId === m.id ? null : m.id)}
             />
@@ -188,6 +201,7 @@ export function ModelsExplorer() {
           <MobileModelCard
             key={m.id}
             m={m}
+            free={capacity(freeByModel, m.id)}
             open={openId === m.id}
             onToggle={() => setOpenId(openId === m.id ? null : m.id)}
           />
@@ -230,16 +244,16 @@ export function ModelsExplorer() {
               className="w-full justify-between bg-bg"
             />
           </fieldset>
-          <fieldset>
+          {!!CAPABILITIES.length && <fieldset>
             <legend className="mb-2.5 font-mono text-[11px] tracking-[.08em] text-muted">CAPABILITIES</legend>
             <div className="flex flex-wrap gap-1.5">
               {CAPABILITIES.map((t) => (
                 <Chip key={t} active={tags.includes(t)} onClick={() => toggleTag(t)}>
-                  {t}
+                  {capabilityLabel(t)}
                 </Chip>
               ))}
             </div>
-          </fieldset>
+          </fieldset>}
           <fieldset>
             <legend className="mb-2.5 font-mono text-[11px] tracking-[.08em] text-muted">
               VENDOR · {vendors.length} of {VENDORS.length}
@@ -263,9 +277,9 @@ export function ModelsExplorer() {
                     onChange={() => toggleVendor(v)}
                     className="h-[22px] w-[22px] accent-volt"
                   />
-                  <span className="clip-hex h-2.5 w-2.5" style={{ background: VENDOR_COLORS[v] }} />
+                  <span className="clip-hex h-2.5 w-2.5" style={{ background: vendorOptions.find((option) => option.value === v)?.color }} />
                   <span className="text-[15px]">{v}</span>
-                  <span className="font-mono text-xs text-muted-2">{MODELS.filter((m) => m.vendor === v).length}</span>
+                  <span className="font-mono text-xs text-muted-2">{models.filter((m) => modelPlatformLabel(m.platform) === v).length}</span>
                 </label>
               ))}
             </div>
@@ -278,201 +292,123 @@ export function ModelsExplorer() {
         </div>
       </Modal>
       <div className="flex flex-wrap justify-between gap-3 pt-4 font-mono text-xs text-muted">
-        <span>USD per 1M tokens · prices float with provider supply, last repriced 14:00 UTC</span>
-        <span>Capacity = share of pooled quota still free this hour</span>
+        <span>USD per 1M tokens · TokHive prices include platform commission</span>
+        <span>Capacity = share of online accounts&apos; concurrency free now</span>
+        <span>Quotes may change before a request is dispatched.</span>
       </div>
     </>
   );
 }
 
-function MobileModelCard({ m, open, onToggle }: { m: Model; open: boolean; onToggle: () => void }) {
-  const low = m.capacityPct < 25;
+const priceLabel = (value: string | null | undefined) => value == null ? "—" : formatInputPrice(value);
+const ITEM_LABELS = { input: "Input", output: "Output", cache_read: "Cache read", cache_write_5m: "Cache write · 5m", cache_write_1h: "Cache write · 1h" };
+
+function Savings({ model }: { model: Model }) {
+  const savings = modelSavings(model);
+  return savings === null ? null : (
+    <span className="shrink-0 rounded-full bg-volt px-[9px] py-1 font-mono text-[13px] font-medium text-ink">−{savings}%</span>
+  );
+}
+
+function PriceSummary({ model }: { model: Model }) {
+  return (
+    <span className="flex flex-col gap-[3px] font-mono">
+      <span>{model.minimum_prices === null ? "Unavailable" : `${priceLabel(model.minimum_prices.input)} / ${priceLabel(model.minimum_prices.output)}`}</span>
+      <span className="text-xs text-muted-2">Official: {priceLabel(model.official_prices.input)} / {priceLabel(model.official_prices.output)}</span>
+    </span>
+  );
+}
+
+function ModelDetails({ model, mobile = false }: { model: Model; mobile?: boolean }) {
+  const items = PRICE_ITEMS.filter((item) => Object.hasOwn(model.official_prices, item));
+  return (
+    <div className={`grid gap-6 font-mono text-xs ${mobile ? "" : "grid-cols-2"}`}>
+      <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 gap-y-2">
+        <span className="text-muted-2">PER 1M TOKENS</span>
+        <span className="text-muted-2">OFFICIAL</span>
+        <span className="text-muted-2">TOKHIVE</span>
+        {items.map((item) => (
+          <Fragment key={item}>
+            <span className="text-muted">{ITEM_LABELS[item]}</span>
+            <span className="break-all text-muted-2">{priceLabel(model.official_prices[item])}</span>
+            <span className="break-all">{priceLabel(model.minimum_prices?.[item])}</span>
+          </Fragment>
+        ))}
+      </div>
+      <div className="flex min-w-0 flex-col gap-3">
+        {!!model.capabilities.length && <p className="text-muted">{model.capabilities.map(capabilityLabel).join(" · ")}</p>}
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="min-w-0 flex-1 break-all text-volt">{model.id}</span>
+          <CopyButton text={model.id} label="Copy ID" className="shrink-0 rounded-input border border-paper/20 px-3 py-2" />
+        </div>
+        {!mobile && (
+          <div className="min-w-0 rounded-xl border border-paper/8 bg-bg px-4 py-3.5 leading-[1.7]">
+            <div className="mb-2 flex justify-between text-muted-2"><span>QUICK START</span><CopyButton text={curl(model.id)} /></div>
+            {curl(model.id).split("\n").map((line, index) => <div key={index} className="overflow-x-auto whitespace-pre text-code">{line}</div>)}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function CapacityBar({ free, width }: { free: number | null | undefined; width: string }) {
+  if (free === undefined) return null;
+  if (free === null) return <span className="font-mono text-[11px] text-muted-2" title="No accounts online for this model">no supply</span>;
+  return (
+    <span className="flex items-center gap-2">
+      <span className={`h-[5px] ${width} overflow-hidden rounded-[2px] bg-surface-3`}>
+        <span className={`block h-full ${free < 25 ? "bg-warn" : "bg-volt"}`} style={{ width: `${free}%` }} />
+      </span>
+      <span className="font-mono text-[11px] text-muted">{free}%</span>
+    </span>
+  );
+}
+
+function MobileModelCard({ m, free, open, onToggle }: { m: Model; free: number | null | undefined; open: boolean; onToggle: () => void }) {
   return (
     <article className={`border-b border-line-soft ${open ? "bg-surface" : ""}`}>
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls={`mobile-${m.id}`}
-        onClick={onToggle}
-        className="flex w-full cursor-pointer flex-col gap-3 px-5 py-[18px] text-left"
-      >
+      <button type="button" aria-expanded={open} aria-controls={`mobile-${m.id}`} onClick={onToggle}
+        className="flex w-full cursor-pointer flex-col gap-3 px-5 py-[18px] text-left">
         <span className="flex w-full items-start justify-between gap-3">
           <span className="flex min-w-0 flex-col gap-1">
             <span className="text-base font-semibold">{m.name}</span>
             <span className="flex items-center gap-1.5 font-mono text-xs text-muted">
-              <span className="clip-hex h-[9px] w-[9px] shrink-0" style={{ background: VENDOR_COLORS[m.vendor] }} />
-              {m.vendor} · {m.context}
+              <span className="clip-hex h-[9px] w-[9px] shrink-0" style={{ background: platformColor(m.platform) }} />
+              {modelPlatformLabel(m.platform)}{m.context_window !== null && ` · ${formatContextWindow(m.context_window)}`}
             </span>
           </span>
-          <span className="shrink-0 rounded-full bg-volt px-[9px] py-1 font-mono text-[13px] font-medium text-ink">
-            −{savingsPct(m)}%
-          </span>
+          <Savings model={m} />
         </span>
-        <span className="flex w-full items-end justify-between gap-2 font-mono">
-          <span className="flex flex-col gap-[3px]">
-            <span className="text-sm">
-              {formatPrice(m.tokhive.in)} / {formatPrice(m.tokhive.out)}
-            </span>
-            <span className="text-[11px] text-muted-2 line-through">
-              {formatPrice(m.official.in)} / {formatPrice(m.official.out)}
-            </span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-[5px] w-12 overflow-hidden rounded-[2px] bg-surface-3">
-              <span className={`block h-full ${low ? "bg-warn" : "bg-volt"}`} style={{ width: `${m.capacityPct}%` }} />
-            </span>
-            <span className="text-[11px] text-muted">{m.capacityPct}%</span>
-            <span className="w-3.5 text-right text-sm text-muted">{open ? "−" : "+"}</span>
-          </span>
+        <span className="flex w-full items-end justify-between gap-2 text-sm">
+          <PriceSummary model={m} />
+          <span className="flex items-center gap-2"><CapacityBar free={free} width="w-12" /><span className="w-3.5 text-right text-muted">{open ? "−" : "+"}</span></span>
         </span>
       </button>
-      {open && (
-        <div id={`mobile-${m.id}`} className="flex flex-col gap-4 px-5 pb-[22px] font-mono text-xs">
-          <div className="grid grid-cols-[1fr_auto_auto] gap-x-3.5 gap-y-1.5">
-            <span className="text-[10px] text-muted-2">PER 1M</span>
-            <span className="text-[10px] text-muted-2">OFFICIAL</span>
-            <span className="text-[10px] text-muted-2">TOKHIVE</span>
-            {(
-              [
-                ["input", m.official.in, m.tokhive.in],
-                ["output", m.official.out, m.tokhive.out],
-                ["cache read", m.official.cacheRead, m.tokhive.cacheRead],
-              ] as const
-            ).map(([label, official, ours]) => (
-              <Fragment key={label}>
-                <span className="text-muted">{label}</span>
-                <span className="text-muted-2 line-through">{formatPrice(official)}</span>
-                <span>{formatPrice(ours)}</span>
-              </Fragment>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 gap-2.5">
-            {[
-              ["PROVIDERS", m.providers],
-              ["P50 LATENCY", `${m.p50Ms} ms`],
-              ["THROUGHPUT", `${m.tokPerSec} tok/s`],
-              ["UPSTREAM", m.upstreamHost],
-            ].map(([k, v]) => (
-              <div key={k} className="flex min-w-0 flex-col gap-[3px]">
-                <span className="text-[10px] text-muted-2">{k}</span>
-                <span className="break-words">{v}</span>
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-2">
-            <span className="flex h-11 min-w-0 flex-1 items-center rounded-input border border-paper/10 bg-bg px-3 text-volt">
-              <span className="truncate">{m.id}</span>
-            </span>
-            <CopyButton text={m.id} label="Copy ID" className="shrink-0 rounded-input border border-paper/20 px-3.5" />
-          </div>
-        </div>
-      )}
+      {open && <div id={`mobile-${m.id}`} className="px-5 pb-[22px]"><ModelDetails model={m} mobile /></div>}
     </article>
   );
 }
 
-function ModelRow({ m, open, onToggle }: { m: Model; open: boolean; onToggle: () => void }) {
-  const low = m.capacityPct < 25;
-  const prices: [string, number, number][] = [
-    ["input", m.official.in, m.tokhive.in],
-    ["output", m.official.out, m.tokhive.out],
-    ["cache read", m.official.cacheRead, m.tokhive.cacheRead],
-  ];
-  const live: [string, string][] = [
-    ["providers", String(m.providers)],
-    ["p50 latency", `${m.p50Ms} ms`],
-    ["throughput", `${m.tokPerSec} tok/s`],
-    ["upstream", m.upstreamHost],
-  ];
+function ModelRow({ m, free, open, onToggle }: { m: Model; free: number | null | undefined; open: boolean; onToggle: () => void }) {
   return (
     <div role="rowgroup" className={`border-b border-line-soft ${open ? "bg-surface" : ""}`}>
-      <div
-        role="row"
-        tabIndex={0}
-        aria-expanded={open}
-        onClick={onToggle}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onToggle();
-          }
-        }}
-        className={`${COLS} cursor-pointer items-center py-[18px] text-[15px]`}
-      >
-        <span role="cell" className="flex flex-col gap-[3px]">
-          <span className="font-semibold">{m.name}</span>
-          <span className="font-mono text-xs text-muted-2">{m.id}</span>
+      <div role="row" tabIndex={0} aria-expanded={open} aria-controls={`model-${m.id}`} onClick={onToggle}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}
+        className={`${COLS} cursor-pointer items-center py-[18px] text-[15px]`}>
+        <span role="cell" className="flex min-w-0 flex-col gap-[3px]">
+          <span className="font-semibold">{m.name}</span><span className="break-all font-mono text-xs text-muted-2">{m.id}</span>
         </span>
         <span role="cell" className="flex items-center gap-2 text-text-2">
-          <span className="clip-hex h-2.5 w-2.5" style={{ background: VENDOR_COLORS[m.vendor] }} />
-          {m.vendor}
+          <span className="clip-hex h-2.5 w-2.5" style={{ background: platformColor(m.platform) }} />{modelPlatformLabel(m.platform)}
         </span>
-        <span role="cell" className="font-mono text-text-2">
-          {m.context}
-        </span>
-        <span role="cell" className="flex flex-col gap-[3px] font-mono">
-          <span>
-            {formatPrice(m.tokhive.in)} / {formatPrice(m.tokhive.out)}
-          </span>
-          <span className="text-xs text-muted-2 line-through">
-            {formatPrice(m.official.in)} / {formatPrice(m.official.out)}
-          </span>
-        </span>
-        <span role="cell" className="flex items-center gap-2">
-          <span className="h-1.5 max-w-16 flex-1 overflow-hidden rounded-[2px] bg-surface-3">
-            <span className={`block h-full ${low ? "bg-warn" : "bg-volt"}`} style={{ width: `${m.capacityPct}%` }} />
-          </span>
-          <span className="font-mono text-xs text-muted">{m.capacityPct}%</span>
-        </span>
-        <span role="cell" className="text-right">
-          <span className="rounded-full bg-volt px-[9px] py-1 font-mono text-[13px] font-medium text-ink">
-            −{savingsPct(m)}%
-          </span>
-        </span>
-        <span role="cell" className="text-right font-mono text-sm text-muted" aria-hidden="true">
-          {open ? "−" : "+"}
-        </span>
+        <span role="cell" className="font-mono text-text-2">{formatContextWindow(m.context_window)}</span>
+        <span role="cell"><PriceSummary model={m} /></span>
+        <span role="cell"><CapacityBar free={free} width="w-16" /></span>
+        <span role="cell" className="text-right"><Savings model={m} /></span>
+        <span role="cell" className="text-right font-mono text-sm text-muted" aria-hidden="true">{open ? "−" : "+"}</span>
       </div>
-      {open && (
-        <div className="grid grid-cols-[1fr_1fr_1.3fr] gap-8 px-5 pt-1 pb-7">
-          <div className="flex flex-col gap-2.5 font-mono text-[13px]">
-            <span className="text-[11px] tracking-[0.06em] text-muted-2">PRICE / 1M TOKENS</span>
-            <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 gap-y-1.5">
-              {prices.map(([k, off, ours]) => (
-                <Fragment key={k}>
-                  <span className="text-muted">{k}</span>
-                  <span className="text-muted-2 line-through">{formatPrice(off)}</span>
-                  <span>{formatPrice(ours)}</span>
-                </Fragment>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col gap-2.5 font-mono text-[13px]">
-            <span className="text-[11px] tracking-[0.06em] text-muted-2">LIVE · 1H</span>
-            <div className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1.5">
-              {live.map(([k, v]) => (
-                <Fragment key={k}>
-                  <span className="text-muted">{k}</span>
-                  <span>{v}</span>
-                </Fragment>
-              ))}
-            </div>
-          </div>
-          <div className="flex flex-col rounded-xl border border-paper/8 bg-bg px-4 py-3.5 font-mono text-xs leading-[1.7]">
-            <div className="mb-1.5 flex justify-between text-[11px] text-muted-2">
-              <span>QUICK START</span>
-              <CopyButton text={curl(m.id)} />
-            </div>
-            {curl(m.id)
-              .split("\n")
-              .map((l, i) => (
-                <span key={i} className={`overflow-hidden whitespace-pre ${i === 2 ? "text-volt" : "text-code"}`}>
-                  {l}
-                </span>
-              ))}
-          </div>
-        </div>
-      )}
+      {open && <div id={`model-${m.id}`} className="px-5 pt-1 pb-7"><ModelDetails model={m} /></div>}
     </div>
   );
 }
