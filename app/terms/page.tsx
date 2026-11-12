@@ -14,7 +14,7 @@ const sections: LegalSection[] = [
     id: "scope", title: "The service and these terms",
     content: <>
       <p>TokHive connects people who share access to eligible AI subscription capacity with buyers who use AI through the TokHive API. The service includes this website, the Console, APIs and Bee software.</p>
-      <p>These draft terms describe the proposed rules for using those services. TokHive is a product name; the legal operator and its contact address have not yet been specified in this draft. No governing law, court or arbitration forum is selected here.</p>
+      <p>These draft terms describe the proposed rules for using those services. The service is operated by TokHive, Inc. (&ldquo;TokHive&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;). Its registered address, the governing law and the court or arbitration forum have not yet been specified in this draft.</p>
       <p>The <Link href={LINKS.aup}>Acceptable Use Policy</Link> sets out prohibited conduct. The <Link href={LINKS.privacy}>Privacy Policy</Link> explains personal data processing. Separate signed agreements, if any, take priority where they expressly address the same subject.</p>
     </>,
   },
@@ -31,6 +31,11 @@ const sections: LegalSection[] = [
       <p>Providers sign in to their upstream subscription accounts locally. Bee encrypts upstream access credentials with the TEE public key before uploading them for protected execution. Your computer must remain awake, connected to the internet and running Bee while serving requests.</p>
       <p>You can start or stop sharing. Stopping new work does not cancel completed usage or remove settled earnings; requests already in progress may finish and settle. There is no commitment in these terms to reserve quota automatically for your own requests.</p>
       <p>You are responsible for checking that your upstream subscription terms permit your use and sharing. TokHive is not an endorsement by, or an affiliation with, an upstream AI vendor. Vendors may change access, limits or availability, and earnings are not guaranteed.</p>
+      <p>A vendor may limit, suspend or close an account that is shared. You bear that risk, and TokHive does not compensate for a lost or restricted subscription. When an upstream service rejects or rate-limits an account, Hive stops assigning it new requests; requests in progress may fail, failed requests do not create earnings, and settled earnings are not affected. TokHive may pause or ban an account from supply after repeated upstream rejections, a policy violation or a security concern.</p>
+      <p>Each subscription account can be registered for sharing by only one TokHive account, on a first-come basis. If an account you control was registered by someone else, contact us; after verifying your control we may release it.</p>
+      <p>When an OpenAI account has used up its subscription window but still has paid credits, it can continue to serve requests and the upstream service charges those credits to you until they run out or reach your overage limit. Pause sharing if you do not want them used.</p>
+      <p>If you add an OpenAI Platform API key, it serves as fallback supply and is encrypted for the TEE like subscription credentials. The upstream service bills you for that usage under your own agreement with it, while your earnings follow your usual quote on the model&apos;s base price. Your earnings can be lower than what the upstream service charges you, including for usage it prices at premium rates such as cache writes or long-context requests.</p>
+      <p>Your earnings for each billing item are the model&apos;s base price multiplied by your quote factor, which is either the platform default or a factor you set. Buyer prices add the platform commission, and requests are assigned to lower available quotes first.</p>
     </>,
   },
   {
@@ -108,7 +113,7 @@ const sections: LegalSection[] = [
     id: "changes", title: "Changes and questions",
     content: <>
       <p>Future versions will state their effective date. Material changes will be notified as required by applicable law, and consent will be requested where required. No change removes rights already accrued where the law protects them.</p>
-      <p>Contact <a href={LINKS.email}>hello@tokhive.ai</a> with questions or a dispute. Include enough information to identify the issue without sending secrets. This draft remains subject to operator, jurisdiction and legal review.</p>
+      <p>Contact <a href={LINKS.email}>hello@tokhive.ai</a> with questions or a dispute. Include enough information to identify the issue without sending secrets. This draft remains subject to jurisdiction and legal review.</p>
     </>,
   },
 ];

@@ -23,7 +23,7 @@ const CONTENT: [string, string][] = [
   ],
   [
     "Which tools and SDKs work with TokHive?",
-    "Anything that speaks the OpenAI or Anthropic API: Claude Code, Codex, OpenCode, Pi, Cursor, the official SDKs, LangChain and more. You only change the base URL and the API key.",
+    "Tools that use the OpenAI Responses or Chat Completions API, or the Anthropic Messages API: Claude Code, Codex, OpenCode, Pi, Cursor, the official SDKs, LangChain and more. You only change the base URL and the API key. The docs list the supported features.",
   ],
   [
     "How do settlement and withdrawals work?",

@@ -83,7 +83,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "updates", title: "Policy updates",
-    content: <p>The final policy will state its effective date. We may revise these rules to address service changes, threats or legal requirements, with notice or consent where required. The operator and jurisdiction details remain to be completed before this draft takes effect.</p>,
+    content: <p>The final policy will state its effective date. We may revise these rules to address service changes, threats or legal requirements, with notice or consent where required. TokHive, Inc. operates the service; its address and jurisdiction details remain to be completed before this draft takes effect.</p>,
   },
 ];
 

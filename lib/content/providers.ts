@@ -66,6 +66,11 @@ export const PROVIDER_SAFETY: ProviderDetail[] = [
     description: "Every request served from your plan carries a signed receipt you can download from your dashboard.",
   },
 ];
+/** What a Provider takes on by sharing, shown beside the safety list. */
+export const PROVIDER_RISKS: string[] = [
+  "TokHive is not affiliated with or endorsed by Anthropic or OpenAI. Their terms may not allow sharing a subscription, and a vendor can limit, suspend or close an account that is shared. That risk is yours, and TokHive does not compensate for a lost or restricted subscription.",
+  "If a vendor rejects or rate-limits an account, Hive stops sending it new requests. Requests in progress may fail; failed requests earn nothing, and earnings already settled stay in your balance. TokHive can also pause or ban an account from supply, for example after repeated upstream rejections or a policy violation.",
+];
 // Illustrative, at roughly TokHive's floor prices (mostly input, ~10% output).
 export const SETTLEMENT_EXAMPLE: { model: string; tokens: string; amount: string }[] = [
   { model: "claude-opus-5-5", tokens: "18.4M tok", amount: "$11.33" },
@@ -98,7 +103,22 @@ export const PROVIDER_FAQ: FaqItem[] = [
   {
     question: "How are earnings calculated?",
     answer:
-      "Earnings are calculated from your successfully served usage and the applicable provider rates. The calculator above uses illustrative assumptions.",
+      "For each billing item, such as input, output and cached tokens, you earn the model's base price multiplied by your quote factor. You can keep the platform default factor or set your own in the Console. Buyers pay your rate plus the platform commission, and requests go to the lowest available quote first, so a higher factor earns more per token but may serve fewer requests. The calculator above uses illustrative assumptions.",
+  },
+  {
+    question: "Can sharing use my paid ChatGPT credits?",
+    answer:
+      "Yes. When an OpenAI account has used up its subscription window but still has paid credits, Hive keeps sending it requests and OpenAI charges those credits. It stops when the credits run out or reach your overage limit. Pause sharing if you do not want your credits used. Claude accounts are not affected.",
+  },
+  {
+    question: "Can I also share an OpenAI API key?",
+    answer:
+      "Yes. Bee can offer an OpenAI Platform API key as fallback supply when subscription accounts are busy. The key is encrypted for the TEE like your subscription credentials. OpenAI bills you for that usage, while you earn your usual quote on the model's base price, which can be less than OpenAI charges you, especially for cache writes and long-context requests that OpenAI prices higher. You set the key's concurrency and can pause it in the Console.",
+  },
+  {
+    question: "Someone has already registered my subscription account. What can I do?",
+    answer:
+      "Each subscription account can be shared by only one TokHive account, on a first-come basis. If yours was registered by someone else, contact hello@tokhive.ai. Once we have verified that you control the account, we can release it so you can register it.",
   },
   {
     question: "Do I need to keep my computer on?",
