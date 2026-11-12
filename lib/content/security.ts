@@ -64,6 +64,21 @@ export const VERIFY_COMMAND = [
   "  --response response.raw",
 ].join("\n");
 
+/**
+ * The long-term key that signs the TEE release catalog. This page is the independent channel
+ * users compare the key against; it must match `release-signing.pub` in tokhive/tee releases.
+ */
+export const RELEASE_SIGNING = {
+  fingerprint: "SHA256:m026+ZqXRdHDXGxMRBj7qBFjqiqYLeMiBqBlz+SLHPQ",
+  allowedSigners:
+    'tokhive-release namespaces="tokhive-tee-release" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL1MU/PMAnvHhQg87AUU4kMHbqJ+nKT8IOYylAS5QGBF',
+  details: [
+    ["Format", "SSHSIG, Ed25519"],
+    ["Namespace", "tokhive-tee-release"],
+    ["Identity", "tokhive-release"],
+  ] as [string, string][],
+};
+
 export const SAMPLE_MEASUREMENT = "snp-app:9f3a…c71e";
 
 /** Example verifier output; `measurement` is Hive's pinned TEE image when known. */

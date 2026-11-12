@@ -3,7 +3,16 @@ import { CopyButton } from "@/components/CopyButton";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { LINKS } from "@/lib/links";
-import { DATA, ENCLAVE, HEROSTATS, OSS, VERIFY, VERIFY_COMMAND, VISIBILITY } from "@/lib/content/security";
+import {
+  DATA,
+  ENCLAVE,
+  HEROSTATS,
+  OSS,
+  RELEASE_SIGNING,
+  VERIFY,
+  VERIFY_COMMAND,
+  VISIBILITY,
+} from "@/lib/content/security";
 import { VerifyTerminal } from "@/components/security/VerifyTerminal";
 
 export const metadata: Metadata = {
@@ -189,9 +198,64 @@ export default function SecurityPage() {
             <p className="border-t border-line-soft px-5 py-4 text-xs leading-[1.7] text-muted">
               Run <code>make build</code> in the verifier repository first. Set <code>TOKHIVE_API_KEY</code> to your
               buyer API key, <code>TOKHIVE_REQUEST_ID</code> to your request ID, and <code>TOKHIVE_EXPECTED_APP</code>{" "}
-              to a trusted <code>snp-app:&lt;sha256&gt;</code> release identity. This example checks Anthropic&apos;s
+              to the production <code>snp-app:&lt;sha256&gt;</code> identity from the signed release catalog below. This example checks Anthropic&apos;s
               upstream host and compares the exact upstream response body saved as <code>response.raw</code>.
             </p>
+          </div>
+        </section>
+        <section id="release-signing" className="content-section grid items-start gap-12 pt-24 lg:grid-cols-2">
+          <div className="section-intro">
+            <span className="eyebrow">Trusted release identity</span>
+            <h2 className="section-title">Know which TEE image to expect.</h2>
+            <p className="text-base leading-[1.6] text-text-2">
+              Each TEE release and each environment it runs in is recorded in a signed release catalog. Take the
+              expected application identity from that catalog, not from the receipt you are checking, and check the
+              catalog&apos;s signature against the key on this page before you trust it.
+            </p>
+            <p className="text-sm leading-[1.6] text-muted">
+              This page is the independent channel for the signing key. Compare it with the{" "}
+              <code>release-signing.pub</code> attached to each release; do not trust a key read from the release
+              assets alone. A valid signature shows who published the catalog, not what is running now; the hardware
+              evidence in your receipt shows that.
+            </p>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
+              <a href={LINKS.teeReleases} target="_blank" rel="noreferrer" className="border-b border-volt pb-0.5">
+                TEE releases ↗
+              </a>
+              <a href={LINKS.teeCatalog} target="_blank" rel="noreferrer" className="border-b border-volt pb-0.5">
+                Release catalog ↗
+              </a>
+              <a href={LINKS.verificationGuide} target="_blank" rel="noreferrer" className="border-b border-volt pb-0.5">
+                Verification guide ↗
+              </a>
+              <a href={LINKS.webVerifier} target="_blank" rel="noreferrer" className="border-b border-volt pb-0.5">
+                Web verifier ↗
+              </a>
+            </div>
+          </div>
+          <div className="min-w-0 overflow-hidden rounded-2xl border border-paper/10 bg-surface">
+            <div className="flex items-center justify-between gap-3 border-b border-line-soft px-5 py-3.5 font-mono text-xs text-muted">
+              <span>release signing key · fingerprint</span>
+              <CopyButton text={RELEASE_SIGNING.fingerprint} />
+            </div>
+            <p className="px-[22px] py-5 font-mono text-[15px] break-all text-volt max-md:text-[13px]">
+              {RELEASE_SIGNING.fingerprint}
+            </p>
+            <dl className="grid grid-cols-[110px_1fr] gap-y-2 border-t border-line-soft px-[22px] py-4 font-mono text-xs">
+              {RELEASE_SIGNING.details.map(([k, v]) => (
+                <div key={k} className="contents">
+                  <dt className="text-muted">{k}</dt>
+                  <dd className="text-text-2">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="flex items-center justify-between gap-3 border-t border-line-soft px-5 py-3.5 font-mono text-xs text-muted">
+              <span>allowed_signers</span>
+              <CopyButton text={RELEASE_SIGNING.allowedSigners} />
+            </div>
+            <pre className="overflow-x-auto px-[22px] pb-5 font-mono text-[12px] leading-[1.7] whitespace-pre-wrap break-all text-text-2">
+              {RELEASE_SIGNING.allowedSigners}
+            </pre>
           </div>
         </section>
         <section className="content-section flex flex-col gap-7 pt-24">
