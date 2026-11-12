@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · TokHive",
   },
   description:
-    "Providers earn from idle AI subscription quota. Builders get official Claude, GPT and Gemini below list price, TEE-verified.",
+    "Providers earn from idle AI subscription quota. Builders get official Claude and GPT below list price, TEE-verified.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

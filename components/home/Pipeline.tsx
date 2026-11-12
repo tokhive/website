@@ -1,14 +1,14 @@
 "use client";
 
 import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
-import { ATTESTATION_SAMPLE } from "@/lib/mock/home";
+import { ATTESTATION_SAMPLE } from "@/lib/content/home";
 import { shortMeasurement } from "@/lib/public-network";
 
 const HOPS = [
   { t: "Your request", d: "api.tokhive.ai", tile: "bg-surface text-paper", num: "text-muted" },
   { t: "TokHive router", d: "picks a provider", tile: "bg-surface-2 text-paper", num: "text-muted" },
   { t: "TEE enclave", d: "AMD SEV-SNP · sealed", tile: "bg-surface-3 text-paper", num: "text-volt" },
-  { t: "Official API", d: "anthropic · openai · google", tile: "bg-volt text-ink", num: "text-ink" },
+  { t: "Official API", d: "anthropic · openai", tile: "bg-volt text-ink", num: "text-ink" },
 ];
 
 export function Pipeline() {

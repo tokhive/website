@@ -3,7 +3,7 @@ import { CopyButton } from "@/components/CopyButton";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { LINKS } from "@/lib/links";
-import { DATA, ENCLAVE, HEROSTATS, OSS, VERIFY, VERIFY_COMMAND, VISIBILITY } from "@/lib/mock/security";
+import { DATA, ENCLAVE, HEROSTATS, OSS, VERIFY, VERIFY_COMMAND, VISIBILITY } from "@/lib/content/security";
 import { VerifyTerminal } from "@/components/security/VerifyTerminal";
 
 export const metadata: Metadata = {

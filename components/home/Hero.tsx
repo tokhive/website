@@ -33,7 +33,7 @@ export function Hero() {
             <span className="eyebrow">PROVIDERS</span>
             <div className="giant-word text-volt">Earn.</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
-              Monetize the idle tokens in your Claude, ChatGPT or Gemini subscription.
+              Monetize the idle tokens in your Claude or ChatGPT subscription.
             </p>
             <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
               <a href={LINKS.shareQuota} className="btn-primary">
@@ -53,7 +53,7 @@ export function Hero() {
             <span className="eyebrow text-paper">BUILDERS</span>
             <div className="giant-word outline-word self-start">Save.</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
-              Access official AI for less: Claude, GPT and Gemini from the vendors, TEE-verified.
+              Access official AI for less: Claude and GPT from the vendors, TEE-verified.
             </p>
             <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
               <a href={LINKS.getApiKey} className="btn-secondary">

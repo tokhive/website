@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const HOW = [
-  { t: "Pay per token", d: "No subscription and no minimum. Top up with card or USDC and draw down per 1M tokens." },
+  { t: "Pay per token", d: "No subscription and no minimum. Top up with stablecoins and draw down per 1M tokens." },
   {
     t: "Prices float with supply",
     d: "Displayed quotes reflect current provider supply. The applicable price is locked when your request is dispatched.",

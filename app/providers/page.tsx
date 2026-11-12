@@ -13,11 +13,11 @@ import {
   PROVIDER_FAQ,
   PROVIDER_SAFETY,
   PROVIDER_STEPS,
-} from "@/lib/mock/providers";
+} from "@/lib/content/providers";
 
 export const metadata: Metadata = {
   title: "Providers",
-  description: "Earn from idle AI subscription quota with real-time settlement. Withdraw via Web3 stablecoins with a $20 minimum.",
+  description: "Earn from idle AI subscription quota with real-time settlement. Withdraw from your wallet in Web3 stablecoins with a $10 minimum.",
 };
 
 export default function ProvidersPage() {
@@ -52,7 +52,7 @@ export default function ProvidersPage() {
                   <span className="text-volt">Your earnings don&apos;t.</span>
                 </h1>
                 <p className="max-w-[520px] text-[19px] leading-[1.5] text-pretty text-text-2">
-                  Share unused quota from your Claude, ChatGPT or Gemini subscription and earn as each successful
+                  Share unused quota from your Claude or ChatGPT subscription and earn as each successful
                   request settles in real time. You can stop sharing at any time.
                 </p>
                 <div className="mt-2 flex flex-wrap gap-3">
@@ -147,13 +147,13 @@ export default function ProvidersPage() {
               <span className="eyebrow">Settlement &amp; withdrawals</span>
               <h2 className="section-title">Earnings settle in real time.</h2>
               <p className="text-base leading-[1.6] text-text-2">
-                Each successful request credits your earnings balance as it settles. Withdraw separately via Web3
-                stablecoins, with a $20 minimum withdrawal.
+                Each successful request credits your earnings balance as it settles. Withdraw from your wallet in
+                Web3 stablecoins, with a $10 minimum withdrawal and a network fee based on the actual on-chain cost.
               </p>
               <div className="mt-3 grid grid-cols-3 gap-5">
                 {[
                   ["Real time", "earnings settlement"],
-                  ["$20", "minimum withdrawal"],
+                  ["$10", "minimum withdrawal"],
                   ["Web3", "stablecoin withdrawals"],
                 ].map(([v, l]) => (
                   <div key={l} className="flex flex-col gap-1 border-t border-paper/20 pt-3">

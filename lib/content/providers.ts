@@ -18,7 +18,7 @@ export const PROVIDER_STEPS: (ProviderDetail & { meta: string })[] = [
     title: "Sign in locally",
     description:
       "Sign in to your subscription account on your computer. Bee encrypts your credentials with the TEE public key before uploading them. Only the TEE can decrypt them; nobody at TokHive can see your credentials in plaintext.",
-    meta: "Claude · ChatGPT · Gemini",
+    meta: "Claude · ChatGPT",
   },
   {
     title: "Start sharing with Bee",
@@ -54,9 +54,8 @@ export const PROVIDER_SAFETY: ProviderDetail[] = [
     description: "Bee encrypts upstream access credentials with the TEE public key. Only the TEE can decrypt the uploaded envelope.",
   },
   {
-    title: "Vetted, rate-limited buyers",
-    description:
-      "Builders pass KYC and are bound by the Acceptable Use Policy. Abusive keys are cut off automatically.",
+    title: "Bound by the Acceptable Use Policy",
+    description: "Buyers agree to the Acceptable Use Policy, and keys that break it can be revoked.",
   },
   {
     title: "Per-account limits",
@@ -64,7 +63,7 @@ export const PROVIDER_SAFETY: ProviderDetail[] = [
   },
   {
     title: "Full audit trail",
-    description: "Every request served from your plan is attested and listed in your dashboard.",
+    description: "Every request served from your plan carries a signed receipt you can download from your dashboard.",
   },
 ];
 // Illustrative, at roughly TokHive's floor prices (mostly input, ~10% output).
@@ -89,12 +88,12 @@ export const PROVIDER_FAQ: FaqItem[] = [
   {
     question: "Can I stop at any time?",
     answer:
-      "Yes. You can stop sharing from the dashboard. Stopping sharing does not affect earnings already settled.",
+      "Yes. Pause sharing from Bee on your computer with the bee pause command, and start again with bee resume. Stopping sharing does not affect earnings already settled.",
   },
   {
     question: "When are earnings settled, and how do I withdraw them?",
     answer:
-      "Each successful request is settled in real time and credited to your earnings balance. Withdrawals have a $20 minimum and use Web3 stablecoins. Settlement does not wait for your balance to reach the withdrawal minimum.",
+      "Each successful request is settled in real time and credited to your earnings balance. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum and a network fee based on the actual on-chain cost. Settlement does not wait for your balance to reach the withdrawal minimum.",
   },
   {
     question: "How are earnings calculated?",

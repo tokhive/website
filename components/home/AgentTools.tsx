@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
-import { AGENT_SNIPPETS, type AgentTool } from "@/lib/mock/home";
+import { AGENT_SNIPPETS, type AgentTool } from "@/lib/content/home";
 
 const TOOLS = Object.keys(AGENT_SNIPPETS) as AgentTool[];
 
