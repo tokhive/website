@@ -63,7 +63,7 @@ const sections: LegalSection[] = [
     id: "payments", title: "Payments and financial abuse",
     content: <>
       <p>Do not use TokHive for money laundering, stolen payment activity, sanctions evasion, fraudulent deposits or withdrawals, or concealment of unlawful funds. Do not manipulate contribution records or fabricate activity to claim earnings.</p>
-      <p>Use only supported payment assets and networks and a withdrawal destination you are authorized to use. Do not send private keys or recovery phrases to support or other users. The US$20 withdrawal minimum does not authorize activity prohibited by this policy.</p>
+      <p>Use only supported payment assets and networks and a withdrawal destination you are authorized to use. Do not send private keys or recovery phrases to support or other users. The US$10 withdrawal minimum does not authorize activity prohibited by this policy.</p>
     </>,
   },
   {

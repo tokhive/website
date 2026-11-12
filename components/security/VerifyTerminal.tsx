@@ -2,7 +2,7 @@
 
 import { Fragment } from "react";
 import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
-import { SAMPLE_MEASUREMENT, verifyTerminal } from "@/lib/mock/security";
+import { SAMPLE_MEASUREMENT, verifyTerminal } from "@/lib/content/security";
 import { shortMeasurement } from "@/lib/public-network";
 
 export function VerifyTerminal() {

@@ -5,7 +5,7 @@ import { LINKS } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Draft terms covering TokHive accounts, model access, provider participation, pricing, settlement and withdrawals.",
+  description: "Draft terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.",
   robots: { index: false, follow: true },
 };
 
@@ -46,14 +46,24 @@ const sections: LegalSection[] = [
     id: "settlement", title: "Provider earnings and settlement",
     content: <>
       <p>Successful requests with complete verified usage settle in real time after the execution evidence is accepted. Provider earnings are credited to a separate earnings balance. Failed, incomplete or unverifiable execution does not create settled earnings; interrupted settlement may require recovery before credit is confirmed.</p>
-      <p>Provider earnings are distinct from the buyer&apos;s total charge and exclude the platform commission. Where an earnings-to-buyer-balance transfer is offered, it is a separate action; an earnings balance is not automatically used for API spending.</p>
+      <p>Provider earnings are distinct from the buyer&apos;s total charge and exclude the platform commission. You can transfer earnings to your buyer balance as a separate, one-way action that cannot be reversed; an earnings balance is not automatically used for API spending.</p>
       <p>Website figures described as &ldquo;paid out&rdquo; mean cumulative settled provider earnings, not completed external withdrawals. Monthly summaries use UTC settlement dates. Projections and illustrative calculators do not guarantee future income.</p>
+    </>,
+  },
+  {
+    id: "deposits", title: "Deposits",
+    content: <>
+      <p>You can add funds to your buyer balance by sending a supported stablecoin to the deposit address shown in the Console for the network you select. One token unit is credited as US$1. There is no minimum deposit.</p>
+      <p>Send only the token and network shown with that address. Tokens sent on another network, other tokens, or transfers to any other address may not be credited and may not be recoverable. A deposit is credited once it meets the confirmation or finality requirement shown with the address; a deposit can be held for review while a network is paused or reconciliation finds a discrepancy.</p>
+      <p>Deposits are not returned to the sending address. Deposited funds can be taken out only through a withdrawal under the rules below.</p>
     </>,
   },
   {
     id: "withdrawals", title: "Withdrawals and payment records",
     content: <>
-      <p>Settlement and withdrawal are separate. Withdrawals, when offered, use supported Web3 stablecoins and have a <strong>minimum withdrawal amount of US$20</strong>. Small earnings can settle before that threshold is reached. There is no weekly or Monday settlement schedule.</p>
+      <p>Settlement and withdrawal are separate. Withdrawals, when offered, use supported Web3 stablecoins at one token unit per US$1 and have a <strong>minimum withdrawal amount of US$10</strong>. A network fee based on the actual on-chain cost is deducted from the amount you request, so you receive the requested amount less that fee. Small earnings can settle before the minimum is reached. There is no weekly or Monday settlement schedule.</p>
+      <p>You can withdraw the part of your buyer balance that comes from on-chain deposits, earnings you have transferred from your earnings balance, and refunded withdrawals. To withdraw earnings, first transfer them to your buyer balance. Credits granted by TokHive, such as administrator, promotional or bonus credits, can be spent on API usage but cannot be withdrawn, and usage charges draw on those credits first.</p>
+      <p>Each withdrawal requires an authenticator app and a one-time code. A destination address can be used 24 hours after you add it, and you can keep up to 20 addresses. You cannot request a withdrawal while you have API requests in progress or awaiting settlement. A withdrawal above US$1,000, or one that would take the day&apos;s automatically approved withdrawals above US$5,000 (UTC), is held for manual review and may be approved or rejected; a rejected withdrawal is refunded to your balance. Per-transfer and daily limits may also apply.</p>
       <p>Use only the asset, network and destination supported by the withdrawal instructions. Review any disclosed fees and confirmation requirements before authorizing a transfer. Stablecoins can lose value, and blockchain transfers may be irreversible; an unsupported network or incorrect address may prevent recovery.</p>
       <p>Keep your own payment and tax records and meet obligations that apply to you. Contact us with transaction references or request IDs for billing corrections, refunds or balance questions. Requests will be assessed under applicable law and payment conditions presented to you; mandatory consumer rights are not waived.</p>
     </>,

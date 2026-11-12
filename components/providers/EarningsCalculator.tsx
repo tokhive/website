@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useEarnings } from "@/components/home/EarningsProvider";
-import { PROVIDER_PLANS } from "@/lib/mock/providers";
+import { PROVIDER_PLANS } from "@/lib/content/providers";
 import { formatInt, formatUsd } from "@/lib/format";
 
 const WEEKS_PER_MONTH = 30 / 7;

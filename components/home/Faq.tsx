@@ -1,5 +1,5 @@
 import { Accordion } from "@/components/Accordion";
-import { HOME_FAQ } from "@/lib/mock/faq";
+import { HOME_FAQ } from "@/lib/content/faq";
 import { LINKS } from "@/lib/links";
 
 export function Faq() {

@@ -27,7 +27,7 @@ const CONTENT: [string, string][] = [
   ],
   [
     "How do settlement and withdrawals work?",
-    "Earnings are credited to your earnings balance in real time as each successful request settles. Withdrawals are separate, with a $20 minimum via Web3 stablecoins. You can review per-request settlement records in your dashboard.",
+    "Earnings are credited to your earnings balance in real time as each successful request settles. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum and a network fee based on the actual on-chain cost. You can review per-request settlement records in your dashboard.",
   ],
 ];
 
