@@ -31,6 +31,7 @@ const sections: LegalSection[] = [
     id: "credentials", title: "Local sign in and encrypted credentials",
     content: <>
       <p>Providers sign in to upstream subscription accounts on their own computers. Local sign-in and credential maintenance can involve plaintext credentials on that local device. Bee encrypts upstream access credentials with the TEE public key before uploading them. Hive holds encrypted envelopes and the metadata needed to manage them.</p>
+      <p>A Provider can also add an OpenAI Platform API key for fallback supply. Bee reads it from a private file on the Provider&apos;s computer and encrypts it with the TEE public key in the same way; Hive stores a fingerprint of the key, the encrypted envelope and its supply settings, not the key itself.</p>
       <p>The protected TEE execution environment decrypts the access credentials for authorized upstream requests. They are not exposed to other buyers or through public model and earnings endpoints. This protection does not remove the need to secure your own computer or the upstream account.</p>
       <p>Platform API keys and Bee device credentials are separate from upstream subscription credentials. Do not send any of these secrets, or wallet private keys, in support email.</p>
     </>,
@@ -41,7 +42,7 @@ const sections: LegalSection[] = [
       <p>Hive receives and processes buyer API requests for routing and execution, including transformations required by the selected API. Requests are forwarded through the TEE to the relevant upstream AI service. The upstream service receives the content needed to perform inference and processes it under its own applicable terms and privacy practices.</p>
       <p>When no Provider subscription account can take a request, it may instead be sent through the TEE to a third-party API reseller, currently wokey, which passes it on to the model vendor. The reseller then receives the request and response content and processes it under its own terms and privacy practices, which TokHive does not control. Fallback is on by default; you can turn it off under Fallback Supply in your account settings, and calls served this way are marked in your call records.</p>
       <p>Bee relays encrypted upstream traffic and does not expose buyer request or response content to the Provider through the normal relay path. This does not mean Hive itself never processes request content.</p>
-      <p>When failure diagnostics are enabled, a failed request&apos;s body and related upstream response content can be written to diagnostic files for troubleshooting. Content may therefore be present in diagnostic storage; this policy does not make a zero-content-retention promise. Deployment settings, access controls and retention for these records need to be confirmed before this draft becomes effective.</p>
+      <p>When failure diagnostics are enabled, a failed request&apos;s body and related upstream response content can be written to diagnostic files for troubleshooting. Content may therefore be present in diagnostic storage; this policy does not make a zero-content-retention promise. These files are readable only by the service operators and are deleted after 90 days, as described under Retention and deletion.</p>
       <p>Only send information you are authorized to disclose to TokHive and the relevant upstream service. Avoid unnecessary sensitive information in prompts or support messages.</p>
     </>,
   },
@@ -71,7 +72,13 @@ const sections: LegalSection[] = [
     id: "retention", title: "Retention and deletion",
     content: <>
       <p>Retention depends on the record&apos;s purpose, account activity, security needs, disputes and applicable accounting or legal obligations. Financial records and settlement evidence may need to remain after account closure; deleting an account does not necessarily remove records we are required or entitled to retain.</p>
-      <p>Diagnostic files, operational logs, account records, encrypted envelopes and backups can have different lifecycles. Specific record-by-record periods and deletion procedures remain under review. This draft does not adopt the illustrative retention periods shown in earlier website mockups or promise immediate deletion from all backups.</p>
+      <p>Current retention periods for the main record types:</p>
+      <ul>
+        <li><strong>Failure diagnostics.</strong> Diagnostic files for failed requests, which can contain prompts, code and upstream responses, are deleted automatically 90 days after they were last written.</li>
+        <li><strong>Operational logs.</strong> Rotated log files are kept for up to 30 days.</li>
+        <li><strong>API call records and signed receipts.</strong> Call metadata (endpoint, model, usage, cost, timing and status, without prompts or output) and signed execution receipts have no scheduled deletion date, because they support billing, audits, disputes and independent receipt verification.</li>
+      </ul>
+      <p>Account records, encrypted envelopes and backups follow their own lifecycles. This policy does not promise immediate deletion from all backups.</p>
       <p>You can contact us to request deletion and an explanation of records that must be retained. Public blockchain records remain outside our deletion control.</p>
     </>,
   },
@@ -99,5 +106,5 @@ const sections: LegalSection[] = [
 ];
 
 export default function PrivacyPage() {
-  return <LegalDocument title="Privacy Policy" summary="How account information, requests, encrypted credentials and settlement records are handled." href={LINKS.privacy} sections={sections} reviewNote="Deployment-specific retention periods and processing locations also remain under review." />;
+  return <LegalDocument title="Privacy Policy" summary="How account information, requests, encrypted credentials and settlement records are handled." href={LINKS.privacy} sections={sections} reviewNote="Processing locations also remain under review." />;
 }

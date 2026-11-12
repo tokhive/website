@@ -11,6 +11,7 @@ import {
   SETTLEMENT_TOTAL,
   PROVIDER_CONTROLS,
   PROVIDER_FAQ,
+  PROVIDER_RISKS,
   PROVIDER_SAFETY,
   PROVIDER_STEPS,
 } from "@/lib/content/providers";
@@ -117,17 +118,22 @@ export default function ProvidersPage() {
                 <h2 className="section-title">Is sharing my plan allowed?</h2>
                 <div className="flex flex-col gap-2 rounded-xl border border-volt/30 bg-volt/6 px-5 py-[18px]">
                   <span className="font-mono text-[11px] font-medium tracking-[.1em] text-volt">
-                    PLACEHOLDER · LEGAL TO CONFIRM
+                    RISKS YOU TAKE ON
                   </span>
-                  <p className="text-[15px] leading-[1.6] text-link-footer">
-                    A plain-language statement of how TokHive relates to each vendor&apos;s terms of service, what risks
-                    the provider takes on, and what TokHive does if a vendor restricts an account. This copy has to come
-                    from legal counsel.
-                  </p>
+                  {PROVIDER_RISKS.map((p) => (
+                    <p key={p} className="text-[15px] leading-[1.6] text-link-footer">
+                      {p}
+                    </p>
+                  ))}
                 </div>
-                <a href={LINKS.aup} className="self-start border-b border-volt pb-0.5 text-sm font-semibold">
-                  Read the Acceptable Use Policy →
-                </a>
+                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                  <a href={`${LINKS.terms}#providers`} className="self-start border-b border-volt pb-0.5 text-sm font-semibold">
+                    Read the Terms for Providers →
+                  </a>
+                  <a href={LINKS.aup} className="self-start border-b border-volt pb-0.5 text-sm font-semibold">
+                    Read the Acceptable Use Policy →
+                  </a>
+                </div>
               </div>
               <div>
                 {PROVIDER_SAFETY.map((s) => (
