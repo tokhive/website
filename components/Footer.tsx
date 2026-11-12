@@ -11,7 +11,7 @@ export function Footer({ compact = false }: { compact?: boolean }) {
             <LogoMark size={22} />
             <Wordmark className="text-[17px]" />
           </div>
-          <span className="hidden text-muted md:block">© 2026 TokHive</span>
+          <span className="hidden text-muted md:block">© 2026 TokHive, Inc.</span>
         </div>
         {FOOTER_COLUMNS.map((col) => (
           <div key={col.heading} className="flex flex-col gap-2.5">
@@ -29,11 +29,11 @@ export function Footer({ compact = false }: { compact?: boolean }) {
             )}
           </div>
         ))}
-        <span className="col-span-2 text-xs text-muted-2 md:hidden">© 2026 TokHive</span>
+        <span className="col-span-2 text-xs text-muted-2 md:hidden">© 2026 TokHive, Inc.</span>
       </div>
       {compact && (
         <div className="site-container compact-footer flex items-center justify-between gap-4 py-8 text-xs text-muted-2 md:hidden">
-          <span>© 2026 TokHive</span>
+          <span>© 2026 TokHive, Inc.</span>
           <span className="flex gap-2">
             <Link href={LINKS.terms}>Terms</Link>
             <span>·</span>

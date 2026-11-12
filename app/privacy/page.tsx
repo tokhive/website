@@ -14,7 +14,7 @@ const sections: LegalSection[] = [
     id: "scope", title: "Scope and privacy contact",
     content: <>
       <p>This policy covers personal information processed through the TokHive website, Console, APIs and Bee connections. It describes account, operational and financial records as well as the handling of requests and upstream credentials.</p>
-      <p>The legal operator&apos;s identity, address and applicable privacy jurisdictions remain to be completed. For privacy questions or requests in the meantime, contact <a href="mailto:hello@tokhive.ai?subject=Privacy%20request">hello@tokhive.ai</a>. This is a review draft, not a claim of compliance with every jurisdiction&apos;s requirements.</p>
+      <p>TokHive, Inc. operates the service and is responsible for the personal information described in this policy. Its address and the applicable privacy jurisdictions remain to be completed. For privacy questions or requests in the meantime, contact <a href="mailto:hello@tokhive.ai?subject=Privacy%20request">hello@tokhive.ai</a>. This is a review draft, not a claim of compliance with every jurisdiction&apos;s requirements.</p>
     </>,
   },
   {
@@ -99,7 +99,7 @@ const sections: LegalSection[] = [
   {
     id: "changes", title: "Updates and related policies",
     content: <>
-      <p>A final policy will identify its effective date, operator and applicable details. Material changes to processing will be communicated and any required consent obtained. New data uses must be covered by an accurate disclosure rather than silently added to an earlier privacy promise.</p>
+      <p>A final policy will identify its effective date, the operator&apos;s address and applicable details. Material changes to processing will be communicated and any required consent obtained. New data uses must be covered by an accurate disclosure rather than silently added to an earlier privacy promise.</p>
       <p>See the <Link href={LINKS.terms}>Terms of Service</Link> for account and payment rules and the <Link href={LINKS.aup}>Acceptable Use Policy</Link> for restrictions on content and account misuse.</p>
     </>,
   },
