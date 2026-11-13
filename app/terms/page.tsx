@@ -14,7 +14,7 @@ const sections: LegalSection[] = [
     id: "scope", title: "The service and these terms",
     content: <>
       <p>TokHive connects people who share access to eligible AI subscription capacity with buyers who use AI through the TokHive API. The service includes this website, the Console, APIs and Bee software.</p>
-      <p>These draft terms describe the proposed rules for using those services. The service is operated by TokHive, Inc. (&ldquo;TokHive&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;). Its registered address, the governing law and the court or arbitration forum have not yet been specified in this draft.</p>
+      <p>These draft terms describe the proposed rules for using those services. The service is operated by TokHive, Inc., registered in Singapore (&ldquo;TokHive&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;). Its registered address, the governing law and the court or arbitration forum have not yet been specified in this draft.</p>
       <p>The <Link href={LINKS.aup}>Acceptable Use Policy</Link> sets out prohibited conduct. The <Link href={LINKS.privacy}>Privacy Policy</Link> explains personal data processing. Separate signed agreements, if any, take priority where they expressly address the same subject.</p>
     </>,
   },

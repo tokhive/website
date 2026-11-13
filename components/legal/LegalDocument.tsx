@@ -58,7 +58,7 @@ export function LegalDocument({ title, summary, href, sections, reviewNote }: Pr
           </nav>
           <article className="min-w-0 max-w-[800px]">
             <aside aria-label="Draft status" className="mb-10 rounded-xl border border-volt/20 bg-volt/5 px-5 py-4 text-sm leading-relaxed text-text-2">
-              This is a review draft, with no effective date. The service is operated by TokHive, Inc.; its address and the applicable jurisdiction
+              This is a review draft, with no effective date. The service is operated by TokHive, Inc., registered in Singapore; its registered address and the applicable jurisdiction
               will be added before publication as an effective policy.{reviewNote ? ` ${reviewNote}` : ""}
             </aside>
             <div className="space-y-10">
