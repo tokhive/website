@@ -331,7 +331,7 @@ export default function SecurityPage() {
               Found something? Tell us first.
             </h2>
             <p className="text-[15px] leading-[1.6] text-muted">
-              We reply within 48 hours and reward valid reports through our bug bounty.
+              Report security issues privately. We reply within 48 hours.
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
