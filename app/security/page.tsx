@@ -338,12 +338,6 @@ export default function SecurityPage() {
             <a href="mailto:security@tokhive.ai" className="btn-primary">
               security@tokhive.ai
             </a>
-            <a
-              href="mailto:security@tokhive.ai?subject=PGP%20public%20key%20request"
-              className="btn-ghost px-[22px] py-3.5 text-[15px] font-semibold"
-            >
-              PGP key
-            </a>
           </div>
         </section>
       </main>
