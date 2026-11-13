@@ -78,7 +78,7 @@ const sections: LegalSection[] = [
     id: "reports", title: "Reports and review requests",
     content: <>
       <p>Report suspected misuse or request review of an account restriction at <a href={LINKS.email}>hello@tokhive.ai</a>. Include the relevant account or request identifiers, a concise explanation and evidence you are authorized to share.</p>
-      <p>Report security vulnerabilities to <a href="mailto:security@tokhive.ai">security@tokhive.ai</a>. Avoid accessing other users&apos; data, disrupting service or publishing exploit details before they can be addressed. Never include passwords, access tokens or wallet private keys in a report.</p>
+      <p>Report security vulnerabilities privately through <a href={LINKS.reportVulnerability}>GitHub private vulnerability reporting</a> on tokhive/tee. Avoid accessing other users&apos; data, disrupting service or publishing exploit details before they can be addressed. Never include passwords, access tokens or wallet private keys in a report.</p>
     </>,
   },
   {

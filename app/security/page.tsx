@@ -331,18 +331,12 @@ export default function SecurityPage() {
               Found something? Tell us first.
             </h2>
             <p className="text-[15px] leading-[1.6] text-muted">
-              We reply within 48 hours and reward valid reports through our bug bounty.
+              Report a vulnerability in any TokHive component, including Hive, Bee, the TEE, the verifier and this website, through GitHub&apos;s private vulnerability reporting on tokhive/tee. Only maintainers can see the report. We reply within 48 hours.
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
-            <a href="mailto:security@tokhive.ai" className="btn-primary">
-              security@tokhive.ai
-            </a>
-            <a
-              href="mailto:security@tokhive.ai?subject=PGP%20public%20key%20request"
-              className="btn-ghost px-[22px] py-3.5 text-[15px] font-semibold"
-            >
-              PGP key
+            <a href={LINKS.reportVulnerability} target="_blank" rel="noreferrer" className="btn-primary">
+              Report a vulnerability ↗
             </a>
           </div>
         </section>

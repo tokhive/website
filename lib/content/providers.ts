@@ -6,7 +6,9 @@ import type { FaqItem } from "@/components/Accordion";
  */
 export type ProviderPlan = { name: string; platform: string; plan: string; price: number; priceLabel: string; sample: number };
 export const PROVIDER_PLANS: ProviderPlan[] = [
-  { name: "Claude Max", platform: "claude", plan: "max", price: 100, priceLabel: "$100–200/mo", sample: 212 },
+  { name: "Claude Max", platform: "claude", plan: "max", price: 100, priceLabel: "$100/mo", sample: 212 },
+  // Ultra (formerly Max 20x) has four times Max's usage, so its sample scales with usage, not price.
+  { name: "Claude Ultra", platform: "claude", plan: "ultra", price: 200, priceLabel: "$200/mo", sample: 848 },
   { name: "Claude Pro", platform: "claude", plan: "pro", price: 20, priceLabel: "$20/mo", sample: 42 },
   { name: "ChatGPT Pro", platform: "openai", plan: "pro", price: 200, priceLabel: "$200/mo", sample: 391 },
   { name: "ChatGPT Pro Lite", platform: "openai", plan: "prolite", price: 100, priceLabel: "$100/mo", sample: 195 },
