@@ -213,7 +213,7 @@ export default function SecurityPage() {
               catalog&apos;s signature against the key on this page before you trust it.
             </p>
             <p className="text-sm leading-[1.6] text-muted">
-              This page is the independent channel for the signing key. Compare it with the{" "}
+              This page is the independent channel for the production signing key; staging pre-releases use a different key. Compare it with the{" "}
               <code>release-signing.pub</code> attached to each release; do not trust a key read from the release
               assets alone. A valid signature shows who published the catalog, not what is running now; the hardware
               evidence in your receipt shows that.
@@ -235,7 +235,7 @@ export default function SecurityPage() {
           </div>
           <div className="min-w-0 overflow-hidden rounded-2xl border border-paper/10 bg-surface">
             <div className="flex items-center justify-between gap-3 border-b border-line-soft px-5 py-3.5 font-mono text-xs text-muted">
-              <span>release signing key · fingerprint</span>
+              <span>production release signing key · fingerprint</span>
               <CopyButton text={RELEASE_SIGNING.fingerprint} />
             </div>
             <p className="px-[22px] py-5 font-mono text-[15px] break-all text-volt max-md:text-[13px]">

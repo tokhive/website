@@ -65,13 +65,14 @@ export const VERIFY_COMMAND = [
 ].join("\n");
 
 /**
- * The long-term key that signs the TEE release catalog. This page is the independent channel
+ * The production key that signs the TEE release catalog (first used for 0.2.1); staging
+ * releases use a separate key. This page is the independent channel
  * users compare the key against; it must match `release-signing.pub` in tokhive/tee releases.
  */
 export const RELEASE_SIGNING = {
-  fingerprint: "SHA256:m026+ZqXRdHDXGxMRBj7qBFjqiqYLeMiBqBlz+SLHPQ",
+  fingerprint: "SHA256:A7HhHJgJmWp4xbtwhD/4IL5Ua6XUWG9FahuP0KNPoNk",
   allowedSigners:
-    'tokhive-release namespaces="tokhive-tee-release" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL1MU/PMAnvHhQg87AUU4kMHbqJ+nKT8IOYylAS5QGBF',
+    'tokhive-release namespaces="tokhive-tee-release" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDY37j7Z7Akukw/a5J66WQbTEEfMXJGoEjnt7vBaDFsg',
   details: [
     ["Format", "SSHSIG, Ed25519"],
     ["Namespace", "tokhive-tee-release"],
