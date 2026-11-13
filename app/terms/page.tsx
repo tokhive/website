@@ -85,7 +85,7 @@ const sections: LegalSection[] = [
     id: "acceptable-use", title: "Acceptable use and security",
     content: <>
       <p>Follow the <Link href={LINKS.aup}>Acceptable Use Policy</Link>, applicable law and relevant upstream restrictions. Do not use the service for unauthorized access, credential theft, exploitation, fraud, harassment or abuse of the platform or its users.</p>
-      <p>Do not defeat rate limits, metering, evidence verification, credential protections or account restrictions. Security research must avoid unauthorized access to other users&apos; data or disruption; report suspected vulnerabilities to <a href="mailto:security@tokhive.ai">security@tokhive.ai</a>.</p>
+      <p>Do not defeat rate limits, metering, evidence verification, credential protections or account restrictions. Security research must avoid unauthorized access to other users&apos; data or disruption; report suspected vulnerabilities privately through <a href={LINKS.reportVulnerability}>GitHub private vulnerability reporting</a>.</p>
     </>,
   },
   {

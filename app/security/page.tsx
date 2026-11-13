@@ -331,12 +331,12 @@ export default function SecurityPage() {
               Found something? Tell us first.
             </h2>
             <p className="text-[15px] leading-[1.6] text-muted">
-              Report security issues privately. We reply within 48 hours.
+              Report a vulnerability in any TokHive component, including Hive, Bee, the TEE, the verifier and this website, through GitHub&apos;s private vulnerability reporting on tokhive/tee. Only maintainers can see the report. We reply within 48 hours.
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
-            <a href="mailto:security@tokhive.ai" className="btn-primary">
-              security@tokhive.ai
+            <a href={LINKS.reportVulnerability} target="_blank" rel="noreferrer" className="btn-primary">
+              Report a vulnerability ↗
             </a>
           </div>
         </section>

@@ -21,6 +21,7 @@ export const LINKS = {
   teeReleases: "https://github.com/tokhive/tee/releases",
   teeCatalog: "https://github.com/tokhive/tee/blob/main/releases/catalog.json",
   verificationGuide: "https://github.com/tokhive/tee/blob/main/docs/public-verification.md",
+  reportVulnerability: "https://github.com/tokhive/tee/security/advisories/new",
 } as const;
 
 export type NavLink = { label: string; href: string; external?: boolean };
