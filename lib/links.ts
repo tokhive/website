@@ -10,7 +10,7 @@ export const LINKS = {
   privacy: "/privacy",
   aup: "/acceptable-use",
   email: "mailto:hello@tokhive.ai",
-  telegram: "#",
+  telegram: "https://t.me/tokhive",
   discord: "#",
   signIn: CONSOLE_URL,
   getApiKey: CONSOLE_URL,
