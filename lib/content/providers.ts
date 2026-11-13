@@ -103,7 +103,7 @@ export const PROVIDER_FAQ: FaqItem[] = [
   {
     question: "How are earnings calculated?",
     answer:
-      "For each billing item, such as input, output and cached tokens, you earn the model's base price multiplied by your quote factor. You can keep the platform default factor or set your own in the Console. Buyers pay your rate plus the platform commission, and requests go to the lowest available quote first, so a higher factor earns more per token but may serve fewer requests. The calculator above uses illustrative assumptions.",
+      "For each billing item, such as input, output and cached tokens, your quote is the model's base price multiplied by your quote factor. You can keep the platform default factor or set your own in the Console. Buyers pay your quote, TokHive takes its commission from it, and you earn the rest. Requests go to the lowest available quote first, so a higher factor earns more per token but may serve fewer requests. The calculator above uses illustrative assumptions.",
   },
   {
     question: "Can sharing use my paid ChatGPT credits?",
@@ -113,7 +113,7 @@ export const PROVIDER_FAQ: FaqItem[] = [
   {
     question: "Can I also share an OpenAI API key?",
     answer:
-      "Yes. Bee can offer an OpenAI Platform API key as fallback supply when subscription accounts are busy. The key is encrypted for the TEE like your subscription credentials. OpenAI bills you for that usage, while you earn your usual quote on the model's base price, which can be less than OpenAI charges you, especially for cache writes and long-context requests that OpenAI prices higher. You set the key's concurrency and can pause it in the Console.",
+      "Yes. Bee can offer an OpenAI Platform API key as fallback supply when subscription accounts are busy. The key is encrypted for the TEE like your subscription credentials. OpenAI bills you for that usage, while you earn your usual quote less the platform commission, which can be less than OpenAI charges you, especially for cache writes and long-context requests that OpenAI prices higher. You set the key's concurrency and can pause it in the Console.",
   },
   {
     question: "Someone has already registered my subscription account. What can I do?",
