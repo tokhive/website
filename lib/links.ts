@@ -11,7 +11,7 @@ export const LINKS = {
   aup: "/acceptable-use",
   email: "mailto:hello@tokhive.ai",
   telegram: "https://t.me/tokhive",
-  discord: "#",
+  discord: "https://discord.gg/nrVU4vSShw",
   signIn: CONSOLE_URL,
   getApiKey: CONSOLE_URL,
   shareQuota: CONSOLE_URL,
