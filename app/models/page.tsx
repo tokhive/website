@@ -27,6 +27,10 @@ const HOW = [
     t: "Model-specific caching",
     d: "Cache read and write prices are shown where those billing items apply.",
   },
+  {
+    t: "Long-context tiers",
+    d: "Some models charge more once a request's input, cached tokens included, passes a model-specific threshold. The whole request, output included, is then billed at that model's long-context prices.",
+  },
 ];
 
 export default function ModelsPage() {
