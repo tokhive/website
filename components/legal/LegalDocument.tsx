@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
+import { Link } from "@/i18n/navigation";
 import { Nav } from "@/components/Nav";
 import { LINKS } from "@/lib/links";
 
@@ -20,12 +21,18 @@ const policies = [
   { title: "Acceptable Use", href: LINKS.aup },
 ];
 
+/** Policies stay in English in every locale; other locales get a note saying so. */
 export function LegalDocument({ title, summary, href, sections, reviewNote }: Props) {
+  const locale = useLocale();
+  const t = useTranslations("Legal");
   return (
     <>
       <main className="site-container">
         <Nav />
-        <header className="border-b border-line pt-16 pb-10 max-sm:pt-10">
+        {locale !== "en" && (
+          <p className="mt-6 rounded-xl border border-line px-5 py-3 text-sm leading-relaxed text-text-2">{t("englishOnly")}</p>
+        )}
+        <header lang="en" className="border-b border-line pt-16 pb-10 max-sm:pt-10">
           <p className="eyebrow mb-5">TokHive policies</p>
           <h1 className="max-w-[900px] text-[clamp(36px,6vw,72px)] leading-[1.05] font-semibold tracking-[-.045em]">{title}</h1>
           <p className="mt-6 max-w-[740px] text-lg leading-relaxed text-text-2">{summary}</p>
@@ -42,7 +49,7 @@ export function LegalDocument({ title, summary, href, sections, reviewNote }: Pr
             ))}
           </nav>
         </header>
-        <div className="grid items-start gap-10 py-10 pb-24 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
+        <div lang="en" className="grid items-start gap-10 py-10 pb-24 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
           <nav aria-label="On this page" className="lg:sticky lg:top-8">
             <h2 className="mb-4 font-mono text-xs tracking-[.1em] text-muted-2 uppercase">On this page</h2>
             <ol className="grid grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-3 lg:grid-cols-1">

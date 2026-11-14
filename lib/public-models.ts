@@ -173,11 +173,6 @@ export function formatContextWindow(tokens: number | null): string {
   return tokens.toLocaleString("en-US");
 }
 
-export function capabilityLabel(capability: string): string {
-  const labels: Record<string, string> = { coding: "Coding", reasoning: "Reasoning", vision: "Vision", long_context: "Long context" };
-  return Object.hasOwn(labels, capability) ? labels[capability] : capability;
-}
-
 export function platformColor(platform: string): string {
   return platform === "anthropic" ? "#C8F031" : platform === "openai" ? "#F2F2EE" : "#8A8D92";
 }

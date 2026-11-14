@@ -1,21 +1,11 @@
+import { useTranslations } from "next-intl";
 import { StepList } from "@/components/StepList";
 
-const STEPS = [
-  {
-    t: "Enclave-locked relay",
-    d: "Provider credentials are protected inside an AMD SEV-SNP confidential VM. Nobody at TokHive can read them.",
-  },
-  {
-    t: "Official endpoints only",
-    d: "The enclave pins TLS to vendor certificates, so it cannot route to a proxy or a cheaper model.",
-  },
-  {
-    t: "Signed receipt per call",
-    d: "Every response carries an attestation report you can check with our open-source verifier.",
-  },
-];
+const STEPS = ["relay", "endpoints", "receipt"] as const;
 
 export function VerifiedOrigin() {
+  const t = useTranslations("Home.verified");
+  const steps = STEPS.map((key) => ({ t: t(`steps.${key}.title`), d: t(`steps.${key}.description`) }));
   return (
     <section className="verified-origin site-container grid items-center gap-20 py-[120px] max-[899px]:gap-12 max-[899px]:py-20 min-[900px]:grid-cols-[360px_1fr]">
       <div className="seal-desktop relative mx-auto flex h-[368px] w-[320px] items-center justify-center max-md:hidden">
@@ -30,9 +20,9 @@ export function VerifiedOrigin() {
           />
         </svg>
         <div className="relative flex flex-col items-center gap-2.5 text-center">
-          <span className="eyebrow">TEE ATTESTED</span>
+          <span className="eyebrow">{t("eyebrow")}</span>
           <span className="text-[64px] leading-none font-bold tracking-[-0.04em]">100%</span>
-          <span className="text-sm text-text-2">official endpoints</span>
+          <span className="text-sm text-text-2">{t("officialEndpoints")}</span>
         </div>
       </div>
       <div className="flex items-center gap-5 md:hidden">
@@ -50,13 +40,13 @@ export function VerifiedOrigin() {
           <span className="relative text-[26px] font-bold tracking-[-.04em]">100%</span>
         </div>
         <div className="flex flex-col gap-1.5">
-          <span className="eyebrow">TEE ATTESTED</span>
-          <p className="text-sm leading-[1.5] text-text-2">Official vendor endpoints only, with proof on every call.</p>
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <p className="text-sm leading-[1.5] text-text-2">{t("mobileLead")}</p>
         </div>
       </div>
       <div className="flex flex-col gap-7">
-        <h2 className="h2 max-w-[680px]">Genuine tokens. No swapped models. Proof attached.</h2>
-        <StepList steps={STEPS} className="grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6" />
+        <h2 className="h2 max-w-[680px]">{t("title")}</h2>
+        <StepList steps={steps} className="grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6" />
       </div>
     </section>
   );

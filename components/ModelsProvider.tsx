@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { fetchModelPrices, type PublicModelPrice } from "@/lib/public-models";
 import { HIVE_API_BASE_URL } from "@/lib/public-api";
@@ -48,16 +49,18 @@ export function useModels() {
 }
 
 export function ModelsStatus() {
+  const t = useTranslations("ModelsStatus");
+  const common = useTranslations("Common");
   const { status, models, retry } = useModels();
   if (status === "ready" && models.length) return null;
   return (
     <div role="status" className="px-7 py-5 font-mono text-[13px] text-muted">
-      {status === "loading" ? "Loading model prices…" : status === "error" ? (
+      {status === "loading" ? t("loading") : status === "error" ? (
         <>
-          Model prices are temporarily unavailable.{" "}
-          <button type="button" onClick={retry} className="cursor-pointer text-volt underline">Try again</button>
+          {t("error")}{" "}
+          <button type="button" onClick={retry} className="cursor-pointer text-volt underline">{common("tryAgain")}</button>
         </>
-      ) : "No models available right now."}
+      ) : t("empty")}
     </div>
   );
 }

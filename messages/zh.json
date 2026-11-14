@@ -1,0 +1,743 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "TokHive · 官方 AI，更低价格",
+      "description": "贡献者把 AI 订阅中闲置的额度变成收益；开发者以低于官方标价的价格使用正版 Claude 和 GPT，全程经 TEE 验证。"
+    },
+    "models": {
+      "title": "模型与价格",
+      "description": "对比官方模型价格与 TokHive 报价，涵盖输入、输出和缓存 Token。"
+    },
+    "network": {
+      "title": "网络",
+      "description": "TokHive 实时网络：在线贡献者、Token 用量和 TEE 证明。"
+    },
+    "providers": {
+      "title": "贡献者",
+      "description": "用闲置的 AI 订阅额度赚取收益，实时结算。可从钱包以 Web3 稳定币提现，最低 $10。"
+    },
+    "security": {
+      "title": "安全与验证",
+      "description": "了解 TokHive 的 AMD SEV-SNP 机密虚拟机、凭证隔离、签名证明和开源验证工具。"
+    }
+  },
+  "Common": {
+    "tryAgain": "重试",
+    "copy": "复制",
+    "copied": "已复制 ✓",
+    "unavailable": "暂无报价",
+    "getApiKey": "获取 API Key →"
+  },
+  "Nav": {
+    "label": "主导航",
+    "home": "TokHive 首页",
+    "models": "模型",
+    "network": "网络",
+    "providers": "贡献者",
+    "security": "安全",
+    "docs": "文档 ↗",
+    "github": "GitHub",
+    "signIn": "登录",
+    "getApiKey": "获取 API Key",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "language": "语言",
+    "switchLanguage": "English"
+  },
+  "Footer": {
+    "product": "产品",
+    "resources": "资源",
+    "legal": "法律",
+    "contact": "联系",
+    "modelsPricing": "模型与价格",
+    "network": "网络",
+    "providers": "贡献者",
+    "security": "安全",
+    "docs": "文档",
+    "blog": "博客",
+    "github": "GitHub",
+    "twitter": "Twitter / X",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "aup": "可接受使用政策",
+    "termsShort": "条款",
+    "privacyShort": "隐私",
+    "aupShort": "使用政策",
+    "telegram": "Telegram",
+    "discord": "Discord"
+  },
+  "Legal": {
+    "englishOnly": "本政策目前仅提供英文版本。"
+  },
+  "ModelsStatus": {
+    "loading": "正在加载模型价格…",
+    "error": "模型价格暂时无法获取。",
+    "empty": "当前没有可用模型。"
+  },
+  "Home": {
+    "hero": {
+      "providersEyebrow": "贡献者",
+      "earn": "赚钱。",
+      "providersLead": "把 Claude 或 ChatGPT 订阅里闲置的额度变成收益。",
+      "shareQuota": "共享你的额度 →",
+      "buildersEyebrow": "开发者",
+      "save": "省钱。",
+      "buildersLead": "以更低的价格使用官方 AI：Claude 与 GPT 均来自官方，经 TEE 验证。"
+    },
+    "paidOut": {
+      "title": "已结算的贡献者收益",
+      "amount": "累计结算 {amount}",
+      "loading": "正在加载收益…",
+      "unavailable": "收益数据暂不可用"
+    },
+    "avgSaving": {
+      "title": "按最近 24 小时用量加权的输入价格",
+      "value": "平均比标价低 {savings}%"
+    },
+    "verified": {
+      "eyebrow": "TEE 证明",
+      "officialEndpoints": "官方端点",
+      "mobileLead": "只连接官方端点，每次调用都附带证明。",
+      "title": "正版 Token，不偷换模型，附带证明。",
+      "steps": {
+        "relay": {
+          "title": "锁在飞地中的中继",
+          "description": "贡献者的凭证在 AMD SEV-SNP 机密虚拟机中受到保护，TokHive 的任何人都无法读取。"
+        },
+        "endpoints": {
+          "title": "只连官方端点",
+          "description": "飞地将 TLS 固定到官方证书，无法转发到代理或更便宜的模型。"
+        },
+        "receipt": {
+          "title": "每次调用都有签名回执",
+          "description": "每个响应都附带一份证明报告，可用我们的开源验证工具自行核验。"
+        }
+      }
+    },
+    "pipeline": {
+      "heading": "一次请求的旅程",
+      "sub": "每一跳都经过封装和签名",
+      "hops": {
+        "request": { "title": "你的请求", "detail": "api.tokhive.ai" },
+        "router": { "title": "TokHive 路由", "detail": "选择贡献者" },
+        "tee": { "title": "TEE 飞地", "detail": "AMD SEV-SNP · 已封装" },
+        "official": { "title": "官方 API", "detail": "anthropic · openai" }
+      },
+      "fields": {
+        "enclave": "飞地",
+        "upstream": "上游",
+        "model": "模型",
+        "measurement": "度量值"
+      },
+      "signatureValid": "✓ 签名有效"
+    },
+    "earnings": {
+      "eyebrow": "贡献者收益 · 累计",
+      "settle": "每次请求成功后，收益实时结算。",
+      "noProviders": "{month}没有贡献者获得收益。",
+      "averaged": "{month}，有收益的贡献者平均赚取 {amount}。",
+      "loading": "正在加载已结算的贡献者收益…",
+      "unavailable": "收益数据暂时无法获取。",
+      "chartLabel": "每月已结算的贡献者收益（美元，UTC）",
+      "barMonthToDate": "{month}：{amount}（本月至今，UTC）",
+      "bar": "{month}：{amount}（UTC）",
+      "axis": "月度收益 · UTC"
+    },
+    "menu": {
+      "title": "蜂巢菜单。",
+      "all": "全部",
+      "perInput": "每 1M 输入",
+      "allModels": "全部模型与价格 →"
+    },
+    "agents": {
+      "title": "直接用在你的 Agent 里。",
+      "compatible": "兼容 Anthropic 与 OpenAI",
+      "tablist": "Agent 工具"
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "title": "你想问的，都在这里。",
+      "contact": "还有疑问？可以在 <discord>Discord</discord>、<telegram>Telegram</telegram> 联系我们，或发邮件至 <email>hello@tokhive.ai</email>。",
+      "items": {
+        "vendor": {
+          "question": "怎么确认 Token 真的来自官方？",
+          "answer": "每个请求都从 AMD SEV-SNP 机密虚拟机内部转发，而这台虚拟机只能与官方端点建立 TLS 连接。每个响应都附带一份签名证明报告（包括应用度量值、上游主机和响应哈希），你可以用我们的开源验证工具核验。"
+        },
+        "credentials": {
+          "question": "TokHive 或其他用户能看到我的凭证或提示词吗？",
+          "answer": "Bee 会先用 TEE 公钥加密上游凭证，再上传。Hive 会处理买家请求以完成路由和执行，故障诊断可能会保留请求和响应内容。贡献者无法通过 Bee 的加密中继看到买家的内容。"
+        },
+        "earn": {
+          "question": "作为贡献者，我能赚多少？",
+          "answer": "收益取决于你的可用额度、贡献者报价，以及你成功处理的请求。每个请求单独结算，你可以在控制台查看已结算的收益。"
+        },
+        "usage": {
+          "question": "共享会影响我自己使用吗？",
+          "answer": "共享会消耗你的订阅额度。需要额度自己用时，可以随时停止共享。"
+        },
+        "prices": {
+          "question": "价格是怎么定的？",
+          "answer": "价格在官方标价的基础上打折，折扣会根据供需情况定期调整。"
+        },
+        "tools": {
+          "question": "哪些工具和 SDK 可以接入 TokHive？",
+          "answer": "凡是使用 OpenAI Responses、Chat Completions API 或 Anthropic Messages API 的工具都可以，例如 Claude Code、Codex、OpenCode、Pi、Cursor、官方 SDK、LangChain 等。只需更换 Base URL 和 API Key。支持的功能见文档。"
+        },
+        "settlement": {
+          "question": "结算和提现是怎样的？",
+          "answer": "每个成功的请求结算后，收益实时计入你的收益余额。你可以从钱包以 Web3 稳定币提现，最低 $10，并按实际链上成本扣除网络手续费。每个请求的结算记录都可以在控制台查看。"
+        }
+      }
+    },
+    "mobileCta": {
+      "quotaEyebrow": "有闲置额度？",
+      "startEarning": "开始赚钱 →",
+      "tokensEyebrow": "需要 Token？",
+      "getApiKey": "获取 API Key →"
+    }
+  },
+  "Models": {
+    "eyebrow": "模型与价格",
+    "titleLine1": "官方模型。",
+    "titleLine2": "低于标价。",
+    "summary": {
+      "available": "当前可用模型",
+      "monthlyFee": "月费"
+    },
+    "how": {
+      "title": "价格如何计算。",
+      "items": {
+        "perToken": {
+          "title": "按 Token 付费",
+          "description": "无需订阅，没有最低消费。用稳定币充值，按每 1M Token 扣费。"
+        },
+        "float": {
+          "title": "价格随供给浮动",
+          "description": "显示的报价反映当前的贡献者供给。请求派发时锁定适用价格。"
+        },
+        "same": {
+          "title": "同样的 Token，同样的模型",
+          "description": "请求从 TEE 内部直达官方端点。模型 ID 和响应与官方 API 一致。"
+        },
+        "caching": {
+          "title": "按模型计费缓存",
+          "description": "适用缓存读取和写入计费的模型，会单独显示对应价格。"
+        },
+        "longContext": {
+          "title": "长上下文分档",
+          "description": "部分模型在请求输入（含缓存 Token）超过该模型的阈值后会提高价格，此时整个请求（含输出）都按该模型的长上下文价格计费。"
+        }
+      }
+    },
+    "calculator": {
+      "eyebrow": "费用计算器",
+      "title": "你一个月要花多少？",
+      "model": "模型",
+      "input": "每月输入 Token",
+      "output": "每月输出 Token",
+      "additional": "每月额外费用",
+      "save": "每月节省",
+      "noQuote": "该模型当前没有报价。",
+      "exceeds": "当前报价高于官方标价。",
+      "lessThan": "比直接向官方付费少 {pct}%",
+      "compared": "与官方标价相比。",
+      "official": "官方标价",
+      "tokhive": "TokHive"
+    },
+    "explorer": {
+      "search": "搜索模型",
+      "filters": "筛选",
+      "sort": "排序",
+      "sortLabel": "模型排序",
+      "sorts": {
+        "Name": "名称",
+        "Savings": "折扣",
+        "Price": "价格",
+        "Capacity": "容量"
+      },
+      "count": "{count} 个模型",
+      "table": "模型与价格",
+      "columns": {
+        "model": "模型",
+        "vendor": "厂商",
+        "context": "上下文",
+        "price": "价格 输入 / 输出 · <official>官方</official>",
+        "capacity": "容量",
+        "save": "节省"
+      },
+      "noMatch": "没有符合条件的模型。",
+      "clear": "清除筛选",
+      "dialog": "模型筛选",
+      "reset": "重置",
+      "closeFilters": "关闭筛选",
+      "sortBy": "排序方式",
+      "capabilities": "能力",
+      "vendorCount": "厂商 · {selected}/{total}",
+      "filterVendors": "筛选厂商",
+      "show": "显示 {count} 个模型",
+      "notes": {
+        "usd": "单位：美元 / 1M Token · TokHive 价格已含平台佣金",
+        "capacity": "容量 = 在线账号当前空闲并发的占比",
+        "quotes": "请求派发前，报价可能发生变化。"
+      },
+      "official": "官方：{input} / {output}",
+      "details": {
+        "perMillion": "每 1M TOKEN",
+        "official": "官方",
+        "tokhive": "TOKHIVE",
+        "copyId": "复制 ID",
+        "quickStart": "快速开始"
+      },
+      "items": {
+        "input": "输入",
+        "output": "输出",
+        "cache_read": "缓存读取",
+        "cache_write_5m": "缓存写入 · 5 分钟",
+        "cache_write_1h": "缓存写入 · 1 小时"
+      },
+      "noSupply": "暂无供给",
+      "noSupplyTitle": "该模型当前没有在线账号"
+    },
+    "capabilities": {
+      "coding": "编程",
+      "reasoning": "推理",
+      "vision": "视觉",
+      "long_context": "长上下文"
+    },
+    "vendors": {
+      "selected": "厂商 · {count}",
+      "all": "全部厂商",
+      "filter": "筛选厂商",
+      "selectedOf": "已选 {selected}/{total}",
+      "total": "{count} 个厂商",
+      "clear": "清除",
+      "remove": "移除 {vendor}"
+    }
+  },
+  "Network": {
+    "eyebrow": "实时网络",
+    "title": "蜂巢，实时运转。",
+    "unavailable": "网络数据不可用",
+    "updated": "更新于 {time} · 时间均为 UTC",
+    "kpi": {
+      "providers": "在线贡献者",
+      "tokens": "Token · 24 小时",
+      "requests": "请求 · 24 小时",
+      "earnings": "贡献者收益",
+      "firstOutput": "首次输出 · P50",
+      "providersDelta": "{accounts} 个账号 · {serving} 个服务中",
+      "noPrevious": "前一天没有流量",
+      "change": "日环比 {change}%",
+      "peak": "单小时峰值 {count}",
+      "earningsDelta": "已结算 · 累计",
+      "firstOutputDelta": "24 小时，含推理"
+    },
+    "accounts": {
+      "title": "在线账号",
+      "serving": "服务中 · {count}",
+      "idle": "空闲 · {count}",
+      "offline": "离线",
+      "note": "示意图。服务中的账号正在处理请求，空闲的账号可以接收新任务。"
+    },
+    "live": {
+      "title": "实时请求",
+      "newest": "最新结算",
+      "model": "模型",
+      "vendor": "厂商",
+      "tokens": "TOKEN",
+      "time": "耗时",
+      "unavailable": "请求数据不可用",
+      "empty": "暂无请求"
+    },
+    "usage": {
+      "eyebrow": "TOKEN 用量",
+      "total": "Token · {range}",
+      "all": "全部",
+      "rangeLabel": "时间范围",
+      "ranges": {
+        "24h": "最近 24 小时",
+        "7d": "最近 7 天",
+        "30d": "最近 30 天"
+      },
+      "rangeOptions": {
+        "24h": "24 小时",
+        "7d": "7 天",
+        "30d": "30 天"
+      },
+      "chart": "Token 用量，{range}，按厂商堆叠",
+      "bar": "{label} · {tokens} Token"
+    },
+    "share": {
+      "title": "模型占比与容量",
+      "note": "占比 · 24 小时 / 当前空闲容量",
+      "empty": "最近 24 小时没有流量",
+      "noSupply": "暂无供给",
+      "free": "{pct}% 空闲"
+    },
+    "plans": {
+      "title": "各订阅档位账号",
+      "note": "当前在线",
+      "empty": "没有在线账号",
+      "cell": "1 格 = {count} 个账号",
+      "unknown": "档位未知"
+    },
+    "attestations": {
+      "eyebrow": "TEE 透明度",
+      "title": "最近的证明",
+      "verified": "{share} 验证通过 · 30 天",
+      "none": "30 天内没有回执",
+      "verifier": "开源验证工具 ↗",
+      "columns": {
+        "receipt": "回执",
+        "model": "模型",
+        "enclave": "飞地",
+        "upstream": "上游",
+        "measurement": "度量值",
+        "signed": "签名时间",
+        "status": "状态"
+      },
+      "fields": {
+        "upstream": "上游",
+        "enclave": "飞地",
+        "measurement": "度量值",
+        "signed": "签名时间"
+      },
+      "valid": "✓ 有效"
+    },
+    "ago": {
+      "s": "{count} 秒前",
+      "m": "{count} 分钟前",
+      "h": "{count} 小时前",
+      "d": "{count} 天前"
+    }
+  },
+  "Providers": {
+    "hero": {
+      "eyebrow": "致贡献者",
+      "titleLine1": "额度会重置，",
+      "titleLine2": "收益不会。",
+      "lead": "共享 Claude 或 ChatGPT 订阅中未用完的额度，每个成功的请求实时结算，收益即时到账。你可以随时停止共享。",
+      "connect": "接入订阅 →",
+      "how": "了解流程"
+    },
+    "calculator": {
+      "title": "收益估算",
+      "measured": "基于 {count} 个账号实测 · 当前价格",
+      "illustrative": "示例估算",
+      "plan": "你的订阅",
+      "perMonth": "${price}/月",
+      "personalUse": "预计自用比例",
+      "personalUseLabel": "预计自用比例",
+      "barLabel": "预计自用 {use}%，预计闲置额度 {unused}%",
+      "legendUse": "■ 自用",
+      "legendUnused": "■ 闲置 · {pct}%",
+      "note": "估算你的闲置额度。可通过 Bee 手动开始或停止共享。",
+      "monthly": "预计月收益",
+      "fullUse": "满额共享 {amount}/月",
+      "year": "{amount}/年",
+      "coversTimes": "相当于订阅费的 {times} 倍",
+      "coversPct": "可抵 {pct}% 订阅费"
+    },
+    "steps": {
+      "title": "三步拿到第一笔收益。",
+      "setup": "约 3 分钟完成设置",
+      "items": {
+        "signIn": {
+          "title": "在本地登录",
+          "description": "在自己的电脑上登录订阅账号。Bee 会先用 TEE 公钥加密你的凭证，再上传。只有 TEE 能解密，TokHive 的任何人都看不到凭证明文。",
+          "meta": "Claude · ChatGPT"
+        },
+        "share": {
+          "title": "用 Bee 开始共享",
+          "description": "在电脑上运行 Bee 并保持联网，即可共享你的订阅额度。随时可以开始或停止共享。",
+          "meta": "保持 Bee 在线 · 随时可停"
+        },
+        "earn": {
+          "title": "实时赚取收益",
+          "description": "每个成功的请求都会计量并验证。结算完成后，收益实时计入你的收益余额。",
+          "meta": "按请求结算"
+        }
+      }
+    },
+    "controls": {
+      "eyebrow": "一切由你掌控",
+      "title": "按你的方式共享。",
+      "lead": "何时共享由你决定。需要订阅额度自己用时，随时停止共享。",
+      "items": {
+        "stop": {
+          "title": "随时停止共享",
+          "description": "需要订阅额度自己用时，随时停止共享。"
+        },
+        "start": {
+          "title": "按需开始",
+          "description": "根据自己的需要，手动开始和停止共享。"
+        },
+        "track": {
+          "title": "追踪收益",
+          "description": "在控制台查看已结算的收益和每个请求的记录。"
+        },
+        "keep": {
+          "title": "已赚的都归你",
+          "description": "停止共享不影响已经结算的收益。"
+        }
+      }
+    },
+    "compliance": {
+      "eyebrow": "账号安全与合规",
+      "title": "共享订阅是否被允许？",
+      "risksTitle": "你需要承担的风险",
+      "risks": {
+        "vendor": "TokHive 与 Anthropic、OpenAI 没有关联，也未获得其认可。它们的条款可能不允许共享订阅，厂商可以限制、暂停或关闭被共享的账号。这一风险由你承担，TokHive 不会对丢失或受限的订阅作出补偿。",
+        "rejection": "如果厂商拒绝某个账号的请求或对其限流，Hive 会停止向它派发新请求。进行中的请求可能失败；失败的请求没有收益，已结算的收益仍保留在你的余额中。TokHive 也可能暂停或禁止某个账号参与供给，例如在上游多次拒绝或违反政策之后。"
+      },
+      "terms": "阅读服务条款中的贡献者部分 →",
+      "aup": "阅读可接受使用政策 →",
+      "safety": {
+        "encrypted": {
+          "title": "凭证上传前已加密",
+          "description": "Bee 用 TEE 公钥加密上游访问凭证。上传的加密信封只有 TEE 能解密。"
+        },
+        "aup": {
+          "title": "受可接受使用政策约束",
+          "description": "买家须同意可接受使用政策，违反政策的 Key 可能被吊销。"
+        },
+        "limits": {
+          "title": "按账号限制并发",
+          "description": "Hive 在分配请求时会对每个账号施加并发上限。"
+        },
+        "audit": {
+          "title": "完整审计记录",
+          "description": "由你的订阅处理的每个请求都附带签名回执，可在控制台下载。"
+        }
+      }
+    },
+    "settlement": {
+      "eyebrow": "结算与提现",
+      "title": "收益实时结算。",
+      "lead": "每个成功的请求结算后都会计入你的收益余额。你可以从钱包以 Web3 稳定币提现，最低提现 $10，并按实际链上成本扣除网络手续费。",
+      "stats": {
+        "realTime": { "value": "实时", "label": "收益结算" },
+        "minimum": { "value": "$10", "label": "最低提现额" },
+        "web3": { "value": "Web3", "label": "稳定币提现" }
+      },
+      "example": "结算示例",
+      "illustrative": "示例数据",
+      "cacheReads": "缓存读取",
+      "tokens": "{tokens} Token",
+      "credited": "计入收益余额"
+    },
+    "faq": {
+      "eyebrow": "贡献者常见问题",
+      "title": "接入之前。",
+      "items": {
+        "idle": {
+          "question": "什么是“闲置额度”？",
+          "answer": "闲置额度是你订阅中没有用掉的容量。何时共享由你决定，你可以随时开始或停止共享。"
+        },
+        "slower": {
+          "question": "我自己的请求会变慢或被挡住吗？",
+          "answer": "你可以随时停止共享。"
+        },
+        "stop": {
+          "question": "可以随时停止吗？",
+          "answer": "可以。在电脑上用 bee pause 命令暂停 Bee 的共享，用 bee resume 恢复。停止共享不影响已经结算的收益。"
+        },
+        "withdraw": {
+          "question": "收益什么时候结算？怎么提现？",
+          "answer": "每个成功的请求都会实时结算并计入你的收益余额。你可以从钱包以 Web3 稳定币提现，最低 $10，并按实际链上成本扣除网络手续费。结算不需要等余额达到最低提现额。"
+        },
+        "calculated": {
+          "question": "收益是怎么计算的？",
+          "answer": "对于输入、输出、缓存 Token 等每个计费项，你的报价等于模型基准价乘以你的报价系数。你可以沿用平台默认系数，也可以在控制台自行设置。买家支付你的报价，TokHive 从中收取佣金，其余归你。请求优先分配给报价最低的可用供给，所以系数越高，每个 Token 赚得越多，但处理的请求可能越少。上面的计算器使用的是示例假设。"
+        },
+        "credits": {
+          "question": "共享会用到我付费购买的 ChatGPT 点数吗？",
+          "answer": "会。当 OpenAI 账号用完订阅时间窗口内的额度但仍有付费点数时，Hive 会继续向它派发请求，OpenAI 会扣除这些点数，直到点数用完或达到你的超额上限为止。如果不希望使用点数，请暂停共享。Claude 账号不受影响。"
+        },
+        "apiKey": {
+          "question": "我还能共享 OpenAI API Key 吗？",
+          "answer": "可以。订阅账号繁忙时，Bee 可以把 OpenAI Platform API Key 作为兜底供给。这个 Key 和订阅凭证一样会为 TEE 加密。OpenAI 会向你收取这部分用量的费用，而你按常规报价扣除平台佣金后获得收益，收益可能低于 OpenAI 的收费，尤其是 OpenAI 定价更高的缓存写入和长上下文请求。你可以在控制台设置该 Key 的并发数，也可以暂停它。"
+        },
+        "registered": {
+          "question": "我的订阅账号已经被别人注册了，怎么办？",
+          "answer": "每个订阅账号只能由一个 TokHive 账号共享，先到先得。如果你的账号被他人注册，请联系 hello@tokhive.ai。确认你控制该账号后，我们可以将其释放，以便你重新注册。"
+        },
+        "computer": {
+          "question": "电脑需要一直开着吗？",
+          "answer": "需要。共享期间请保持电脑开机、联网并运行 Bee。电脑必须保持唤醒；休眠或离线时无法接收新请求。"
+        }
+      }
+    },
+    "cta": {
+      "title": "让闲置额度为你工作。",
+      "lead": "几分钟即可接入，想停就停。",
+      "connect": "接入订阅 →"
+    }
+  },
+  "Security": {
+    "hero": {
+      "eyebrow": "安全与验证",
+      "titleLine1": "信任硬件，",
+      "titleLine2": "而不是我们。",
+      "lead": "TokHive 的中继运行在硬件飞地中。它保管贡献者的凭证，只能与官方 API 通信，并为每次调用签发回执。这一切都不需要你相信我们的一面之词。",
+      "stats": {
+        "plaintext": "上传的上游凭证明文",
+        "attested": "的响应附带证明",
+        "license": "飞地镜像与验证工具开源"
+      }
+    },
+    "architecture": {
+      "eyebrow": "架构",
+      "title": "信任边界在哪里。",
+      "tech": "AMD SEV-SNP · 度量启动 · RA-TLS",
+      "client": "客户端",
+      "builder": "开发者",
+      "builderDetail": "你的应用或 Agent，使用 TokHive Key",
+      "untrusted": "不受信任",
+      "router": "路由",
+      "routerDetail": "处理买家请求，负责路由、协议转换和计费。",
+      "enclave": "TEE 飞地 · AMD SEV-SNP",
+      "sealed": "加密内存",
+      "parts": {
+        "vault": {
+          "title": "凭证保险库",
+          "description": "贡献者会话由飞地密钥封装，无法导出。"
+        },
+        "relay": {
+          "title": "固定中继",
+          "description": "TLS 只连接白名单内的官方证书。"
+        },
+        "signer": {
+          "title": "签名器",
+          "description": "对上游主机、响应哈希、执行时间和策略哈希签名。"
+        }
+      },
+      "official": "官方",
+      "vendorApi": "厂商 API"
+    },
+    "visibility": {
+      "eyebrow": "谁能看到什么",
+      "title": "最小权限，由芯片强制执行。",
+      "party": "角色",
+      "columns": {
+        "prompts": "提示词",
+        "promptsShort": "提示词",
+        "creds": "贡献者凭证",
+        "credsShort": "凭证",
+        "usage": "用量计量",
+        "usageShort": "用量",
+        "identity": "开发者身份",
+        "identityShort": "身份"
+      },
+      "parties": {
+        "builder": "开发者",
+        "operators": "授权运维人员",
+        "provider": "贡献者",
+        "router": "Hive 路由",
+        "enclave": "TEE 飞地"
+      },
+      "canSee": "可见",
+      "cannotSee": "不可见",
+      "note": "✓ 该角色处理或可能访问这些数据 · — 该角色无访问权限。Hive 会处理买家请求，经授权的故障诊断可能保留其内容。贡献者可以访问自己本地的凭证。"
+    },
+    "verify": {
+      "eyebrow": "亲自验证",
+      "title": "一条命令核验任意响应。",
+      "steps": {
+        "requestId": {
+          "title": "拿到请求 ID",
+          "description": "使用 TokHive API 调用返回的 X-Request-Id 响应头。"
+        },
+        "run": {
+          "title": "运行验证工具",
+          "description": "验证工具会检查 AMD SEV-SNP 报告、AWS NitroTPM 证据和签名密钥绑定。"
+        },
+        "measurement": {
+          "title": "比对度量值",
+          "description": "snp-app: 身份必须与预期应用包的 SHA-256 摘要一致。"
+        },
+        "upstream": {
+          "title": "检查上游",
+          "description": "签名中的上游主机必须与预期的官方端点一致。"
+        }
+      },
+      "terminal": "终端 · 示例",
+      "instructions": "先在验证工具仓库中运行 <code>make build</code>。将 <code>TOKHIVE_API_KEY</code> 设为你的买家 API Key，<code>TOKHIVE_REQUEST_ID</code> 设为请求 ID，<code>TOKHIVE_EXPECTED_APP</code> 设为下方签名发布目录中生产环境的 <code>snp-app:{sha}</code> 身份。本示例检查 Anthropic 的上游主机，并比对保存为 <code>response.raw</code> 的上游原始响应体。"
+    },
+    "release": {
+      "eyebrow": "可信发布身份",
+      "title": "知道应该是哪个 TEE 镜像。",
+      "lead": "每个 TEE 版本及其运行的每个环境都记录在一份签名的发布目录中。请从该目录获取预期的应用身份，而不是从你正在核验的回执中获取；在信任目录之前，先用本页的密钥校验它的签名。",
+      "note": "本页是生产环境签名密钥的独立发布渠道；预发布（staging）版本使用另一把密钥。请将它与每个版本附带的 <code>release-signing.pub</code> 比对，不要只信任从发布资产中读到的密钥。有效的签名只能说明目录由谁发布，不能说明当前运行的是什么；后者由回执中的硬件证据证明。",
+      "teeReleases": "TEE 版本 ↗",
+      "catalog": "发布目录 ↗",
+      "guide": "验证指南 ↗",
+      "webVerifier": "网页验证工具 ↗",
+      "fingerprint": "生产环境发布签名密钥 · 指纹",
+      "details": {
+        "format": "格式",
+        "namespace": "命名空间",
+        "identity": "身份"
+      }
+    },
+    "oss": {
+      "title": "开源，并接受审计。",
+      "items": {
+        "tee": {
+          "kicker": "GITHUB",
+          "title": "飞地镜像",
+          "description": "在 TEE 中运行的中继完整源码，支持可复现构建，每个版本都公布度量值。"
+        },
+        "verifier": {
+          "kicker": "GITHUB",
+          "title": "验证工具 CLI 与 SDK",
+          "description": "在终端中验证证明，或在 CI 中使用 TypeScript 和 Python SDK。"
+        },
+        "audit": {
+          "kicker": "占位",
+          "title": "独立审计",
+          "description": "由第三方对飞地和密钥管理进行安全审查。审计完成后将补充审计机构、范围和报告链接。",
+          "meta": "[审计机构] · [日期]"
+        }
+      }
+    },
+    "data": {
+      "eyebrow": "数据处理",
+      "title": "数据处理与保留。",
+      "review": "各类记录的具体保留期限仍在评估中。请求处理、故障诊断和删除请求的说明见<privacy>隐私政策草案</privacy>。",
+      "states": {
+        "processed": "会被处理",
+        "sealed": "加密封装",
+        "review": "评估中"
+      },
+      "items": {
+        "prompts": {
+          "title": "提示词与生成内容",
+          "description": "Hive 和上游服务会处理请求内容。故障诊断可能保留请求和响应内容。"
+        },
+        "credentials": {
+          "title": "贡献者凭证",
+          "description": "Bee 在上传前用 TEE 公钥加密上游访问凭证。上传的加密信封只有 TEE 能解密。"
+        },
+        "usage": {
+          "title": "用量元数据",
+          "description": "模型、Token 数量和时间戳，用于计费、结算和争议处理。"
+        },
+        "attestations": {
+          "title": "证明报告",
+          "description": "签名回执可按请求 ID 检索，供独立验证。"
+        },
+        "account": {
+          "title": "账号数据",
+          "description": "账号标识、访问设置和交易记录。删除请求须遵守适用的记录保存义务。"
+        }
+      }
+    },
+    "disclosure": {
+      "eyebrow": "负责任的披露",
+      "title": "发现问题？请先告诉我们。",
+      "lead": "如果你在 TokHive 的任何组件（包括 Hive、Bee、TEE、验证工具和本网站）中发现漏洞，请通过 tokhive/tee 仓库的 GitHub 私密漏洞报告提交。只有维护者能看到报告。我们会在 48 小时内回复。",
+      "report": "报告漏洞 ↗"
+    }
+  }
+}

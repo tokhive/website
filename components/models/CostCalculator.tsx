@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { formatTokensM } from "@/lib/format";
 import { LINKS } from "@/lib/links";
@@ -7,6 +8,8 @@ import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { estimateModelCost, formatInputPrice, modelSavings, priceDifference } from "@/lib/public-models";
 
 export function CostCalculator() {
+  const t = useTranslations("Models.calculator");
+  const common = useTranslations("Common");
   const { models, status } = useModels();
   const [modelId, setModelId] = useState("");
   const [inM, setInM] = useState(300);
@@ -25,11 +28,11 @@ export function CostCalculator() {
     <section className="cost-calculator grid grid-cols-[repeat(auto-fit,minmax(min(100%,520px),1fr))] gap-6 pt-24">
       <div className="flex flex-col gap-7 rounded-card bg-surface p-9 max-sm:p-6">
         <div className="flex flex-col gap-2.5">
-          <span className="eyebrow">COST CALCULATOR</span>
-          <span className="text-[28px] font-semibold tracking-[-0.02em]">What would your month cost?</span>
+          <span className="eyebrow">{t("eyebrow")}</span>
+          <span className="text-[28px] font-semibold tracking-[-0.02em]">{t("title")}</span>
         </div>
         <label className="flex flex-col gap-2">
-          <span className="font-mono text-xs text-muted">MODEL</span>
+          <span className="font-mono text-xs text-muted">{t("model")}</span>
           <select
             value={m.id}
             onChange={(e) => setModelId(e.target.value)}
@@ -42,30 +45,30 @@ export function CostCalculator() {
             ))}
           </select>
         </label>
-        <Range label="INPUT TOKENS / MONTH" value={inM} max={2000} onChange={setInM} />
-        <Range label="OUTPUT TOKENS / MONTH" value={outM} max={500} onChange={setOutM} />
+        <Range label={t("input")} value={inM} max={2000} onChange={setInM} />
+        <Range label={t("output")} value={outM} max={500} onChange={setOutM} />
       </div>
 
       <div className="flex flex-col justify-between gap-6 rounded-card bg-volt p-9 text-ink max-sm:p-6">
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-xs font-medium tracking-[0.14em]">{extra ? "ADDITIONAL COST / MONTH" : "YOU SAVE / MONTH"}</span>
+          <span className="font-mono text-xs font-medium tracking-[0.14em]">{extra ? t("additional") : t("save")}</span>
           <span
             className="break-all font-mono text-[64px] leading-none font-medium tracking-[-0.05em] max-sm:text-[44px]"
             aria-live="polite"
           >
             {savings === null ? "—" : formatInputPrice(extra ? savings.slice(1) : savings)}
           </span>
-          <span className="text-[15px]">{ours === null ? "No current quote is available for this model." : extra ? "The current quote exceeds the official list price." : pct !== null ? `${pct}% less than paying the vendor directly` : "Compared with the official list price."}</span>
+          <span className="text-[15px]">{ours === null ? t("noQuote") : extra ? t("exceeds") : pct !== null ? t("lessThan", { pct }) : t("compared")}</span>
         </div>
         <div className="flex flex-col gap-3.5 font-mono text-[13px]">
-          <Bar label="Official list price" value={official === null ? "—" : formatInputPrice(official)} width={width(official)} fill="bg-ink/35" />
-          <Bar label="TokHive" value={ours === null ? "Unavailable" : formatInputPrice(ours)} width={width(ours)} fill="bg-ink" strong />
+          <Bar label={t("official")} value={official === null ? "—" : formatInputPrice(official)} width={width(official)} fill="bg-ink/35" />
+          <Bar label={t("tokhive")} value={ours === null ? common("unavailable") : formatInputPrice(ours)} width={width(ours)} fill="bg-ink" strong />
         </div>
         <a
           href={LINKS.getApiKey}
           className="self-start rounded-full bg-ink px-[22px] py-3.5 text-[15px] font-semibold text-paper"
         >
-          Get API key →
+          {common("getApiKey")}
         </a>
       </div>
     </section>

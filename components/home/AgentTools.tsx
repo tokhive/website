@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { AGENT_SNIPPETS, type AgentTool } from "@/lib/content/home";
@@ -13,28 +14,29 @@ function lineColor(line: string) {
 }
 
 export function AgentTools() {
+  const t = useTranslations("Home.agents");
   const [tool, setTool] = useState<AgentTool>("Claude Code");
   const lines = AGENT_SNIPPETS[tool];
 
   return (
     <section className="agent-tools site-container flex flex-col gap-8 pb-[120px] max-[899px]:pb-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <h2 className="h2">Works in your agents.</h2>
-        <span className="text-[15px] text-muted">Anthropic + OpenAI compatible</span>
+        <h2 className="h2">{t("title")}</h2>
+        <span className="text-[15px] text-muted">{t("compatible")}</span>
       </div>
-      <div role="tablist" aria-label="Agent tool" className="grid grid-cols-4 gap-2 max-[899px]:grid-cols-2">
-        {TOOLS.map((t) => (
+      <div role="tablist" aria-label={t("tablist")} className="grid grid-cols-4 gap-2 max-[899px]:grid-cols-2">
+        {TOOLS.map((name) => (
           <button
-            key={t}
+            key={name}
             type="button"
             role="tab"
-            aria-selected={t === tool}
-            onClick={() => setTool(t)}
+            aria-selected={name === tool}
+            onClick={() => setTool(name)}
             className={`cursor-pointer rounded-code border p-[22px] text-left text-lg font-semibold ${
-              t === tool ? "border-transparent bg-volt text-ink" : "border-paper/15 text-muted hover:opacity-80"
+              name === tool ? "border-transparent bg-volt text-ink" : "border-paper/15 text-muted hover:opacity-80"
             }`}
           >
-            {t}
+            {name}
           </button>
         ))}
       </div>

@@ -68,6 +68,8 @@ test("dollar presentation and bar scaling handle tiny, large and non-monotonic e
   assert.equal(formatCompactEarnings("999999"), "$1M");
   assert.equal(earningsMonthLabel("2025-12"), "Dec ’25");
   assert.equal(earningsMonthLabel("2025-12", true), "December 2025");
+  assert.equal(earningsMonthLabel("2025-12", false, "zh"), "25年12月");
+  assert.equal(earningsMonthLabel("2026-03", true, "zh"), "2026年3月");
   assert.deepEqual(earningsBarHeights([
     { month: "2026-01", amount_usd: "10" },
     { month: "2026-02", amount_usd: "0" },

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { LegalDocument, type LegalSection } from "@/components/legal/LegalDocument";
 import { LINKS } from "@/lib/links";
+import { alternates } from "@/i18n/metadata";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
+export const termsMetadata = (locale: Locale): Metadata => ({
   title: "Terms of Service",
   description: "Draft terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.",
   robots: { index: false, follow: true },
-};
+  alternates: alternates("/terms", locale),
+});
 
 const sections: LegalSection[] = [
   {
@@ -118,6 +121,6 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function TermsPage() {
+export function TermsPage() {
   return <LegalDocument title="Terms of Service" summary="Rules for accounts, AI access, sharing quota and handling earnings." href={LINKS.terms} sections={sections} />;
 }

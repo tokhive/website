@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { formatInt } from "@/lib/format";
 import { planLabel, type NetVendor, type PublicNetwork } from "@/lib/public-network";
 
@@ -26,12 +27,13 @@ function Empty({ children }: { children: React.ReactNode }) {
 }
 
 export function ModelShareCard({ data }: { data: PublicNetwork | null }) {
+  const t = useTranslations("Network.share");
   const models = (data?.models ?? []).slice(0, MODELS_SHOWN);
   const total = (data?.models ?? []).reduce((t, m) => t + m.tokens, 0);
   const max = Math.max(1, ...models.map((m) => m.tokens));
   return (
-    <Card title="Model share & capacity" note="share · 24h / capacity free now">
-      {data && models.length === 0 && <Empty>No traffic in the last 24 hours</Empty>}
+    <Card title={t("title")} note={t("note")}>
+      {data && models.length === 0 && <Empty>{t("empty")}</Empty>}
       {!data && <Empty>—</Empty>}
       {models.map((m) => {
         const free = m.capacity_free_pct;
@@ -46,7 +48,7 @@ export function ModelShareCard({ data }: { data: PublicNetwork | null }) {
             </div>
             <span className="text-right font-mono text-[13px]">{((m.tokens / total) * 100).toFixed(1)}%</span>
             <span className={`text-right font-mono text-xs ${free !== null && free < 25 ? "text-warn" : "text-muted"}`}>
-              {free === null ? "no supply" : `${free}% free`}
+              {free === null ? t("noSupply") : t("free", { pct: free })}
             </span>
           </div>
         );
@@ -56,18 +58,19 @@ export function ModelShareCard({ data }: { data: PublicNetwork | null }) {
 }
 
 export function PlansCard({ data }: { data: PublicNetwork | null }) {
+  const t = useTranslations("Network.plans");
   const plans = data?.plans ?? [];
   const perCell = Math.max(1, Math.ceil(Math.max(0, ...plans.map((p) => p.accounts)) / CELLS));
   return (
-    <Card title="Accounts by plan" note="online now">
-      {data && plans.length === 0 && <Empty>No accounts online</Empty>}
+    <Card title={t("title")} note={t("note")}>
+      {data && plans.length === 0 && <Empty>{t("empty")}</Empty>}
       {!data && <Empty>—</Empty>}
       {plans.map((p) => {
         const filled = Math.ceil(p.accounts / perCell);
         return (
           <div key={`${p.platform}/${p.plan}`} className="flex flex-col gap-2">
             <div className="flex justify-between text-sm">
-              <span>{planLabel(p.platform, p.plan)}</span>
+              <span>{planLabel(p.platform, p.plan, t("unknown"))}</span>
               <span className="font-mono text-text-2">{formatInt(p.accounts)}</span>
             </div>
             <div className="flex h-3.5 gap-0.5" aria-hidden="true">
@@ -79,7 +82,7 @@ export function PlansCard({ data }: { data: PublicNetwork | null }) {
         );
       })}
       {plans.length > 0 && (
-        <span className="font-mono text-[11px] text-muted-2">1 cell = {perCell === 1 ? "1 account" : `${perCell} accounts`}</span>
+        <span className="font-mono text-[11px] text-muted-2">{t("cell", { count: perCell })}</span>
       )}
     </Card>
   );

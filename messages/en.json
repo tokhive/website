@@ -1,0 +1,743 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "TokHive · Official AI for less",
+      "description": "Providers earn from idle AI subscription quota. Builders get official Claude and GPT below list price, TEE-verified."
+    },
+    "models": {
+      "title": "Models & Pricing",
+      "description": "Compare official model prices with TokHive quotes for input, output and cached tokens."
+    },
+    "network": {
+      "title": "Network",
+      "description": "Live TokHive network: providers online, token usage and TEE attestations."
+    },
+    "providers": {
+      "title": "Providers",
+      "description": "Earn from idle AI subscription quota with real-time settlement. Withdraw from your wallet in Web3 stablecoins with a $10 minimum."
+    },
+    "security": {
+      "title": "Security & Verification",
+      "description": "Explore TokHive’s AMD SEV-SNP confidential VM, credential isolation, signed attestations and open-source verification."
+    }
+  },
+  "Common": {
+    "tryAgain": "Try again",
+    "copy": "Copy",
+    "copied": "Copied ✓",
+    "unavailable": "Unavailable",
+    "getApiKey": "Get API key →"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "home": "TokHive home",
+    "models": "Models",
+    "network": "Network",
+    "providers": "Providers",
+    "security": "Security",
+    "docs": "Docs ↗",
+    "github": "GitHub",
+    "signIn": "Sign in",
+    "getApiKey": "Get API key",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchLanguage": "中文"
+  },
+  "Footer": {
+    "product": "PRODUCT",
+    "resources": "RESOURCES",
+    "legal": "LEGAL",
+    "contact": "CONTACT",
+    "modelsPricing": "Models & Pricing",
+    "network": "Network",
+    "providers": "Providers",
+    "security": "Security",
+    "docs": "Docs",
+    "blog": "Blog",
+    "github": "GitHub",
+    "twitter": "Twitter / X",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "aup": "Acceptable Use",
+    "termsShort": "Terms",
+    "privacyShort": "Privacy",
+    "aupShort": "AUP",
+    "telegram": "Telegram",
+    "discord": "Discord"
+  },
+  "Legal": {
+    "englishOnly": "This policy is available in English only."
+  },
+  "ModelsStatus": {
+    "loading": "Loading model prices…",
+    "error": "Model prices are temporarily unavailable.",
+    "empty": "No models available right now."
+  },
+  "Home": {
+    "hero": {
+      "providersEyebrow": "PROVIDERS",
+      "earn": "Earn.",
+      "providersLead": "Monetize the idle tokens in your Claude or ChatGPT subscription.",
+      "shareQuota": "Share your quota →",
+      "buildersEyebrow": "BUILDERS",
+      "save": "Save.",
+      "buildersLead": "Access official AI for less: Claude and GPT from the vendors, TEE-verified."
+    },
+    "paidOut": {
+      "title": "Settled provider earnings",
+      "amount": "{amount} paid out",
+      "loading": "Loading earnings…",
+      "unavailable": "Earnings unavailable"
+    },
+    "avgSaving": {
+      "title": "Input price, weighted by the last 24 hours of usage",
+      "value": "avg. −{savings}% vs list"
+    },
+    "verified": {
+      "eyebrow": "TEE ATTESTED",
+      "officialEndpoints": "official endpoints",
+      "mobileLead": "Official vendor endpoints only, with proof on every call.",
+      "title": "Genuine tokens. No swapped models. Proof attached.",
+      "steps": {
+        "relay": {
+          "title": "Enclave-locked relay",
+          "description": "Provider credentials are protected inside an AMD SEV-SNP confidential VM. Nobody at TokHive can read them."
+        },
+        "endpoints": {
+          "title": "Official endpoints only",
+          "description": "The enclave pins TLS to vendor certificates, so it cannot route to a proxy or a cheaper model."
+        },
+        "receipt": {
+          "title": "Signed receipt per call",
+          "description": "Every response carries an attestation report you can check with our open-source verifier."
+        }
+      }
+    },
+    "pipeline": {
+      "heading": "HOW A REQUEST TRAVELS",
+      "sub": "every hop is sealed and signed",
+      "hops": {
+        "request": { "title": "Your request", "detail": "api.tokhive.ai" },
+        "router": { "title": "TokHive router", "detail": "picks a provider" },
+        "tee": { "title": "TEE enclave", "detail": "AMD SEV-SNP · sealed" },
+        "official": { "title": "Official API", "detail": "anthropic · openai" }
+      },
+      "fields": {
+        "enclave": "ENCLAVE",
+        "upstream": "UPSTREAM",
+        "model": "MODEL",
+        "measurement": "MEASUREMENT"
+      },
+      "signatureValid": "✓ Signature valid"
+    },
+    "earnings": {
+      "eyebrow": "PROVIDER EARNINGS · ALL TIME",
+      "settle": "Earnings settle in real time after each successful request.",
+      "noProviders": "No providers earned income in {month}.",
+      "averaged": "Earning providers averaged {amount} in {month}.",
+      "loading": "Loading settled provider earnings…",
+      "unavailable": "Earnings are temporarily unavailable.",
+      "chartLabel": "Monthly settled provider earnings in USD, UTC",
+      "barMonthToDate": "{month}: {amount} (month to date, UTC)",
+      "bar": "{month}: {amount} (UTC)",
+      "axis": "monthly earnings · UTC"
+    },
+    "menu": {
+      "title": "The hive menu.",
+      "all": "All",
+      "perInput": "per 1M input",
+      "allModels": "All models & pricing →"
+    },
+    "agents": {
+      "title": "Works in your agents.",
+      "compatible": "Anthropic + OpenAI compatible",
+      "tablist": "Agent tool"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Questions, answered.",
+      "contact": "Still unsure? Talk to us on <discord>Discord</discord>, <telegram>Telegram</telegram> or <email>hello@tokhive.ai</email>.",
+      "items": {
+        "vendor": {
+          "question": "How do I know the tokens really come from the official vendor?",
+          "answer": "Every request is relayed from inside an AMD SEV-SNP confidential VM that can only open TLS connections to official vendor endpoints. Each response carries a signed attestation report (application measurement, upstream host and response hash) that you can check with our open-source verifier."
+        },
+        "credentials": {
+          "question": "Can TokHive or other users see my credentials or prompts?",
+          "answer": "Bee encrypts upstream credentials with the TEE public key before uploading them. Hive processes buyer requests for routing and execution, and failure diagnostics can retain request and response content. Providers do not see buyer content through Bee's encrypted relay."
+        },
+        "earn": {
+          "question": "How much can I earn as a provider?",
+          "answer": "Earnings depend on your available quota, provider rates and the requests you successfully serve. Each request is settled individually, and you can review your settled earnings in the dashboard."
+        },
+        "usage": {
+          "question": "Will sharing affect my own usage?",
+          "answer": "Sharing uses your subscription quota. You can stop sharing at any time when you need that quota for your own requests."
+        },
+        "prices": {
+          "question": "How are prices set?",
+          "answer": "Prices are set at a discount to the official vendor prices. The discount is adjusted periodically based on supply and demand."
+        },
+        "tools": {
+          "question": "Which tools and SDKs work with TokHive?",
+          "answer": "Tools that use the OpenAI Responses or Chat Completions API, or the Anthropic Messages API: Claude Code, Codex, OpenCode, Pi, Cursor, the official SDKs, LangChain and more. You only change the base URL and the API key. The docs list the supported features."
+        },
+        "settlement": {
+          "question": "How do settlement and withdrawals work?",
+          "answer": "Earnings are credited to your earnings balance in real time as each successful request settles. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum and a network fee based on the actual on-chain cost. You can review per-request settlement records in your dashboard."
+        }
+      }
+    },
+    "mobileCta": {
+      "quotaEyebrow": "HAVE IDLE QUOTA?",
+      "startEarning": "Start earning →",
+      "tokensEyebrow": "NEED TOKENS?",
+      "getApiKey": "Get API key →"
+    }
+  },
+  "Models": {
+    "eyebrow": "MODELS & PRICING",
+    "titleLine1": "Official models.",
+    "titleLine2": "Below list.",
+    "summary": {
+      "available": "models available now",
+      "monthlyFee": "monthly fee"
+    },
+    "how": {
+      "title": "How pricing works.",
+      "items": {
+        "perToken": {
+          "title": "Pay per token",
+          "description": "No subscription and no minimum. Top up with stablecoins and draw down per 1M tokens."
+        },
+        "float": {
+          "title": "Prices float with supply",
+          "description": "Displayed quotes reflect current provider supply. The applicable price is locked when your request is dispatched."
+        },
+        "same": {
+          "title": "Same tokens, same models",
+          "description": "Requests hit the official endpoint from inside a TEE. Model IDs and responses match the vendor API."
+        },
+        "caching": {
+          "title": "Model-specific caching",
+          "description": "Cache read and write prices are shown where those billing items apply."
+        },
+        "longContext": {
+          "title": "Long-context tiers",
+          "description": "Some models charge more once a request's input, cached tokens included, passes a model-specific threshold. The whole request, output included, is then billed at that model's long-context prices."
+        }
+      }
+    },
+    "calculator": {
+      "eyebrow": "COST CALCULATOR",
+      "title": "What would your month cost?",
+      "model": "MODEL",
+      "input": "INPUT TOKENS / MONTH",
+      "output": "OUTPUT TOKENS / MONTH",
+      "additional": "ADDITIONAL COST / MONTH",
+      "save": "YOU SAVE / MONTH",
+      "noQuote": "No current quote is available for this model.",
+      "exceeds": "The current quote exceeds the official list price.",
+      "lessThan": "{pct}% less than paying the vendor directly",
+      "compared": "Compared with the official list price.",
+      "official": "Official list price",
+      "tokhive": "TokHive"
+    },
+    "explorer": {
+      "search": "Search models",
+      "filters": "Filters",
+      "sort": "sort",
+      "sortLabel": "Sort models",
+      "sorts": {
+        "Name": "Name",
+        "Savings": "Savings",
+        "Price": "Price",
+        "Capacity": "Capacity"
+      },
+      "count": "{count, plural, one {# model} other {# models}}",
+      "table": "Models and pricing",
+      "columns": {
+        "model": "MODEL",
+        "vendor": "VENDOR",
+        "context": "CONTEXT",
+        "price": "PRICE in / out · <official>official</official>",
+        "capacity": "CAPACITY",
+        "save": "SAVE"
+      },
+      "noMatch": "No models match.",
+      "clear": "Clear filters",
+      "dialog": "Model filters",
+      "reset": "Reset",
+      "closeFilters": "Close filters",
+      "sortBy": "SORT BY",
+      "capabilities": "CAPABILITIES",
+      "vendorCount": "VENDOR · {selected} of {total}",
+      "filterVendors": "Filter vendors",
+      "show": "Show {count, plural, one {# model} other {# models}}",
+      "notes": {
+        "usd": "USD per 1M tokens · TokHive prices include platform commission",
+        "capacity": "Capacity = share of online accounts' concurrency free now",
+        "quotes": "Quotes may change before a request is dispatched."
+      },
+      "official": "Official: {input} / {output}",
+      "details": {
+        "perMillion": "PER 1M TOKENS",
+        "official": "OFFICIAL",
+        "tokhive": "TOKHIVE",
+        "copyId": "Copy ID",
+        "quickStart": "QUICK START"
+      },
+      "items": {
+        "input": "Input",
+        "output": "Output",
+        "cache_read": "Cache read",
+        "cache_write_5m": "Cache write · 5m",
+        "cache_write_1h": "Cache write · 1h"
+      },
+      "noSupply": "no supply",
+      "noSupplyTitle": "No accounts online for this model"
+    },
+    "capabilities": {
+      "coding": "Coding",
+      "reasoning": "Reasoning",
+      "vision": "Vision",
+      "long_context": "Long context"
+    },
+    "vendors": {
+      "selected": "Vendor · {count}",
+      "all": "All vendors",
+      "filter": "Filter vendors",
+      "selectedOf": "{selected} of {total} selected",
+      "total": "{count, plural, one {# vendor} other {# vendors}}",
+      "clear": "Clear",
+      "remove": "Remove {vendor}"
+    }
+  },
+  "Network": {
+    "eyebrow": "LIVE NETWORK",
+    "title": "The hive, live.",
+    "unavailable": "network data unavailable",
+    "updated": "updated {time} · all times UTC",
+    "kpi": {
+      "providers": "PROVIDERS ONLINE",
+      "tokens": "TOKENS · 24H",
+      "requests": "REQUESTS · 24H",
+      "earnings": "PROVIDER EARNINGS",
+      "firstOutput": "FIRST OUTPUT · P50",
+      "providersDelta": "{accounts} accounts · {serving} serving",
+      "noPrevious": "no traffic the day before",
+      "change": "{change}% d/d",
+      "peak": "peak {count} in one hour",
+      "earningsDelta": "settled · all time",
+      "firstOutputDelta": "24h, reasoning included"
+    },
+    "accounts": {
+      "title": "Accounts online",
+      "serving": "serving · {count}",
+      "idle": "idle · {count}",
+      "offline": "offline",
+      "note": "Illustrative. Serving accounts are running a request now; idle ones are ready for new work."
+    },
+    "live": {
+      "title": "Live requests",
+      "newest": "newest settled",
+      "model": "MODEL",
+      "vendor": "VENDOR",
+      "tokens": "TOKENS",
+      "time": "TIME",
+      "unavailable": "Requests unavailable",
+      "empty": "No requests yet"
+    },
+    "usage": {
+      "eyebrow": "TOKEN USAGE",
+      "total": "tokens · {range}",
+      "all": "All",
+      "rangeLabel": "Range",
+      "ranges": {
+        "24h": "last 24 hours",
+        "7d": "last 7 days",
+        "30d": "last 30 days"
+      },
+      "rangeOptions": {
+        "24h": "24h",
+        "7d": "7d",
+        "30d": "30d"
+      },
+      "chart": "Token usage, {range}, stacked by vendor",
+      "bar": "{label} · {tokens} tokens"
+    },
+    "share": {
+      "title": "Model share & capacity",
+      "note": "share · 24h / capacity free now",
+      "empty": "No traffic in the last 24 hours",
+      "noSupply": "no supply",
+      "free": "{pct}% free"
+    },
+    "plans": {
+      "title": "Accounts by plan",
+      "note": "online now",
+      "empty": "No accounts online",
+      "cell": "1 cell = {count, plural, one {# account} other {# accounts}}",
+      "unknown": "plan unknown"
+    },
+    "attestations": {
+      "eyebrow": "TEE TRANSPARENCY",
+      "title": "Recent attestations",
+      "verified": "{share} verified · 30d",
+      "none": "no receipts in 30d",
+      "verifier": "Open-source verifier ↗",
+      "columns": {
+        "receipt": "RECEIPT",
+        "model": "MODEL",
+        "enclave": "ENCLAVE",
+        "upstream": "UPSTREAM",
+        "measurement": "MEASUREMENT",
+        "signed": "SIGNED",
+        "status": "STATUS"
+      },
+      "fields": {
+        "upstream": "upstream",
+        "enclave": "enclave",
+        "measurement": "measurement",
+        "signed": "signed"
+      },
+      "valid": "✓ valid"
+    },
+    "ago": {
+      "s": "{count}s ago",
+      "m": "{count}m ago",
+      "h": "{count}h ago",
+      "d": "{count}d ago"
+    }
+  },
+  "Providers": {
+    "hero": {
+      "eyebrow": "For providers",
+      "titleLine1": "Your plan resets.",
+      "titleLine2": "Your earnings don't.",
+      "lead": "Share unused quota from your Claude or ChatGPT subscription and earn as each successful request settles in real time. You can stop sharing at any time.",
+      "connect": "Connect a plan →",
+      "how": "How it works"
+    },
+    "calculator": {
+      "title": "Earnings estimate",
+      "measured": "measured on {count, plural, one {# account} other {# accounts}} · current prices",
+      "illustrative": "illustrative estimate",
+      "plan": "YOUR PLAN",
+      "perMonth": "${price}/mo",
+      "personalUse": "YOUR ESTIMATED PERSONAL USE",
+      "personalUseLabel": "Estimated personal use",
+      "barLabel": "{use}% estimated personal use, {unused}% estimated unused quota",
+      "legendUse": "■ personal use",
+      "legendUnused": "■ unused · {pct}%",
+      "note": "Estimate your unused quota. Start and stop sharing manually with Bee.",
+      "monthly": "EST. MONTHLY EARNINGS",
+      "fullUse": "{amount} / mo at full use",
+      "year": "{amount} / year",
+      "coversTimes": "covers your plan ×{times}",
+      "coversPct": "covers {pct}% of your plan"
+    },
+    "steps": {
+      "title": "Three steps to your first earnings.",
+      "setup": "~3 minutes to set up",
+      "items": {
+        "signIn": {
+          "title": "Sign in locally",
+          "description": "Sign in to your subscription account on your computer. Bee encrypts your credentials with the TEE public key before uploading them. Only the TEE can decrypt them; nobody at TokHive can see your credentials in plaintext.",
+          "meta": "Claude · ChatGPT"
+        },
+        "share": {
+          "title": "Start sharing with Bee",
+          "description": "Run Bee on your computer and keep it connected to share your subscription quota. You can start or stop sharing at any time.",
+          "meta": "keep Bee online · stop anytime"
+        },
+        "earn": {
+          "title": "Earn in real time",
+          "description": "Each successful request is metered and verified. Earnings are credited to your earnings balance in real time as settlement completes.",
+          "meta": "per-request settlement"
+        }
+      }
+    },
+    "controls": {
+      "eyebrow": "You stay in control",
+      "title": "Share on your terms.",
+      "lead": "Choose when to share. Stop sharing whenever you need your subscription quota for your own work.",
+      "items": {
+        "stop": {
+          "title": "Stop sharing anytime",
+          "description": "Stop sharing whenever you need your subscription quota for your own work."
+        },
+        "start": {
+          "title": "Start on your terms",
+          "description": "Start and stop sharing manually as your needs change."
+        },
+        "track": {
+          "title": "Track your earnings",
+          "description": "Review your settled earnings and per-request records in the dashboard."
+        },
+        "keep": {
+          "title": "Keep what you earned",
+          "description": "Stopping sharing does not affect earnings already settled."
+        }
+      }
+    },
+    "compliance": {
+      "eyebrow": "Account safety & compliance",
+      "title": "Is sharing my plan allowed?",
+      "risksTitle": "RISKS YOU TAKE ON",
+      "risks": {
+        "vendor": "TokHive is not affiliated with or endorsed by Anthropic or OpenAI. Their terms may not allow sharing a subscription, and a vendor can limit, suspend or close an account that is shared. That risk is yours, and TokHive does not compensate for a lost or restricted subscription.",
+        "rejection": "If a vendor rejects or rate-limits an account, Hive stops sending it new requests. Requests in progress may fail; failed requests earn nothing, and earnings already settled stay in your balance. TokHive can also pause or ban an account from supply, for example after repeated upstream rejections or a policy violation."
+      },
+      "terms": "Read the Terms for Providers →",
+      "aup": "Read the Acceptable Use Policy →",
+      "safety": {
+        "encrypted": {
+          "title": "Credentials encrypted before upload",
+          "description": "Bee encrypts upstream access credentials with the TEE public key. Only the TEE can decrypt the uploaded envelope."
+        },
+        "aup": {
+          "title": "Bound by the Acceptable Use Policy",
+          "description": "Buyers agree to the Acceptable Use Policy, and keys that break it can be revoked."
+        },
+        "limits": {
+          "title": "Per-account limits",
+          "description": "Hive applies per-account concurrency limits when assigning requests."
+        },
+        "audit": {
+          "title": "Full audit trail",
+          "description": "Every request served from your plan carries a signed receipt you can download from your dashboard."
+        }
+      }
+    },
+    "settlement": {
+      "eyebrow": "Settlement & withdrawals",
+      "title": "Earnings settle in real time.",
+      "lead": "Each successful request credits your earnings balance as it settles. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum withdrawal and a network fee based on the actual on-chain cost.",
+      "stats": {
+        "realTime": { "value": "Real time", "label": "earnings settlement" },
+        "minimum": { "value": "$10", "label": "minimum withdrawal" },
+        "web3": { "value": "Web3", "label": "stablecoin withdrawals" }
+      },
+      "example": "SETTLEMENT EXAMPLE",
+      "illustrative": "Illustrative figures",
+      "cacheReads": "cache reads",
+      "tokens": "{tokens} tok",
+      "credited": "Credited to earnings balance"
+    },
+    "faq": {
+      "eyebrow": "Provider FAQ",
+      "title": "Before you connect.",
+      "items": {
+        "idle": {
+          "question": "What does \"idle quota\" mean?",
+          "answer": "Idle quota is unused capacity in your subscription. You choose when to share it by starting or stopping sharing."
+        },
+        "slower": {
+          "question": "Will my own requests ever be slower or blocked?",
+          "answer": "You can stop sharing at any time."
+        },
+        "stop": {
+          "question": "Can I stop at any time?",
+          "answer": "Yes. Pause sharing from Bee on your computer with the bee pause command, and start again with bee resume. Stopping sharing does not affect earnings already settled."
+        },
+        "withdraw": {
+          "question": "When are earnings settled, and how do I withdraw them?",
+          "answer": "Each successful request is settled in real time and credited to your earnings balance. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum and a network fee based on the actual on-chain cost. Settlement does not wait for your balance to reach the withdrawal minimum."
+        },
+        "calculated": {
+          "question": "How are earnings calculated?",
+          "answer": "For each billing item, such as input, output and cached tokens, your quote is the model's base price multiplied by your quote factor. You can keep the platform default factor or set your own in the Console. Buyers pay your quote, TokHive takes its commission from it, and you earn the rest. Requests go to the lowest available quote first, so a higher factor earns more per token but may serve fewer requests. The calculator above uses illustrative assumptions."
+        },
+        "credits": {
+          "question": "Can sharing use my paid ChatGPT credits?",
+          "answer": "Yes. When an OpenAI account has used up its subscription window but still has paid credits, Hive keeps sending it requests and OpenAI charges those credits. It stops when the credits run out or reach your overage limit. Pause sharing if you do not want your credits used. Claude accounts are not affected."
+        },
+        "apiKey": {
+          "question": "Can I also share an OpenAI API key?",
+          "answer": "Yes. Bee can offer an OpenAI Platform API key as fallback supply when subscription accounts are busy. The key is encrypted for the TEE like your subscription credentials. OpenAI bills you for that usage, while you earn your usual quote less the platform commission, which can be less than OpenAI charges you, especially for cache writes and long-context requests that OpenAI prices higher. You set the key's concurrency and can pause it in the Console."
+        },
+        "registered": {
+          "question": "Someone has already registered my subscription account. What can I do?",
+          "answer": "Each subscription account can be shared by only one TokHive account, on a first-come basis. If yours was registered by someone else, contact hello@tokhive.ai. Once we have verified that you control the account, we can release it so you can register it."
+        },
+        "computer": {
+          "question": "Do I need to keep my computer on?",
+          "answer": "Yes. Keep your computer on, connected to the internet and running Bee while sharing. Your computer must stay awake; while it is asleep or offline, it cannot receive new requests."
+        }
+      }
+    },
+    "cta": {
+      "title": "Put your idle quota to work.",
+      "lead": "Connect in minutes. Stop whenever you want.",
+      "connect": "Connect a plan →"
+    }
+  },
+  "Security": {
+    "hero": {
+      "eyebrow": "Security & verification",
+      "titleLine1": "Trust the hardware,",
+      "titleLine2": "not us.",
+      "lead": "TokHive's relay runs inside a hardware enclave. It holds provider credentials, can only talk to official vendor APIs, and signs a receipt for every call. You don't have to take our word for any of it.",
+      "stats": {
+        "plaintext": "plaintext upstream credentials uploaded",
+        "attested": "of responses carry an attestation",
+        "license": "enclave image and verifier, open source"
+      }
+    },
+    "architecture": {
+      "eyebrow": "Architecture",
+      "title": "Where the trust boundary sits.",
+      "tech": "AMD SEV-SNP · measured boot · RA-TLS",
+      "client": "CLIENT",
+      "builder": "Builder",
+      "builderDetail": "Your app or agent, using a TokHive key",
+      "untrusted": "UNTRUSTED",
+      "router": "Router",
+      "routerDetail": "Processes buyer requests for routing, protocol handling and billing.",
+      "enclave": "TEE ENCLAVE · AMD SEV-SNP",
+      "sealed": "sealed memory",
+      "parts": {
+        "vault": {
+          "title": "Credential vault",
+          "description": "Provider sessions sealed to the enclave key. Not exportable."
+        },
+        "relay": {
+          "title": "Pinned relay",
+          "description": "TLS only to an allow-list of vendor certificates."
+        },
+        "signer": {
+          "title": "Signer",
+          "description": "Signs the upstream host, response hash, execution times and policy hash."
+        }
+      },
+      "official": "OFFICIAL",
+      "vendorApi": "Vendor API"
+    },
+    "visibility": {
+      "eyebrow": "Who sees what",
+      "title": "Least privilege, enforced by silicon.",
+      "party": "Party",
+      "columns": {
+        "prompts": "PROMPTS",
+        "promptsShort": "PROMPT",
+        "creds": "PROVIDER CREDS",
+        "credsShort": "CREDS",
+        "usage": "USAGE METERS",
+        "usageShort": "USAGE",
+        "identity": "BUILDER IDENTITY",
+        "identityShort": "ID"
+      },
+      "parties": {
+        "builder": "Builder",
+        "operators": "Authorized operators",
+        "provider": "Provider",
+        "router": "Hive router",
+        "enclave": "TEE enclave"
+      },
+      "canSee": "Can see",
+      "cannotSee": "Cannot see",
+      "note": "✓ role processes or may access this data · — no access through this role. Hive processes buyer requests; authorized failure diagnostics may retain their content. Providers can access their own local credentials."
+    },
+    "verify": {
+      "eyebrow": "Verify it yourself",
+      "title": "Check any response in one command.",
+      "steps": {
+        "requestId": {
+          "title": "Grab the request ID",
+          "description": "Use the X-Request-Id header returned by your TokHive API call."
+        },
+        "run": {
+          "title": "Run the verifier",
+          "description": "The verifier checks the AMD SEV-SNP report, AWS NitroTPM evidence and the signing-key binding."
+        },
+        "measurement": {
+          "title": "Compare the measurement",
+          "description": "The snp-app: identity must match the SHA-256 digest of the expected application bundle."
+        },
+        "upstream": {
+          "title": "Check the upstream",
+          "description": "The signed upstream host must match the expected vendor endpoint."
+        }
+      },
+      "terminal": "terminal · example",
+      "instructions": "Run <code>make build</code> in the verifier repository first. Set <code>TOKHIVE_API_KEY</code> to your buyer API key, <code>TOKHIVE_REQUEST_ID</code> to your request ID, and <code>TOKHIVE_EXPECTED_APP</code> to the production <code>snp-app:{sha}</code> identity from the signed release catalog below. This example checks Anthropic's upstream host and compares the exact upstream response body saved as <code>response.raw</code>."
+    },
+    "release": {
+      "eyebrow": "Trusted release identity",
+      "title": "Know which TEE image to expect.",
+      "lead": "Each TEE release and each environment it runs in is recorded in a signed release catalog. Take the expected application identity from that catalog, not from the receipt you are checking, and check the catalog's signature against the key on this page before you trust it.",
+      "note": "This page is the independent channel for the production signing key; staging pre-releases use a different key. Compare it with the <code>release-signing.pub</code> attached to each release; do not trust a key read from the release assets alone. A valid signature shows who published the catalog, not what is running now; the hardware evidence in your receipt shows that.",
+      "teeReleases": "TEE releases ↗",
+      "catalog": "Release catalog ↗",
+      "guide": "Verification guide ↗",
+      "webVerifier": "Web verifier ↗",
+      "fingerprint": "production release signing key · fingerprint",
+      "details": {
+        "format": "Format",
+        "namespace": "Namespace",
+        "identity": "Identity"
+      }
+    },
+    "oss": {
+      "title": "Open source and audited.",
+      "items": {
+        "tee": {
+          "kicker": "GITHUB",
+          "title": "Enclave image",
+          "description": "Full source of the relay that runs in the TEE, with reproducible builds and published measurements per release."
+        },
+        "verifier": {
+          "kicker": "GITHUB",
+          "title": "Verifier CLI & SDK",
+          "description": "Verify attestations from the terminal, or in CI with the TypeScript and Python SDKs."
+        },
+        "audit": {
+          "kicker": "PLACEHOLDER",
+          "title": "Independent audit",
+          "description": "Third-party security review of the enclave and key management. Firm, scope and report link to be added once the audit is complete.",
+          "meta": "[auditor] · [date]"
+        }
+      }
+    },
+    "data": {
+      "eyebrow": "Data handling",
+      "title": "Data processing and retention.",
+      "review": "Record-specific retention periods remain under review. See the <privacy>Privacy Policy draft</privacy> for request processing, diagnostics and deletion requests.",
+      "states": {
+        "processed": "processed",
+        "sealed": "sealed",
+        "review": "under review"
+      },
+      "items": {
+        "prompts": {
+          "title": "Prompts & completions",
+          "description": "Hive and the upstream service process request content. Failure diagnostics can retain request and response content."
+        },
+        "credentials": {
+          "title": "Provider credentials",
+          "description": "Bee encrypts upstream access credentials with the TEE public key before upload. Only the TEE can decrypt the uploaded envelope."
+        },
+        "usage": {
+          "title": "Usage metadata",
+          "description": "Model, token counts and timestamps, kept for billing, settlement and dispute resolution."
+        },
+        "attestations": {
+          "title": "Attestation reports",
+          "description": "Signed receipts stay retrievable by request ID for independent verification."
+        },
+        "account": {
+          "title": "Account data",
+          "description": "Account identifiers, access settings and transaction references. Deletion requests are subject to applicable recordkeeping obligations."
+        }
+      }
+    },
+    "disclosure": {
+      "eyebrow": "Responsible disclosure",
+      "title": "Found something? Tell us first.",
+      "lead": "Report a vulnerability in any TokHive component, including Hive, Bee, the TEE, the verifier and this website, through GitHub's private vulnerability reporting on tokhive/tee. Only maintainers can see the report. We reply within 48 hours.",
+      "report": "Report a vulnerability ↗"
+    }
+  }
+}
