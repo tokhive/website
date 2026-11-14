@@ -29,8 +29,9 @@
   --text-xl--line-height: normal;
   --text-5xl--line-height: normal;
 
-  --font-sans: var(--font-sora), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* Sora and JetBrains Mono have no CJK glyphs; Chinese text falls through to a system CJK face. */
+  --font-sans: var(--font-sora), "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", monospace;
 
   --radius-badge: 6px;
   --radius-input: 10px;
@@ -936,5 +937,21 @@
   .disclosure-card .btn-ghost {
     padding-inline: 14px;
     font-size: 14px;
+  }
+}
+
+/* CJK glyphs fill the em box, so the tight leading and negative tracking tuned for Sora make Chinese display text collide. */
+:lang(zh) :is(.h1, .giant-word, .provider-title) {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+:lang(zh) :is(.h2, .section-title) {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+/* Chinese breaks between any two characters, so keep each title line within the half-width hero column. */
+@media (width >= 1024px) {
+  :lang(zh) .provider-title {
+    font-size: min(84px, 6.8vw);
   }
 }

@@ -19,11 +19,13 @@ type SegmentedProps<T extends string> = {
   value: T;
   onChange: (v: T) => void;
   label: string;
+  /** Display text per option; the option value itself when absent. */
+  labels?: Partial<Record<T, string>>;
   className?: string;
 };
 
 /** Segmented control: dark track, paper-filled active item. */
-export function Segmented<T extends string>({ options, value, onChange, label, className = "" }: SegmentedProps<T>) {
+export function Segmented<T extends string>({ options, value, onChange, label, labels, className = "" }: SegmentedProps<T>) {
   return (
     <div role="radiogroup" aria-label={label} className={`flex gap-0.5 rounded-full p-[3px] ${className}`}>
       {options.map((o) => (
@@ -37,7 +39,7 @@ export function Segmented<T extends string>({ options, value, onChange, label, c
             o === value ? "bg-paper text-ink" : "text-muted hover:opacity-80"
           }`}
         >
-          {o}
+          {labels?.[o] ?? o}
         </button>
       ))}
     </div>

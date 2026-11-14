@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { HexField } from "@/components/HexField";
 import { LogoMark } from "@/components/Logo";
 import { Nav } from "@/components/Nav";
@@ -6,6 +7,8 @@ import { AvgSaving } from "@/components/home/AvgSaving";
 import { PaidOut } from "@/components/home/PaidOut";
 
 export function Hero() {
+  const t = useTranslations("Home.hero");
+  const common = useTranslations("Common");
   return (
     <section className="home-hero relative min-[1024px]:h-[720px]">
       <div className="absolute inset-0 overflow-hidden">
@@ -30,14 +33,14 @@ export function Hero() {
         </div>
         <div className="hero-columns relative grid flex-1 grid-cols-1 min-[1024px]:grid-cols-2">
           <div className="hero-column hero-providers flex flex-col gap-6 border-line-hero px-12 pt-24 pb-16 min-[1024px]:border-r min-[1024px]:pr-14">
-            <span className="eyebrow">PROVIDERS</span>
-            <div className="giant-word text-volt">Earn.</div>
+            <span className="eyebrow">{t("providersEyebrow")}</span>
+            <div className="giant-word text-volt">{t("earn")}</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
-              Monetize the idle tokens in your Claude or ChatGPT subscription.
+              {t("providersLead")}
             </p>
             <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
               <a href={LINKS.shareQuota} className="btn-primary">
-                Share your quota →
+                {t("shareQuota")}
               </a>
               <PaidOut />
             </div>
@@ -50,14 +53,14 @@ export function Hero() {
             <span className="h-px flex-1 bg-paper/16" />
           </div>
           <div className="hero-column hero-builders flex flex-col gap-6 px-12 pt-24 pb-16 min-[1024px]:pl-14">
-            <span className="eyebrow text-paper">BUILDERS</span>
-            <div className="giant-word outline-word self-start">Save.</div>
+            <span className="eyebrow text-paper">{t("buildersEyebrow")}</span>
+            <div className="giant-word outline-word self-start">{t("save")}</div>
             <p className="max-w-[440px] text-xl leading-[1.45] text-pretty">
-              Access official AI for less: Claude and GPT from the vendors, TEE-verified.
+              {t("buildersLead")}
             </p>
             <div className="mt-auto flex flex-wrap items-center gap-4 pt-4">
               <a href={LINKS.getApiKey} className="btn-secondary">
-                Get API key →
+                {common("getApiKey")}
               </a>
               <AvgSaving />
             </div>

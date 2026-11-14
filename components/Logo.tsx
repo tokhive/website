@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 /** Hex mark. The stripes use the page background so they read as cut-outs. */
 export function LogoMark({ size = 28, cutout = "#0A0B0C" }: { size?: number; cutout?: string }) {
@@ -21,8 +22,9 @@ export function Wordmark({ className = "text-[20px]" }: { className?: string }) 
 }
 
 export function LogoLink() {
+  const t = useTranslations("Nav");
   return (
-    <Link href="/" aria-label="TokHive home" className="flex items-center gap-2.5">
+    <Link href="/" aria-label={t("home")} className="flex items-center gap-2.5">
       <LogoMark />
       <Wordmark />
     </Link>

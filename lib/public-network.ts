@@ -159,13 +159,13 @@ export function formatDuration(ms: number): string {
   return `${Math.floor(ms / 60_000)}m ${Math.round((ms % 60_000) / 1000)}s`;
 }
 
-/** Elapsed time since `at`, as of `now`: "12s ago", "5m ago", "3h ago", "2d ago". */
-export function formatAgo(at: string, now: number): string {
+/** Elapsed time since `at`, as of `now`, in its largest whole unit: 12 s, 5 m, 3 h or 2 d. */
+export function elapsed(at: string, now: number): { unit: "s" | "m" | "h" | "d"; count: number } {
   const s = Math.max(0, Math.round((now - Date.parse(at)) / 1000));
-  if (s < 60) return `${s}s ago`;
-  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
-  if (s < 86_400) return `${Math.floor(s / 3600)}h ago`;
-  return `${Math.floor(s / 86_400)}d ago`;
+  if (s < 60) return { unit: "s", count: s };
+  if (s < 3600) return { unit: "m", count: Math.floor(s / 60) };
+  if (s < 86_400) return { unit: "h", count: Math.floor(s / 3600) };
+  return { unit: "d", count: Math.floor(s / 86_400) };
 }
 
 const PLAN_NAMES: Record<string, string> = {
@@ -174,9 +174,9 @@ const PLAN_NAMES: Record<string, string> = {
 };
 
 /** "openai" + "prolite" → "ChatGPT Pro Lite"; Claude Max is not split into 5x and 20x. */
-export function planLabel(platform: string, plan: string): string {
+export function planLabel(platform: string, plan: string, unknown = "plan unknown"): string {
   const product = platform === "openai" ? "ChatGPT" : platform === "claude" ? "Claude" : platform;
-  if (!plan) return `${product} (plan unknown)`;
+  if (!plan) return `${product} (${unknown})`;
   return `${product} ${PLAN_NAMES[plan] ?? plan.charAt(0).toUpperCase() + plan.slice(1)}`;
 }
 

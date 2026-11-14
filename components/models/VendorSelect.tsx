@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 type VendorOption = { value: string; label: string; count: number; color: string };
 type Props = { options: VendorOption[]; selected: string[]; onToggle: (v: string) => void; onClear: () => void };
 
 /** Multi-select vendor dropdown with a filter box; scales to many vendors. */
 export function VendorSelect({ options: vendors, selected, onToggle, onClear }: Props) {
+  const t = useTranslations("Models.vendors");
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const root = useRef<HTMLDivElement>(null);
@@ -39,7 +41,7 @@ export function VendorSelect({ options: vendors, selected, onToggle, onClear }: 
           onClick={() => setOpen((o) => !o)}
           className={`chip gap-2 ${open ? "border-transparent bg-paper text-ink hover:opacity-100" : ""}`}
         >
-          {active ? `Vendor · ${selected.length}` : "All vendors"}
+          {active ? t("selected", { count: selected.length }) : t("all")}
           <span className="text-[10px]">▾</span>
         </button>
         {open && (
@@ -48,8 +50,8 @@ export function VendorSelect({ options: vendors, selected, onToggle, onClear }: 
               autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Filter vendors"
-              aria-label="Filter vendors"
+              placeholder={t("filter")}
+              aria-label={t("filter")}
               className="h-9 rounded-lg border border-paper/10 bg-bg px-3 text-[13px] text-paper outline-none"
             />
             <div role="listbox" aria-multiselectable="true" className="flex max-h-[300px] flex-col overflow-auto">
@@ -79,9 +81,9 @@ export function VendorSelect({ options: vendors, selected, onToggle, onClear }: 
               })}
             </div>
             <div className="flex items-center justify-between border-t border-paper/8 px-2.5 pt-2 pb-1 font-mono text-xs text-muted">
-              <span>{active ? `${selected.length} of ${vendors.length} selected` : `${vendors.length} vendors`}</span>
+              <span>{active ? t("selectedOf", { selected: selected.length, total: vendors.length }) : t("total", { count: vendors.length })}</span>
               <button type="button" onClick={onClear} className="cursor-pointer text-volt hover:opacity-80">
-                Clear
+                {t("clear")}
               </button>
             </div>
           </div>
@@ -92,7 +94,7 @@ export function VendorSelect({ options: vendors, selected, onToggle, onClear }: 
           key={v}
           type="button"
           onClick={() => onToggle(v)}
-          aria-label={`Remove ${v}`}
+          aria-label={t("remove", { vendor: v })}
           className="chip gap-1.5 border-volt/35 bg-volt/12 pr-2.5 text-volt"
         >
           {vendors.find((option) => option.value === v)?.label ?? v}

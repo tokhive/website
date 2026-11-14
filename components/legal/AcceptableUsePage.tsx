@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { LegalDocument, type LegalSection } from "@/components/legal/LegalDocument";
 import { LINKS } from "@/lib/links";
+import { alternates } from "@/i18n/metadata";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
+export const acceptableUseMetadata = (locale: Locale): Metadata => ({
   title: "Acceptable Use Policy",
   description: "Draft rules for lawful use of TokHive AI access, subscription sharing, credentials and payment systems.",
   robots: { index: false, follow: true },
-};
+  alternates: alternates("/acceptable-use", locale),
+});
 
 const sections: LegalSection[] = [
   {
@@ -87,6 +90,6 @@ const sections: LegalSection[] = [
   },
 ];
 
-export default function AcceptableUsePage() {
+export function AcceptableUsePage() {
   return <LegalDocument title="Acceptable Use Policy" summary="Requirements for lawful, authorized and responsible use of TokHive." href={LINKS.aup} sections={sections} />;
 }

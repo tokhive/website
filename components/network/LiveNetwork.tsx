@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { HexField } from "@/components/HexField";
 import { useTick } from "@/lib/useTick";
@@ -7,22 +8,23 @@ import { formatInt } from "@/lib/format";
 import { LINKS } from "@/lib/links";
 import { formatCompactEarnings } from "@/lib/public-earnings";
 import {
-  formatAgo, formatDuration, formatTokens, shortMeasurement, VENDOR_NAMES, verifiedShare, type PublicNetwork,
+  elapsed, formatDuration, formatTokens, shortMeasurement, VENDOR_NAMES, verifiedShare, type PublicNetwork,
 } from "@/lib/public-network";
 import { NetworkProvider, useNetwork } from "@/components/network/NetworkProvider";
 import { TokenUsage } from "@/components/network/TokenUsage";
 import { ModelShareCard, PlansCard } from "@/components/network/Breakdowns";
 
 type Kpi = { label: string; value: string; delta: string; positive: boolean };
+type Translate = ReturnType<typeof useTranslations<"Network">>;
 
 /** Below this many providers online the hive shows sample counts instead of Hive's. */
 const MIN_LIVE_PROVIDERS = 30;
 const SAMPLE_HIVE = { serving: 1906, idle: 1506 };
 
-function kpis(data: PublicNetwork | null): Kpi[] {
+function kpis(data: PublicNetwork | null, t: Translate): Kpi[] {
   if (!data) {
-    return ["PROVIDERS ONLINE", "TOKENS · 24H", "REQUESTS · 24H", "PROVIDER EARNINGS", "FIRST OUTPUT · P50"].map((label) => ({
-      label, value: "—", delta: "\u00a0", positive: false,
+    return (["providers", "tokens", "requests", "earnings", "firstOutput"] as const).map((key) => ({
+      label: t(`kpi.${key}`), value: "—", delta: "\u00a0", positive: false,
     }));
   }
   const { supply, traffic } = data;
@@ -30,14 +32,17 @@ function kpis(data: PublicNetwork | null): Kpi[] {
   const change = previous > 0 ? ((traffic.tokens_24h - previous) / previous) * 100 : null;
   const p50 = traffic.first_output_p50_ms;
   return [
-    { label: "PROVIDERS ONLINE", value: formatInt(supply.providers), delta: `${formatInt(supply.serving + supply.idle)} accounts · ${formatInt(supply.serving)} serving`, positive: false },
     {
-      label: "TOKENS · 24H", value: formatTokens(traffic.tokens_24h),
-      delta: change === null ? "no traffic the day before" : `${change >= 0 ? "+" : ""}${change.toFixed(1)}% d/d`, positive: (change ?? 0) > 0,
+      label: t("kpi.providers"), value: formatInt(supply.providers),
+      delta: t("kpi.providersDelta", { accounts: formatInt(supply.serving + supply.idle), serving: formatInt(supply.serving) }), positive: false,
     },
-    { label: "REQUESTS · 24H", value: formatInt(traffic.requests_24h), delta: `peak ${formatInt(traffic.requests_peak_hour)} in one hour`, positive: false },
-    { label: "PROVIDER EARNINGS", value: formatCompactEarnings(data.provider_earnings_usd), delta: "settled · all time", positive: false },
-    { label: "FIRST OUTPUT · P50", value: p50 === null ? "—" : formatDuration(p50), delta: "24h, reasoning included", positive: false },
+    {
+      label: t("kpi.tokens"), value: formatTokens(traffic.tokens_24h),
+      delta: change === null ? t("kpi.noPrevious") : t("kpi.change", { change: `${change >= 0 ? "+" : ""}${change.toFixed(1)}` }), positive: (change ?? 0) > 0,
+    },
+    { label: t("kpi.requests"), value: formatInt(traffic.requests_24h), delta: t("kpi.peak", { count: formatInt(traffic.requests_peak_hour) }), positive: false },
+    { label: t("kpi.earnings"), value: formatCompactEarnings(data.provider_earnings_usd), delta: t("kpi.earningsDelta"), positive: false },
+    { label: t("kpi.firstOutput"), value: p50 === null ? "—" : formatDuration(p50), delta: t("kpi.firstOutputDelta"), positive: false },
   ];
 }
 
@@ -50,6 +55,11 @@ export function LiveNetwork() {
 }
 
 function LiveNetworkView() {
+  const t = useTranslations("Network");
+  const ago = (at: string, asOf: number) => {
+    const { unit, count } = elapsed(at, asOf);
+    return t(`ago.${unit}`, { count });
+  };
   const { status, data, requests, updatedAt } = useNetwork();
   // Re-renders the relative times every second.
   const tick = useTick(1000);
@@ -59,7 +69,7 @@ function LiveNetworkView() {
     setNow(Date.now());
   }, [tick, updatedAt]);
   const updated = updatedAt ? new Date(updatedAt).toISOString().slice(11, 19) : "--:--:--";
-  const cards = kpis(data);
+  const cards = kpis(data, t);
   const attestations = data?.attestations.recent ?? [];
   const verified = data ? verifiedShare(data.attestations.verified_30d, data.attestations.failed_30d) : null;
   const measurement = data?.attestations.measurement ?? "";
@@ -74,12 +84,12 @@ function LiveNetworkView() {
         <div className="flex flex-col gap-4">
           <span className="eyebrow flex items-center gap-2.5">
             <span className="h-2 w-2 animate-pulse-dot rounded-full bg-volt motion-reduce:animate-none" />
-            LIVE NETWORK
+            {t("eyebrow")}
           </span>
-          <h1 className="h1">The hive, live.</h1>
+          <h1 className="h1">{t("title")}</h1>
         </div>
         <span className="font-mono text-[13px] text-muted">
-          {status === "error" ? "network data unavailable" : `updated ${updated} · all times UTC`}
+          {status === "error" ? t("unavailable") : t("updated", { time: updated })}
         </span>
       </header>
 
@@ -96,11 +106,11 @@ function LiveNetworkView() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,480px),1fr))] gap-6 py-12">
         <div className="flex flex-col overflow-hidden rounded-card bg-surface">
           <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-5">
-            <span className="text-[17px] font-semibold">Accounts online</span>
+            <span className="text-[17px] font-semibold">{t("accounts.title")}</span>
             <div className="flex gap-[18px] font-mono text-xs text-text-2">
-              <Legend swatch="clip-hex bg-volt" label={`serving · ${formatInt(serving)}`} />
-              <Legend swatch="clip-hex bg-[#3A3D3F]" label={`idle · ${formatInt(idle)}`} />
-              <Legend swatch="border border-[#3A3D3F]" label="offline" />
+              <Legend swatch="clip-hex bg-volt" label={t("accounts.serving", { count: formatInt(serving) })} />
+              <Legend swatch="clip-hex bg-[#3A3D3F]" label={t("accounts.idle", { count: formatInt(idle) })} />
+              <Legend swatch="border border-[#3A3D3F]" label={t("accounts.offline")} />
             </div>
           </div>
           <div className="network-hive relative h-[400px]">
@@ -121,25 +131,25 @@ function LiveNetworkView() {
             />
           </div>
           <div className="border-t border-paper/6 px-6 py-3.5 font-mono text-xs text-muted">
-            Illustrative. Serving accounts are running a request now; idle ones are ready for new work.
+            {t("accounts.note")}
           </div>
         </div>
 
         <div className="flex flex-col overflow-hidden rounded-card bg-surface">
           <div className="flex items-center justify-between px-6 py-5">
-            <span className="text-[17px] font-semibold">Live requests</span>
-            <span className="font-mono text-xs text-muted">newest settled</span>
+            <span className="text-[17px] font-semibold">{t("live.title")}</span>
+            <span className="font-mono text-xs text-muted">{t("live.newest")}</span>
           </div>
           <div className="grid grid-cols-[1.6fr_.8fr_.8fr_.6fr] gap-2 px-6 pb-2.5 font-mono text-[11px] tracking-[0.06em] text-muted-2">
-            <span>MODEL</span>
-            <span>VENDOR</span>
-            <span className="text-right">TOKENS</span>
-            <span className="text-right">TIME</span>
+            <span>{t("live.model")}</span>
+            <span>{t("live.vendor")}</span>
+            <span className="text-right">{t("live.tokens")}</span>
+            <span className="text-right">{t("live.time")}</span>
           </div>
           <div aria-live="off">
             {requests.length === 0 && (
               <div className="border-t border-paper/6 px-6 py-[11px] font-mono text-[13px] text-muted">
-                {status === "error" ? "Requests unavailable" : "No requests yet"}
+                {status === "error" ? t("live.unavailable") : t("live.empty")}
               </div>
             )}
             {requests.map((f, i) => (
@@ -169,13 +179,13 @@ function LiveNetworkView() {
         <div className="overflow-hidden rounded-card bg-surface">
           <div className="flex flex-wrap items-center justify-between gap-3 px-8 py-7 max-sm:px-5">
             <div className="flex flex-col gap-1.5">
-              <span className="eyebrow">TEE TRANSPARENCY</span>
-              <h2 className="text-[22px] font-semibold tracking-[-0.02em]">Recent attestations</h2>
+              <span className="eyebrow">{t("attestations.eyebrow")}</span>
+              <h2 className="text-[22px] font-semibold tracking-[-0.02em]">{t("attestations.title")}</h2>
             </div>
             <div className="flex flex-wrap gap-7 font-mono text-[13px] text-text-2">
-              <span>{verified ? `${verified} verified · 30d` : "no receipts in 30d"}</span>
+              <span>{verified ? t("attestations.verified", { share: verified }) : t("attestations.none")}</span>
               <a href={LINKS.verifier} target="_blank" rel="noreferrer" className="text-paper">
-                Open-source verifier ↗
+                {t("attestations.verifier")}
               </a>
             </div>
           </div>
@@ -183,12 +193,12 @@ function LiveNetworkView() {
             <table className="w-full min-w-[900px] border-collapse font-mono text-[13px]">
               <thead>
                 <tr className="border-t border-paper/8 text-left text-[11px] tracking-[0.06em] text-muted-2">
-                  {["RECEIPT", "MODEL", "ENCLAVE", "UPSTREAM", "MEASUREMENT", "SIGNED"].map((h) => (
+                  {(["receipt", "model", "enclave", "upstream", "measurement", "signed"] as const).map((h) => (
                     <th key={h} className="px-1.5 py-3 font-normal first:pl-8">
-                      {h}
+                      {t(`attestations.columns.${h}`)}
                     </th>
                   ))}
-                  <th className="py-3 pr-8 text-right font-normal">STATUS</th>
+                  <th className="py-3 pr-8 text-right font-normal">{t("attestations.columns.status")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -199,10 +209,10 @@ function LiveNetworkView() {
                     <td className="px-1.5 text-text-2">{ENCLAVE}</td>
                     <td className="px-1.5 text-text-2">{a.upstream}</td>
                     <td className="px-1.5 text-muted">{shortMeasurement(measurement)}</td>
-                    <td className="px-1.5 text-muted">{now === null ? "" : formatAgo(a.signed_at, now)}</td>
+                    <td className="px-1.5 text-muted">{now === null ? "" : ago(a.signed_at, now)}</td>
                     <td className="pr-8 text-right">
                       <span className="rounded-badge bg-volt px-2 py-[3px] text-xs whitespace-nowrap text-ink">
-                        ✓ valid
+                        {t("attestations.valid")}
                       </span>
                     </td>
                   </tr>
@@ -218,18 +228,18 @@ function LiveNetworkView() {
               >
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-paper">{a.receipt}…</span>
-                  <span className="rounded-badge bg-volt px-2 py-1 text-ink">✓ valid</span>
+                  <span className="rounded-badge bg-volt px-2 py-1 text-ink">{t("attestations.valid")}</span>
                 </div>
                 <p className="text-[13px]">{a.model}</p>
                 <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
-                  <dt className="text-muted-2">upstream</dt>
+                  <dt className="text-muted-2">{t("attestations.fields.upstream")}</dt>
                   <dd className="text-right text-text-2">{a.upstream}</dd>
-                  <dt className="text-muted-2">enclave</dt>
+                  <dt className="text-muted-2">{t("attestations.fields.enclave")}</dt>
                   <dd className="text-right text-text-2">{ENCLAVE}</dd>
-                  <dt className="text-muted-2">measurement</dt>
+                  <dt className="text-muted-2">{t("attestations.fields.measurement")}</dt>
                   <dd className="text-right text-text-2">{shortMeasurement(measurement)}</dd>
-                  <dt className="text-muted-2">signed</dt>
-                  <dd className="text-right text-text-2">{now === null ? "" : formatAgo(a.signed_at, now)}</dd>
+                  <dt className="text-muted-2">{t("attestations.fields.signed")}</dt>
+                  <dd className="text-right text-text-2">{now === null ? "" : ago(a.signed_at, now)}</dd>
                 </dl>
               </article>
             ))}

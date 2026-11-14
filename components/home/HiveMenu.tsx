@@ -1,7 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Chip } from "@/components/Chip";
 import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { hiveMenuRows } from "@/lib/hive-menu-layout";
@@ -11,6 +12,8 @@ import { formatInputPrice, modelPlatformLabel, modelSavings } from "@/lib/public
 const TONES = ["bg-volt text-ink", "bg-surface-2 text-paper", "bg-surface-3 text-paper"];
 
 export function HiveMenu() {
+  const t = useTranslations("Home.menu");
+  const common = useTranslations("Common");
   const { models, status } = useModels();
   const [platform, setPlatform] = useState("");
   const platforms = [...new Set(models.map((model) => model.platform))];
@@ -26,7 +29,7 @@ export function HiveMenu() {
   return (
     <section className="hive-menu site-container pb-[120px] max-[899px]:pb-20" aria-busy={status === "loading"}>
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-        <h2 className="h2">The hive menu.</h2>
+        <h2 className="h2">{t("title")}</h2>
         <div className="flex flex-wrap gap-2">
           {["", ...platforms].map((f) => (
             <Chip
@@ -35,7 +38,7 @@ export function HiveMenu() {
               onClick={() => setPlatform(f)}
               className="h-auto px-4 py-[9px] text-[13px]"
             >
-              {f ? modelPlatformLabel(f) : "All"}
+              {f ? modelPlatformLabel(f) : t("all")}
             </Chip>
           ))}
         </div>
@@ -58,12 +61,12 @@ export function HiveMenu() {
                   <span className="font-mono text-[11px] tracking-[0.06em] opacity-70">{modelPlatformLabel(m.platform)}</span>
                   <span className="comb-name leading-[1.15] font-semibold tracking-[-0.01em]">{m.name}</span>
                   <span className="mt-1.5 max-w-full break-all font-mono text-[13px]">
-                    {m.minimum_input_price === null ? "Unavailable" : formatInputPrice(m.minimum_input_price)}{" "}
+                    {m.minimum_input_price === null ? common("unavailable") : formatInputPrice(m.minimum_input_price)}{" "}
                     {savings !== null && m.official_input_price !== null && (
                       <span className="line-through opacity-60">{formatInputPrice(m.official_input_price)}</span>
                     )}
                   </span>
-                  <span className="font-mono text-[11px] opacity-70">per 1M input</span>
+                  <span className="font-mono text-[11px] opacity-70">{t("perInput")}</span>
                   {savings !== null && <span className="mt-1.5 font-mono text-[15px] font-semibold">−{savings}%</span>}
                 </div>
               );
@@ -73,7 +76,7 @@ export function HiveMenu() {
       </div>
       <div className="mt-5 text-center md:hidden">
         <Link href="/models" className="border-b border-volt pb-0.5 text-sm font-semibold">
-          All models &amp; pricing →
+          {t("allModels")}
         </Link>
       </div>
     </section>

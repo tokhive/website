@@ -103,8 +103,10 @@ export function formatCompactEarnings(amount: string): string {
   return formatEarningsUsd(amount);
 }
 
-export function earningsMonthLabel(month: string, long = false): string {
+/** "December 2025" / "Dec ’25" in English, "2025年12月" / "25年12月" in Chinese. */
+export function earningsMonthLabel(month: string, long = false, locale = "en"): string {
   const date = new Date(`${month}-01T00:00:00Z`);
+  if (locale === "zh") return `${long ? month.slice(0, 4) : month.slice(2, 4)}年${Number(month.slice(5, 7))}月`;
   if (long) return new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric", timeZone: "UTC" }).format(date);
   return `${new Intl.DateTimeFormat("en-US", { month: "short", timeZone: "UTC" }).format(date)} ’${month.slice(2, 4)}`;
 }

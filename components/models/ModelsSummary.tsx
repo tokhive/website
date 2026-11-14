@@ -1,12 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useModels } from "@/components/ModelsProvider";
 
 export function ModelsSummary() {
+  const t = useTranslations("Models.summary");
   const { models, status } = useModels();
   const values = [
-    { value: status === "ready" ? models.length : "—", label: "models available now" },
-    { value: "$0", label: "monthly fee" },
+    { value: status === "ready" ? models.length : "—", label: t("available") },
+    { value: "$0", label: t("monthlyFee") },
   ];
   return (
     <div className="flex gap-10">
