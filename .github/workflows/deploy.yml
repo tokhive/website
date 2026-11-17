@@ -34,8 +34,7 @@ jobs:
       - name: Build static website
         run: npm run build
         env:
-          # Until production opens, the site shows the dev network's data.
-          NEXT_PUBLIC_HIVE_API_URL: https://dev.tokhive.ai
+          NEXT_PUBLIC_HIVE_API_URL: https://console.tokhive.ai
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
