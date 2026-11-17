@@ -14,7 +14,8 @@ export const LINKS = {
   telegram: "https://t.me/tokhive",
   discord: "https://discord.gg/nrVU4vSShw",
   signIn: CONSOLE_URL,
-  getApiKey: CONSOLE_URL,
+  // New buyers need an account first, so this opens registration.
+  getApiKey: `${CONSOLE_URL}/register`,
   shareQuota: CONSOLE_URL,
   connectPlan: CONSOLE_URL,
   verifier: "https://github.com/tokhive/verifier",

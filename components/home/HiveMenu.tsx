@@ -7,7 +7,7 @@ import { Chip } from "@/components/Chip";
 import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { hiveMenuRows } from "@/lib/hive-menu-layout";
 import { useMediaQuery } from "@/lib/useMediaQuery";
-import { formatInputPrice, modelPlatformLabel, modelSavings } from "@/lib/public-models";
+import { formatInputPrice, modelPlatformLabel, modelSavings, offeredFirst } from "@/lib/public-models";
 
 const TONES = ["bg-volt text-ink", "bg-surface-2 text-paper", "bg-surface-3 text-paper"];
 
@@ -23,7 +23,7 @@ export function HiveMenu() {
   const mobile = useMediaQuery("(max-width: 767px)");
   const perRow = narrow ? 2 : 4;
 
-  const tiles = models.filter((m) => !selected || m.platform === selected);
+  const tiles = models.filter((m) => !selected || m.platform === selected).sort(offeredFirst);
   const rows = hiveMenuRows(tiles, perRow, mobile).slice(0, 3);
 
   return (
@@ -61,12 +61,12 @@ export function HiveMenu() {
                   <span className="font-mono text-[11px] tracking-[0.06em] opacity-70">{modelPlatformLabel(m.platform)}</span>
                   <span className="comb-name leading-[1.15] font-semibold tracking-[-0.01em]">{m.name}</span>
                   <span className="mt-1.5 max-w-full break-all font-mono text-[13px]">
-                    {m.minimum_input_price === null ? common("unavailable") : formatInputPrice(m.minimum_input_price)}{" "}
+                    {m.minimum_input_price === null ? common("comingBackSoon") : formatInputPrice(m.minimum_input_price)}{" "}
                     {savings !== null && m.official_input_price !== null && (
                       <span className="line-through opacity-60">{formatInputPrice(m.official_input_price)}</span>
                     )}
                   </span>
-                  <span className="font-mono text-[11px] opacity-70">{t("perInput")}</span>
+                  {m.minimum_input_price !== null && <span className="font-mono text-[11px] opacity-70">{t("perInput")}</span>}
                   {savings !== null && <span className="mt-1.5 font-mono text-[15px] font-semibold">−{savings}%</span>}
                 </div>
               );

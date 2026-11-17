@@ -3,7 +3,7 @@ import { once } from "node:events";
 import { test } from "node:test";
 import { createMockServer } from "../mock/server.mjs";
 import fixture from "../mock/models.json" with { type: "json" };
-import { comparePrices, estimateModelCost, fetchModelPrices, formatContextWindow, formatInputPrice, modelPlatformLabel, modelSavings, parseModelPrices, priceDifference } from "../lib/public-models.ts";
+import { comparePrices, estimateModelCost, fetchModelPrices, formatContextWindow, formatInputPrice, modelPlatformLabel, modelSavings, offeredFirst, parseModelPrices, priceDifference } from "../lib/public-models.ts";
 
 async function start(t, scenario) {
   const server = createMockServer({ scenario });
@@ -94,4 +94,14 @@ test("display keeps tiny decimal prices and computes discounts without float rou
   assert.equal(modelPlatformLabel("openai"), "OpenAI");
   assert.equal(modelPlatformLabel("new-platform"), "new-platform");
   assert.equal(modelPlatformLabel("constructor"), "constructor");
+});
+
+test("models without a current quote sort after offered ones and keep their order", () => {
+  const models = [
+    { id: "claude-a", minimum_prices: null },
+    { id: "gpt-a", minimum_prices: { input: "0.2" } },
+    { id: "claude-b", minimum_prices: null },
+    { id: "gpt-b", minimum_prices: { input: "0.1" } },
+  ];
+  assert.deepEqual([...models].sort(offeredFirst).map((m) => m.id), ["gpt-a", "gpt-b", "claude-a", "claude-b"]);
 });

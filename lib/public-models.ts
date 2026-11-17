@@ -131,6 +131,11 @@ export function weightedSavings(
   return savings > 0 ? savings : null;
 }
 
+/** Sorts models with a current quote before those without one; keeps the order otherwise. */
+export function offeredFirst(a: Pick<PublicModelPrice, "minimum_prices">, b: Pick<PublicModelPrice, "minimum_prices">): number {
+  return Number(a.minimum_prices === null) - Number(b.minimum_prices === null);
+}
+
 export function comparePrices(a: string | null, b: string | null): number {
   if (a === null) return b === null ? 0 : 1;
   if (b === null) return -1;

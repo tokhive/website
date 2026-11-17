@@ -11,7 +11,7 @@ import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
 import {
   comparePrices, formatContextWindow, formatInputPrice,
-  modelPlatformLabel, modelSavings, platformColor, PRICE_ITEMS,
+  modelPlatformLabel, modelSavings, offeredFirst, platformColor, PRICE_ITEMS,
   type PublicModelPrice as Model,
 } from "@/lib/public-models";
 
@@ -35,7 +35,7 @@ const parseList = <T extends string>(raw: string | null, allowed: readonly T[]) 
 const curl = (id: string) =>
   [
     "curl https://api.tokhive.ai/v1/chat/completions \\",
-    '  -H "Authorization: Bearer $TOKHIVE_API_KEY" \\',
+    '  -H "Authorization: Bearer $HIVE_API_KEY" \\',
     `  -d '{"model":"${id}","messages":[…]}'`,
   ].join("\n");
 
@@ -100,9 +100,9 @@ export function ModelsExplorer() {
         (!vendors.length || vendors.includes(modelPlatformLabel(m.platform))) &&
         tags.every((t) => m.capabilities.includes(t)) &&
         (!needle || `${m.name} ${m.id}`.toLowerCase().includes(needle)),
-    ).sort(sort === "Capacity"
-      ? (a, b) => (capacity(freeByModel, b.id) ?? -1) - (capacity(freeByModel, a.id) ?? -1) || COMPARE.Name(a, b)
-      : COMPARE[sort]);
+    ).sort((a, b) => offeredFirst(a, b) || (sort === "Capacity"
+      ? (capacity(freeByModel, b.id) ?? -1) - (capacity(freeByModel, a.id) ?? -1) || COMPARE.Name(a, b)
+      : COMPARE[sort](a, b)));
   }, [models, q, vendors, tags, sort, freeByModel]);
 
   const toggleVendor = (v: string) => setVendors((vs) => (vs.includes(v) ? vs.filter((x) => x !== v) : [...vs, v]));
@@ -325,7 +325,7 @@ function PriceSummary({ model }: { model: Model }) {
   const common = useTranslations("Common");
   return (
     <span className="flex flex-col gap-[3px] font-mono">
-      <span>{model.minimum_prices === null ? common("unavailable") : `${priceLabel(model.minimum_prices.input)} / ${priceLabel(model.minimum_prices.output)}`}</span>
+      <span>{model.minimum_prices === null ? common("comingBackSoon") : `${priceLabel(model.minimum_prices.input)} / ${priceLabel(model.minimum_prices.output)}`}</span>
       <span className="text-xs text-muted-2">{t("official", { input: priceLabel(model.official_prices.input), output: priceLabel(model.official_prices.output) })}</span>
     </span>
   );

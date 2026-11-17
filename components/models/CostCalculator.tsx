@@ -62,7 +62,7 @@ export function CostCalculator() {
         </div>
         <div className="flex flex-col gap-3.5 font-mono text-[13px]">
           <Bar label={t("official")} value={official === null ? "—" : formatInputPrice(official)} width={width(official)} fill="bg-ink/35" />
-          <Bar label={t("tokhive")} value={ours === null ? common("unavailable") : formatInputPrice(ours)} width={width(ours)} fill="bg-ink" strong />
+          <Bar label={t("tokhive")} value={ours === null ? common("comingBackSoon") : formatInputPrice(ours)} width={width(ours)} fill="bg-ink" strong />
         </div>
         <a
           href={LINKS.getApiKey}
