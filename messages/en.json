@@ -1,24 +1,24 @@
 {
   "Metadata": {
     "site": {
-      "title": "TokHive · Official AI for less",
-      "description": "Providers earn from idle AI subscription quota. Builders get official Claude and GPT below list price, TEE-verified."
+      "title": "TokHive · Official Claude & GPT API for Less",
+      "description": "Official Claude and GPT APIs below list price, TEE-verified. Works with Claude Code, Codex and the OpenAI and Anthropic SDKs. Earn from idle AI subscriptions."
     },
     "models": {
-      "title": "Models & Pricing",
-      "description": "Compare official model prices with TokHive quotes for input, output and cached tokens."
+      "title": "Claude & GPT API Pricing",
+      "description": "Compare official Claude and GPT API prices per million tokens with the lowest TokHive prices for input, output and cached tokens."
     },
     "network": {
-      "title": "Network",
-      "description": "Live TokHive network: providers online, token usage and TEE attestations."
+      "title": "Live Network Stats",
+      "description": "Live TokHive network: providers online, token usage and TEE attestations for Claude and GPT API requests."
     },
     "providers": {
-      "title": "Providers",
-      "description": "Earn from idle AI subscription quota with real-time settlement. Withdraw from your wallet in Web3 stablecoins with a $10 minimum."
+      "title": "Earn from Idle ChatGPT & Claude Subscriptions",
+      "description": "Share unused ChatGPT and Claude subscription quota and earn per request, settled in real time. Withdraw in Web3 stablecoins with a $10 minimum."
     },
     "security": {
-      "title": "Security & Verification",
-      "description": "Explore TokHive’s AMD SEV-SNP confidential VM, credential isolation, signed attestations and open-source verification."
+      "title": "Security & TEE Verification",
+      "description": "How TokHive protects Claude and GPT API requests: an AMD SEV-SNP confidential VM, credential isolation, signed receipts and an open-source verifier."
     }
   },
   "Common": {

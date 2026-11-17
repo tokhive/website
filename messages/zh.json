@@ -1,24 +1,24 @@
 {
   "Metadata": {
     "site": {
-      "title": "TokHive · 官方 AI，更低价格",
-      "description": "贡献者把 AI 订阅中闲置的额度变成收益；开发者以低于官方标价的价格使用正版 Claude 和 GPT，全程经 TEE 验证。"
+      "title": "TokHive · 官方 Claude 与 GPT API，更低价格",
+      "description": "以低于官方标价的价格使用正版 Claude 和 GPT API，每次调用经 TEE 验证；支持 Claude Code、Codex 及 OpenAI、Anthropic SDK。闲置的 AI 订阅额度也能变成收益。"
     },
     "models": {
-      "title": "模型与价格",
-      "description": "对比官方模型价格与 TokHive 报价，涵盖输入、输出和缓存 Token。"
+      "title": "Claude 与 GPT API 价格",
+      "description": "对比 Claude、GPT 官方 API 每百万 Token 价格与 TokHive 最低价，涵盖输入、输出和缓存 Token。"
     },
     "network": {
-      "title": "网络",
-      "description": "TokHive 实时网络：在线贡献者、Token 用量和 TEE 证明。"
+      "title": "实时网络数据",
+      "description": "TokHive 实时网络：在线贡献者、Token 用量，以及 Claude 和 GPT API 请求的 TEE 证明。"
     },
     "providers": {
-      "title": "贡献者",
-      "description": "用闲置的 AI 订阅额度赚取收益，实时结算。可从钱包以 Web3 稳定币提现，最低 $10。"
+      "title": "闲置 ChatGPT 与 Claude 订阅变现",
+      "description": "分享 ChatGPT、Claude 订阅中用不完的额度，按请求赚取收益并实时结算。可从钱包以 Web3 稳定币提现，最低 $10。"
     },
     "security": {
-      "title": "安全与验证",
-      "description": "了解 TokHive 的 AMD SEV-SNP 机密虚拟机、凭证隔离、签名证明和开源验证工具。"
+      "title": "安全与 TEE 验证",
+      "description": "TokHive 如何保护 Claude 与 GPT API 请求：AMD SEV-SNP 机密虚拟机、凭证隔离、签名回执和开源验证工具。"
     }
   },
   "Common": {

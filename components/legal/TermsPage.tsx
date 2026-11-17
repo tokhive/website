@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { LegalDocument, type LegalSection } from "@/components/legal/LegalDocument";
 import { LINKS } from "@/lib/links";
-import { alternates } from "@/i18n/metadata";
+import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
-export const termsMetadata = (locale: Locale): Metadata => ({
-  title: "Terms of Service",
-  description: "Draft terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.",
-  robots: { index: false, follow: true },
-  alternates: alternates("/terms", locale),
-});
+export const termsMetadata = (locale: Locale): Metadata =>
+  legalMetadata("/terms", locale, "Terms of Service", "Draft terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.");
 
 const sections: LegalSection[] = [
   {

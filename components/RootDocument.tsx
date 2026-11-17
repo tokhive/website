@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
-import { alternates, SITE_URL } from "@/i18n/metadata";
+import { alternates, SITE_URL, socialMetadata } from "@/i18n/metadata";
 import { LANGUAGE_TAGS, type Locale } from "@/i18n/routing";
 import { jetbrains, sora } from "@/app/fonts";
 import "@/app/globals.css";
@@ -14,6 +14,7 @@ export async function rootMetadata(locale: Locale): Promise<Metadata> {
     title: { default: t("site.title"), template: "%s · TokHive" },
     description: t("site.description"),
     alternates: alternates("/", locale),
+    ...socialMetadata("/", locale, t("site.title"), t("site.description")),
   };
 }
 
