@@ -8,6 +8,7 @@ import { HiveMenu } from "@/components/home/HiveMenu";
 import { Pipeline } from "@/components/home/Pipeline";
 import { PrivateFromProviders } from "@/components/home/PrivateFromProviders";
 import { PriceTape } from "@/components/home/PriceTape";
+import { StructuredData } from "@/components/home/StructuredData";
 import { VerifiedOrigin } from "@/components/home/VerifiedOrigin";
 import { Faq } from "@/components/home/Faq";
 import { Link } from "@/i18n/navigation";
@@ -20,6 +21,7 @@ export function HomePage() {
     <EarningsProvider>
       <ModelsProvider>
         <main>
+          <StructuredData />
           <Hero />
           <PriceTape />
           <VerifiedOrigin />

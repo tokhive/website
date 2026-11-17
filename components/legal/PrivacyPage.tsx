@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { LegalDocument, type LegalSection } from "@/components/legal/LegalDocument";
 import { LINKS } from "@/lib/links";
-import { alternates } from "@/i18n/metadata";
+import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
-export const privacyMetadata = (locale: Locale): Metadata => ({
-  title: "Privacy Policy",
-  description: "Draft privacy policy for TokHive account information, API processing, encrypted credentials, diagnostics and payment records.",
-  robots: { index: false, follow: true },
-  alternates: alternates("/privacy", locale),
-});
+export const privacyMetadata = (locale: Locale): Metadata =>
+  legalMetadata("/privacy", locale, "Privacy Policy", "Draft privacy policy for TokHive account information, API processing, encrypted credentials, diagnostics and payment records.");
 
 const sections: LegalSection[] = [
   {
