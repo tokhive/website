@@ -131,6 +131,25 @@
       },
       "signatureValid": "✓ Signature valid"
     },
+    "privacy": {
+      "eyebrow": "PRIVATE FROM PROVIDERS",
+      "title": "Your prompts stay yours. Providers only relay encrypted bytes.",
+      "trustModel": "Who can see what ↗",
+      "steps": {
+        "sealed": {
+          "title": "Sealed past the provider",
+          "description": "The TLS session to the upstream ends inside the enclave. The provider's machine carries only encrypted bytes it cannot read or change."
+        },
+        "anonymous": {
+          "title": "No identity shared",
+          "description": "Providers never learn who sent a request. Their receipts show only the target host, byte counts and timing."
+        },
+        "disclosed": {
+          "title": "Clear about the rest",
+          "description": "Hive routes your requests and handles them like any API provider does. We publish exactly who can see what."
+        }
+      }
+    },
     "earnings": {
       "eyebrow": "PROVIDER EARNINGS · ALL TIME",
       "settle": "Earnings settle in real time after each successful request.",

@@ -6,6 +6,7 @@ import { Hero } from "@/components/home/Hero";
 import { ModelsProvider } from "@/components/ModelsProvider";
 import { HiveMenu } from "@/components/home/HiveMenu";
 import { Pipeline } from "@/components/home/Pipeline";
+import { PrivateFromProviders } from "@/components/home/PrivateFromProviders";
 import { PriceTape } from "@/components/home/PriceTape";
 import { VerifiedOrigin } from "@/components/home/VerifiedOrigin";
 import { Faq } from "@/components/home/Faq";
@@ -23,6 +24,7 @@ export function HomePage() {
           <PriceTape />
           <VerifiedOrigin />
           <Pipeline />
+          <PrivateFromProviders />
           <Earnings />
           <HiveMenu />
           <AgentTools />
