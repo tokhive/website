@@ -131,6 +131,25 @@
       },
       "signatureValid": "✓ 签名有效"
     },
+    "privacy": {
+      "eyebrow": "对贡献者保密",
+      "title": "你的请求只属于你，贡献者只转发加密数据。",
+      "trustModel": "谁能看到什么 ↗",
+      "steps": {
+        "sealed": {
+          "title": "加密穿过贡献者",
+          "description": "与上游的 TLS 会话在飞地内终止，贡献者的机器只转发加密数据，无法读取或篡改。"
+        },
+        "anonymous": {
+          "title": "不暴露身份",
+          "description": "贡献者不知道请求来自谁，回执中只能看到目标主机、字节数和时间。"
+        },
+        "disclosed": {
+          "title": "其余如实公开",
+          "description": "Hive 负责路由请求，和任何 API 服务一样会处理请求内容。谁能看到什么，我们都公开写明。"
+        }
+      }
+    },
     "earnings": {
       "eyebrow": "贡献者收益 · 累计",
       "settle": "每次请求成功后，收益实时结算。",
