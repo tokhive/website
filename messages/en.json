@@ -25,7 +25,7 @@
     "tryAgain": "Try again",
     "copy": "Copy",
     "copied": "Copied ✓",
-    "unavailable": "Unavailable",
+    "comingBackSoon": "Coming back soon",
     "getApiKey": "Get API key →"
   },
   "Nav": {
@@ -256,7 +256,7 @@
       "output": "OUTPUT TOKENS / MONTH",
       "additional": "ADDITIONAL COST / MONTH",
       "save": "YOU SAVE / MONTH",
-      "noQuote": "No current quote is available for this model.",
+      "noQuote": "This model is coming back soon; no quote is available right now.",
       "exceeds": "The current quote exceeds the official list price.",
       "lessThan": "{pct}% less than paying the vendor directly",
       "compared": "Compared with the official list price.",

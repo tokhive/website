@@ -25,7 +25,7 @@
     "tryAgain": "重试",
     "copy": "复制",
     "copied": "已复制 ✓",
-    "unavailable": "暂无报价",
+    "comingBackSoon": "即将恢复",
     "getApiKey": "获取 API Key →"
   },
   "Nav": {
@@ -256,7 +256,7 @@
       "output": "每月输出 Token",
       "additional": "每月额外费用",
       "save": "每月节省",
-      "noQuote": "该模型当前没有报价。",
+      "noQuote": "该模型即将恢复，目前暂无报价。",
       "exceeds": "当前报价高于官方标价。",
       "lessThan": "比直接向官方付费少 {pct}%",
       "compared": "与官方标价相比。",
