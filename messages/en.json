@@ -478,6 +478,28 @@
         }
       }
     },
+    "protections": {
+      "eyebrow": "Built-in protections",
+      "title": "Your account stays in your hands.",
+      "details": "Read the security details →",
+      "items": {
+        "stop": {
+          "label": "OFF SWITCH",
+          "title": "Stop Bee, and nothing runs",
+          "description": "The TEE can reach the vendor only through a connection that your running Bee relays. When Bee is stopped, no request can run on your account, and the credential it uploaded lapses when the access token expires."
+        },
+        "local": {
+          "label": "CREDENTIALS",
+          "title": "Your refresh token stays on your computer",
+          "description": "Bee uploads only the access token, sealed to the TEE. The refresh token stays in the official client's local store, so renewing access always happens on your machine."
+        },
+        "open": {
+          "label": "SOFTWARE",
+          "title": "Open source, with a fixed list of hosts",
+          "description": "Bee is MIT-licensed and public on GitHub, so you can read it or build it yourself. It connects only to Hive and to the vendor endpoints on its allowlist, and it relays buyer traffic as encrypted bytes it cannot read."
+        }
+      }
+    },
     "controls": {
       "eyebrow": "You stay in control",
       "title": "Share on your terms.",
