@@ -13,8 +13,8 @@ export const VERIFY = ["requestId", "run", "measurement", "upstream"] as const;
 
 export const VERIFY_COMMAND = [
   "./bin/tokhive-verify verify \\",
-  '  --request-id "$TOKHIVE_REQUEST_ID" \\',
-  '  --expected-app "$TOKHIVE_EXPECTED_APP" \\',
+  '  --request-id "$HIVE_REQUEST_ID" \\',
+  '  --expected-app "$HIVE_EXPECTED_APP" \\',
   "  --expected-host api.anthropic.com \\",
   "  --response response.raw",
 ].join("\n");

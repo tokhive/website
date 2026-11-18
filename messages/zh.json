@@ -681,7 +681,7 @@
         }
       },
       "terminal": "终端 · 示例",
-      "instructions": "先在验证工具仓库中运行 <code>make build</code>。将 <code>TOKHIVE_API_KEY</code> 设为你的买家 API Key，<code>TOKHIVE_REQUEST_ID</code> 设为请求 ID，<code>TOKHIVE_EXPECTED_APP</code> 设为下方签名发布目录中生产环境的 <code>snp-app:{sha}</code> 身份。本示例检查 Anthropic 的上游主机，并比对保存为 <code>response.raw</code> 的上游原始响应体。"
+      "instructions": "先在验证工具仓库中运行 <code>make build</code>。将 <code>HIVE_API_KEY</code> 设为你的买家 API Key，<code>HIVE_REQUEST_ID</code> 设为请求 ID，<code>HIVE_EXPECTED_APP</code> 设为下方签名发布目录中生产环境的 <code>snp-app:{sha}</code> 身份。本示例检查 Anthropic 的上游主机，并比对保存为 <code>response.raw</code> 的上游原始响应体。"
     },
     "release": {
       "eyebrow": "可信发布身份",

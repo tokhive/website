@@ -681,7 +681,7 @@
         }
       },
       "terminal": "terminal · example",
-      "instructions": "Run <code>make build</code> in the verifier repository first. Set <code>TOKHIVE_API_KEY</code> to your buyer API key, <code>TOKHIVE_REQUEST_ID</code> to your request ID, and <code>TOKHIVE_EXPECTED_APP</code> to the production <code>snp-app:{sha}</code> identity from the signed release catalog below. This example checks Anthropic's upstream host and compares the exact upstream response body saved as <code>response.raw</code>."
+      "instructions": "Run <code>make build</code> in the verifier repository first. Set <code>HIVE_API_KEY</code> to your buyer API key, <code>HIVE_REQUEST_ID</code> to your request ID, and <code>HIVE_EXPECTED_APP</code> to the production <code>snp-app:{sha}</code> identity from the signed release catalog below. This example checks Anthropic's upstream host and compares the exact upstream response body saved as <code>response.raw</code>."
     },
     "release": {
       "eyebrow": "Trusted release identity",
