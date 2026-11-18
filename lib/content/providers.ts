@@ -18,6 +18,7 @@ export const PROVIDER_STEPS = ["signIn", "share", "earn"] as const;
 export const PROVIDER_CONTROLS = ["stop", "start", "track", "keep"] as const;
 export const PROVIDER_SAFETY = ["encrypted", "aup", "limits", "audit"] as const;
 export const PROVIDER_RISKS = ["vendor", "rejection"] as const;
+export const PROVIDER_PROTECTIONS = ["stop", "local", "open"] as const;
 export const PROVIDER_FAQ = ["idle", "slower", "stop", "withdraw", "calculated", "credits", "apiKey", "registered", "computer"] as const;
 export const SETTLEMENT_STATS = ["realTime", "minimum", "web3"] as const;
 

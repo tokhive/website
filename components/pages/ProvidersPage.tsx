@@ -13,6 +13,7 @@ import {
   SETTLEMENT_TOTAL,
   PROVIDER_CONTROLS,
   PROVIDER_FAQ,
+  PROVIDER_PROTECTIONS,
   PROVIDER_RISKS,
   PROVIDER_SAFETY,
   PROVIDER_STEPS,
@@ -88,6 +89,33 @@ export function ProvidersPage() {
                 </li>
               ))}
             </ol>
+          </section>
+          <section className="content-section flex flex-col gap-10 pt-[120px]">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="section-intro">
+                <span className="eyebrow">{t("protections.eyebrow")}</span>
+                <h2 className="section-title">{t("protections.title")}</h2>
+              </div>
+              <a
+                href={LINKS.providerSecurity}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-b border-volt pb-0.5 text-sm font-semibold"
+              >
+                {t("protections.details")}
+              </a>
+            </div>
+            <div className="grid gap-2.5 md:grid-cols-3">
+              {PROVIDER_PROTECTIONS.map((key) => (
+                <article key={key} className="flex flex-col gap-3 rounded-[18px] bg-surface p-7">
+                  <span className="font-mono text-[11px] font-medium tracking-[.1em] text-volt">
+                    {t(`protections.items.${key}.label`)}
+                  </span>
+                  <h3 className="text-lg font-semibold">{t(`protections.items.${key}.title`)}</h3>
+                  <p className="text-sm leading-[1.6] text-muted">{t(`protections.items.${key}.description`)}</p>
+                </article>
+              ))}
+            </div>
           </section>
           <section className="content-section split-section grid gap-[72px] pt-[120px] lg:grid-cols-[360px_1fr]">
             <div className="section-intro">
