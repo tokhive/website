@@ -11,7 +11,7 @@ import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { useNetworkSnapshot } from "@/components/network/useNetworkSnapshot";
 import {
   comparePrices, formatContextWindow, formatInputPrice,
-  modelPlatformLabel, modelSavings, offeredFirst, platformColor, PRICE_ITEMS,
+  modelPlatformLabel, modelSavings, offeredFirst, platformColor, platformOrder, PRICE_ITEMS, showsNoSupply,
   type PublicModelPrice as Model,
 } from "@/lib/public-models";
 
@@ -22,7 +22,8 @@ type Sort = (typeof SORTS)[number];
 const capacity = (free: Map<string, number> | null, id: string) => (free ? (free.get(id) ?? null) : undefined);
 
 const COMPARE: Record<Exclude<Sort, "Capacity">, (a: Model, b: Model) => number> = {
-  Name: (a, b) => a.name.localeCompare(b.name) || a.id.localeCompare(b.id),
+  // The default order: OpenAI's models, then Anthropic's, each by name.
+  Name: (a, b) => platformOrder(a, b) || a.name.localeCompare(b.name) || a.id.localeCompare(b.id),
   Savings: (a, b) => (modelSavings(b) ?? -1) - (modelSavings(a) ?? -1),
   Price: (a, b) => comparePrices(a.minimum_input_price, b.minimum_input_price),
 };
@@ -366,9 +367,9 @@ function ModelDetails({ model, mobile = false }: { model: Model; mobile?: boolea
   );
 }
 
-function CapacityBar({ free, width }: { free: number | null | undefined; width: string }) {
+function CapacityBar({ free, platform, width }: { free: number | null | undefined; platform: string; width: string }) {
   const t = useTranslations("Models.explorer");
-  if (free === undefined) return null;
+  if (free === undefined || (free === null && !showsNoSupply(platform))) return null;
   if (free === null) return <span className="font-mono text-[11px] text-muted-2" title={t("noSupplyTitle")}>{t("noSupply")}</span>;
   return (
     <span className="flex items-center gap-2">
@@ -397,7 +398,7 @@ function MobileModelCard({ m, free, open, onToggle }: { m: Model; free: number |
         </span>
         <span className="flex w-full items-end justify-between gap-2 text-sm">
           <PriceSummary model={m} />
-          <span className="flex items-center gap-2"><CapacityBar free={free} width="w-12" /><span className="w-3.5 text-right text-muted">{open ? "−" : "+"}</span></span>
+          <span className="flex items-center gap-2"><CapacityBar free={free} platform={m.platform} width="w-12" /><span className="w-3.5 text-right text-muted">{open ? "−" : "+"}</span></span>
         </span>
       </button>
       {open && <div id={`mobile-${m.id}`} className="px-5 pb-[22px]"><ModelDetails model={m} mobile /></div>}
@@ -419,7 +420,7 @@ function ModelRow({ m, free, open, onToggle }: { m: Model; free: number | null |
         </span>
         <span role="cell" className="font-mono text-text-2">{formatContextWindow(m.context_window)}</span>
         <span role="cell"><PriceSummary model={m} /></span>
-        <span role="cell"><CapacityBar free={free} width="w-16" /></span>
+        <span role="cell"><CapacityBar free={free} platform={m.platform} width="w-16" /></span>
         <span role="cell" className="text-right"><Savings model={m} /></span>
         <span role="cell" className="text-right font-mono text-sm text-muted" aria-hidden="true">{open ? "−" : "+"}</span>
       </div>

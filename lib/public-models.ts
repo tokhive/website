@@ -136,6 +136,23 @@ export function offeredFirst(a: Pick<PublicModelPrice, "minimum_prices">, b: Pic
   return Number(a.minimum_prices === null) - Number(b.minimum_prices === null);
 }
 
+const PLATFORM_ORDER = ["openai", "anthropic"];
+
+/** Sorts OpenAI models before Anthropic ones and any other platform after both; keeps the order otherwise. */
+export function platformOrder(a: Pick<PublicModelPrice, "platform">, b: Pick<PublicModelPrice, "platform">): number {
+  const rank = (platform: string) => (PLATFORM_ORDER.includes(platform) ? PLATFORM_ORDER.indexOf(platform) : PLATFORM_ORDER.length);
+  return rank(a.platform) - rank(b.platform);
+}
+
+/**
+ * Whether a model with no accounts online says so. Anthropic models are also
+ * served through reseller fallback, which has no accounts to count, so their
+ * capacity is left blank instead.
+ */
+export function showsNoSupply(platform: string): boolean {
+  return platform !== "anthropic";
+}
+
 export function comparePrices(a: string | null, b: string | null): number {
   if (a === null) return b === null ? 0 : 1;
   if (b === null) return -1;

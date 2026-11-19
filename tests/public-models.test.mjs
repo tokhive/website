@@ -3,7 +3,7 @@ import { once } from "node:events";
 import { test } from "node:test";
 import { createMockServer } from "../mock/server.mjs";
 import fixture from "../mock/models.json" with { type: "json" };
-import { comparePrices, estimateModelCost, fetchModelPrices, formatContextWindow, formatInputPrice, modelPlatformLabel, modelSavings, offeredFirst, parseModelPrices, priceDifference } from "../lib/public-models.ts";
+import { comparePrices, estimateModelCost, fetchModelPrices, formatContextWindow, formatInputPrice, modelPlatformLabel, modelSavings, offeredFirst, parseModelPrices, platformOrder, priceDifference, showsNoSupply } from "../lib/public-models.ts";
 
 async function start(t, scenario) {
   const server = createMockServer({ scenario });
@@ -104,4 +104,21 @@ test("models without a current quote sort after offered ones and keep their orde
     { id: "gpt-b", minimum_prices: { input: "0.1" } },
   ];
   assert.deepEqual([...models].sort(offeredFirst).map((m) => m.id), ["gpt-a", "gpt-b", "claude-a", "claude-b"]);
+});
+
+test("OpenAI models sort before Anthropic ones, other platforms last, keeping their order", () => {
+  const models = [
+    { id: "claude-b", platform: "anthropic" },
+    { id: "gemini-a", platform: "google" },
+    { id: "gpt-b", platform: "openai" },
+    { id: "claude-a", platform: "anthropic" },
+    { id: "gpt-a", platform: "openai" },
+  ];
+  assert.deepEqual([...models].sort(platformOrder).map((m) => m.id), ["gpt-b", "gpt-a", "claude-b", "claude-a", "gemini-a"]);
+});
+
+test("only Anthropic models leave missing capacity blank", () => {
+  assert.equal(showsNoSupply("openai"), true);
+  assert.equal(showsNoSupply("google"), true);
+  assert.equal(showsNoSupply("anthropic"), false);
 });

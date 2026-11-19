@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { formatInt } from "@/lib/format";
+import { showsNoSupply } from "@/lib/public-models";
 import { planLabel, type NetVendor, type PublicNetwork } from "@/lib/public-network";
 
 export const NET_VENDOR_COLORS: Record<NetVendor, string> = {
@@ -48,7 +49,7 @@ export function ModelShareCard({ data }: { data: PublicNetwork | null }) {
             </div>
             <span className="text-right font-mono text-[13px]">{((m.tokens / total) * 100).toFixed(1)}%</span>
             <span className={`text-right font-mono text-xs ${free !== null && free < 25 ? "text-warn" : "text-muted"}`}>
-              {free === null ? t("noSupply") : t("free", { pct: free })}
+              {free === null ? (showsNoSupply(m.vendor) ? t("noSupply") : null) : t("free", { pct: free })}
             </span>
           </div>
         );
