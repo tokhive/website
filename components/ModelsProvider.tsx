@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { fetchModelPrices, type PublicModelPrice } from "@/lib/public-models";
+import { fetchModelPrices, platformOrder, type PublicModelPrice } from "@/lib/public-models";
 import { HIVE_API_BASE_URL } from "@/lib/public-api";
 
 type ModelsState = {
@@ -23,7 +23,9 @@ export function ModelsProvider({ children, offeredOnly = false }: { children: Re
     const timeout = setTimeout(() => controller.abort(), 10_000);
     fetchModelPrices(HIVE_API_BASE_URL, controller.signal)
       .then((models) => {
-        if (active) setState({ status: "ready", models: offeredOnly ? models.filter((m) => m.minimum_prices !== null) : models });
+        // Hive lists platforms alphabetically; every list here leads with OpenAI.
+        const ordered = [...models].sort(platformOrder);
+        if (active) setState({ status: "ready", models: offeredOnly ? ordered.filter((m) => m.minimum_prices !== null) : ordered });
       })
       .catch(() => { if (active) setState({ status: "error", models: [] }); })
       .finally(() => clearTimeout(timeout));
