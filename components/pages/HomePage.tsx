@@ -14,6 +14,7 @@ import { Faq } from "@/components/home/Faq";
 import { Link } from "@/i18n/navigation";
 import { LINKS } from "@/lib/links";
 import { useTranslations } from "next-intl";
+import type { PublicModelPrice } from "@/lib/public-models";
 
 // The closing call to action: one card per audience, as in the hero.
 const CTA_CARD =
@@ -22,11 +23,11 @@ const CTA_EYEBROW = "font-mono text-[11px] tracking-[.1em] md:text-[13px]";
 // Sized so each label stays on one line in its half of the row.
 const CTA_LABEL = "text-lg font-bold tracking-[-.02em] md:text-3xl md:tracking-[-.04em] lg:text-4xl xl:text-5xl";
 
-export function HomePage() {
+export function HomePage({ initialModels }: { initialModels: PublicModelPrice[] | null }) {
   const t = useTranslations("Home.closingCta");
   return (
     <EarningsProvider>
-      <ModelsProvider>
+      <ModelsProvider initial={initialModels}>
         <main>
           <StructuredData />
           <Hero />

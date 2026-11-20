@@ -11,6 +11,8 @@ export function Hero() {
   const common = useTranslations("Common");
   return (
     <section className="home-hero relative min-[1024px]:h-[720px]">
+      {/* The giant words are the design; the page's heading is this one, visually hidden. */}
+      <h1 className="sr-only">{t("heading")}</h1>
       <div className="absolute inset-0 overflow-hidden">
         <HexField
           cols={34}

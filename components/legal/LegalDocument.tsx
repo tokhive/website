@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { Nav } from "@/components/Nav";
+import { EFFECTIVE } from "@/lib/legal";
 import { LINKS } from "@/lib/links";
 
 export type LegalSection = { id: string; title: string; content: ReactNode };
@@ -13,9 +14,6 @@ type Props = {
   href: string;
   sections: LegalSection[];
 };
-
-/** The date the current version of every policy took effect. */
-const EFFECTIVE = { iso: "2026-11-20", label: "November 20, 2026" };
 
 const policies = [
   { title: "Terms of Service", href: LINKS.terms },

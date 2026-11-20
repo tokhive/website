@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 import { Accordion } from "@/components/Accordion";
+import { FaqStructuredData } from "@/components/FaqStructuredData";
 import { Footer } from "@/components/Footer";
+import { HeadingPrefix } from "@/components/HeadingPrefix";
 import { HexField } from "@/components/HexField";
 import { Nav } from "@/components/Nav";
 import { EarningsProvider } from "@/components/home/EarningsProvider";
@@ -48,6 +50,7 @@ export function ProvidersPage() {
               <div className="flex min-w-0 flex-col gap-6">
                 <span className="eyebrow">{t("hero.eyebrow")}</span>
                 <h1 className="provider-title text-[84px] leading-[.92] font-bold tracking-[-.055em]">
+                  <HeadingPrefix page="providers" />
                   {t("hero.titleLine1")}
                   <br />
                   <span className="text-volt">{t("hero.titleLine2")}</span>
@@ -217,6 +220,7 @@ export function ProvidersPage() {
               <h2 className="section-title">{t("faq.title")}</h2>
             </div>
             <Accordion items={faq} />
+            <FaqStructuredData items={faq} />
           </section>
           <section className="provider-cta my-[120px] flex flex-wrap items-center justify-between gap-8 rounded-card-lg bg-volt p-14 text-ink">
             <div className="flex flex-col gap-2.5">

@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { CopyButton } from "@/components/CopyButton";
 import { Footer } from "@/components/Footer";
+import { HeadingPrefix } from "@/components/HeadingPrefix";
 import { Nav } from "@/components/Nav";
 import { Link } from "@/i18n/navigation";
 import { LINKS } from "@/lib/links";
@@ -37,6 +38,7 @@ export function SecurityPage() {
           <div className="section-intro">
             <span className="eyebrow">{t("hero.eyebrow")}</span>
             <h1 className="h1">
+              <HeadingPrefix page="security" />
               {t("hero.titleLine1")}
               <br />
               <span className="outline-word">{t("hero.titleLine2")}</span>

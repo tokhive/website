@@ -26,7 +26,8 @@
     "copy": "复制",
     "copied": "已复制 ✓",
     "comingBackSoon": "即将恢复",
-    "getApiKey": "获取 API Key →"
+    "getApiKey": "获取 API Key →",
+    "headingPrefix": "{title}："
   },
   "Nav": {
     "label": "主导航",
@@ -76,6 +77,7 @@
   },
   "Home": {
     "hero": {
+      "heading": "TokHive：低于官方价格的正版 Claude 与 GPT API，闲置 AI 订阅也能赚钱",
       "providersEyebrow": "贡献者",
       "earn": "赚钱。",
       "providersLead": "把 Claude 或 ChatGPT 订阅里闲置的额度变成收益。",
@@ -118,10 +120,22 @@
       "heading": "一次请求的旅程",
       "sub": "每一跳都经过封装和签名",
       "hops": {
-        "request": { "title": "你的请求", "detail": "api.tokhive.ai" },
-        "router": { "title": "TokHive 路由", "detail": "选择贡献者" },
-        "tee": { "title": "TEE 飞地", "detail": "AMD SEV-SNP · 已封装" },
-        "official": { "title": "官方 API", "detail": "anthropic · openai" }
+        "request": {
+          "title": "你的请求",
+          "detail": "api.tokhive.ai"
+        },
+        "router": {
+          "title": "TokHive 路由",
+          "detail": "选择贡献者"
+        },
+        "tee": {
+          "title": "TEE 飞地",
+          "detail": "AMD SEV-SNP · 已封装"
+        },
+        "official": {
+          "title": "官方 API",
+          "detail": "anthropic · openai"
+        }
       },
       "fields": {
         "enclave": "飞地",
@@ -557,9 +571,18 @@
       "title": "收益实时结算。",
       "lead": "每个成功的请求结算后都会计入你的收益余额。你可以从钱包以 Web3 稳定币提现，最低提现 $10，并按实际链上成本扣除网络手续费。",
       "stats": {
-        "realTime": { "value": "实时", "label": "收益结算" },
-        "minimum": { "value": "$10", "label": "最低提现额" },
-        "web3": { "value": "Web3", "label": "稳定币提现" }
+        "realTime": {
+          "value": "实时",
+          "label": "收益结算"
+        },
+        "minimum": {
+          "value": "$10",
+          "label": "最低提现额"
+        },
+        "web3": {
+          "value": "Web3",
+          "label": "稳定币提现"
+        }
       },
       "example": "结算示例",
       "illustrative": "示例数据",

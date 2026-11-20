@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { Chip } from "@/components/Chip";
 import { ModelsStatus, useModels } from "@/components/ModelsProvider";
 import { hiveMenuRows } from "@/lib/hive-menu-layout";
+import { useHydrated } from "@/lib/useHydrated";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import { formatInputPrice, modelPlatformLabel, modelSavings, offeredFirst } from "@/lib/public-models";
 
@@ -24,7 +25,10 @@ export function HiveMenu() {
   const perRow = narrow ? 2 : 4;
 
   const tiles = models.filter((m) => !selected || m.platform === selected).sort(offeredFirst);
-  const rows = hiveMenuRows(tiles, perRow, mobile).slice(0, 3);
+  // Tiles wait for the browser, which knows how many fit in a row; prerendering
+  // them at one width would rearrange them on screen as the page loads.
+  const hydrated = useHydrated();
+  const rows = hydrated ? hiveMenuRows(tiles, perRow, mobile).slice(0, 3) : [];
 
   return (
     <section className="hive-menu site-container pb-[120px] max-[899px]:pb-20" aria-busy={status === "loading"}>

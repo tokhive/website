@@ -1,0 +1,43 @@
+# TokHive
+
+> TokHive sells access to official Claude and GPT models below the vendors' list prices. Requests are relayed from inside an AMD SEV-SNP confidential VM that connects only to the official vendor endpoints, and each response comes with a signed attestation receipt that anyone can check with the open-source verifier. The supply comes from people who share unused quota from their Claude and ChatGPT subscriptions and earn for each request served.
+
+TokHive works with tools and SDKs that speak the OpenAI Responses or Chat Completions API or the Anthropic Messages API, such as Claude Code, Codex, OpenCode, Cursor and the official SDKs: change the base URL and the API key.
+
+- OpenAI-compatible base URL: `https://api.tokhive.ai/v1`
+- Anthropic-compatible base URL: `https://api.tokhive.ai/anthropic`
+- Create an account and an API key: https://console.tokhive.ai/register
+- Buyers pay per token from a balance topped up with stablecoins; there is no subscription.
+
+## Models and prices
+
+- [Models and pricing](https://tokhive.ai/models/): every model with its official price and the lowest TokHive price for input, output and cached tokens
+- [Price list as JSON](https://console.tokhive.ai/api/public/models): the same data, public and anonymous, in USD per million tokens
+- [Live network](https://tokhive.ai/network/): providers online, token usage and recent TEE attestations
+
+## Docs
+
+- [Quickstart](https://docs.tokhive.ai/quickstart/): from account to first request
+- [API overview](https://docs.tokhive.ai/api/overview/): endpoints, authentication and supported features
+- [Claude Code](https://docs.tokhive.ai/consumer/claude-code/) and [Codex](https://docs.tokhive.ai/consumer/codex/) setup
+- [Deposits](https://docs.tokhive.ai/consumer/deposits/): adding funds with stablecoins
+- [Buyer FAQ](https://docs.tokhive.ai/consumer/faq/)
+
+## Trust and verification
+
+- [Security and TEE verification](https://tokhive.ai/security/): architecture, who sees what, and how to verify a response
+- [Trust model](https://docs.tokhive.ai/trust/trust-model/)
+- [Execution receipts](https://docs.tokhive.ai/trust/execution-receipts/)
+- [Verifier](https://github.com/tokhive/verifier): open-source CLI that checks a response's attestation
+
+## Providers
+
+- [Earn from idle subscriptions](https://tokhive.ai/providers/): how sharing quota works, risks and settlement
+- [Provider quickstart](https://docs.tokhive.ai/provider/quickstart/)
+- [Bee](https://github.com/tokhive/bee): the open-source client that shares a subscription
+
+## Policies
+
+- [Terms of Service](https://tokhive.ai/terms/)
+- [Privacy Policy](https://tokhive.ai/privacy/)
+- [Acceptable Use Policy](https://tokhive.ai/acceptable-use/)

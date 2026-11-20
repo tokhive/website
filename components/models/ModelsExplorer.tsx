@@ -46,7 +46,20 @@ function useCapabilityLabel() {
   return (capability: string) => (t.has(capability as never) ? t(capability as never) : capability);
 }
 
+type Filters = Pick<URLSearchParams, "get">;
+const NO_FILTERS: Filters = new URLSearchParams();
+
+/** The table, with the filters in the page's URL. */
 export function ModelsExplorer() {
+  return <Explorer params={useSearchParams()} syncUrl />;
+}
+
+/** The table with no filters: the HTML prerendered before the browser reads the URL. */
+export function ModelsExplorerDefaults() {
+  return <Explorer params={NO_FILTERS} syncUrl={false} />;
+}
+
+function Explorer({ params, syncUrl }: { params: Filters; syncUrl: boolean }) {
   const t = useTranslations("Models.explorer");
   const capabilityLabel = useCapabilityLabel();
   const sortLabels = Object.fromEntries(SORTS.map((s) => [s, t(`sorts.${s}`)])) as Record<Sort, string>;
@@ -60,7 +73,6 @@ export function ModelsExplorer() {
     count: models.filter((model) => modelPlatformLabel(model.platform) === vendor).length,
     color: platformColor(models.find((model) => modelPlatformLabel(model.platform) === vendor)!.platform),
   }));
-  const params = useSearchParams();
   const [q, setQ] = useState(() => params.get("q") ?? "");
   const [vendors, setVendors] = useState<string[]>(() => params.get("vendor")?.split(",").filter(Boolean) ?? []);
   const [tags, setTags] = useState<string[]>(() => params.get("tag")?.split(",").filter(Boolean).map((tag) => tag.toLowerCase().replaceAll(" ", "_")) ?? []);
@@ -72,6 +84,7 @@ export function ModelsExplorer() {
 
   // Mirror filters into the URL without triggering a navigation.
   useEffect(() => {
+    if (!syncUrl) return;
     const next = new URLSearchParams();
     if (q) next.set("q", q);
     if (vendors.length) next.set("vendor", vendors.join(","));
@@ -79,7 +92,7 @@ export function ModelsExplorer() {
     if (sort !== "Name") next.set("sort", sort);
     const qs = next.toString();
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
-  }, [q, vendors, tags, sort]);
+  }, [syncUrl, q, vendors, tags, sort]);
 
   // "/" focuses search, as the hint glyph suggests.
   useEffect(() => {
