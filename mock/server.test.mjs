@@ -17,7 +17,7 @@ test("anonymous model prices match Hive's public response contract", async (t) =
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("access-control-allow-origin"), "*");
   assert.equal(response.headers.get("access-control-allow-credentials"), null);
-  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.equal(response.headers.get("cache-control"), "public, max-age=30");
   assert.equal(response.headers.get("content-type"), "application/json; charset=utf-8");
   const body = await response.json();
   assert.deepEqual(Object.keys(body).sort(), ["currency", "models", "unit"]);
@@ -101,6 +101,7 @@ test("empty, unavailable and error scenarios retain Hive's contract", async (t) 
       const body = await response.json();
       if (scenario === "error") {
         assert.equal(response.status, 503);
+        assert.equal(response.headers.get("cache-control"), "no-store");
         assert.deepEqual(body, {
           error: { code: "unavailable", message: "model catalog temporarily unavailable", type: "server_error", param: null },
         });

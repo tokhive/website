@@ -11,6 +11,8 @@ const earningsPath = "/api/public/earnings";
 const networkPath = "/api/public/network";
 const networkRequestsPath = "/api/public/network/requests";
 const publicPaths = [modelsPath, earningsPath, networkPath, networkRequestsPath];
+// Seconds a browser or CDN may reuse each successful response, as Hive sets them.
+const maxAge = { [modelsPath]: 30, [earningsPath]: 60, [networkPath]: 30, [networkRequestsPath]: 5 };
 const errorMessages = {
   [modelsPath]: "model catalog temporarily unavailable",
   [earningsPath]: "earnings temporarily unavailable",
@@ -81,6 +83,7 @@ export function createMockServer({ scenario = "default" } = {}) {
           reply(503, apiError("unavailable", errorMessages[path], "server_error"));
           return;
         }
+        response.setHeader("Cache-Control", `public, max-age=${maxAge[path]}`);
         if (path === networkPath) {
           reply(200, networkFor(scenario));
           return;

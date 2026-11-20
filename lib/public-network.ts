@@ -117,7 +117,7 @@ export function parseNetworkRequests(value: unknown): NetworkRequest[] {
 }
 
 async function get(baseUrl: string, path: string, signal?: AbortSignal): Promise<unknown> {
-  const response = await fetch(`${baseUrl.replace(/\/+$/, "")}${path}`, { signal, credentials: "omit", cache: "no-store" });
+  const response = await fetch(`${baseUrl.replace(/\/+$/, "")}${path}`, { signal, credentials: "omit" });
   if (!response.ok) throw new Error(`Network request failed (${response.status})`);
   return response.json();
 }
