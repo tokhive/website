@@ -82,7 +82,7 @@ export function parseModelPrices(data: unknown): PublicModelPrices {
 
 export async function fetchModelPrices(baseUrl: string, signal?: AbortSignal): Promise<PublicModelPrice[]> {
   const response = await fetch(`${baseUrl.replace(/\/+$/, "")}/api/public/models`, {
-    signal, credentials: "omit", cache: "no-store",
+    signal, credentials: "omit",
   });
   if (!response.ok) throw new Error(`Model prices request failed (${response.status})`);
   return parseModelPrices(await response.json()).models;

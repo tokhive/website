@@ -73,7 +73,7 @@ export function parsePublicEarnings(value: unknown): PublicEarnings {
 
 export async function fetchPublicEarnings(baseUrl: string, signal?: AbortSignal): Promise<PublicEarnings> {
   const response = await fetch(`${baseUrl.replace(/\/+$/, "")}/api/public/earnings`, {
-    signal, credentials: "omit", cache: "no-store",
+    signal, credentials: "omit",
   });
   if (!response.ok) throw new Error(`Earnings request failed (${response.status})`);
   return parsePublicEarnings(await response.json());
