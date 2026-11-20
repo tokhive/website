@@ -745,7 +745,7 @@
     "data": {
       "eyebrow": "Data handling",
       "title": "Data processing and retention.",
-      "review": "Record-specific retention periods remain under review. See the <privacy>Privacy Policy draft</privacy> for request processing, diagnostics and deletion requests.",
+      "review": "Record-specific retention periods remain under review. See the <privacy>Privacy Policy</privacy> for request processing, diagnostics and deletion requests.",
       "states": {
         "processed": "processed",
         "sealed": "sealed",

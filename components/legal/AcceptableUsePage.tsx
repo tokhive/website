@@ -6,7 +6,7 @@ import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export const acceptableUseMetadata = (locale: Locale): Metadata =>
-  legalMetadata("/acceptable-use", locale, "Acceptable Use Policy", "Draft rules for lawful use of TokHive AI access, subscription sharing, credentials and payment systems.");
+  legalMetadata("/acceptable-use", locale, "Acceptable Use Policy", "Rules for lawful use of TokHive AI access, subscription sharing, credentials and payment systems.");
 
 const sections: LegalSection[] = [
   {
@@ -82,7 +82,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "updates", title: "Policy updates",
-    content: <p>The final policy will state its effective date. We may revise these rules to address service changes, threats or legal requirements, with notice or consent where required. TokHive, Inc., registered in Singapore, operates the service; its registered address and jurisdiction details remain to be completed before this draft takes effect.</p>,
+    content: <p>Each version of this policy states its effective date. We may revise these rules to address service changes, threats or legal requirements, with notice or consent where required. TokHive, Inc. operates the service.</p>,
   },
 ];
 

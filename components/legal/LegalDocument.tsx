@@ -12,8 +12,10 @@ type Props = {
   summary: string;
   href: string;
   sections: LegalSection[];
-  reviewNote?: string;
 };
+
+/** The date the current version of every policy took effect. */
+const EFFECTIVE = { iso: "2026-11-20", label: "November 20, 2026" };
 
 const policies = [
   { title: "Terms of Service", href: LINKS.terms },
@@ -22,7 +24,7 @@ const policies = [
 ];
 
 /** Policies stay in English in every locale; other locales get a note saying so. */
-export function LegalDocument({ title, summary, href, sections, reviewNote }: Props) {
+export function LegalDocument({ title, summary, href, sections }: Props) {
   const locale = useLocale();
   const t = useTranslations("Legal");
   return (
@@ -36,10 +38,9 @@ export function LegalDocument({ title, summary, href, sections, reviewNote }: Pr
           <p className="eyebrow mb-5">TokHive policies</p>
           <h1 className="max-w-[900px] text-[clamp(36px,6vw,72px)] leading-[1.05] font-semibold tracking-[-.045em]">{title}</h1>
           <p className="mt-6 max-w-[740px] text-lg leading-relaxed text-text-2">{summary}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-3 font-mono text-xs text-muted">
-            <span className="rounded-full border border-volt/30 bg-volt/8 px-3 py-1 text-volt">Draft for review</span>
-            <span>Updated <time dateTime="2026-10-26">October 26, 2026</time></span>
-          </div>
+          <p className="mt-6 font-mono text-xs text-muted">
+            Effective <time dateTime={EFFECTIVE.iso}>{EFFECTIVE.label}</time>
+          </p>
           <nav aria-label="Legal policies" className="mt-8 flex flex-wrap gap-2">
             {policies.map((policy) => (
               <Link key={policy.href} href={policy.href} aria-current={href === policy.href ? "page" : undefined}
@@ -64,10 +65,6 @@ export function LegalDocument({ title, summary, href, sections, reviewNote }: Pr
             </ol>
           </nav>
           <article className="min-w-0 max-w-[800px]">
-            <aside aria-label="Draft status" className="mb-10 rounded-xl border border-volt/20 bg-volt/5 px-5 py-4 text-sm leading-relaxed text-text-2">
-              This is a review draft, with no effective date. The service is operated by TokHive, Inc., registered in Singapore; its registered address and the applicable jurisdiction
-              will be added before publication as an effective policy.{reviewNote ? ` ${reviewNote}` : ""}
-            </aside>
             <div className="space-y-10">
               {sections.map((section, index) => (
                 <section key={section.id} id={section.id} className="scroll-mt-8 border-t border-line-soft pt-7">
