@@ -577,7 +577,7 @@
         },
         "slower": {
           "question": "Will my own requests ever be slower or blocked?",
-          "answer": "You can stop sharing at any time."
+          "answer": "They can be. Shared requests draw on the same subscription quota and rate limits as your own, and none of it is reserved for you. Bee keeps taking requests until a quota window is fully used, and then your own requests wait for that window to reset too. To keep quota for yourself, pause sharing with bee pause while you work and run bee resume when you are done."
         },
         "stop": {
           "question": "Can I stop at any time?",
