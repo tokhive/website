@@ -6,14 +6,14 @@ import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export const privacyMetadata = (locale: Locale): Metadata =>
-  legalMetadata("/privacy", locale, "Privacy Policy", "Draft privacy policy for TokHive account information, API processing, encrypted credentials, diagnostics and payment records.");
+  legalMetadata("/privacy", locale, "Privacy Policy", "Privacy policy for TokHive account information, API processing, encrypted credentials, diagnostics and payment records.");
 
 const sections: LegalSection[] = [
   {
     id: "scope", title: "Scope and privacy contact",
     content: <>
       <p>This policy covers personal information processed through the TokHive website, Console, APIs and Bee connections. It describes account, operational and financial records as well as the handling of requests and upstream credentials.</p>
-      <p>TokHive, Inc., registered in Singapore, operates the service and is responsible for the personal information described in this policy. Its registered address and the applicable privacy jurisdictions remain to be completed. For privacy questions or requests in the meantime, contact <a href="mailto:hello@tokhive.ai?subject=Privacy%20request">hello@tokhive.ai</a>. This is a review draft, not a claim of compliance with every jurisdiction&apos;s requirements.</p>
+      <p>TokHive, Inc. operates the service and is responsible for the personal information described in this policy. For privacy questions or requests, contact <a href="mailto:hello@tokhive.ai?subject=Privacy%20request">hello@tokhive.ai</a>.</p>
     </>,
   },
   {
@@ -49,7 +49,7 @@ const sections: LegalSection[] = [
     id: "purposes", title: "Purposes and legal bases",
     content: <>
       <p>Information is used to authenticate accounts, provide model access, maintain authorized subscription connections, route requests, calculate charges, settle earnings, provide records and support, investigate failures, prevent fraud and comply with legal obligations.</p>
-      <p>Where applicable law requires a legal basis, the proposed bases are performance of the service agreement, compliance with legal obligations, legitimate interests in security and reliable operation where permitted, and consent where required. A final notice must match the operator&apos;s actual processing and the laws that apply to it.</p>
+      <p>Where applicable law requires a legal basis, the bases are performance of the service agreement, compliance with legal obligations, legitimate interests in security and reliable operation where permitted, and consent where required.</p>
     </>,
   },
   {
@@ -84,7 +84,7 @@ const sections: LegalSection[] = [
   {
     id: "international", title: "Processing locations and safeguards",
     content: <>
-      <p>Hosting providers, upstream AI services, third-party API resellers and support functions may process information in countries other than your own. Processing locations and any required transfer safeguards must be confirmed for the deployment before publication of an effective notice.</p>
+      <p>Hosting providers, upstream AI services, third-party API resellers and support functions may process information in countries other than your own.</p>
       <p>Security measures include encrypted transport, access controls and TEE encryption for uploaded upstream access credentials. No service or encryption system removes every security risk, and users remain responsible for protecting their own devices and secrets.</p>
     </>,
   },
@@ -98,12 +98,12 @@ const sections: LegalSection[] = [
   {
     id: "changes", title: "Updates and related policies",
     content: <>
-      <p>A final policy will identify its effective date, the operator&apos;s address and applicable details. Material changes to processing will be communicated and any required consent obtained. New data uses must be covered by an accurate disclosure rather than silently added to an earlier privacy promise.</p>
+      <p>Each version of this policy states its effective date. Material changes to processing will be communicated and any required consent obtained. New data uses must be covered by an accurate disclosure rather than silently added to an earlier privacy promise.</p>
       <p>See the <Link href={LINKS.terms}>Terms of Service</Link> for account and payment rules and the <Link href={LINKS.aup}>Acceptable Use Policy</Link> for restrictions on content and account misuse.</p>
     </>,
   },
 ];
 
 export function PrivacyPage() {
-  return <LegalDocument title="Privacy Policy" summary="How account information, requests, encrypted credentials and settlement records are handled." href={LINKS.privacy} sections={sections} reviewNote="Processing locations also remain under review." />;
+  return <LegalDocument title="Privacy Policy" summary="How account information, requests, encrypted credentials and settlement records are handled." href={LINKS.privacy} sections={sections} />;
 }

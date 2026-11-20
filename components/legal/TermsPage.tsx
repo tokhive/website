@@ -6,14 +6,14 @@ import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export const termsMetadata = (locale: Locale): Metadata =>
-  legalMetadata("/terms", locale, "Terms of Service", "Draft terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.");
+  legalMetadata("/terms", locale, "Terms of Service", "Terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.");
 
 const sections: LegalSection[] = [
   {
     id: "scope", title: "The service and these terms",
     content: <>
       <p>TokHive connects people who share access to eligible AI subscription capacity with buyers who use AI through the TokHive API. The service includes this website, the Console, APIs and Bee software.</p>
-      <p>These draft terms describe the proposed rules for using those services. The service is operated by TokHive, Inc., registered in Singapore (&ldquo;TokHive&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;). Its registered address, the governing law and the court or arbitration forum have not yet been specified in this draft.</p>
+      <p>These terms are the rules for using those services. The service is operated by TokHive, Inc. (&ldquo;TokHive&rdquo;, &ldquo;we&rdquo; or &ldquo;us&rdquo;). By creating an account or using the service, you agree to these terms.</p>
       <p>The <Link href={LINKS.aup}>Acceptable Use Policy</Link> sets out prohibited conduct. The <Link href={LINKS.privacy}>Privacy Policy</Link> explains personal data processing. Separate signed agreements, if any, take priority where they expressly address the same subject.</p>
     </>,
   },
@@ -111,8 +111,8 @@ const sections: LegalSection[] = [
   {
     id: "changes", title: "Changes and questions",
     content: <>
-      <p>Future versions will state their effective date. Material changes will be notified as required by applicable law, and consent will be requested where required. No change removes rights already accrued where the law protects them.</p>
-      <p>Contact <a href={LINKS.email}>hello@tokhive.ai</a> with questions or a dispute. Include enough information to identify the issue without sending secrets. This draft remains subject to jurisdiction and legal review.</p>
+      <p>Each version of these terms states its effective date. Material changes will be notified through the website, the Console or email, and consent will be requested where required. No change removes rights already accrued where the law protects them.</p>
+      <p>Contact <a href={LINKS.email}>hello@tokhive.ai</a> with questions or a dispute. Include enough information to identify the issue without sending secrets.</p>
     </>,
   },
 ];

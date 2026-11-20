@@ -745,7 +745,7 @@
     "data": {
       "eyebrow": "数据处理",
       "title": "数据处理与保留。",
-      "review": "各类记录的具体保留期限仍在评估中。请求处理、故障诊断和删除请求的说明见<privacy>隐私政策草案</privacy>。",
+      "review": "各类记录的具体保留期限仍在评估中。请求处理、故障诊断和删除请求的说明见<privacy>隐私政策</privacy>。",
       "states": {
         "processed": "会被处理",
         "sealed": "加密封装",
