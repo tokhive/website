@@ -208,7 +208,7 @@
         }
       }
     },
-    "mobileCta": {
+    "closingCta": {
       "quotaEyebrow": "HAVE IDLE QUOTA?",
       "startEarning": "Start earning →",
       "tokensEyebrow": "NEED TOKENS?",
