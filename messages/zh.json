@@ -208,7 +208,7 @@
         }
       }
     },
-    "mobileCta": {
+    "closingCta": {
       "quotaEyebrow": "有闲置额度？",
       "startEarning": "开始赚钱 →",
       "tokensEyebrow": "需要 Token？",
