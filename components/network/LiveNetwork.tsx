@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { HeadingPrefix } from "@/components/HeadingPrefix";
 import { useEffect, useState } from "react";
 import { HexField } from "@/components/HexField";
 import { useTick } from "@/lib/useTick";
@@ -86,7 +87,7 @@ function LiveNetworkView() {
             <span className="h-2 w-2 animate-pulse-dot rounded-full bg-volt motion-reduce:animate-none" />
             {t("eyebrow")}
           </span>
-          <h1 className="h1">{t("title")}</h1>
+          <h1 className="h1"><HeadingPrefix page="network" />{t("title")}</h1>
         </div>
         <span className="font-mono text-[13px] text-muted">
           {status === "error" ? t("unavailable") : t("updated", { time: updated })}

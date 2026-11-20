@@ -10,11 +10,20 @@ type ModelsState = {
   models: PublicModelPrice[];
 };
 
+/** Hive lists platforms alphabetically; every list here leads with OpenAI. */
+function arrange(models: PublicModelPrice[], offeredOnly: boolean): PublicModelPrice[] {
+  const ordered = [...models].sort(platformOrder);
+  return offeredOnly ? ordered.filter((m) => m.minimum_prices !== null) : ordered;
+}
+
 const ModelsContext = createContext<(ModelsState & { retry: () => void }) | null>(null);
 
-/** offeredOnly drops models nobody offers right now, which have no price. */
-export function ModelsProvider({ children, offeredOnly = false }: { children: ReactNode; offeredOnly?: boolean }) {
-  const [state, setState] = useState<ModelsState>({ status: "loading", models: [] });
+/**
+ * offeredOnly drops models nobody offers right now, which have no price.
+ * initial is the list read when the site was built, shown until Hive answers.
+ */
+export function ModelsProvider({ children, offeredOnly = false, initial = null }: { children: ReactNode; offeredOnly?: boolean; initial?: PublicModelPrice[] | null }) {
+  const [state, setState] = useState<ModelsState>(() => initial ? { status: "ready", models: arrange(initial, offeredOnly) } : { status: "loading", models: [] });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
@@ -22,11 +31,7 @@ export function ModelsProvider({ children, offeredOnly = false }: { children: Re
     let active = true;
     const timeout = setTimeout(() => controller.abort(), 10_000);
     fetchModelPrices(HIVE_API_BASE_URL, controller.signal)
-      .then((models) => {
-        // Hive lists platforms alphabetically; every list here leads with OpenAI.
-        const ordered = [...models].sort(platformOrder);
-        if (active) setState({ status: "ready", models: offeredOnly ? ordered.filter((m) => m.minimum_prices !== null) : ordered });
-      })
+      .then((models) => { if (active) setState({ status: "ready", models: arrange(models, offeredOnly) }); })
       .catch(() => { if (active) setState({ status: "error", models: [] }); })
       .finally(() => clearTimeout(timeout));
     return () => {

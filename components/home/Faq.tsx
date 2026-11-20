@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { Accordion } from "@/components/Accordion";
+import { FaqStructuredData } from "@/components/FaqStructuredData";
 import { LINKS } from "@/lib/links";
 
 const QUESTIONS = ["vendor", "credentials", "earn", "usage", "prices", "tools", "settlement"] as const;
@@ -32,6 +33,7 @@ export function Faq() {
         </p>
       </div>
       <Accordion items={items} />
+      <FaqStructuredData items={items} />
     </section>
   );
 }

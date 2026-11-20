@@ -4,7 +4,7 @@ import { LANGUAGE_TAGS, localizedPath, routing, type Locale } from "./routing";
 
 export const SITE_URL = "https://tokhive.ai";
 
-/** Pages listed in the sitemap, without a locale prefix. The policies are reached through the footer. */
+/** Translated pages listed in the sitemap, without a locale prefix. The policies are listed separately. */
 export const INDEXED_PAGES = ["/", "/models", "/network", "/providers", "/security"] as const;
 
 /** Open Graph locale for each site locale. */
@@ -66,12 +66,16 @@ export async function pageMetadata(page: PageKey, locale: Locale): Promise<Metad
   };
 }
 
-/** Title, description and link preview for a policy page. */
+/**
+ * Title, description and link preview for a policy page. The policies are in
+ * English under every locale, so the English page is the canonical one and no
+ * translation is announced.
+ */
 export function legalMetadata(pathname: string, locale: Locale, title: string, description: string): Metadata {
   return {
     title,
     description,
-    alternates: alternates(pathname, locale),
+    alternates: { canonical: localizedPath(pathname, routing.defaultLocale) },
     ...socialMetadata(pathname, locale, `${title} · TokHive`, description),
   };
 }

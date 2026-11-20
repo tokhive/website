@@ -26,7 +26,8 @@
     "copy": "Copy",
     "copied": "Copied ✓",
     "comingBackSoon": "Coming back soon",
-    "getApiKey": "Get API key →"
+    "getApiKey": "Get API key →",
+    "headingPrefix": "{title}: "
   },
   "Nav": {
     "label": "Main navigation",
@@ -76,6 +77,7 @@
   },
   "Home": {
     "hero": {
+      "heading": "TokHive: official Claude and GPT APIs below list price, and earnings from idle AI subscriptions",
       "providersEyebrow": "PROVIDERS",
       "earn": "Earn.",
       "providersLead": "Monetize the idle tokens in your Claude or ChatGPT subscription.",
@@ -118,10 +120,22 @@
       "heading": "HOW A REQUEST TRAVELS",
       "sub": "every hop is sealed and signed",
       "hops": {
-        "request": { "title": "Your request", "detail": "api.tokhive.ai" },
-        "router": { "title": "TokHive router", "detail": "picks a provider" },
-        "tee": { "title": "TEE enclave", "detail": "AMD SEV-SNP · sealed" },
-        "official": { "title": "Official API", "detail": "anthropic · openai" }
+        "request": {
+          "title": "Your request",
+          "detail": "api.tokhive.ai"
+        },
+        "router": {
+          "title": "TokHive router",
+          "detail": "picks a provider"
+        },
+        "tee": {
+          "title": "TEE enclave",
+          "detail": "AMD SEV-SNP · sealed"
+        },
+        "official": {
+          "title": "Official API",
+          "detail": "anthropic · openai"
+        }
       },
       "fields": {
         "enclave": "ENCLAVE",
@@ -557,9 +571,18 @@
       "title": "Earnings settle in real time.",
       "lead": "Each successful request credits your earnings balance as it settles. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum withdrawal and a network fee based on the actual on-chain cost.",
       "stats": {
-        "realTime": { "value": "Real time", "label": "earnings settlement" },
-        "minimum": { "value": "$10", "label": "minimum withdrawal" },
-        "web3": { "value": "Web3", "label": "stablecoin withdrawals" }
+        "realTime": {
+          "value": "Real time",
+          "label": "earnings settlement"
+        },
+        "minimum": {
+          "value": "$10",
+          "label": "minimum withdrawal"
+        },
+        "web3": {
+          "value": "Web3",
+          "label": "stablecoin withdrawals"
+        }
       },
       "example": "SETTLEMENT EXAMPLE",
       "illustrative": "Illustrative figures",
