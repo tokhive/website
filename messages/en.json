@@ -96,6 +96,11 @@
       "title": "Input price, weighted by the last 24 hours of usage",
       "value": "avg. −{savings}% vs list"
     },
+    "promo": {
+      "eyebrow": "32-second tour",
+      "title": "See how TokHive works.",
+      "play": "Play the TokHive video"
+    },
     "verified": {
       "eyebrow": "TEE ATTESTED",
       "officialEndpoints": "official endpoints",

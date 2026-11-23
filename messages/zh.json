@@ -96,6 +96,11 @@
       "title": "按最近 24 小时用量加权的输入价格",
       "value": "平均比标价低 {savings}%"
     },
+    "promo": {
+      "eyebrow": "32 秒速览",
+      "title": "看看 TokHive 怎么运作。",
+      "play": "播放 TokHive 介绍视频"
+    },
     "verified": {
       "eyebrow": "TEE 证明",
       "officialEndpoints": "官方端点",
