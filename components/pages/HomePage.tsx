@@ -8,6 +8,7 @@ import { HiveMenu } from "@/components/home/HiveMenu";
 import { Pipeline } from "@/components/home/Pipeline";
 import { PrivateFromProviders } from "@/components/home/PrivateFromProviders";
 import { PriceTape } from "@/components/home/PriceTape";
+import { PromoVideo } from "@/components/home/PromoVideo";
 import { StructuredData } from "@/components/home/StructuredData";
 import { VerifiedOrigin } from "@/components/home/VerifiedOrigin";
 import { Faq } from "@/components/home/Faq";
@@ -32,6 +33,7 @@ export function HomePage({ initialModels }: { initialModels: PublicModelPrice[] 
           <StructuredData />
           <Hero />
           <PriceTape />
+          <PromoVideo />
           <VerifiedOrigin />
           <Pipeline />
           <PrivateFromProviders />

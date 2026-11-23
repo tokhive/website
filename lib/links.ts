@@ -27,6 +27,15 @@ export const LINKS = {
   reportVulnerability: "https://github.com/tokhive/tee/security/advisories/new",
 } as const;
 
+// The promo film lives on Cloudflare R2; the poster ships with the site.
+export const PROMO_VIDEO = {
+  src: "https://video.tokhive.ai/TokHive_Promo_v3_16x9.mp4",
+  poster: "/promo-poster.webp",
+  length: "0:32",
+  isoDuration: "PT32S",
+  uploadDate: "2026-11-23",
+} as const;
+
 /** `label` is a message key, or the text itself when `literal` is set. */
 export type NavLink<K extends string = string> = { label: K; href: string; external?: boolean; literal?: boolean };
 
