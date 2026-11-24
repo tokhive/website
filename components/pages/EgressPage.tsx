@@ -13,11 +13,13 @@ import { StepList } from "@/components/StepList";
 import { Link } from "@/i18n/navigation";
 import { LINKS } from "@/lib/links";
 import {
+  EGRESS_CLIENTS,
   EGRESS_FAQ,
   EGRESS_LIMITS,
   EGRESS_PRICING,
   EGRESS_SAMPLE,
   EGRESS_STEPS,
+  EGRESS_SUBSCRIPTION,
   EGRESS_VISIBILITY,
   EGRESS_VISIBILITY_COLUMNS,
 } from "@/lib/content/egress";
@@ -139,6 +141,40 @@ export function EgressPage() {
                   <div key={key} className="contents">
                     <dt className="text-muted">{t(`protocol.fields.${key}.label`)}</dt>
                     <dd className="text-text-2">{t(`protocol.fields.${key}.value`)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
+
+          <section className="content-section grid items-start gap-12 pt-[120px] lg:grid-cols-[1fr_1.1fr]">
+            <div className="section-intro">
+              <span className="eyebrow">{t("clients.eyebrow")}</span>
+              <h2 className="section-title">{t("clients.title")}</h2>
+              <p className="text-base leading-[1.6] text-text-2">{t("clients.lead")}</p>
+              <ul className="flex flex-col gap-4">
+                {EGRESS_CLIENTS.map((key) => (
+                  <li key={key} className="flex flex-col gap-1.5 border-l border-line pl-4">
+                    <span className="text-sm font-semibold">{t(`clients.items.${key}.title`)}</span>
+                    <span className="text-sm leading-[1.6] text-muted">{t(`clients.items.${key}.description`)}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm leading-[1.6] text-muted">{t("clients.note")}</p>
+            </div>
+            <div className="min-w-0 overflow-hidden rounded-2xl border border-paper/10 bg-surface">
+              <div className="flex items-center justify-between gap-3 border-b border-line-soft px-5 py-3.5 font-mono text-xs text-muted">
+                <span>{t("clients.terminal")}</span>
+                <CopyButton text={EGRESS_SUBSCRIPTION} />
+              </div>
+              <pre className="overflow-x-auto px-[22px] py-5 font-mono text-[12.5px] leading-[1.9] text-code max-md:text-[11px]">
+                {EGRESS_SUBSCRIPTION}
+              </pre>
+              <dl className="grid grid-cols-[96px_1fr] gap-y-2 border-t border-line-soft px-[22px] py-4 font-mono text-xs">
+                {(["format", "header"] as const).map((key) => (
+                  <div key={key} className="contents">
+                    <dt className="text-muted">{t(`clients.fields.${key}.label`)}</dt>
+                    <dd className="text-text-2">{t(`clients.fields.${key}.value`)}</dd>
                   </div>
                 ))}
               </dl>

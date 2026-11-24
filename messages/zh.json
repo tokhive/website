@@ -1029,6 +1029,37 @@
       "identity": "宿主看不到买家身份",
       "holdback": "宿主收益冻结 30 天",
       "probe": "出口探测带签名"
+    },
+    "clients": {
+      "eyebrow": "客户端",
+      "title": "同一条租约，也是一条 VLESS 链接。",
+      "lead": "如果你已经在用 v2rayN、sing-box、mihomo 或 Xray，把订阅填进去，每条有效租约就会成为一个代理。会话本身没有任何变化：同样的会话块、同样的 80/443 策略、同样的字节上限。",
+      "terminal": "出口订阅",
+      "note": "VLESS 入口和出口的其他部分一样是试验性的。它在网关终止 TLS、内侧是明文 VLESS，因此客户端必须用 security=tls 连接。",
+      "items": {
+        "subscription": {
+          "title": "一个 URL，导入全部租约",
+          "description": "format=vless 返回 base64 编码的 vless:// 列表，客户端会把每一行导入成一个配置。"
+        },
+        "clash": {
+          "title": "Clash / mihomo",
+          "description": "format=clash&transport=vless 返回同一批会话的配置，每条租约是一个 type: vless 代理。"
+        },
+        "single": {
+          "title": "只取一条租约",
+          "description": "控制台也能给出单条租约的链接，附带到期时间与字节上限，适合先试一个出口。"
+        }
+      },
+      "fields": {
+        "format": {
+          "label": "格式",
+          "value": "vless，或 clash&transport=vless"
+        },
+        "header": {
+          "label": "鉴权",
+          "value": "Bearer API Key"
+        }
+      }
     }
   },
   "EgressHosts": {

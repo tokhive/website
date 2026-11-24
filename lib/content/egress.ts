@@ -4,6 +4,15 @@ export const EGRESS_PRICING = ["block", "units", "payment", "concurrency", "refu
 export const EGRESS_LIMITS = ["tcp", "ports", "private", "sla"] as const;
 export const EGRESS_FAQ = ["experimental", "anonymous", "udp", "offline", "refund", "access"] as const;
 
+/** Client paths on the VLESS section, in the order the page lists them. */
+export const EGRESS_CLIENTS = ["subscription", "clash", "single"] as const;
+
+/** The subscription a client imports; both values come from the console. */
+export const EGRESS_SUBSCRIPTION = `curl -fsSL \\
+     -H "Authorization: Bearer $TOKHIVE_API_KEY" \\
+     "$TOKHIVE_EGRESS_ENDPOINT/v1/egress/subscription?format=vless" \\
+     -o tokhive-vless.txt`;
+
 /** The buyer hero cycles through these states; each one spends more blocks. */
 export const LIFECYCLE = ["catalog", "lease", "stream", "done"] as const;
 

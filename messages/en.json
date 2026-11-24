@@ -1029,6 +1029,37 @@
       "identity": "Hosts never see buyers",
       "holdback": "30-day host holdback",
       "probe": "Signed exit probe"
+    },
+    "clients": {
+      "eyebrow": "Client compatibility",
+      "title": "The same lease, as a VLESS link.",
+      "lead": "If you already run v2rayN, sing-box, mihomo or Xray, point it at the subscription and every active lease arrives as a proxy. Nothing else about the session changes: same block, same 80/443 policy, same byte ceiling.",
+      "terminal": "egress subscription",
+      "note": "The VLESS entry is experimental like the rest of egress. It terminates TLS at the gateway and speaks plain VLESS inside, so clients must connect with security=tls.",
+      "items": {
+        "subscription": {
+          "title": "One URL, every lease",
+          "description": "format=vless returns a base64 list of vless:// links; clients import every line as its own profile."
+        },
+        "clash": {
+          "title": "Clash and mihomo",
+          "description": "format=clash&transport=vless returns the same sessions as a profile with one type: vless proxy per lease."
+        },
+        "single": {
+          "title": "One lease at a time",
+          "description": "The console also hands out a single link per lease, with its expiry and byte cap, for testing one exit."
+        }
+      },
+      "fields": {
+        "format": {
+          "label": "format",
+          "value": "vless, or clash&transport=vless"
+        },
+        "header": {
+          "label": "auth",
+          "value": "Bearer API key"
+        }
+      }
     }
   },
   "EgressHosts": {
