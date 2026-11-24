@@ -229,6 +229,34 @@
         "settlement": {
           "question": "How do settlement and withdrawals work?",
           "answer": "Earnings are credited to your earnings balance in real time as each successful request settles. Withdraw from your wallet in Web3 stablecoins, with a $10 minimum and a network fee based on the actual on-chain cost. You can review per-request settlement records in your dashboard."
+        },
+        "roles": {
+          "question": "What are Bee and Hive? Do I need to install Bee just to call the API?",
+          "answer": "Hive is TokHive's marketplace service. It checks your API key, routes each request to a provider, meters usage and settles payments. Bee is the provider client: people with a ChatGPT or Claude subscription run it on their own macOS or Linux machine to share their quota. You don't need Bee to call the API. Create an account and an API key in the Console, then change your tool's base URL and API key."
+        },
+        "payment": {
+          "question": "Do I need to add funds before my first API call? Which payment methods are supported?",
+          "answer": "Yes. A new account starts with a balance of 0, and API requests are refused until you add funds. Deposit USDT or USDC on Ethereum, or USDT0 on Conflux eSpace; card and bank payments aren't supported yet. Deposits are credited 1:1 in US dollars after the network's confirmations. TokHive charges no deposit fee and sets no minimum; you pay only the network's gas."
+        },
+        "costs": {
+          "question": "Where can I see what each call actually cost?",
+          "answer": "On the Call Records page in the Console. Each call is listed with its model, tokens and spend in US dollars. Its details show the prices applied, which source served it and its signed receipt."
+        },
+        "failures": {
+          "question": "Am I charged if a request fails or the response stops halfway?",
+          "answer": "No. You are charged only for a response that completed and whose execution receipt verified, for the tokens it actually used. A request that fails or is interrupted costs nothing, even if part of the answer had already streamed. When Hive retries a request on another account, the failed attempts are not charged either."
+        },
+        "withdraw": {
+          "question": "Can I withdraw my balance at any time? Which of my deposits, provider earnings and credits can be withdrawn, and in what currency?",
+          "answer": "Deposits can be withdrawn, and so can provider earnings once you transfer them to your balance; the transfer is one-way. Credits granted by TokHive can only be spent on requests. Withdrawals are paid as USDT0 on Conflux eSpace, whichever network you deposited on, with a $10 minimum and a network fee based on the actual on-chain cost. You can withdraw whenever no requests are running. Each withdrawal needs an authenticator code, a new address can be used 24 hours after you add it, and withdrawals over $1,000 or beyond the daily automatic limit are reviewed by hand."
+        },
+        "supply": {
+          "question": "Which subscriptions and devices can share quota? Does my computer need to stay on and online while sharing?",
+          "answer": "The <docs>docs</docs> list the supported subscriptions and device requirements. Yes, keep the machine awake, online and running Bee while you share. When it is off, Hive stops sending it requests, with no penalty."
+        },
+        "stop": {
+          "question": "How can I pause sharing, or unlink completely?",
+          "answer": "To pause one platform, run bee pause --platform openai (or claude), and bee resume --platform openai to continue. Requests already running finish, and no new ones start. Stopping Bee stops all sharing right away, with no penalty. To stop for good, stop Bee and uninstall it: without a running Bee no request can run on your account, and the credential it uploaded lapses when the access token expires. The pairing stays on your TokHive account but takes no work. Stopping does not affect earnings already settled. To delete your TokHive account and its data, email hello@tokhive.ai."
         }
       }
     },

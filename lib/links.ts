@@ -6,6 +6,7 @@ export const LINKS = {
   blog: "https://docs.tokhive.ai/blog",
   trustModel: "https://docs.tokhive.ai/trust/trust-model#who-can-see-what",
   providerSecurity: "https://docs.tokhive.ai/provider/security",
+  beeRequirements: "https://docs.tokhive.ai/provider/overview#requirements",
   github: "https://github.com/tokhive",
   twitter: "https://x.com/tokhive",
   terms: "/terms",

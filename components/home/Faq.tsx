@@ -4,7 +4,13 @@ import { Accordion } from "@/components/Accordion";
 import { FaqStructuredData } from "@/components/FaqStructuredData";
 import { LINKS } from "@/lib/links";
 
-const QUESTIONS = ["vendor", "credentials", "earn", "usage", "prices", "tools", "settlement"] as const;
+// Grouped by reader: what TokHive is, trust, providers, buyers, then balances.
+const QUESTIONS = [
+  "roles", "vendor", "credentials",
+  "supply", "earn", "usage", "stop",
+  "prices", "tools", "payment", "costs", "failures",
+  "settlement", "withdraw",
+] as const;
 
 function contactLink(href: string) {
   return function ContactLink(chunks: ReactNode) {
@@ -18,7 +24,12 @@ function contactLink(href: string) {
 
 export function Faq() {
   const t = useTranslations("Home.faq");
-  const items = QUESTIONS.map((key) => ({ question: t(`items.${key}.question`), answer: t(`items.${key}.answer`) }));
+  // An answer may link to the docs with <docs>; structured data gets its text only.
+  const items = QUESTIONS.map((key) => ({
+    question: t(`items.${key}.question`),
+    answer: t.markup(`items.${key}.answer`, { docs: (chunks) => chunks }),
+    content: t.rich(`items.${key}.answer`, { docs: contactLink(LINKS.beeRequirements) }),
+  }));
   return (
     <section className="site-container faq-section grid gap-20 pb-[120px] max-lg:gap-8 max-md:pb-[72px] lg:grid-cols-[360px_1fr]">
       <div className="flex flex-col gap-5">

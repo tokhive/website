@@ -1,8 +1,9 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, type ReactNode } from "react";
 
-export type FaqItem = { question: string; answer: string };
+/** `answer` is plain text, for structured data; `content` replaces it on the page when the answer has links. */
+export type FaqItem = { question: string; answer: string; content?: ReactNode };
 
 export function Accordion({ items }: { items: readonly FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(0);
@@ -31,7 +32,7 @@ export function Accordion({ items }: { items: readonly FaqItem[] }) {
           </h3>
           <div id={`${id}-answer-${i}`} role="region" aria-labelledby={`${id}-question-${i}`} hidden={open !== i}>
             <p className="pb-6 pr-16 text-base leading-[1.65] text-pretty text-text-2 max-md:pr-0 max-md:text-[15px]">
-              {item.answer}
+              {item.content ?? item.answer}
             </p>
           </div>
         </div>
