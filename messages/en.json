@@ -12,6 +12,10 @@
       "title": "Live Network Stats",
       "description": "Live TokHive network: providers online, token usage and TEE attestations for Claude and GPT API requests."
     },
+    "live": {
+      "title": "Live Hive",
+      "description": "Watch TokHive token usage live: a honeycomb sphere lights a tile for every batch of Claude and GPT tokens generated on the network."
+    },
     "providers": {
       "title": "Earn from Idle ChatGPT & Claude Subscriptions",
       "description": "Share unused ChatGPT and Claude subscription quota and earn per request, settled in real time. Withdraw in Web3 stablecoins with a $10 minimum."
@@ -52,6 +56,7 @@
     "contact": "CONTACT",
     "modelsPricing": "Models & Pricing",
     "network": "Network",
+    "live": "Live hive",
     "providers": "Providers",
     "security": "Security",
     "docs": "Docs",
@@ -448,6 +453,32 @@
       "h": "{count}h ago",
       "d": "{count}d ago"
     }
+  },
+  "Live": {
+    "heading": "Live hive: Claude and GPT tokens generated on TokHive",
+    "eyebrow": "Tokens · last 24 hours",
+    "rate": "About {count} tokens a second on average",
+    "unavailable": "Network data unavailable",
+    "models": "Share by model",
+    "key": "Each lit tile is {tokens} tokens from requests that just finished.",
+    "keyDuo": "Green is Claude, white is GPT.",
+    "drag": "Drag to turn the hive.",
+    "canvas": "A sphere of dark hexagonal tiles. A tile lights up for two seconds each time a batch of tokens is generated.",
+    "noWebgl": "This browser has WebGL turned off, so the hive cannot be drawn. The figures on this page still update.",
+    "backdrop": {
+      "label": "Background",
+      "dust": "Dust",
+      "orbits": "Orbits",
+      "floor": "Floor",
+      "plain": "Plain"
+    },
+    "palette": {
+      "label": "Tile colors",
+      "duo": "Two colors",
+      "mono": "One color"
+    },
+    "pause": "Pause",
+    "play": "Play"
   },
   "Providers": {
     "hero": {

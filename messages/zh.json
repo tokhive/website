@@ -12,6 +12,10 @@
       "title": "实时网络数据",
       "description": "TokHive 实时网络：在线贡献者、Token 用量，以及 Claude 和 GPT API 请求的 TEE 证明。"
     },
+    "live": {
+      "title": "实时蜂巢",
+      "description": "实时观看 TokHive 的 Token 用量：网络上每生成一批 Claude 或 GPT token，蜂巢球上就亮起一格。"
+    },
     "providers": {
       "title": "闲置 ChatGPT 与 Claude 订阅变现",
       "description": "分享 ChatGPT、Claude 订阅中用不完的额度，按请求赚取收益并实时结算。可从钱包以 Web3 稳定币提现，最低 $10。"
@@ -52,6 +56,7 @@
     "contact": "联系",
     "modelsPricing": "模型与价格",
     "network": "网络",
+    "live": "实时蜂巢",
     "providers": "贡献者",
     "security": "安全",
     "docs": "文档",
@@ -448,6 +453,32 @@
       "h": "{count} 小时前",
       "d": "{count} 天前"
     }
+  },
+  "Live": {
+    "heading": "实时蜂巢：TokHive 上生成的 Claude 与 GPT Token",
+    "eyebrow": "近 24 小时 Token",
+    "rate": "平均每秒约 {count} 个 token",
+    "unavailable": "网络数据不可用",
+    "models": "各模型占比",
+    "key": "每亮一格，代表刚完成的请求里的 {tokens} 个 token。",
+    "keyDuo": "绿色是 Claude，白色是 GPT。",
+    "drag": "按住拖动可以转动蜂巢。",
+    "canvas": "一个由深色六边形瓦片组成的球体。每生成一批 token，就有一片瓦片亮起两秒。",
+    "noWebgl": "这个浏览器没有开启 WebGL，无法绘制蜂巢。本页的数字仍会更新。",
+    "backdrop": {
+      "label": "背景",
+      "dust": "星尘",
+      "orbits": "轨道",
+      "floor": "地面",
+      "plain": "纯黑"
+    },
+    "palette": {
+      "label": "瓦片配色",
+      "duo": "双色",
+      "mono": "单色"
+    },
+    "pause": "暂停",
+    "play": "播放"
   },
   "Providers": {
     "hero": {
