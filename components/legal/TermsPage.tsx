@@ -6,7 +6,7 @@ import { legalMetadata } from "@/i18n/metadata";
 import type { Locale } from "@/i18n/routing";
 
 export const termsMetadata = (locale: Locale): Metadata =>
-  legalMetadata("/terms", locale, "Terms of Service", "Terms covering TokHive accounts, model access, provider participation, pricing, deposits, settlement and withdrawals.");
+  legalMetadata("/terms", locale, "Terms of Service", "Terms covering TokHive accounts, model access, provider participation, pricing, deposits, promotions and referrals, settlement and withdrawals.");
 
 const sections: LegalSection[] = [
   {
@@ -59,14 +59,25 @@ const sections: LegalSection[] = [
     content: <>
       <p>You can add funds to your buyer balance by sending a supported stablecoin to the deposit address shown in the Console for the network you select. One token unit is credited as US$1. There is no minimum deposit.</p>
       <p>Send only the token and network shown with that address. Tokens sent on another network, other tokens, or transfers to any other address may not be credited and may not be recoverable. A deposit is credited once it meets the confirmation or finality requirement shown with the address; a deposit can be held for review while a network is paused or reconciliation finds a discrepancy.</p>
-      <p>Deposits are not returned to the sending address. Deposited funds can be taken out only through a withdrawal under the rules below.</p>
+      <p>Deposits are not returned to the sending address. Deposited funds can be taken out only through a withdrawal under the rules below. Part of a deposit may be locked under a promotion described in <a href="#promotions">Promotions and referrals</a>.</p>
+    </>,
+  },
+  {
+    id: "promotions", title: "Promotions and referrals",
+    content: <>
+      <p>TokHive may run promotions, such as a deposit bonus or a referral program. Their amounts, thresholds, limits and quotas are shown in the Console and may change; a change applies to rewards granted after it.</p>
+      <p>Each account has a referral link and code. A referral is recorded only when the referred user registers with that link or code, and it cannot be added or changed later.</p>
+      <p>A referred user receives credits once their cumulative on-chain deposits reach a threshold. When their cumulative on-chain deposits reach a higher threshold, part of their withdrawable balance is locked and the referrer receives credits; if too little of that balance is unlocked, both wait for a later deposit. Referrer rewards are capped per referrer, and each reward has a program-wide quota.</p>
+      <p>Locking under a deposit bonus or a referral is automatic and cannot be declined. The Console shows when a deposit will lock funds before you send it. Locked funds can be spent on any model but cannot be withdrawn until they are spent.</p>
+      <p>When a referred user sells capacity as a Provider, the referrer earns a cash share of each settled sale, credited to the referrer&apos;s earnings balance. The share is a percentage of the platform commission; for some model platforms, TokHive pays a minimum share of the sale from its own funds. Sales where the buyer is the referrer or the referred user earn no share. The share may be limited to a period after the referred user registers. It does not reduce the referred Provider&apos;s earnings or increase the buyer&apos;s charge.</p>
+      <p>We may change, pause or end a promotion. We may withhold or reverse rewards, credits or shares obtained through abuse, such as self-referral schemes or fake accounts.</p>
     </>,
   },
   {
     id: "withdrawals", title: "Withdrawals and payment records",
     content: <>
       <p>Settlement and withdrawal are separate. Withdrawals, when offered, use supported Web3 stablecoins at one token unit per US$1 and have a <strong>minimum withdrawal amount of US$10</strong>. A network fee based on the actual on-chain cost is deducted from the amount you request, so you receive the requested amount less that fee. Small earnings can settle before the minimum is reached. There is no weekly or Monday settlement schedule.</p>
-      <p>You can withdraw the part of your buyer balance that comes from on-chain deposits, earnings you have transferred from your earnings balance, and refunded withdrawals. To withdraw earnings, first transfer them to your buyer balance. Credits granted by TokHive, such as administrator, promotional or bonus credits, can be spent on API usage but cannot be withdrawn, and usage charges draw on those credits first.</p>
+      <p>You can withdraw the part of your buyer balance that comes from on-chain deposits, earnings you have transferred from your earnings balance, and refunded withdrawals, less any locked funds. To withdraw earnings, first transfer them to your buyer balance. Credits granted by TokHive, such as administrator, promotional, bonus or referral credits, cannot be withdrawn and cannot pay for Claude models. They can be spent on other models, and usage charges for those models draw on credits first.</p>
       <p>Each withdrawal requires an authenticator app and a one-time code. A destination address can be used 24 hours after you add it, and you can keep up to 20 addresses. You cannot request a withdrawal while you have API requests in progress or awaiting settlement. A withdrawal above US$1,000, or one that would take the day&apos;s automatically approved withdrawals above US$5,000 (UTC), is held for manual review and may be approved or rejected; a rejected withdrawal is refunded to your balance. Per-transfer and daily limits may also apply.</p>
       <p>Use only the asset, network and destination supported by the withdrawal instructions. Review any disclosed fees and confirmation requirements before authorizing a transfer. Stablecoins can lose value, and blockchain transfers may be irreversible; an unsupported network or incorrect address may prevent recovery.</p>
       <p>Keep your own payment and tax records and meet obligations that apply to you. Contact us with transaction references or request IDs for billing corrections, refunds or balance questions. Requests will be assessed under applicable law and payment conditions presented to you; mandatory consumer rights are not waived.</p>
