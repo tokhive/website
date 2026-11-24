@@ -7,12 +7,13 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { LANGUAGE_TAGS, localizedPath, type Locale } from "@/i18n/routing";
 import { LINKS, type NavLink } from "@/lib/links";
 
-type NavKey = "models" | "network" | "providers" | "security" | "docs" | "github";
+type NavKey = "models" | "network" | "providers" | "egress" | "security" | "docs" | "github";
 
 const NAV: NavLink<NavKey>[] = [
   { label: "models", href: "/models" },
   { label: "network", href: "/network" },
   { label: "providers", href: "/providers" },
+  { label: "egress", href: "/egress" },
   { label: "security", href: "/security" },
   { label: "docs", href: LINKS.docs, external: true },
   { label: "github", href: LINKS.github, external: true },

@@ -40,7 +40,7 @@ export const PROMO_VIDEO = {
 export type NavLink<K extends string = string> = { label: K; href: string; external?: boolean; literal?: boolean };
 
 type FooterKey =
-  | "modelsPricing" | "network" | "providers" | "security" | "docs" | "blog" | "github" | "twitter"
+  | "modelsPricing" | "network" | "providers" | "egress" | "security" | "docs" | "blog" | "github" | "twitter"
   | "terms" | "privacy" | "aup" | "telegram" | "discord";
 
 export const FOOTER_COLUMNS: { heading: "product" | "resources" | "legal" | "contact"; links: NavLink<FooterKey | "hello@tokhive.ai">[] }[] = [
@@ -50,6 +50,7 @@ export const FOOTER_COLUMNS: { heading: "product" | "resources" | "legal" | "con
       { label: "modelsPricing", href: "/models" },
       { label: "network", href: "/network" },
       { label: "providers", href: "/providers" },
+      { label: "egress", href: "/egress" },
       { label: "security", href: "/security" },
     ],
   },

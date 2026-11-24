@@ -940,6 +940,27 @@
   }
 }
 
+/* The egress spec tape scrolls one full copy of its items, then repeats seamlessly. */
+@keyframes egress-tape {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.egress-tape-track {
+  animation: egress-tape 46s linear infinite;
+}
+.egress-tape:hover .egress-tape-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .egress-tape-track {
+    animation: none;
+  }
+}
+
 /* CJK glyphs fill the em box, so the tight leading and negative tracking tuned for Sora make Chinese display text collide. */
 :lang(zh) :is(.h1, .giant-word, .provider-title) {
   line-height: 1.1;

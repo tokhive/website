@@ -5,7 +5,7 @@ import { LANGUAGE_TAGS, localizedPath, routing, type Locale } from "./routing";
 export const SITE_URL = "https://tokhive.ai";
 
 /** Translated pages listed in the sitemap, without a locale prefix. The policies are listed separately. */
-export const INDEXED_PAGES = ["/", "/models", "/network", "/providers", "/security"] as const;
+export const INDEXED_PAGES = ["/", "/models", "/network", "/providers", "/egress", "/egress/hosts", "/security"] as const;
 
 /** Open Graph locale for each site locale. */
 const OG_LOCALES: Record<Locale, string> = { en: "en_US", zh: "zh_CN" };
@@ -51,18 +51,29 @@ export function socialMetadata(
   };
 }
 
-type PageKey = "models" | "network" | "providers" | "security";
+type PageKey = "models" | "network" | "providers" | "security" | "egress" | "egressHosts";
+
+/** The URL of each translated marketing page; the message key is not always the path. */
+const PAGE_PATHS: Record<PageKey, string> = {
+  models: "/models",
+  network: "/network",
+  providers: "/providers",
+  security: "/security",
+  egress: "/egress",
+  egressHosts: "/egress/hosts",
+};
 
 /** Translated title and description for a marketing page. */
 export async function pageMetadata(page: PageKey, locale: Locale): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "Metadata" });
   const title = t(`${page}.title`);
   const description = t(`${page}.description`);
+  const pathname = PAGE_PATHS[page];
   return {
     title,
     description,
-    alternates: alternates(`/${page}`, locale),
-    ...socialMetadata(`/${page}`, locale, `${title} · TokHive`, description),
+    alternates: alternates(pathname, locale),
+    ...socialMetadata(pathname, locale, `${title} · TokHive`, description),
   };
 }
 

@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 
-type Page = "models" | "network" | "providers" | "security";
+type Page = "models" | "network" | "providers" | "security" | "egress" | "egressHosts";
 
 /**
  * The page's search title at the start of its h1, for search engines and
