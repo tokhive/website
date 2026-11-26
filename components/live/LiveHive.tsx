@@ -111,7 +111,8 @@ function LiveHiveView() {
 
   const models = data ? [...data.models].sort((a, b) => b.tokens - a.tokens).slice(0, MODELS_SHOWN) : [];
   const total = data ? data.models.reduce((sum, m) => sum + m.tokens, 0) : 0;
-  const swatch = (vendor: NetVendor) => (palette === "mono" || vendor === "anthropic" ? "bg-volt" : "bg-paper");
+  const swatch = (vendor: NetVendor) =>
+    palette === "mono" || vendor === "anthropic" ? "bg-volt" : vendor === "google" ? "bg-[#8A8D92]" : "bg-paper";
 
   return (
     <section className="live-hive relative h-[calc(100svh-72px)] min-h-[620px] overflow-hidden max-sm:h-[calc(100svh-64px)]">

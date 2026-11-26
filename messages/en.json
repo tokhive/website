@@ -489,7 +489,7 @@
     "unavailable": "Network data unavailable",
     "models": "Share by model",
     "key": "Each lit tile is {tokens} tokens from requests that just finished.",
-    "keyDuo": "Green is Claude, white is GPT.",
+    "keyDuo": "Green is Claude, white is GPT, grey is Gemini.",
     "drag": "Drag to turn the hive.",
     "canvas": "A sphere of dark hexagonal tiles. A tile lights up for two seconds each time a batch of tokens is generated.",
     "noWebgl": "This browser has WebGL turned off, so the hive cannot be drawn. The figures on this page still update.",

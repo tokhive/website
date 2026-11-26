@@ -35,9 +35,25 @@ test("network client reads the public contract, empty markets and errors", async
 });
 
 test("network responses with unknown vendors or short series are refused", () => {
-  assert.throws(() => parsePublicNetwork({ ...fixture, models: [{ ...fixture.models[0], vendor: "google" }] }), /Invalid/);
+  assert.throws(() => parsePublicNetwork({ ...fixture, models: [{ ...fixture.models[0], vendor: "mistral" }] }), /Invalid/);
   assert.throws(() => parsePublicNetwork({ ...fixture, usage: { ...fixture.usage, "7d": fixture.usage["7d"].slice(1) } }), /Invalid/);
   assert.throws(() => parsePublicNetwork({ ...fixture, provider_earnings_usd: "-1" }), /Invalid/);
+});
+
+test("Google is a vendor, and a Hive without a google series reads as none", () => {
+  const parsed = parsePublicNetwork(fixture);
+  assert.ok(parsed.models.some((model) => model.vendor === "google"));
+  assert.ok(parsed.usage["24h"].every((point) => point.google > 0));
+  const older = {
+    ...fixture,
+    usage: Object.fromEntries(Object.entries(fixture.usage).map(([range, points]) => [
+      range,
+      points.map((point) => ({ start: point.start, openai: point.openai, anthropic: point.anthropic })),
+    ])),
+  };
+  assert.ok(parsePublicNetwork(older).usage["30d"].every((point) => point.google === 0));
+  assert.equal(planLabel("google", "pro"), "Google AI Pro");
+  assert.equal(planLabel("google", "ultra"), "Google AI Ultra");
 });
 
 test("the feed keeps the newest unique requests", () => {
