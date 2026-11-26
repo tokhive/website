@@ -6,7 +6,7 @@ import fixture from "../mock/network.json" with { type: "json" };
 import requestsFixture from "../mock/network-requests.json" with { type: "json" };
 import {
   fetchNetworkRequests, fetchPublicNetwork, formatDuration, formatTokens, mergeRequests,
-  parsePublicNetwork, planLabel, verifiedShare,
+  parsePublicNetwork, planLabel, servesGoogle, shownVendors, verifiedShare,
 } from "../lib/public-network.ts";
 
 async function start(t, scenario = "default") {
@@ -40,10 +40,27 @@ test("network responses with unknown vendors or short series are refused", () =>
   assert.throws(() => parsePublicNetwork({ ...fixture, provider_earnings_usd: "-1" }), /Invalid/);
 });
 
-test("Google is a vendor, and a Hive without a google series reads as none", () => {
-  const parsed = parsePublicNetwork(fixture);
-  assert.ok(parsed.models.some((model) => model.vendor === "google"));
-  assert.ok(parsed.usage["24h"].every((point) => point.google > 0));
+test("Google is named only once the network serves it", () => {
+  const quiet = parsePublicNetwork(fixture);
+  assert.equal(servesGoogle(quiet), false);
+  assert.deepEqual(shownVendors(quiet), ["anthropic", "openai"]);
+  assert.deepEqual(shownVendors(null), ["anthropic", "openai"]);
+
+  const withUsage = (google) => Object.fromEntries(Object.entries(fixture.usage).map(([range, points]) => [
+    range,
+    points.map((point, i) => ({ ...point, google: range === "30d" && i === 0 ? google : 0 })),
+  ]));
+  const used = parsePublicNetwork({ ...fixture, usage: withUsage(1200) });
+  assert.equal(servesGoogle(used), true);
+  assert.deepEqual(shownVendors(used), ["anthropic", "openai", "google"]);
+  const serving = parsePublicNetwork({
+    ...fixture,
+    models: [...fixture.models, { model: "gemini-4-argon", vendor: "google", tokens: 900, capacity_free_pct: 58 }],
+  });
+  assert.equal(servesGoogle(serving), true);
+});
+
+test("a Hive without a google series reads as none", () => {
   const older = {
     ...fixture,
     usage: Object.fromEntries(Object.entries(fixture.usage).map(([range, points]) => [

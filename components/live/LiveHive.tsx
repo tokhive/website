@@ -6,7 +6,7 @@ import { Chip, Segmented } from "@/components/Chip";
 import { NetworkProvider, useNetwork } from "@/components/network/NetworkProvider";
 import { formatInt } from "@/lib/format";
 import { openingTiles, tokensPerTile } from "@/lib/live-hive";
-import type { NetVendor } from "@/lib/public-network";
+import { servesGoogle, type NetVendor } from "@/lib/public-network";
 import type { Backdrop, HiveScene, Palette } from "./hive-scene";
 
 const BACKDROPS = ["dust", "orbits", "floor", "plain"] as const;
@@ -162,7 +162,7 @@ function LiveHiveView() {
           )}
           {perTile !== null && (
             <p className="mt-5 text-xs leading-[1.65] text-muted max-sm:hidden">
-              {palette === "duo" && `${t("keyDuo")} `}
+              {palette === "duo" && `${t(servesGoogle(data) ? "keyDuoGoogle" : "keyDuo")} `}
               {t("key", { tokens: formatInt(perTile) })} {t("drag")}
             </p>
           )}

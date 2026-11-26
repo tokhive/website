@@ -37,6 +37,17 @@ export const VENDORS: NetVendor[] = ["anthropic", "openai", "google"];
 export const VENDOR_NAMES: Record<NetVendor, string> = { anthropic: "Anthropic", openai: "OpenAI", google: "Google" };
 export const RANGE_POINTS: Record<UsageRange, number> = { "24h": 24, "7d": 7, "30d": 30 };
 
+/** Whether the network has served Google models in the last 30 days or serves them now. */
+export function servesGoogle(data: PublicNetwork | null): boolean {
+  if (!data) return false;
+  return data.models.some((m) => m.vendor === "google") || Object.values(data.usage).some((points) => points.some((p) => p.google > 0));
+}
+
+/** The vendors to name in filters and legends: Google only once the network serves it, as its supply is not launched yet. */
+export function shownVendors(data: PublicNetwork | null): NetVendor[] {
+  return servesGoogle(data) ? VENDORS : VENDORS.filter((v) => v !== "google");
+}
+
 const invalid = (): never => {
   throw new Error("Invalid network response");
 };
