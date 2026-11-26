@@ -19,311 +19,372 @@
       {
         "start": "2026-10-28T10:00:00Z",
         "openai": 4334400,
-        "anthropic": 705600
+        "anthropic": 705600,
+        "google": 0
       },
       {
         "start": "2026-10-28T11:00:00Z",
         "openai": 6195931,
-        "anthropic": 1008640
+        "anthropic": 1008640,
+        "google": 0
       },
       {
         "start": "2026-10-28T12:00:00Z",
         "openai": 7181955,
-        "anthropic": 1169155
+        "anthropic": 1169155,
+        "google": 0
       },
       {
         "start": "2026-10-28T13:00:00Z",
         "openai": 6828729,
-        "anthropic": 1111653
+        "anthropic": 1111653,
+        "google": 0
       },
       {
         "start": "2026-10-28T14:00:00Z",
         "openai": 5302381,
-        "anthropic": 863178
+        "anthropic": 863178,
+        "google": 0
       },
       {
         "start": "2026-10-28T15:00:00Z",
         "openai": 3320776,
-        "anthropic": 540591
+        "anthropic": 540591,
+        "google": 0
       },
       {
         "start": "2026-10-28T16:00:00Z",
         "openai": 1815894,
-        "anthropic": 295610
+        "anthropic": 295610,
+        "google": 0
       },
       {
         "start": "2026-10-28T17:00:00Z",
         "openai": 1495504,
-        "anthropic": 243454
+        "anthropic": 243454,
+        "google": 0
       },
       {
         "start": "2026-10-28T18:00:00Z",
         "openai": 2510291,
-        "anthropic": 408652
+        "anthropic": 408652,
+        "google": 0
       },
       {
         "start": "2026-10-28T19:00:00Z",
         "openai": 4382985,
-        "anthropic": 713509
+        "anthropic": 713509,
+        "google": 0
       },
       {
         "start": "2026-10-28T20:00:00Z",
         "openai": 6232828,
-        "anthropic": 1014646
+        "anthropic": 1014646,
+        "google": 0
       },
       {
         "start": "2026-10-28T21:00:00Z",
         "openai": 7189810,
-        "anthropic": 1170434
+        "anthropic": 1170434,
+        "google": 0
       },
       {
         "start": "2026-10-28T22:00:00Z",
         "openai": 6803849,
-        "anthropic": 1107603
+        "anthropic": 1107603,
+        "google": 0
       },
       {
         "start": "2026-10-28T23:00:00Z",
         "openai": 5256466,
-        "anthropic": 855703
+        "anthropic": 855703,
+        "google": 0
       },
       {
         "start": "2026-10-29T00:00:00Z",
         "openai": 3275421,
-        "anthropic": 533208
+        "anthropic": 533208,
+        "google": 0
       },
       {
         "start": "2026-10-29T01:00:00Z",
         "openai": 1792431,
-        "anthropic": 291791
+        "anthropic": 291791,
+        "google": 0
       },
       {
         "start": "2026-10-29T02:00:00Z",
         "openai": 1504968,
-        "anthropic": 244994
+        "anthropic": 244994,
+        "google": 0
       },
       {
         "start": "2026-10-29T03:00:00Z",
         "openai": 2548231,
-        "anthropic": 414828
+        "anthropic": 414828,
+        "google": 0
       },
       {
         "start": "2026-10-29T04:00:00Z",
         "openai": 4431557,
-        "anthropic": 721416
+        "anthropic": 721416,
+        "google": 0
       },
       {
         "start": "2026-10-29T05:00:00Z",
         "openai": 6269188,
-        "anthropic": 1020565
+        "anthropic": 1020565,
+        "google": 0
       },
       {
         "start": "2026-10-29T06:00:00Z",
         "openai": 7196859,
-        "anthropic": 1171581
+        "anthropic": 1171581,
+        "google": 0
       },
       {
         "start": "2026-10-29T07:00:00Z",
         "openai": 6778270,
-        "anthropic": 1103439
+        "anthropic": 1103439,
+        "google": 0
       },
       {
         "start": "2026-10-29T08:00:00Z",
         "openai": 5210290,
-        "anthropic": 848186
+        "anthropic": 848186,
+        "google": 0
       },
       {
         "start": "2026-10-29T09:00:00Z",
         "openai": 3230366,
-        "anthropic": 525873
+        "anthropic": 525873,
+        "google": 0
       }
     ],
     "7d": [
       {
         "start": "2026-10-23T00:00:00Z",
         "openai": 98040000,
-        "anthropic": 15960000
+        "anthropic": 15960000,
+        "google": 0
       },
       {
         "start": "2026-10-24T00:00:00Z",
         "openai": 140146068,
-        "anthropic": 22814476
+        "anthropic": 22814476,
+        "google": 0
       },
       {
         "start": "2026-10-25T00:00:00Z",
         "openai": 162448994,
-        "anthropic": 26445185
+        "anthropic": 26445185,
+        "google": 0
       },
       {
         "start": "2026-10-26T00:00:00Z",
         "openai": 154459364,
-        "anthropic": 25144547
+        "anthropic": 25144547,
+        "google": 0
       },
       {
         "start": "2026-10-27T00:00:00Z",
         "openai": 119934825,
-        "anthropic": 19524273
+        "anthropic": 19524273,
+        "google": 0
       },
       {
         "start": "2026-10-28T00:00:00Z",
         "openai": 75112808,
-        "anthropic": 12227666
+        "anthropic": 12227666,
+        "google": 0
       },
       {
         "start": "2026-10-29T00:00:00Z",
         "openai": 41073807,
-        "anthropic": 6686433
+        "anthropic": 6686433,
+        "google": 0
       }
     ],
     "30d": [
       {
         "start": "2026-09-30T00:00:00Z",
         "openai": 87720000,
-        "anthropic": 14280000
+        "anthropic": 14280000,
+        "google": 0
       },
       {
         "start": "2026-10-01T00:00:00Z",
         "openai": 125393850,
-        "anthropic": 20412952
+        "anthropic": 20412952,
+        "google": 0
       },
       {
         "start": "2026-10-02T00:00:00Z",
         "openai": 145349100,
-        "anthropic": 23661481
+        "anthropic": 23661481,
+        "google": 0
       },
       {
         "start": "2026-10-03T00:00:00Z",
         "openai": 138200483,
-        "anthropic": 22497753
+        "anthropic": 22497753,
+        "google": 0
       },
       {
         "start": "2026-10-04T00:00:00Z",
         "openai": 107310107,
-        "anthropic": 17469087
+        "anthropic": 17469087,
+        "google": 0
       },
       {
         "start": "2026-10-05T00:00:00Z",
         "openai": 67206196,
-        "anthropic": 10940543
+        "anthropic": 10940543,
+        "google": 0
       },
       {
         "start": "2026-10-06T00:00:00Z",
         "openai": 36750248,
-        "anthropic": 5982598
+        "anthropic": 5982598,
+        "google": 0
       },
       {
         "start": "2026-10-07T00:00:00Z",
         "openai": 30266171,
-        "anthropic": 4927051
+        "anthropic": 4927051,
+        "google": 0
       },
       {
         "start": "2026-10-08T00:00:00Z",
         "openai": 50803527,
-        "anthropic": 8270341
+        "anthropic": 8270341,
+        "google": 0
       },
       {
         "start": "2026-10-09T00:00:00Z",
         "openai": 88703276,
-        "anthropic": 14440068
+        "anthropic": 14440068,
+        "google": 0
       },
       {
         "start": "2026-10-10T00:00:00Z",
         "openai": 126140576,
-        "anthropic": 20534512
+        "anthropic": 20534512,
+        "google": 0
       },
       {
         "start": "2026-10-11T00:00:00Z",
         "openai": 145508078,
-        "anthropic": 23687361
+        "anthropic": 23687361,
+        "google": 0
       },
       {
         "start": "2026-10-12T00:00:00Z",
         "openai": 137696944,
-        "anthropic": 22415781
+        "anthropic": 22415781,
+        "google": 0
       },
       {
         "start": "2026-10-13T00:00:00Z",
         "openai": 106380872,
-        "anthropic": 17317816
+        "anthropic": 17317816,
+        "google": 0
       },
       {
         "start": "2026-10-14T00:00:00Z",
         "openai": 66288300,
-        "anthropic": 10791118
+        "anthropic": 10791118,
+        "google": 0
       },
       {
         "start": "2026-10-15T00:00:00Z",
         "openai": 36275391,
-        "anthropic": 5905296
+        "anthropic": 5905296,
+        "google": 0
       },
       {
         "start": "2026-10-16T00:00:00Z",
         "openai": 30457686,
-        "anthropic": 4958228
+        "anthropic": 4958228,
+        "google": 0
       },
       {
         "start": "2026-10-17T00:00:00Z",
         "openai": 51571341,
-        "anthropic": 8395334
+        "anthropic": 8395334,
+        "google": 0
       },
       {
         "start": "2026-10-18T00:00:00Z",
         "openai": 89686275,
-        "anthropic": 14600091
+        "anthropic": 14600091,
+        "google": 0
       },
       {
         "start": "2026-10-19T00:00:00Z",
         "openai": 126876439,
-        "anthropic": 20654304
+        "anthropic": 20654304,
+        "google": 0
       },
       {
         "start": "2026-10-20T00:00:00Z",
         "openai": 145650718,
-        "anthropic": 23710582
+        "anthropic": 23710582,
+        "google": 0
       },
       {
         "start": "2026-10-21T00:00:00Z",
         "openai": 137179274,
-        "anthropic": 22331509
+        "anthropic": 22331509,
+        "google": 0
       },
       {
         "start": "2026-10-22T00:00:00Z",
         "openai": 105446361,
-        "anthropic": 17165686
+        "anthropic": 17165686,
+        "google": 0
       },
       {
         "start": "2026-10-23T00:00:00Z",
         "openai": 65376463,
-        "anthropic": 10642680
+        "anthropic": 10642680,
+        "google": 0
       },
       {
         "start": "2026-10-24T00:00:00Z",
         "openai": 35815079,
-        "anthropic": 5830361
+        "anthropic": 5830361,
+        "google": 0
       },
       {
         "start": "2026-10-25T00:00:00Z",
         "openai": 30665391,
-        "anthropic": 4992040
+        "anthropic": 4992040,
+        "google": 0
       },
       {
         "start": "2026-10-26T00:00:00Z",
         "openai": 52349376,
-        "anthropic": 8521991
+        "anthropic": 8521991,
+        "google": 0
       },
       {
         "start": "2026-10-27T00:00:00Z",
         "openai": 90668718,
-        "anthropic": 14760023
+        "anthropic": 14760023,
+        "google": 0
       },
       {
         "start": "2026-10-28T00:00:00Z",
         "openai": 127601232,
-        "anthropic": 20772293
+        "anthropic": 20772293,
+        "google": 0
       },
       {
         "start": "2026-10-29T00:00:00Z",
         "openai": 145776979,
-        "anthropic": 23731136
+        "anthropic": 23731136,
+        "google": 0
       }
     ]
   },

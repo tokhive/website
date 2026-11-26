@@ -20,11 +20,12 @@ export type HiveScene = {
 const PAGE = 0x0a0b0c;
 const VOLT = 0xc8f031;
 const PAPER = 0xf2f2ee;
+const GREY = 0x8a8d92;
 const RADIUS = 9;
 const LIT_SECONDS = 2;
 /** Radians per second the sphere turns by itself. */
 const SPIN = 0.07;
-const VENDORS: NetVendor[] = ["anthropic", "openai"];
+const VENDORS: NetVendor[] = ["anthropic", "openai", "google"];
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
@@ -279,8 +280,10 @@ export function mountHive(
   anchor.add(tilt, dust.points, orbits.group, floor);
   scene.add(anchor);
 
-  const hues: Record<NetVendor, THREE.Color> = { anthropic: new THREE.Color(VOLT), openai: new THREE.Color(PAPER) };
-  const backlog: Record<NetVendor, number> = { anthropic: 0, openai: 0 };
+  const hues: Record<NetVendor, THREE.Color> = {
+    anthropic: new THREE.Color(VOLT), openai: new THREE.Color(PAPER), google: new THREE.Color(GREY),
+  };
+  const backlog: Record<NetVendor, number> = { anthropic: 0, openai: 0, google: 0 };
   // Past this the sphere would be mostly lit; a busier network should raise tokens per tile instead.
   const backlogLimit = ((0.4 * state.n) / LIT_SECONDS) * DRAIN_SECONDS;
   const turn = { on: false, id: -1, x: 0, y: 0, at: 0, yaw: 0, pitch: 0, vyaw: 0, vpitch: 0 };
@@ -294,6 +297,7 @@ export function mountHive(
   };
   const setPalette = (name: Palette) => {
     hues.openai.set(name === "mono" ? VOLT : PAPER);
+    hues.google.set(name === "mono" ? VOLT : GREY);
   };
   setBackdrop(initial.backdrop);
   setPalette(initial.palette);

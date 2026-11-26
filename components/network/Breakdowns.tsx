@@ -6,6 +6,7 @@ import { planLabel, type NetVendor, type PublicNetwork } from "@/lib/public-netw
 export const NET_VENDOR_COLORS: Record<NetVendor, string> = {
   anthropic: "#C8F031",
   openai: "#F2F2EE",
+  google: "#8A8D92",
 };
 
 const CELLS = 30;

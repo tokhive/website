@@ -136,9 +136,9 @@ export function offeredFirst(a: Pick<PublicModelPrice, "minimum_prices">, b: Pic
   return Number(a.minimum_prices === null) - Number(b.minimum_prices === null);
 }
 
-const PLATFORM_ORDER = ["openai", "anthropic"];
+const PLATFORM_ORDER = ["openai", "anthropic", "google"];
 
-/** Sorts OpenAI models before Anthropic ones and any other platform after both; keeps the order otherwise. */
+/** Sorts OpenAI models, then Anthropic's, then Google's, and any other platform after them; keeps the order otherwise. */
 export function platformOrder(a: Pick<PublicModelPrice, "platform">, b: Pick<PublicModelPrice, "platform">): number {
   const rank = (platform: string) => (PLATFORM_ORDER.includes(platform) ? PLATFORM_ORDER.indexOf(platform) : PLATFORM_ORDER.length);
   return rank(a.platform) - rank(b.platform);

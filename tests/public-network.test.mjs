@@ -6,7 +6,7 @@ import fixture from "../mock/network.json" with { type: "json" };
 import requestsFixture from "../mock/network-requests.json" with { type: "json" };
 import {
   fetchNetworkRequests, fetchPublicNetwork, formatDuration, formatTokens, mergeRequests,
-  parsePublicNetwork, planLabel, verifiedShare,
+  parsePublicNetwork, planLabel, servesGoogle, shownVendors, verifiedShare,
 } from "../lib/public-network.ts";
 
 async function start(t, scenario = "default") {
@@ -35,9 +35,42 @@ test("network client reads the public contract, empty markets and errors", async
 });
 
 test("network responses with unknown vendors or short series are refused", () => {
-  assert.throws(() => parsePublicNetwork({ ...fixture, models: [{ ...fixture.models[0], vendor: "google" }] }), /Invalid/);
+  assert.throws(() => parsePublicNetwork({ ...fixture, models: [{ ...fixture.models[0], vendor: "mistral" }] }), /Invalid/);
   assert.throws(() => parsePublicNetwork({ ...fixture, usage: { ...fixture.usage, "7d": fixture.usage["7d"].slice(1) } }), /Invalid/);
   assert.throws(() => parsePublicNetwork({ ...fixture, provider_earnings_usd: "-1" }), /Invalid/);
+});
+
+test("Google is named only once the network serves it", () => {
+  const quiet = parsePublicNetwork(fixture);
+  assert.equal(servesGoogle(quiet), false);
+  assert.deepEqual(shownVendors(quiet), ["anthropic", "openai"]);
+  assert.deepEqual(shownVendors(null), ["anthropic", "openai"]);
+
+  const withUsage = (google) => Object.fromEntries(Object.entries(fixture.usage).map(([range, points]) => [
+    range,
+    points.map((point, i) => ({ ...point, google: range === "30d" && i === 0 ? google : 0 })),
+  ]));
+  const used = parsePublicNetwork({ ...fixture, usage: withUsage(1200) });
+  assert.equal(servesGoogle(used), true);
+  assert.deepEqual(shownVendors(used), ["anthropic", "openai", "google"]);
+  const serving = parsePublicNetwork({
+    ...fixture,
+    models: [...fixture.models, { model: "gemini-4-argon", vendor: "google", tokens: 900, capacity_free_pct: 58 }],
+  });
+  assert.equal(servesGoogle(serving), true);
+});
+
+test("a Hive without a google series reads as none", () => {
+  const older = {
+    ...fixture,
+    usage: Object.fromEntries(Object.entries(fixture.usage).map(([range, points]) => [
+      range,
+      points.map((point) => ({ start: point.start, openai: point.openai, anthropic: point.anthropic })),
+    ])),
+  };
+  assert.ok(parsePublicNetwork(older).usage["30d"].every((point) => point.google === 0));
+  assert.equal(planLabel("google", "pro"), "Google AI Pro");
+  assert.equal(planLabel("google", "ultra"), "Google AI Ultra");
 });
 
 test("the feed keeps the newest unique requests", () => {

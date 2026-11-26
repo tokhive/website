@@ -1,6 +1,6 @@
-export type NetVendor = "openai" | "anthropic";
+export type NetVendor = "openai" | "anthropic" | "google";
 export type UsageRange = "24h" | "7d" | "30d";
-export type UsagePoint = { start: string; openai: number; anthropic: number };
+export type UsagePoint = { start: string; openai: number; anthropic: number; google: number };
 export type NetworkModel = { model: string; vendor: NetVendor; tokens: number; capacity_free_pct: number | null };
 export type NetworkPlan = { platform: string; plan: string; accounts: number };
 export type NetworkCapacity = { model: string; free_pct: number };
@@ -33,9 +33,20 @@ export type NetworkRequest = {
   finished_at: string;
 };
 
-export const VENDORS: NetVendor[] = ["anthropic", "openai"];
-export const VENDOR_NAMES: Record<NetVendor, string> = { anthropic: "Anthropic", openai: "OpenAI" };
+export const VENDORS: NetVendor[] = ["anthropic", "openai", "google"];
+export const VENDOR_NAMES: Record<NetVendor, string> = { anthropic: "Anthropic", openai: "OpenAI", google: "Google" };
 export const RANGE_POINTS: Record<UsageRange, number> = { "24h": 24, "7d": 7, "30d": 30 };
+
+/** Whether the network has served Google models in the last 30 days or serves them now. */
+export function servesGoogle(data: PublicNetwork | null): boolean {
+  if (!data) return false;
+  return data.models.some((m) => m.vendor === "google") || Object.values(data.usage).some((points) => points.some((p) => p.google > 0));
+}
+
+/** The vendors to name in filters and legends: Google only once the network serves it, as its supply is not launched yet. */
+export function shownVendors(data: PublicNetwork | null): NetVendor[] {
+  return servesGoogle(data) ? VENDORS : VENDORS.filter((v) => v !== "google");
+}
 
 const invalid = (): never => {
   throw new Error("Invalid network response");
@@ -47,7 +58,8 @@ const count = (value: unknown): number =>
 const text = (value: unknown): string => (typeof value === "string" ? value : invalid());
 const time = (value: unknown): string =>
   typeof value === "string" && Number.isFinite(Date.parse(value)) ? value : invalid();
-const vendor = (value: unknown): NetVendor => (value === "openai" || value === "anthropic" ? value : invalid());
+const vendor = (value: unknown): NetVendor =>
+  value === "openai" || value === "anthropic" || value === "google" ? value : invalid();
 const list = <T>(value: unknown, item: (value: unknown) => T): T[] => (Array.isArray(value) ? value.map(item) : invalid());
 
 export function parsePublicNetwork(value: unknown): PublicNetwork {
@@ -62,7 +74,11 @@ export function parsePublicNetwork(value: unknown): PublicNetwork {
   const series = (range: UsageRange): UsagePoint[] => {
     const points = list(usage[range], (raw) => {
       const p = record(raw);
-      return { start: time(p.start), openai: count(p.openai), anthropic: count(p.anthropic) };
+      // Hive releases before Google supply report no google series.
+      return {
+        start: time(p.start), openai: count(p.openai), anthropic: count(p.anthropic),
+        google: p.google === undefined ? 0 : count(p.google),
+      };
     });
     return points.length === RANGE_POINTS[range] ? points : invalid();
   };
@@ -173,9 +189,10 @@ const PLAN_NAMES: Record<string, string> = {
   team: "Team", business: "Business", enterprise: "Enterprise", edu: "Edu",
 };
 
-/** "openai" + "prolite" → "ChatGPT Pro Lite"; Claude Max is not split into 5x and 20x. */
+/** "openai" + "prolite" → "ChatGPT Pro Lite", "google" + "pro" → "Google AI Pro"; Claude Max is not split into 5x and 20x. */
 export function planLabel(platform: string, plan: string, unknown = "plan unknown"): string {
-  const product = platform === "openai" ? "ChatGPT" : platform === "claude" ? "Claude" : platform;
+  const products: Record<string, string> = { openai: "ChatGPT", claude: "Claude", google: "Google AI" };
+  const product = Object.hasOwn(products, platform) ? products[platform] : platform;
   if (!plan) return `${product} (${unknown})`;
   return `${product} ${PLAN_NAMES[plan] ?? plan.charAt(0).toUpperCase() + plan.slice(1)}`;
 }

@@ -23,7 +23,7 @@ const errorMessages = {
 // empty: a market with no traffic; unavailable: traffic, but no account online.
 function networkFor(scenario) {
   if (scenario === "empty") {
-    const zero = (points) => points.map((point) => ({ ...point, openai: 0, anthropic: 0 }));
+    const zero = (points) => points.map((point) => ({ ...point, openai: 0, anthropic: 0, google: 0 }));
     return {
       ...network,
       supply: { providers: 0, serving: 0, idle: 0 },

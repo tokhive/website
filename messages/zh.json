@@ -490,6 +490,7 @@
     "models": "各模型占比",
     "key": "每亮一格，代表刚完成的请求里的 {tokens} 个 token。",
     "keyDuo": "绿色是 Claude，白色是 GPT。",
+    "keyDuoGoogle": "绿色是 Claude，白色是 GPT，灰色是 Gemini。",
     "drag": "按住拖动可以转动蜂巢。",
     "canvas": "一个由深色六边形瓦片组成的球体。每生成一批 token，就有一片瓦片亮起两秒。",
     "noWebgl": "这个浏览器没有开启 WebGL，无法绘制蜂巢。本页的数字仍会更新。",

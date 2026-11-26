@@ -6,7 +6,7 @@ import { Chip, Segmented } from "@/components/Chip";
 import { NetworkProvider, useNetwork } from "@/components/network/NetworkProvider";
 import { formatInt } from "@/lib/format";
 import { openingTiles, tokensPerTile } from "@/lib/live-hive";
-import type { NetVendor } from "@/lib/public-network";
+import { servesGoogle, type NetVendor } from "@/lib/public-network";
 import type { Backdrop, HiveScene, Palette } from "./hive-scene";
 
 const BACKDROPS = ["dust", "orbits", "floor", "plain"] as const;
@@ -111,7 +111,8 @@ function LiveHiveView() {
 
   const models = data ? [...data.models].sort((a, b) => b.tokens - a.tokens).slice(0, MODELS_SHOWN) : [];
   const total = data ? data.models.reduce((sum, m) => sum + m.tokens, 0) : 0;
-  const swatch = (vendor: NetVendor) => (palette === "mono" || vendor === "anthropic" ? "bg-volt" : "bg-paper");
+  const swatch = (vendor: NetVendor) =>
+    palette === "mono" || vendor === "anthropic" ? "bg-volt" : vendor === "google" ? "bg-[#8A8D92]" : "bg-paper";
 
   return (
     <section className="live-hive relative h-[calc(100svh-72px)] min-h-[620px] overflow-hidden max-sm:h-[calc(100svh-64px)]">
@@ -161,7 +162,7 @@ function LiveHiveView() {
           )}
           {perTile !== null && (
             <p className="mt-5 text-xs leading-[1.65] text-muted max-sm:hidden">
-              {palette === "duo" && `${t("keyDuo")} `}
+              {palette === "duo" && `${t(servesGoogle(data) ? "keyDuoGoogle" : "keyDuo")} `}
               {t("key", { tokens: formatInt(perTile) })} {t("drag")}
             </p>
           )}

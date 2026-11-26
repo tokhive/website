@@ -5,10 +5,10 @@ import { useMemo, useState } from "react";
 import { Chip, Segmented } from "@/components/Chip";
 import { NET_VENDOR_COLORS } from "@/components/network/Breakdowns";
 import {
-  formatTokens, RANGE_POINTS, VENDOR_NAMES, VENDORS, type NetVendor, type PublicNetwork, type UsageRange,
+  formatTokens, RANGE_POINTS, shownVendors, VENDOR_NAMES, type NetVendor, type PublicNetwork, type UsageRange,
 } from "@/lib/public-network";
 
-const VENDOR_FILTERS = ["All", ...VENDORS] as const;
+type VendorFilter = "All" | NetVendor;
 const RANGES = ["24h", "7d", "30d"] as const;
 const axisLabel = (start: string, range: UsageRange, locale: string) =>
   range === "24h"
@@ -20,11 +20,13 @@ export function TokenUsage({ data }: { data: PublicNetwork | null }) {
   const locale = useLocale();
   const rangeOptions = { "24h": t("rangeOptions.24h"), "7d": t("rangeOptions.7d"), "30d": t("rangeOptions.30d") };
   const [range, setRange] = useState<UsageRange>("24h");
-  const [vendor, setVendor] = useState<(typeof VENDOR_FILTERS)[number]>("All");
+  const [vendor, setVendor] = useState<VendorFilter>("All");
+  const vendors = useMemo(() => shownVendors(data), [data]);
+  const filters: VendorFilter[] = ["All", ...vendors];
 
   const { bars, total, axisL, axisR } = useMemo(() => {
     const points = data?.usage[range] ?? [];
-    const shown: NetVendor[] = VENDORS.filter((v) => vendor === "All" || v === vendor);
+    const shown: NetVendor[] = vendors.filter((v) => vendor === "All" || v === vendor);
     const sum = (p: (typeof points)[number]) => shown.reduce((t, v) => t + p[v], 0);
     const max = Math.max(0, ...points.map(sum)) || 1;
     return {
@@ -37,7 +39,7 @@ export function TokenUsage({ data }: { data: PublicNetwork | null }) {
       axisL: points.length ? axisLabel(points[0].start, range, locale) : "",
       axisR: points.length ? axisLabel(points[points.length - 1].start, range, locale) : "",
     };
-  }, [data, range, vendor, locale, t]);
+  }, [data, vendors, range, vendor, locale, t]);
 
   return (
     <section className="token-usage rounded-card bg-surface p-8 max-sm:p-5">
@@ -51,7 +53,7 @@ export function TokenUsage({ data }: { data: PublicNetwork | null }) {
         </div>
         <div className="flex flex-wrap gap-4">
           <div className="flex flex-wrap gap-1.5">
-            {VENDOR_FILTERS.map((v) => (
+            {filters.map((v) => (
               <Chip key={v} active={vendor === v} onClick={() => setVendor(v)}>
                 {v === "All" ? t("all") : VENDOR_NAMES[v]}
               </Chip>
@@ -80,7 +82,7 @@ export function TokenUsage({ data }: { data: PublicNetwork | null }) {
       <div className="mt-3 flex flex-wrap justify-between gap-3 font-mono text-[11px] text-muted">
         <span>{axisL}</span>
         <div className="flex gap-[18px]">
-          {VENDORS.map((v) => (
+          {vendors.map((v) => (
             <span key={v} className="flex items-center gap-1.5">
               <span className="h-2.5 w-2.5 rounded-[2px]" style={{ background: NET_VENDOR_COLORS[v] }} />
               {VENDOR_NAMES[v]}
