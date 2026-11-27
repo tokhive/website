@@ -14,6 +14,7 @@ import {
   HOST_REQUIREMENTS,
   HOST_RISKS,
   HOST_SAFETY,
+  HOST_SPLIT,
   HOST_STATEMENT,
   HOST_STATS,
   HOST_STEPS,
@@ -148,18 +149,31 @@ export function EgressHostsPage() {
                 ))}
               </ul>
             </div>
-            <div className="overflow-hidden rounded-card bg-surface font-mono">
-              <div className="flex justify-between gap-3 border-b border-line-soft px-6 py-[18px] text-xs text-muted">
-                <span>{t("earnings.statement.title")}</span>
-                <span>{t("earnings.statement.illustrative")}</span>
-              </div>
-              {HOST_STATEMENT.map((r) => (
-                <div key={r.key} className="flex items-baseline justify-between gap-4 border-b border-paper/6 px-6 py-[13px] text-[13px]">
-                  <span>{t(`earnings.statement.${r.key}`)}</span>
-                  <span className={r.key === "credited" ? "text-volt" : "text-muted"}>{r.value}</span>
+            <div className="flex flex-col gap-4">
+              <div className="overflow-hidden rounded-card bg-surface font-mono">
+                <div className="flex justify-between gap-3 border-b border-line-soft px-6 py-[18px] text-xs text-muted">
+                  <span>{t("earnings.split.title")}</span>
                 </div>
-              ))}
-              <p className="px-6 py-4 text-[11px] leading-[1.6] text-muted-2">{t("earnings.statement.note")}</p>
+                {HOST_SPLIT.map((r) => (
+                  <div key={r.key} className="flex items-baseline justify-between gap-4 border-b border-paper/6 px-6 py-[13px] text-[13px] last:border-b-0">
+                    <span>{t(`earnings.split.${r.key}`)}</span>
+                    <span className={r.key === "host" ? "font-semibold text-volt" : "text-muted"}>{r.value}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="overflow-hidden rounded-card bg-surface font-mono">
+                <div className="flex justify-between gap-3 border-b border-line-soft px-6 py-[18px] text-xs text-muted">
+                  <span>{t("earnings.statement.title")}</span>
+                  <span>{t("earnings.statement.illustrative")}</span>
+                </div>
+                {HOST_STATEMENT.map((r) => (
+                  <div key={r.key} className="flex items-baseline justify-between gap-4 border-b border-paper/6 px-6 py-[13px] text-[13px]">
+                    <span>{t(`earnings.statement.${r.key}`)}</span>
+                    <span className={r.key === "credited" ? "font-semibold text-volt" : "text-muted"}>{r.value}</span>
+                  </div>
+                ))}
+                <p className="px-6 py-4 text-[11px] leading-[1.6] text-muted-2">{t("earnings.statement.note")}</p>
+              </div>
             </div>
           </section>
 

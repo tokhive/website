@@ -1,8 +1,22 @@
 // Order of the copy blocks on /egress and /egress/hosts; the text lives in messages/*.json.
 export const EGRESS_STEPS = ["catalog", "prepay", "connect", "exit"] as const;
-export const EGRESS_PRICING = ["block", "units", "payment", "concurrency", "refund", "ports"] as const;
 export const EGRESS_LIMITS = ["tcp", "ports", "private", "sla"] as const;
 export const EGRESS_FAQ = ["experimental", "anonymous", "udp", "offline", "refund", "access"] as const;
+
+/** What one session block buys, as Hive's egress service defaults define it. */
+export const BLOCK_MINUTES = 5;
+export const BLOCK_MIB = 16;
+export const BLOCK_USD = 0.006;
+export const MAX_BLOCKS_PER_LEASE = 24;
+
+/** The three facts that define one block, shown as tiles above the price ladder. */
+export const EGRESS_BLOCK_FACTS = ["duration", "traffic", "price"] as const;
+
+/** Block counts a buyer is likely to pick; every exit costs the same. */
+export const EGRESS_LADDER = [1, 2, 6, 12, MAX_BLOCKS_PER_LEASE] as const;
+
+/** Plain-language rules for how a session is charged, in the order the page lists them. */
+export const EGRESS_BILLING_RULES = ["prepay", "whichever", "stack", "norenew", "limits"] as const;
 
 /** Client paths on the VLESS section, in the order the page lists them. */
 export const EGRESS_CLIENTS = ["subscription", "clash", "single"] as const;
@@ -39,9 +53,17 @@ export const HOST_REQUIREMENTS = ["line", "region", "isp", "bee"] as const;
 export const HOST_RISKS = ["experimental", "availability", "abuse"] as const;
 export const HOST_FAQ = ["what", "when", "howmuch", "safe", "stop"] as const;
 
-/** Illustrative rent rows on the host page; the labels are translated. */
-export const HOST_STATEMENT: { key: "sessions" | "commission" | "credited"; value: string }[] = [
+/** Illustrative statement rows on the host page; the labels are translated. */
+export const HOST_STATEMENT: { key: "sessions" | "gross" | "commission" | "credited"; value: string }[] = [
   { key: "sessions", value: "1,240" },
-  { key: "commission", value: "−20%" },
-  { key: "credited", value: "$5.95" },
+  { key: "gross", value: "$7.44" },
+  { key: "commission", value: "−$2.23" },
+  { key: "credited", value: "$5.21" },
+];
+
+/** How one session block's price is split; Hive's default commission is 30%. */
+export const HOST_SPLIT: { key: "paid" | "platform" | "host"; value: string }[] = [
+  { key: "paid", value: "$0.006" },
+  { key: "platform", value: "−$0.0018" },
+  { key: "host", value: "$0.0042" },
 ];

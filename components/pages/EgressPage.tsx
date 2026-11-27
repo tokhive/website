@@ -13,10 +13,15 @@ import { StepList } from "@/components/StepList";
 import { Link } from "@/i18n/navigation";
 import { LINKS } from "@/lib/links";
 import {
+  BLOCK_MIB,
+  BLOCK_MINUTES,
+  BLOCK_USD,
+  EGRESS_BILLING_RULES,
+  EGRESS_BLOCK_FACTS,
   EGRESS_CLIENTS,
   EGRESS_FAQ,
+  EGRESS_LADDER,
   EGRESS_LIMITS,
-  EGRESS_PRICING,
   EGRESS_SAMPLE,
   EGRESS_STEPS,
   EGRESS_SUBSCRIPTION,
@@ -181,32 +186,62 @@ export function EgressPage() {
             </div>
           </section>
 
-          <section className="content-section grid gap-12 pt-[120px] lg:grid-cols-[.8fr_1.2fr]">
-            <div className="section-intro">
+          <section className="content-section pt-[120px]">
+            <div className="section-intro mb-9 max-w-[760px]">
               <span className="eyebrow">{t("pricing.eyebrow")}</span>
               <h2 className="section-title">{t("pricing.title")}</h2>
               <p className="text-base leading-[1.6] text-text-2">{t("pricing.lead")}</p>
-              <p className="rounded-xl border border-dashed border-volt/35 p-4 font-mono text-xs leading-[1.7] text-text-2">
-                {t("pricing.note")}
-              </p>
             </div>
-            <dl className="overflow-hidden rounded-card bg-surface">
-              <div className="hidden grid-cols-[.9fr_1.1fr_1.4fr] gap-4 border-b border-line-soft px-6 py-3.5 font-mono text-[11px] tracking-[.06em] text-muted-2 md:grid">
-                <span>{t("pricing.columns.item")}</span>
-                <span>{t("pricing.columns.value")}</span>
-                <span>{t("pricing.columns.detail")}</span>
-              </div>
-              {EGRESS_PRICING.map((key) => (
-                <div
-                  key={key}
-                  className="flex flex-col gap-1 border-b border-paper/6 px-6 py-4 last:border-b-0 md:grid md:grid-cols-[.9fr_1.1fr_1.4fr] md:items-baseline md:gap-4"
-                >
-                  <dt className="text-sm font-semibold">{t(`pricing.items.${key}.label`)}</dt>
-                  <dd className="font-mono text-sm text-volt">{t(`pricing.items.${key}.value`)}</dd>
-                  <dd className="text-[13px] leading-[1.5] text-muted">{t(`pricing.items.${key}.detail`)}</dd>
+
+            <dl className="grid gap-2.5 md:grid-cols-3">
+              {EGRESS_BLOCK_FACTS.map((key) => (
+                <div key={key} className="flex flex-col rounded-card bg-surface p-6">
+                  <dt className="font-mono text-[11px] font-medium tracking-[.1em] text-volt uppercase">{t(`pricing.facts.${key}.label`)}</dt>
+                  <dd className="mt-3 font-mono text-[32px] leading-none font-semibold">{t(`pricing.facts.${key}.value`)}</dd>
+                  <dd className="mt-3 text-sm leading-[1.55] text-muted">{t(`pricing.facts.${key}.note`)}</dd>
                 </div>
               ))}
             </dl>
+
+            <div className="mt-2.5 overflow-hidden rounded-card bg-surface">
+              <div className="hidden grid-cols-4 gap-4 border-b border-line-soft px-6 py-3.5 font-mono text-[11px] tracking-[.06em] text-muted-2 md:grid">
+                <span>{t("pricing.ladder.columns.blocks")}</span>
+                <span>{t("pricing.ladder.columns.time")}</span>
+                <span>{t("pricing.ladder.columns.traffic")}</span>
+                <span>{t("pricing.ladder.columns.price")}</span>
+              </div>
+              <dl>
+                {EGRESS_LADDER.map((blocks) => {
+                  const minutes = blocks * BLOCK_MINUTES;
+                  return (
+                    <div
+                      key={blocks}
+                      className="flex flex-col gap-1 border-b border-paper/6 px-6 py-4 last:border-b-0 md:grid md:grid-cols-4 md:items-baseline md:gap-4"
+                    >
+                      <dt className="text-sm font-semibold">{t("pricing.ladder.blocks", { count: blocks })}</dt>
+                      <dd className="font-mono text-sm text-text-2">
+                        {minutes < 60 ? t("pricing.ladder.minutes", { minutes }) : t("pricing.ladder.hours", { hours: minutes / 60 })}
+                      </dd>
+                      <dd className="font-mono text-sm text-text-2">{t("pricing.ladder.mib", { mib: blocks * BLOCK_MIB })}</dd>
+                      <dd className="font-mono text-sm font-semibold text-volt">${(blocks * BLOCK_USD).toFixed(3)}</dd>
+                    </div>
+                  );
+                })}
+              </dl>
+            </div>
+            <p className="mt-3 text-sm leading-[1.6] text-muted">{t("pricing.ladder.note")}</p>
+
+            <div className="mt-14 grid items-start gap-12 lg:grid-cols-[.8fr_1.2fr]">
+              <div className="section-intro">
+                <span className="eyebrow">{t("pricing.rules.eyebrow")}</span>
+                <h3 className="text-[28px] leading-[1.15] font-semibold tracking-[-.02em]">{t("pricing.rules.title")}</h3>
+                <p className="rounded-xl border border-dashed border-volt/35 p-4 font-mono text-xs leading-[1.7] text-text-2">{t("pricing.estimate")}</p>
+              </div>
+              <StepList
+                steps={EGRESS_BILLING_RULES.map((key) => ({ t: t(`pricing.rules.items.${key}.title`), d: t(`pricing.rules.items.${key}.description`) }))}
+                className="grid-cols-1 gap-x-7 gap-y-7"
+              />
+            </div>
           </section>
 
           <section className="content-section grid gap-12 pt-[120px] lg:grid-cols-[.85fr_1.15fr]">

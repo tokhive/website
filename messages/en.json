@@ -18,11 +18,11 @@
     },
     "egress": {
       "title": "Residential Egress (Experimental)",
-      "description": "Send individual TCP sessions through real home connections. Prepaid session blocks, standard HTTPS CONNECT, no client to install. Experimental, limited rollout."
+      "description": "Send TCP connections out through real home internet connections. Prepaid session blocks, standard HTTPS CONNECT, nothing to install. Experimental, limited rollout."
     },
     "egressHosts": {
       "title": "Host Residential Egress (Experimental)",
-      "description": "Lend spare upload from your home connection as an egress host. Opt in with Bee, set your own limits and earn per completed session. Experimental."
+      "description": "Share spare upload from your home connection as an egress host. Turn it on in Bee, set your own limits and earn for each completed session. Experimental."
     },
     "security": {
       "title": "Security & TEE Verification",
@@ -824,17 +824,17 @@
       "badge": "Experimental · limited rollout",
       "titleLine1": "A real home IP,",
       "titleLine2": "on demand.",
-      "lead": "Route individual TCP sessions through residential connections shared by TokHive hosts. Pick an exit by country, network type and measured quality, prepay a session, and connect with a standard HTTPS proxy — no client to install.",
+      "lead": "Send individual TCP sessions out through home connections shared by TokHive hosts. Choose an exit by country, network type and measured quality, prepay for a session, and connect with any standard HTTPS proxy. There is no client to install.",
       "cta": "Open the console",
       "how": "How it works",
-      "cardNote": "Blocks of 5 minutes and 16 MiB; buy 1–24 at a time. Unused time does not carry over.",
+      "cardNote": "One block is 5 minutes plus 16 MiB of traffic for $0.006. Buy 1 to 24 at a time. Unused time is not refunded.",
       "lifecycle": {
-        "title": "SESSION LIFECYCLE",
+        "title": "HOW A SESSION RUNS",
         "sample": "SAMPLE",
         "states": {
           "catalog": "Matching an exit",
-          "lease": "6 blocks prepaid",
-          "stream": "Streaming over CONNECT",
+          "lease": "6 blocks paid",
+          "stream": "Sending data over CONNECT",
           "done": "Lease complete"
         }
       }
@@ -842,41 +842,41 @@
     "notice": {
       "tag": "Experimental",
       "title": "What experimental means here.",
-      "lead": "Residential egress is in a limited rollout while we calibrate coverage, pricing and abuse controls. Use it for evaluation and low-stakes automation, never for traffic that must not fail.",
+      "lead": "Residential egress is available to a limited group while we work on coverage, pricing and abuse controls. Use it for testing and for automation that can tolerate a failure, not for traffic that must not fail.",
       "items": {
-        "relay": "Relay mode only: traffic always passes through TokHive's gateway. Direct host endpoints are not available.",
+        "relay": "Relay mode only. All traffic passes through TokHive's gateway, and direct host endpoints are not available.",
         "sla": "No SLA. Coverage, latency and exit IPs change as hosts join and leave.",
         "changes": "Features, limits and prices can change or be withdrawn without notice."
       }
     },
     "steps": {
       "eyebrow": "How it works",
-      "title": "From catalog to home IP in four steps.",
+      "title": "Four steps to a residential IP.",
       "meta": "TCP CONNECT · TLS end-to-end",
       "items": {
         "catalog": {
           "title": "Pick an exit",
-          "description": "Browse the catalog by country, network type and minimum quality score. Prices are listed per session; the exact IP appears only once you hold the lease."
+          "description": "Browse available exits by country, network type and minimum quality score. Each one lists its price per session. The exact IP is shown only after you have bought the lease."
         },
         "prepay": {
           "title": "Prepay a session",
-          "description": "Buy 1–24 blocks in one call. Payment comes from your withdrawable balance, and the price is locked when the lease is created."
+          "description": "Buy 1 to 24 blocks in one call. The cost is taken from your withdrawable balance, and the price is locked in when the lease is created."
         },
         "connect": {
           "title": "Connect",
-          "description": "Send a standard HTTP CONNECT to the gateway with your egress key. curl, browsers and SDKs work without a plugin."
+          "description": "Send a standard HTTP CONNECT request to the gateway using your egress key. curl, browsers and SDKs work as they are, with no plugin."
         },
         "exit": {
-          "title": "Exit from home",
-          "description": "The host's Bee dials your target over its home line. Your TLS stays end to end; the host only forwards bytes it cannot read."
+          "title": "Leave from a home line",
+          "description": "The host's Bee connects to your target over its home connection. Your TLS session runs end to end, so the host only forwards bytes it cannot read."
         }
       }
     },
     "protocol": {
       "eyebrow": "Protocol",
-      "title": "An HTTPS proxy, nothing proprietary.",
-      "lead": "Buyers send HTTP/1.1 CONNECT to the gateway over TLS, authorized with an egress key as a bearer token. The response is a raw tunnel to the target.",
-      "note": "Port 443 is allowed by default; port 80 is opt-in and warns that it is plaintext. Ports such as 22, 25, 445 and 3389 are refused, and IP literals or private ranges are rejected after DNS resolution.",
+      "title": "A standard HTTPS proxy, with no proprietary protocol.",
+      "lead": "You send an HTTP/1.1 CONNECT request to the gateway over TLS, authenticated with your egress key as a bearer token. Once it succeeds, you have a raw tunnel to the target.",
+      "note": "Port 443 is allowed by default. Port 80 is opt-in and comes with a warning that it is plaintext. Ports such as 22, 25, 445 and 3389 are refused. IP literals and private ranges are rejected after DNS resolution.",
       "docs": "Read the API reference →",
       "aup": "Acceptable use →",
       "terminal": "egress session",
@@ -897,51 +897,70 @@
     },
     "pricing": {
       "eyebrow": "Pricing",
-      "title": "One unit: the session block.",
-      "lead": "Egress is prepaid, metered in session blocks and billed from your withdrawable balance. There is no hourly rate, no postpaid usage and no refund path.",
-      "note": "Illustrative launch price. Rates differ by market and can change during the experimental period.",
-      "columns": {
-        "item": "ITEM",
-        "value": "VALUE",
-        "detail": "DETAIL"
-      },
-      "items": {
-        "block": {
-          "label": "Session block",
+      "title": "How you are charged.",
+      "lead": "Every exit costs the same, and you buy it in session blocks. One block gives you 5 minutes and 16 MiB of traffic for $0.006, which is less than a cent. Buy as many blocks as the time and traffic you need.",
+      "facts": {
+        "duration": {
+          "label": "Time per block",
+          "value": "5 min",
+          "note": "The clock starts when you buy, whether or not you are using the exit. The session ends when it runs out."
+        },
+        "traffic": {
+          "label": "Traffic per block",
+          "value": "16 MiB",
+          "note": "Uploads and downloads count together, and the session ends when it is used up. 1 MiB is about 1.05 MB."
+        },
+        "price": {
+          "label": "Price per block",
           "value": "$0.006",
-          "detail": "5 minutes and 16 MiB of forwarded traffic."
-        },
-        "units": {
-          "label": "Blocks per lease",
-          "value": "1–24",
-          "detail": "Time and byte caps scale linearly; the lease ends when either runs out."
-        },
-        "payment": {
-          "label": "Payment",
-          "value": "Prepaid",
-          "detail": "Charged from withdrawable balance at lease creation. Promotional credits cannot be used."
-        },
-        "concurrency": {
-          "label": "Concurrency",
-          "value": "32 leases",
-          "detail": "Up to 16 streams per lease. Batch creation covers many exits at once."
-        },
-        "refund": {
-          "label": "Refunds",
-          "value": "None",
-          "detail": "Releasing a lease ends it; unused time expires. Platform-side outages are credited by support."
-        },
-        "ports": {
-          "label": "Ports",
-          "value": "443 default",
-          "detail": "Port 80 opt-in with a plaintext warning; sensitive ports are blocked."
+          "note": "Same on every exit. Two blocks cost two times $0.006, and so on."
         }
-      }
+      },
+      "ladder": {
+        "blocks": "{count, plural, one {# block} other {# blocks}}",
+        "minutes": "{minutes} min",
+        "hours": "{hours, plural, one {1 hour} other {# hours}}",
+        "mib": "{mib} MiB",
+        "columns": {
+          "blocks": "Blocks",
+          "time": "Time",
+          "traffic": "Traffic cap",
+          "price": "Total cost"
+        },
+        "note": "For example, 6 blocks give you 30 minutes and up to 96 MiB for $0.036. The session ends as soon as the time or the traffic runs out."
+      },
+      "rules": {
+        "eyebrow": "How billing works",
+        "title": "A few simple rules.",
+        "items": {
+          "prepay": {
+            "title": "Pay first, then use it",
+            "description": "The full cost is taken from your withdrawable balance when you buy. Promotional credits cannot be used, and you cannot buy without enough balance."
+          },
+          "whichever": {
+            "title": "It ends when the time or the traffic runs out",
+            "description": "With one block, the session still ends after 16 MiB, even if 5 minutes have not passed. Open connections are closed at that point."
+          },
+          "stack": {
+            "title": "More blocks mean more time and more traffic",
+            "description": "Both caps add up per block. You can buy up to 24 blocks at a time, which is 2 hours and 384 MiB."
+          },
+          "norenew": {
+            "title": "No refunds and no renewals",
+            "description": "Time you paid for and did not use is not refunded. When a session is nearly used up, buy a new one."
+          },
+          "limits": {
+            "title": "Up to 32 sessions at once",
+            "description": "Each account can hold 32 active sessions, and each session allows 8 connections at the same time."
+          }
+        }
+      },
+      "estimate": "How many blocks to buy: divide the minutes you need by 5, then divide the traffic you expect in MiB by 16, and take the larger result. If you are not sure, buy a few extra blocks. Each one costs less than a cent."
     },
     "visibility": {
       "eyebrow": "Privacy",
       "title": "Who can see what.",
-      "lead": "TLS runs between your client and the target, so neither TokHive nor the host can read the payload. The host never learns who you are.",
+      "lead": "TLS runs between your client and the target, so neither TokHive nor the host can read what you send. The host never learns who you are.",
       "party": "Party",
       "columns": {
         "payload": "Payload",
@@ -960,63 +979,63 @@
       },
       "canSee": "visible",
       "cannotSee": "not visible",
-      "note": "Hostnames and byte counts are kept for 30 days for abuse review, then reduced to salted hashes. The host sees the target hostname during the lease, never your account, key or payload."
+      "note": "Hostnames and byte counts are kept for 30 days for abuse review, then reduced to salted hashes. During the lease the host can see the target hostname, but not your account, key or payload."
     },
     "limits": {
-      "eyebrow": "Boundaries",
-      "title": "What egress is not.",
+      "eyebrow": "Limitations",
+      "title": "What egress cannot do.",
       "items": {
         "tcp": {
           "title": "TCP only",
-          "description": "v1 is HTTP CONNECT over TCP. UDP, QUIC and SOCKS5 UDP associate are out of scope."
+          "description": "Version 1 supports HTTP CONNECT over TCP only. UDP, QUIC and SOCKS5 UDP associate are not supported."
         },
         "ports": {
-          "title": "A narrow port policy",
-          "description": "443 by default, 80 on request. Mail, SSH, SMB, RDP, Redis and similar ports are refused."
+          "title": "Only a few ports",
+          "description": "Port 443 is open by default and 80 is available on request. Mail, SSH, SMB, RDP, Redis and similar ports are refused."
         },
         "private": {
           "title": "No private networks",
           "description": "Loopback, RFC1918, CGNAT, link-local and IPv4-mapped IPv6 targets are rejected after resolution."
         },
         "sla": {
-          "title": "Not a guarantee",
-          "description": "TokHive measures and signs the exit at lease start, but a probe is not proof of every packet's path."
+          "title": "The probe is not a guarantee",
+          "description": "TokHive measures and signs the exit when the lease starts, but one probe cannot prove the path of every packet that follows."
         }
       }
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "Questions before you route.",
+      "title": "Before you start.",
       "items": {
         "experimental": {
           "question": "Why is this labelled experimental?",
-          "answer": "Relay mode works, but coverage, host supply and abuse tooling are still being calibrated. Expect gaps, and do not put production traffic on it yet."
+          "answer": "Relay mode works, but coverage, host supply and abuse tooling are still being worked on. You may find gaps, so do not put production traffic on it yet."
         },
         "anonymous": {
           "question": "Is this an anonymity service?",
-          "answer": "No. Buyers are verified, targets are logged and the acceptable use policy applies. Egress gives you a residential source IP, not anonymity."
+          "answer": "No. Buyers are verified, targets are logged and the acceptable use policy applies. Egress gives you a residential source IP. It does not make you anonymous."
         },
         "udp": {
           "question": "Can I send UDP?",
-          "answer": "Not today. CONNECT carries TCP streams only; UDP would need a separate MASQUE endpoint and is not part of this release."
+          "answer": "Not yet. CONNECT carries TCP streams only. UDP would need a separate MASQUE endpoint, which is not part of this release."
         },
         "offline": {
           "question": "What happens if a host disconnects?",
-          "answer": "The lease is interrupted. Prepaid time is not refunded, though platform-side failures are credited when attributable. Use the batch endpoint to spread long jobs across several exits."
+          "answer": "The lease is interrupted. Prepaid time is not refunded, although failures on our side are credited when we can trace them to us. Use the batch endpoint to spread long jobs across several exits."
         },
         "refund": {
-          "question": "Why are sessions non-refundable?",
-          "answer": "Each block costs a fraction of a cent, so a refund path would cost more than it returns and invite abuse. Buy the number of blocks the job needs."
+          "question": "Why can't sessions be refunded?",
+          "answer": "Each block costs a fraction of a cent. Processing refunds would cost more than the refunds themselves and would invite abuse, so buy the number of blocks the job needs."
         },
         "access": {
           "question": "How do I get access?",
-          "answer": "Sign in to the console, add a withdrawable balance and create a lease. Experimental access may be limited by region or account review."
+          "answer": "Sign in to the console, add funds to your withdrawable balance and create a lease. During the experimental period, access may be limited by region or by account review."
         }
       }
     },
     "cta": {
       "title": "Try it on one session.",
-      "lead": "One block is five minutes and a fraction of a cent. Start with a single exit, then scale with batches.",
+      "lead": "One block is 5 minutes plus 16 MiB of traffic for less than a cent. Start with a single exit, then use batches as you need more.",
       "button": "Open the console",
       "hosts": "Have a residential line? Host egress →"
     },
@@ -1026,28 +1045,28 @@
       "ports": "443 by default",
       "blocks": "5-min session blocks",
       "concurrency": "32 leases per buyer",
-      "identity": "Hosts never see buyers",
+      "identity": "Hosts don't see who you are",
       "holdback": "30-day host holdback",
       "probe": "Signed exit probe"
     },
     "clients": {
       "eyebrow": "Client compatibility",
-      "title": "The same lease, as a VLESS link.",
-      "lead": "If you already run v2rayN, sing-box, mihomo or Xray, point it at the subscription and every active lease arrives as a proxy. Nothing else about the session changes: same block, same 80/443 policy, same byte ceiling.",
+      "title": "The same lease can also be a VLESS link.",
+      "lead": "If you already use v2rayN, sing-box, mihomo or Xray, add the subscription and every active lease shows up as a proxy. Nothing else about the session changes: the same blocks, the same 80/443 policy and the same byte cap.",
       "terminal": "egress subscription",
-      "note": "The VLESS entry is experimental like the rest of egress. It terminates TLS at the gateway and speaks plain VLESS inside, so clients must connect with security=tls.",
+      "note": "The VLESS entry is experimental, like the rest of egress. TLS ends at the gateway and plain VLESS runs inside it, so clients must connect with security=tls.",
       "items": {
         "subscription": {
           "title": "One URL, every lease",
-          "description": "format=vless returns a base64 list of vless:// links; clients import every line as its own profile."
+          "description": "format=vless returns a base64-encoded list of vless:// links. Clients import each line as its own profile."
         },
         "clash": {
           "title": "Clash and mihomo",
-          "description": "format=clash&transport=vless returns the same sessions as a profile with one type: vless proxy per lease."
+          "description": "format=clash&transport=vless returns the same sessions as a Clash profile, with one type: vless proxy per lease."
         },
         "single": {
           "title": "One lease at a time",
-          "description": "The console also hands out a single link per lease, with its expiry and byte cap, for testing one exit."
+          "description": "The console can also give you a single link per lease, with its expiry time and byte cap, for testing one exit."
         }
       },
       "fields": {
@@ -1067,15 +1086,15 @@
       "badge": "Experimental · invitation only",
       "titleLine1": "Lend your line.",
       "titleLine2": "Earn per session.",
-      "lead": "Hosts share spare upload from their home connection with buyers who need a residential source IP. Egress mode is off by default in Bee, limited to allowlisted ports, and never exposes your network or your identity.",
+      "lead": "Hosts share spare upload from their home connection with buyers who need a residential IP. Egress mode is off by default in Bee and limited to allowlisted ports. It never exposes your network or your identity.",
       "cta": "Apply in the console",
       "how": "See how hosting works",
       "cardTitle": "EGRESS HOST",
-      "cardNote": "Values from the current experimental terms. Coverage is limited and reviewed per application.",
+      "cardNote": "Buyers pay $0.006 for each session block, and 70% of that goes to the host. Values are from the current experimental terms, and coverage is limited.",
       "stats": {
         "block": {
-          "label": "Session block",
-          "value": "5 min · 16 MiB"
+          "label": "Block price (5 min + 16 MiB)",
+          "value": "$0.006"
         },
         "holdback": {
           "label": "Earnings holdback",
@@ -1090,11 +1109,11 @@
     "notice": {
       "tag": "Experimental",
       "title": "Hosting is invite-only for now.",
-      "lead": "We are calibrating ISP compliance, abuse handling and payouts with a small group of hosts. Applications are reviewed manually, and egress mode can be paused for a host or a region at any time."
+      "lead": "We are working through ISP compliance, abuse handling and payouts with a small group of hosts. Applications are reviewed by hand, and egress mode can be paused for a host or a region at any time."
     },
     "steps": {
       "eyebrow": "How hosting works",
-      "title": "Opt in, set limits, stay in control.",
+      "title": "Turn it on, set your limits.",
       "meta": "Bee 1.x · residential mode",
       "items": {
         "optin": {
@@ -1103,21 +1122,21 @@
         },
         "limits": {
           "title": "Set your limits",
-          "description": "Choose concurrent streams, a bandwidth cap and allowed ports. Bee enforces them locally, not just at the gateway."
+          "description": "Choose the number of concurrent streams, a bandwidth cap and the ports to allow. Bee enforces these locally, not only at the gateway."
         },
         "tokens": {
-          "title": "Approve each lease",
-          "description": "Every lease carries a short-lived token signed by TokHive, bound to your device and the policy hash. Bee verifies it before dialing anything."
+          "title": "Verify each lease",
+          "description": "Every lease carries a short-lived token signed by TokHive and bound to your device and the policy hash. Bee verifies it before connecting to anything."
         },
         "earn": {
           "title": "Get paid per session",
-          "description": "Completed session blocks are credited to your earnings balance. Failed dials and platform-rejected targets pay nothing."
+          "description": "Each completed session block is credited to your earnings balance. Failed connections and platform-rejected targets pay nothing."
         }
       }
     },
     "safety": {
       "eyebrow": "Built-in protections",
-      "title": "Your network stays closed.",
+      "title": "Your network stays closed to buyers.",
       "details": "Read the provider security notes →",
       "items": {
         "lan": {
@@ -1137,43 +1156,50 @@
         },
         "identity": {
           "label": "IDENTITY",
-          "title": "No buyer identity",
-          "description": "You never see the buyer's account, key or contact details. The console shows lease counts and bytes, not people."
+          "title": "You never see who the buyer is",
+          "description": "You never see the buyer's account, key or contact details. The console shows only lease counts and byte totals."
         },
         "switch": {
-          "label": "KILL SWITCH",
+          "label": "OFF SWITCH",
           "title": "Stop instantly",
-          "description": "Stopping Bee or the egress switch closes every open stream at once and rejects new leases."
+          "description": "Stopping Bee or turning off the egress switch closes every open stream at once and rejects new leases."
         },
         "open": {
           "label": "SOFTWARE",
           "title": "Open source",
-          "description": "Bee is MIT-licensed and public, so the policy enforcement you rely on can be read and built from source."
+          "description": "Bee is MIT-licensed and public on GitHub, so you can read the code that enforces these policies or build it yourself."
         }
       }
     },
     "earnings": {
       "eyebrow": "Earnings",
-      "title": "Paid per completed session.",
-      "lead": "Each finished block is credited to your earnings balance and stays pending for 30 days to cover ISP complaints and abuse review. After that it can be withdrawn normally.",
+      "title": "Each block earns you $0.0042.",
+      "lead": "Earnings are counted per session block. A buyer pays $0.006 for each block, the platform takes 30% as commission, and the remaining 70% is credited to your earnings.",
+      "split": {
+        "title": "How one block is split",
+        "paid": "Buyer pays",
+        "platform": "Platform commission (30%)",
+        "host": "Your earnings (70%)"
+      },
       "items": {
-        "session": "Each completed block is credited at the listed price, less platform commission.",
+        "session": "You earn $0.0042 for each completed block. Every 1,000 blocks add up to $4.20.",
         "holdback": "30-day holdback, then withdraw through the existing wallet.",
         "payout": "Failed dials and platform-rejected targets earn nothing and cost you nothing."
       },
       "statement": {
         "title": "STATEMENT · EXPERIMENTAL",
         "illustrative": "ILLUSTRATIVE",
-        "sessions": "1,240 session blocks",
-        "commission": "Platform commission",
-        "credited": "Credited (pending)",
-        "note": "Sample only, at the launch block price. Volume depends on demand in your country and network; there is no minimum or guaranteed amount."
+        "sessions": "Blocks bought by buyers",
+        "gross": "Total sales",
+        "commission": "Platform commission (30%)",
+        "credited": "Credited to you (pending)",
+        "note": "This is only an example, at the launch block price. How many blocks you sell depends on demand in your country and network. There is no minimum or guaranteed amount."
       }
     },
     "requirements": {
       "eyebrow": "Requirements",
-      "title": "What hosting takes.",
-      "lead": "Hosts are reviewed before egress is enabled. The line must be yours to share, and the machine must stay online while you host.",
+      "title": "What you need to host.",
+      "lead": "We review hosts before enabling egress. The connection must be yours to share, and the machine must stay online while you host.",
       "items": {
         "line": {
           "title": "A residential line",
@@ -1181,7 +1207,7 @@
         },
         "region": {
           "title": "A supported country",
-          "description": "Coverage is limited to markets where we have calibrated ISP terms and abuse handling."
+          "description": "Coverage is limited to countries where we have settled how ISP terms and abuse handling work."
         },
         "isp": {
           "title": "An ISP that allows it",
@@ -1195,33 +1221,33 @@
     },
     "risks": {
       "eyebrow": "Risk & compliance",
-      "title": "Know what you are taking on.",
+      "title": "Know the risks before you start.",
       "title2": "RISKS YOU TAKE ON",
       "items": {
-        "experimental": "Experimental terms: features, rates and eligibility can change, and egress mode can be paused for your host or region.",
-        "availability": "Availability events such as disconnects, IP changes and ISP maintenance reduce earnings and are recorded against your host.",
-        "abuse": "An abuse complaint about a buyer can suspend your egress while we investigate and withhold settlement for the affected period."
+        "experimental": "This is an experimental feature. Features, rates and eligibility can change, and egress mode can be paused for your host or region.",
+        "availability": "Disconnects, IP changes and ISP maintenance reduce your earnings and are recorded on your host record.",
+        "abuse": "If a buyer is reported for abuse, your egress may be suspended while we investigate, and settlement for that period may be withheld."
       },
       "terms": "Read the Terms for Providers →",
       "aup": "Read the Acceptable Use Policy →",
-      "isp": "Your ISP contract governs this. Some residential providers prohibit proxies or resale of connectivity, and TokHive cannot defend an account on your behalf.",
-      "consent": "Enabling egress requires an explicit confirmation in Bee and the console. It is never switched on by token sharing, updates or defaults."
+      "isp": "Your ISP contract governs this. Some residential providers prohibit proxies or reselling connectivity, and TokHive cannot argue your case with the ISP for you.",
+      "consent": "Enabling egress requires an explicit confirmation in both Bee and the console. Token sharing, updates and defaults never switch it on."
     },
     "faq": {
       "eyebrow": "FAQ",
-      "title": "Hosting questions.",
+      "title": "Before you host.",
       "items": {
         "what": {
           "question": "What exactly do buyers get?",
-          "answer": "A TCP session that exits from your residential IP, limited to allowlisted ports and bounded by time and bytes. Not a VPN, not your device, not your account."
+          "answer": "A TCP session that leaves from your residential IP, limited to allowlisted ports and capped by time and bytes. They get no access to your device or your account."
         },
         "when": {
           "question": "When can I host?",
-          "answer": "Applications are reviewed manually during the experimental period. Token providers in supported regions are considered first."
+          "answer": "Applications are reviewed by hand during the experimental period. Existing TokHive providers in supported countries are considered first."
         },
         "howmuch": {
           "question": "How much can I earn?",
-          "answer": "It depends on demand in your country, your upload capacity and how long you host. The block price is the most a session can earn; income is not guaranteed."
+          "answer": "You earn $0.0042 for every block you sell, which is the $0.006 the buyer pays minus the 30% platform commission. How many blocks you sell depends on demand in your country, your upload capacity and how long you host. Income is not guaranteed."
         },
         "safe": {
           "question": "Can buyers see my files or devices?",
@@ -1234,8 +1260,8 @@
       }
     },
     "cta": {
-      "title": "Turn spare upload into sessions.",
-      "lead": "Apply from the console; we review hosts in small batches while the feature is experimental.",
+      "title": "Put your spare upload to work.",
+      "lead": "Apply from the console. While the feature is experimental, we review hosts in small batches.",
       "button": "Apply in the console",
       "buyers": "Need an exit instead? Buy egress →"
     }
